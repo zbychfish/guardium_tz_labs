@@ -1,12 +1,27 @@
-site_name: My Forgotten Realms
-site_description: The Ultimate EET
+site_name: Guardium Notes Labs
+site_description: Labs for TZ based Guardium Data Protection workshop
 
 theme:
   name: material
+  
+
   palette:
     scheme: slate
     primary: deep purple
     accent: amber
+    
+  palette:
+    scheme: slate
+    primary: deep purple
+    accent: amber
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - toc.follow
+    - search.highlight
+    - content.code.copy
 
 markdown_extensions:
   - admonition
@@ -14,10 +29,12 @@ markdown_extensions:
   - pymdownx.superfences
   - attr_list
 
+extra_css:
+- stylesheets/extra.css
+
 nav:
   - Home: index.md
-  - Informacje:
-      - Nasz bohater: other/leech.md
-      - Lista modów: other/mods.md
-  - Podróż:
-      - Co za dzień: storyline/AR2600-1.md
+  - V14:
+      - Access to Lab: v14/access.md
+      - Appliance setup: v14/appliance.md 
+  
