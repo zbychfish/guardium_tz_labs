@@ -1,5 +1,13 @@
 # Access environment (Lab 00)
 
+## Syntax notation in Labs
+
+Throughout the lab instructions, the following conventions are used:
+
+* **Command and Option Names:** Command names, flags, parameter names, and UI elements appear in **bold** (e.g., **ssh**, **systemctl**, **-p**).
+* **Variable Parameters:** Values that you must replace with specific data from your environment are enclosed in angle brackets: `<parameter>` (e.g., `<raptor_public_ip>`).
+* **Mutually Exclusive Values / Choices:** When a parameter or target accepts one of several possible values from a predefined list, options are separated by a vertical bar: `|` (e.g., `cm|coll1|kafka1|appnode1|appnode2`).
+
 ## Get deployed environment details
 
 1.	Select **My Requests** in **IBM Technology Zone** to review the environments that are currently available or being deployed. Open the details (**Open This Reservation**) for the environment you want to access.
