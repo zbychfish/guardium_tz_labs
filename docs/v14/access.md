@@ -7,6 +7,8 @@ Throughout the lab instructions, the following conventions are used:
 * **Command and Option Names:** Command names, flags, parameter names, and UI elements appear in **bold** (e.g., **ssh**, **systemctl**, **-p**).
 * **Variable Parameters:** Values that you must replace with specific data from your environment are enclosed in angle brackets: `<parameter>` (e.g., `<raptor_public_ip>`).
 * **Mutually Exclusive Values / Choices:** When a parameter or target accepts one of several possible values from a predefined list, options are separated by a vertical bar: `|` (e.g., `cm|coll1|kafka1|appnode1|appnode2`).
+* **Value Ranges:** When a parameter accepts a value within a defined numeric range, the allowed interval is shown in square brackets: `[minimum-maximum]` (e.g., `[1-10]`, `[0-100]`, `[1-65535]`).
+
 
 ## Get deployed environment details
 

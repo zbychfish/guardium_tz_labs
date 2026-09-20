@@ -373,7 +373,7 @@ restart system
 [![TZ requests](../images/appl28.webp){ width="99%" }](../images/appl28.webp)
 1.	Navigate to the **Feature Unlock** tab and verify that the additional features have been loaded into the system. Note that this does not mean they have been activated.
 [![TZ requests](../images/appl29.webp){ width="99%" }](../images/appl29.webp)
-1.	Next, select **Definition Export/Import**, go to the **Import** tab, choose the report definition file `exp_full_sql_report.sql` from your exports folder (student materials), and click **Upload** file.
+1.	Next, select **Definition Export/Import**, go to the **Import** tab, choose the report definition file `exp_report_two_of_training_dasboard.sql` from your exports folder (student materials), and click **Upload** file.
 [![TZ requests](../images/appl30.webp){ width="99%" }](../images/appl30.webp)
 1.	After a moment, the *Full SQL (Training)* report should appear in the **Uploaded files** section. Select it and click **Import**.
 [![TZ requests](../images/appl31.webp){ width="99%" }](../images/appl31.webp)
@@ -399,3 +399,196 @@ show unit type
 [![TZ requests](../images/appl37.webp){ width="45%" }](../images/appl37.webp)
 1.	Repeat the full appliance registration process on **appnode1**, **appnode2** and **kafka1** and confirm that all appliances are visible from the **cm** *Central management* view.
 [![TZ requests](../images/appl38.webp){ width="99%" }](../images/appl38.webp)
+
+## Central Manager patching
+
+!!! info "Screenshots"
+	Screenshots in this section may not exactly match the patch numbers available in your environment. The labs are frequently updated, so there may be some inconsistencies between this documentation and what is present on the machines.
+1.	In **cm** UI, open **Installed Patches** to confirm which patches are currently installed.
+[![TZ requests](../images/appl39.webp){ width="99%" }](../images/appl39.webp)
+1.	On **raptor**, there are several additional patches available that we will install on the **cm**. Patches are files with the `.sig` extension.
+```bash
+ls -l /opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/patches/
+```
+[![TZ requests](../images/appl40.webp){ width="99%" }](../images/appl40.webp)
+1.	The directory also contains a `patch_order.txt` file that specifies the correct order for applying patches. In the next step, you will provide a list of patches for installation - make sure to follow the installation sequence defined in this file.
+```bash
+cat /opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/patches/patch_order.txt
+```
+[![TZ requests](../images/appl41.webp){ width="99%" }](../images/appl41.webp)
+1. Login to **cm** cli and upload all patches to it using flow below. Execute command:
+
+    ```bash
+    store system patch install scp
+    ```
+
+    !!! abstract "Insert:"
+        - raptor IP address: **raptor.demo.guardium**
+        - user name: **root**
+        - patch path: `/opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/patches/*.sig`
+        - Port: **2223**
+        - password for root account on raptor
+
+    Finally, you will be asked for order of patch installation, it must be comma separated list based on patch numbering on the displayed list (for example 4,3,2,1), please use correct order provided in patch_order.txt file mentioned above. Some other patches will be on the list - ignore them, they are related to previous patch processes.
+
+    !!! note
+        You will be asked for patch **9997** reinstallation confirmation - *accept this!*
+
+    [![TZ requests](../images/appl42.webp){ width="99%" }](../images/appl42.webp)
+
+1. Monitor installation progress using the relevant patch status commands. Some patches temporarily stop backend services, so one view may show errors. Check the list of downloaded patches on **cm**
+```bash
+show system patch available
+```
+[![TZ requests](../images/appl43.webp){ width="99%" }](../images/appl43.webp)
+1.	All freshly uploaded patches will be scheduled, and you can monitor the installation process using commands:
+    ```bash
+    show system patch installed
+    ```
+    [![TZ requests](../images/appl44.webp){ width="99%" }](../images/appl44.webp)
+    and
+    ```bash
+    show system patch status
+    ```
+    [![TZ requests](../images/appl45.webp){ width="99%" }](../images/appl45.webp)
+    The first command can produce errors if some patch installation tasks require stop collector backend (MySQL). In this case you can use the second one to check the progress.
+
+    !!! note
+        Process can take several minutes (depending on patches applied during this course instance) and you must wait that all scheduled patches will be installed successfully. Some patches can force collector restart and you must re-login.
+
+1.	Confirm that all patches are installed. You can noticed warning at patch **9997** – you can ignore it.
+```bash
+show system patch installed
+```
+[![TZ requests](../images/appl46.webp){ width="99%" }](../images/appl46.webp)
+1.	It is good practice to schedule the re-installation of patch **9997** at the beginning of every appliance patching process to ensure that the latest version available on the **cm** is installed.
+
+## Collectors patching
+
+1.	Patching the remaining appliances can be managed centrally from the **cm**. In the **cm** UI, open **Patch Management**.
+    From the *Available patches* section, select patch **9997** (first in the `patch_order.txt` list), then select your collectors in the *Guardium systems* section. Click **Install**, which opens a popup where you can schedule the patch installation.
+    Choose *NOW* for immediate deployment and confirm by clicking **Install**. A confirmation popup should appear indicating that the installation job has been successfully created.
+    [![TZ requests](../images/appl47.webp){ width="99%" }](../images/appl47.webp)
+1.	Repeat these steps for all other patches mentioned in `patch_order.txt` list.
+1.	To check the patch installation status, select one of the appliances and choose *Show all installed patches*. This will open a window displaying the list of patches on that system. You should see the newly scheduled patches listed with various installation statuses. Confirm that all patches have been installed.
+    [![TZ requests](../images/appl48.webp){ width="99%" }](../images/appl48.webp)
+
+## Collector default policy
+
+1.	A newly deployed collector has a default policy assigned that ignores all activity. To start collecting traffic, you need to install a meaningful policy—use the one previously imported.
+    In the **cm** UI, open **Security Policies**, filter the view to show only policies (uncheck *Include templates*), select **Default bootcamp policy**, and from the actions list choose **Install**.
+    In the popup, select your **coll1.demo.guardium** and choose the installation type *Install and override*, then confirm with **OK**. You should receive confirmation that the policy has been installed on the **coll1**.
+    Do not install this policy on other appliances, as they will be used for a different purposes.
+    [![TZ requests](../images/appl49.webp){ width="99%" }](../images/appl49.webp)
+
+1.	Open **Central management** view on **cm**. Verify that we have our policy installed on collector **coll1** and generic one is still applied on the rest appliances.
+[![TZ requests](../images/appl50.webp){ width="99%" }](../images/appl50.webp)
+
+## Backup, configuration profiles (optional)
+
+1.	To configure scheduled appliance backup open in cm GUI the System Backup view
+
+    !!! abstract "Use this information to fill in a form:"
+        *Endpoint URL*: **s3.ams03.cloud-object-storage.appdomain.cloud**
+
+        *Access Key ID*: **2a20bcab1bfc4503bc5466cd549aba6e**
+
+        *Secret access key*:  **962fc95e0b20d77258e86279561011804c1f3dd0e6348ad9**
+
+    [![TZ requests](../images/appl51.webp){ width="99%" }](../images/appl51.webp)
+
+1.	Use **Test connection** button to check correctness of inserted values and then close pop-up message and **Save** configuration. Do not run the backup on the **cm**; we will do it in a moment on the **coll1**.
+[![TZ requests](../images/appl52.webp){ width="99%" }](../images/appl52.webp)
+
+1. In the centrally managed environment we can spread some configuration settings across managed appliances to avoid repetion of this same tasks in the large installation. Let’s do this with backup configuration. Open **Distribute Configuration Profiles** view and add a new one.
+[![TZ requests](../images/appl53.webp){ width="99%" }](../images/appl53.webp)
+
+1.	Insert the **Name**, for example – *Backup configuration* and press **Next** button
+[![TZ requests](../images/appl54.webp){ width="99%" }](../images/appl54.webp)
+
+1.	In the *What to distribute* section create a new one and select **System Backup**
+[![TZ requests](../images/appl55.webp){ width="99%" }](../images/appl55.webp)
+
+1.	Similar to backup configuration for **cm**, define this same bucket and **Save** configuration
+
+    !!! abstract    
+        *Endpoint URL*: **s3.ams03.cloud-object-storage.appdomain.cloud**
+        *Access Key ID*: **2a20bcab1bfc4503bc5466cd549aba6e**
+        *Secret access key*:  **962fc95e0b20d77258e86279561011804c1f3dd0e6348ad9**
+
+    Then press **Bucket Name** button and select *bucket-2znplpxrvg22c3v* bucket. Select only *Configuration* checkmark.
+    [![TZ requests](../images/appl56.webp){ width="99%" }](../images/appl56.webp)
+
+1.	Just created configuration asset will appear on the list. Press **Next** button
+[![TZ requests](../images/appl57.webp){ width="99%" }](../images/appl57.webp)
+1.	In the *Where to distribute* panel select *All Collectors* group and move it to *Selected groups* section. Then press **Next** button.
+[![TZ requests](../images/appl58.webp){ width="99%" }](../images/appl58.webp)
+1.	**Save** configuration and press **Run Now** button to send configuration to the collector
+[![TZ requests](../images/appl59.webp){ width="99%" }](../images/appl59.webp)
+1.	Monitor the progress of profile distribution. Finally the *Review distribution results* section should appear and confirm that **coll1** and the rest of collectors are successfully synchronized.
+[![TZ requests](../images/appl60.webp){ width="99%" }](../images/appl60.webp)
+1.	Login to **coll1** UI and confirm that **System Backup** configuration has been successfully set. Press **Run Once Now** button
+[![TZ requests](../images/appl61.webp){ width="99%" }](../images/appl61.webp)
+1.	You can check status of task in **Aggregation/Archive Log** report (on **coll1**)
+[![TZ requests](../images/appl62.webp){ width="99%" }](../images/appl62.webp)
+1.	Ask instructor to display content of bucket
+[![TZ requests](../images/appl63.webp){ width="99%" }](../images/appl63.webp)
+
+## guardcli accounts (optional)
+
+1.	**cli** accounts are shared ones. To manage cli access accountable the **Guardium** introduce on each appliance the nine additional accounts from **guardcli1** to **guardcli9** (they have *OTP* set to **guardium**). Let’s us configure accountable access to **cm cli**.
+1.	From **raptor** connect to **cm** using **guardcli1** shared account (instead **cli** one) and reset password from OTP “guardium” to desired one if you will asked for change (must be strong, you can notice a bug and could be forced to change password two times), so execute from **raptor**:
+```bash
+ssh -l guardcli1 -p22 cm
+```
+[![TZ requests](../images/appl64.webp){ width="79%" }](../images/appl64.webp)
+1.	Try to execute any administration command, for example:
+
+    ```bash
+    show network int all
+    ```
+
+    [![TZ requests](../images/appl65.webp){ width="99%" }](../images/appl65.webp)
+
+1.	You will be informed that you cannot execute commands before reauthentication using the named UI account. Then activate a full access to the CLI using command below (provide correct password for **demo** UI account). Then execute any administration command to confirm this ability now.
+```bash linenums="1"
+set guiuser demo
+
+show network int all
+```
+[![TZ requests](../images/appl66.webp){ width="79%" }](../images/appl66.webp)
+1.	Add to your *Training* dashboard on **cm** the **Detailed Guardium User Activity Trail** report. If **Add Report** button is inactive you must activate it by clicking **Edit mode**
+
+    [![TZ requests](../images/appl67.webp){ width="99%" }](../images/appl67.webp)
+
+1.	Open just added report in the **Dashboard** on **cm**. Notice that your **guardcli1** session is marked as belonging to **demo** UI account and we can track activity correctly.
+[![TZ requests](../images/appl68.webp){ width="99%" }](../images/appl68.webp)
+1.	On the fresh installed appliance all **guardcliX** accounts have the well known OTP password – **guardium**. The good administration approach is access control to all proxy accounts. A good practice is to block those accounts or change the password to prevent unauthorized login attempts. To list **guardcliX** account status execute in CM cli session:
+```bash
+show guarduser_state all
+```
+1.	Disable all proxy accounts - except just used above the **guardcli1** - by execution commands:
+
+    ```bash
+    store guarduser_state disable <guardcli[2-9]>
+    ```
+
+    Proxy account should be now set this way
+
+    [![TZ requests](../images/appl69.webp){ width="69%" }](../images/appl69.webp)
+
+## Appendix
+!!! note "Dependencies:"
+
+    **IBM Cloud** URL for COS. It is COS bucket belonging to **zibi**. In case of self-managed training or led by another instructor the backup lab should refer to appropriate, accessible COS bucket.
+
+    <https://cloud.ibm.com/objectstorage/crn%3Av1%3Abluemix%3Apublic%3Acloud-object-storage%3Aglobal%3Aa%2F8d537ccde33a156ac84a2890733b572d%3A7748e344-6c18-405c-be45-50b4742ee67c%3A%3A>
+
+
+!!! note "Resources:"
+
+!!! note "Instructor notes:"
+    
+
+
+
