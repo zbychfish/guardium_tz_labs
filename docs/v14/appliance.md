@@ -495,7 +495,7 @@ show system patch installed
 
         *Access Key ID*: **2a20bcab1bfc4503bc5466cd549aba6e**
 
-        *Secret access key*:  **<value available from TZ env materials>**
+        *Secret access key*:  **&lt;value available from TZ env materials>**
 
     [![TZ requests](../images/appl51.webp){ width="99%" }](../images/appl51.webp)
 
@@ -518,7 +518,7 @@ show system patch installed
 
         *Access Key ID*: **2a20bcab1bfc4503bc5466cd549aba6e**
         
-        *Secret access key*:  **<value available from TZ env materials>**
+        *Secret access key*:  **&lt;value available from TZ env materials>**
 
     Then press **Bucket Name** button and select *bucket-2znplpxrvg22c3v* bucket. Select only *Configuration* checkmark.
     [![TZ requests](../images/appl56.webp){ width="99%" }](../images/appl56.webp)

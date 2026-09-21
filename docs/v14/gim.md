@@ -262,6 +262,7 @@ rm -rf /var/log/guard
 ```
 
 ## Appendix
+
 !!! note "Dependencies:"
     It is crucial to have modules uploaded on cm for the other agent related labs. So ensure that you finished all non optional taska from this lab.
 
@@ -271,6 +272,5 @@ rm -rf /var/log/guard
 
     1. Certificate management
     <https://www.ibm.com/docs/en/guardium/12.x?topic=management-creating-managing-custom-gim-certificates>
-
 
 !!! note "Instructor notes:"
