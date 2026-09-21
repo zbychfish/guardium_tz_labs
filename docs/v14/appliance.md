@@ -1,3 +1,5 @@
+# Appliance setup
+
 ## Appliance basic configuration
 1.	Login to **raptor** and check local ip address of **cm**
 ```bash

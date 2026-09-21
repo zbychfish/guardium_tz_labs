@@ -38,5 +38,6 @@ nav:
   - Home: index.md
   - V14:
       - Access to Lab: v14/access.md
-      - Appliance setup: v14/appliance.md 
+      - Appliance setup (lab 1): v14/appliance.md
+      - GIM (lab 2): v14/gim.md
   
