@@ -175,7 +175,7 @@ exit;
 1.	In the **coll1** UI open **S-TAP Status** view. Just installed universal connector instance should be now *Active*. 
 [![TZ requests](../images/logstash19.webp){ width="99%" }](../images/logstash19.webp)
 
-## Set TLS connection between filebeat and logstash (optional)
+## ~~Set TLS connection between filebeat and logstash (optional)~~
 
 1.	On **coll1** regenerate self-signed certificate for universal connector and copy public certificate to buffer (domain is **demo.guardium**)
 ```bash
