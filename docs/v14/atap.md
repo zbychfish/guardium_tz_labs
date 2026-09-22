@@ -1,6 +1,6 @@
 # ATAP Configuration
 
-## Install STAP 12.0.6
+## Install STAP
 
 1.	Install kernel-devel for currently used kernel.
 ```bash
