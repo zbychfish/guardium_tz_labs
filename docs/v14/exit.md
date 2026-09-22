@@ -206,7 +206,7 @@ SELECT sid, TRIM(net_client_name) AS client_protocol, net_client_type, net_proto
 SELECT 'Second try of INFORMIX session with SSL';
 ```
 Close database session inserting ++ctrl+d++ and `exit` from **informix** user session.
-
+[![TZ requests](../images/exit11.webp){ width="99%" }](../images/exit11.webp) 
  
 1.	Stop *Informix* instance at the end of lab to free a **raptor** resources. As a **root** execute:
 ```bash
