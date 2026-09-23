@@ -26,6 +26,7 @@ theme:
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - pymdownx.tilde
   - pymdownx.superfences
   - attr_list
   - pymdownx.keys
@@ -44,5 +45,6 @@ nav:
       - ATAP (lab 4): v14/atap.md
       - EXIT (lab 5): v14/exit.md
       - UC 1.0 - logstash based (lab 6): v14/logstash.md
+      - ETAP (lab 7): v14/etap.md
 
   
