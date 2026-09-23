@@ -1,0 +1,1666 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../access/">
+      
+      
+        <link rel="next" href="../gim/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Appliance setup (lab 1) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appliance-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Appliance setup (lab 1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appliance basic configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-appliances-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other appliances setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-user-and-create-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add user and create dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-appliances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register appliances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#central-manager-patching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Central Manager patching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collectors-patching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collectors patching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collector-default-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collector default policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-configuration-profiles-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup, configuration profiles (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guardcli-accounts-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        guardcli accounts (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#appliance-basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appliance basic configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-appliances-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other appliances setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-user-and-create-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add user and create dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register-appliances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register appliances
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#central-manager-patching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Central Manager patching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collectors-patching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collectors patching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collector-default-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collector default policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-configuration-profiles-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup, configuration profiles (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guardcli-accounts-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        guardcli accounts (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="appliance-setup">Appliance setup</h1>
+<h2 id="appliance-basic-configuration">Appliance basic configuration</h2>
+<ol>
+<li>Login to <strong>raptor</strong> and check local ip address of <strong>cm</strong>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/etc/hosts
+</code></pre></div>
+<a href="../../images/appl1.webp"><img alt="TZ requests" src="../../images/appl1.webp" width="90%" /></a></li>
+<li>Login to <strong>cm</strong> cli using <em>ssh</em> session on <strong>raptor</strong>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-lcli<span class="w"> </span>-p22<span class="w"> </span>cm
+</code></pre></div></li>
+<li>Run two commands to pause the data aggregation process. In the test environment, enabled aggregation services may cause unintended delays while waiting for several steps to be completed (the second command will require confirmation).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>run_cleanup_orphans_daily<span class="w"> </span>off
+
+store<span class="w"> </span>purge_age_period<span class="w"> </span><span class="m">0</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/appl2.webp"><img alt="TZ requests" src="../../images/appl2.webp" width="80%" /></a></li>
+<li>Display network interfaces and routes to verify connectivity.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>show<span class="w"> </span>network<span class="w"> </span>interface<span class="w"> </span>all
+
+show<span class="w"> </span>network<span class="w"> </span>route<span class="w"> </span>default
+</code></pre></div></td></tr></table></div>
+<a href="../../images/appl3.webp"><img alt="TZ requests" src="../../images/appl3.webp" width="85%" /></a></li>
+<li>Notice that the IP address is set to <strong>localhost</strong> or temporary deployment IP, which is specific to the <strong><em>IBM Cloud</em></strong> environment. Update the IP address to the correct value based on IP address identified in step 1.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>network<span class="w"> </span>interface<span class="w"> </span>ip<span class="w"> </span>&lt;cm_ip_address&gt;/24
+</code></pre></div>
+<a href="../../images/appl4.webp"><img alt="TZ requests" src="../../images/appl4.webp" width="85%" /></a></li>
+<li>Check DNS resolver configuration. The list will be empty because the appliance is deployed in the cloud.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>network<span class="w"> </span>resolvers
+</code></pre></div></li>
+<li>In this case, you can retrieve the dynamically assigned list of local servers using the following command.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>network<span class="w"> </span>resolvers_cloud
+</code></pre></div>
+<a href="../../images/appl5.webp"><img alt="TZ requests" src="../../images/appl5.webp" width="45%" /></a></li>
+<li>Test external DNS resolution by pinging a <em>public hostname</em>. Do not interrupt the test with <strong><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span></strong>, because this may terminate the ssh connection.
+<div class="highlight"><pre><span></span><code>ping<span class="w"> </span>www.ibm.com
+</code></pre></div></li>
+<li>Display the current system time settings.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>clock<span class="w"> </span>all
+</code></pre></div>
+<a href="../../images/appl6.webp"><img alt="TZ requests" src="../../images/appl6.webp" width="45%" /></a></li>
+<li>List available time zones. 
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>clock<span class="w"> </span>timezone<span class="w"> </span>list
+</code></pre></div></li>
+<li>Set the system time zone to lab timezone. Wait a few minutes until the change is fully applied. All machines in the lab will use <em>GMT (Europe/London)</em> time zone configuration.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>clock<span class="w"> </span>timezone<span class="w"> </span>Europe/London
+</code></pre></div>
+<a href="../../images/appl7.webp"><img alt="TZ requests" src="../../images/appl7.webp" width="90%" /></a></li>
+<li>Re-login to <strong>cli</strong> session on <strong>cm</strong> and confirm new time zone.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>clock<span class="w"> </span>all
+</code></pre></div>
+<a href="../../images/appl8.webp"><img alt="TZ requests" src="../../images/appl8.webp" width="55%" /></a></li>
+<li>Configure NTP servers (three <em>pool.ntp.org</em> servers) and enable the NTP client.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>hostname<span class="w"> </span><span class="m">0</span>.pool.ntp.org<span class="w"> </span><span class="m">1</span>.pool.ntp.org<span class="w"> </span><span class="m">2</span>.pool.ntp.org
+</code></pre></div></li>
+<li>Confirm that they are correctly set.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>all
+</code></pre></div>
+<a href="../../images/appl9.webp"><img alt="TZ requests" src="../../images/appl9.webp" width="55%" /></a></li>
+<li>Activate NTP client, execute:
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>state<span class="w"> </span>on
+</code></pre></div></li>
+<li>Change the central manager host name to <strong>cm</strong>. When asked about cloning, answer <em>“y”</em>. This command can take timeout (10 minutes). In that case re-login and confirm than name was set to <strong><em>cm.yourcompany.com</em></strong> and continue.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>hostname<span class="w"> </span>cm
+</code></pre></div>
+<a href="../../images/appl10.webp"><img alt="TZ requests" src="../../images/appl10.webp" width="65%" /></a></li>
+<li>Set the domain name
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>domain<span class="w"> </span>demo.guardium
+</code></pre></div>
+<a href="../../images/appl11.webp"><img alt="TZ requests" src="../../images/appl11.webp" width="70%" /></a></li>
+<li>Re-login and confirm that machine prompt is now set to <strong><em>cm.demo.guardium.</em></strong>
+<a href="../../images/appl12.webp"><img alt="TZ requests" src="../../images/appl12.webp" width="60%" /></a></li>
+<li>Restart network, insert <em>Yes</em> to confirm. It is crucial after machine name change because it intiate the GUI certificate recreation.
+<div class="highlight"><pre><span></span><code>restart<span class="w"> </span>network
+</code></pre></div>
+<a href="../../images/appl13.webp"><img alt="TZ requests" src="../../images/appl13.webp" width="60%" /></a></li>
+<li>Because we have multiple cloned appliances in our environment and all share the same Guardium ID (<em>GID</em>), assign a <strong>unique</strong> ID to each of them before configuring them to work together, use the following command.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>product<span class="w"> </span>gid<span class="w"> </span><span class="m">1111</span>
+</code></pre></div></li>
+<li>All appliances in a centrally managed environment must share the same <strong><em>shared secret</em></strong>. Set it to "<em>guardium</em>" on cm.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>shared<span class="w"> </span>secret<span class="w"> </span>guardium
+</code></pre></div></li>
+<li>Set cm configuration to accept small disk.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>small_disk
+</code></pre></div>
+<a href="../../images/appl14.webp"><img alt="TZ requests" src="../../images/appl14.webp" width="90%" /></a></li>
+<li>Increase GUI and CLI session timeouts to avoid unexpected logouts.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>gui<span class="w"> </span>session_timeout<span class="w"> </span><span class="m">9999</span>
+
+store<span class="w"> </span>timeout<span class="w"> </span>cli_session<span class="w"> </span><span class="m">600</span>
+</code></pre></div></td></tr></table></div></li>
+<li>Display the static host mappings; initially this list is empty.
+<div class="highlight"><pre><span></span><code>support<span class="w"> </span>show<span class="w"> </span>hosts
+</code></pre></div></li>
+<li>Add static host entries for all lab machines (<strong>coll1, appnode1, appnode2, kafka1, raptor, sauropod, ceratops</strong>)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;coll1_ip_address&gt;<span class="w"> </span>coll1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;appnode1_ip_address&gt;<span class="w"> </span>appnode1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;appnode2_ip_address&gt;<span class="w"> </span>appnode2.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;kafka1_ip_address&gt;<span class="w"> </span>kafka1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;raptor_ip_address&gt;<span class="w"> </span>raptor.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;sauropod_ip_address&gt;<span class="w"> </span>sauropod.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;ceratops_ip_address&gt;<span class="w"> </span>ceratops.demo.guardium
+</code></pre></div></td></tr></table></div>
+<a href="../../images/appl15.webp"><img alt="TZ requests" src="../../images/appl15.webp" width="90%" /></a></li>
+<li>Display the host list again and confirm that all entries are correctly configured.
+<div class="highlight"><pre><span></span><code>support<span class="w"> </span>show<span class="w"> </span>hosts
+</code></pre></div>
+<a href="../../images/appl16.webp"><img alt="TZ requests" src="../../images/appl16.webp" width="50%" /></a></li>
+<li>Restart the <strong>cm</strong>. If the appliance reports that MySQL is archiving, choose <em>“No”</em> to abort the restart and try again later, as shown in the screenshot.
+<div class="highlight"><pre><span></span><code>restart<span class="w"> </span>system
+</code></pre></div>
+<a href="../../images/appl17.webp"><img alt="TZ requests" src="../../images/appl17.webp" width="75%" /></a></li>
+<li>Reconnect to the cm and check appliance unit type. The appliance is an <em>aggregator</em> and is not yet configured as a <em>central manager</em>.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
+</code></pre></div>
+<a href="../../images/appl18.webp"><img alt="TZ requests" src="../../images/appl18.webp" width="40%" /></a></li>
+<li>The system has valid license keys loaded, so you can now promote the <em>aggregator</em> to be a <strong>Central Manager</strong>. This command may take some time as it activates all services required for managing the appliance group
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span><span class="w"> </span>manager
+</code></pre></div>
+<a href="../../images/appl19.webp"><img alt="TZ requests" src="../../images/appl19.webp" width="55%" /></a></li>
+<li>You can proceed with the next part of the lab and return to this <em>CLI</em> session once the command above is completed. Then verify that the aggregator has been successfully promoted to a manager.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
+</code></pre></div>
+<a href="../../images/appl20.webp"><img alt="TZ requests" src="../../images/appl20.webp" width="45%" /></a></li>
+</ol>
+<h2 id="other-appliances-setup">Other appliances setup</h2>
+<ol>
+<li>Sign in to the <strong>coll1</strong> collector from <strong>raptor</strong> and execute a set of configuration commands to prepare the machine for connection to the <strong>cm</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>run_cleanup_orphans_daily<span class="w"> </span>off
+
+store<span class="w"> </span>network<span class="w"> </span>interface<span class="w"> </span>ip<span class="w"> </span>&lt;coll1_ip_address&gt;/24
+</code></pre></div></td></tr></table></div></li>
+<li>Set the correct time zone (it should match the one configured on the <strong>cm</strong>) and re-login to the <strong>collector</strong>.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>clock<span class="w"> </span>timezone<span class="w"> </span>Europe/London
+</code></pre></div></li>
+<li>Then configure NTP, as well as the host name and domain. Make sure to confirm that the appliance is cloned when prompted during hostname configuration.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>hostname<span class="w"> </span><span class="m">0</span>.pool.ntp.org<span class="w"> </span><span class="m">1</span>.pool.ntp.org<span class="w"> </span><span class="m">2</span>.pool.ntp.org
+
+store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>state<span class="w"> </span>on
+
+store<span class="w"> </span>system<span class="w"> </span>hostname<span class="w"> </span>coll1
+
+store<span class="w"> </span>system<span class="w"> </span>domain<span class="w"> </span>demo.guardium
+</code></pre></div></td></tr></table></div></li>
+<li>Re-login and confirm that the command prompt reflects the configured hostname.
+<a href="../../images/appl21.webp"><img alt="TZ requests" src="../../images/appl21.webp" width="75%" /></a></li>
+<li>Execute the remaining configuration commands and reboot the appliance.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code>restart<span class="w"> </span>network
+
+store<span class="w"> </span>product<span class="w"> </span>gid<span class="w"> </span><span class="m">2222</span>
+
+store<span class="w"> </span>system<span class="w"> </span>shared<span class="w"> </span>secret<span class="w"> </span>guardium
+
+store<span class="w"> </span>system<span class="w"> </span>small_disk
+
+store<span class="w"> </span>gui<span class="w"> </span>session_timeout<span class="w"> </span><span class="m">9999</span>
+
+store<span class="w"> </span>timeout<span class="w"> </span>cli_session<span class="w"> </span><span class="m">600</span>
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;cm_ip_address&gt;<span class="w"> </span>cm.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;appnode1_ip_address&gt;<span class="w"> </span>appnode1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;appnode2_ip_address&gt;<span class="w"> </span>appnode2.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;kafka1_ip_address&gt;<span class="w"> </span>kafka1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;raptor_ip_address&gt;<span class="w"> </span>raptor.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;sauropod_ip_address&gt;<span class="w"> </span>sauropod.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;ceratops_ip_address&gt;<span class="w"> </span>ceratops.demo.guardium
+
+support<span class="w"> </span>show<span class="w"> </span>hosts
+
+restart<span class="w"> </span>system
+</code></pre></div></td></tr></table></div>
+<a href="../../images/appl22.webp"><img alt="TZ requests" src="../../images/appl22.webp" width="55%" /></a></li>
+<li>Now perform the same steps on the <strong>appnode1</strong> node.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>run_cleanup_orphans_daily<span class="w"> </span>off
+
+store<span class="w"> </span>network<span class="w"> </span>interface<span class="w"> </span>ip<span class="w"> </span>&lt;appnode1_ip_address&gt;/24
+
+store<span class="w"> </span>system<span class="w"> </span>clock<span class="w"> </span>timezone<span class="w"> </span>Europe/London
+</code></pre></div></td></tr></table></div></li>
+<li>Re-login and continue on the <strong>appnode1</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>hostname<span class="w"> </span><span class="m">0</span>.pool.ntp.org<span class="w"> </span><span class="m">1</span>.pool.ntp.org<span class="w"> </span><span class="m">2</span>.pool.ntp.org
+
+store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>state<span class="w"> </span>on
+
+store<span class="w"> </span>system<span class="w"> </span>hostname<span class="w"> </span>appnode1
+
+store<span class="w"> </span>system<span class="w"> </span>domain<span class="w"> </span>demo.guardium
+</code></pre></div></td></tr></table></div></li>
+<li>Re-login to appnode1 and confirm that name is changed
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code>restart<span class="w"> </span>network
+
+store<span class="w"> </span>product<span class="w"> </span>gid<span class="w"> </span><span class="m">3333</span>
+
+store<span class="w"> </span>system<span class="w"> </span>shared<span class="w"> </span>secret<span class="w"> </span>guardium
+
+store<span class="w"> </span>system<span class="w"> </span>small_disk
+
+store<span class="w"> </span>gui<span class="w"> </span>session_timeout<span class="w"> </span><span class="m">9999</span>
+
+store<span class="w"> </span>timeout<span class="w"> </span>cli_session<span class="w"> </span><span class="m">600</span>
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;cm_ip_address&gt;<span class="w"> </span>cm.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;coll1_ip_address&gt;<span class="w"> </span>coll1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;appnode2_ip_address&gt;<span class="w"> </span>appnode2.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;kafka1_ip_address&gt;<span class="w"> </span>kafka1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;raptor_ip_address&gt;<span class="w"> </span>raptor.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;sauropod_ip_address&gt;<span class="w"> </span>sauropod.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;ceratops_ip_address&gt;<span class="w"> </span>ceratops.demo.guardium
+
+restart<span class="w"> </span>system
+</code></pre></div></td></tr></table></div></li>
+<li>Then do the same steps on the <strong>appnode2</strong> node.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>run_cleanup_orphans_daily<span class="w"> </span>off
+
+store<span class="w"> </span>network<span class="w"> </span>interface<span class="w"> </span>ip<span class="w"> </span>&lt;appnode2_ip_address&gt;/24
+
+store<span class="w"> </span>system<span class="w"> </span>clock<span class="w"> </span>timezone<span class="w"> </span>Europe/London
+</code></pre></div></td></tr></table></div></li>
+<li>Re-login and continue on the <strong>appnode2</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>hostname<span class="w"> </span><span class="m">0</span>.pool.ntp.org<span class="w"> </span><span class="m">1</span>.pool.ntp.org<span class="w"> </span><span class="m">2</span>.pool.ntp.org
+
+store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>state<span class="w"> </span>on
+
+store<span class="w"> </span>system<span class="w"> </span>hostname<span class="w"> </span>appnode2
+
+store<span class="w"> </span>system<span class="w"> </span>domain<span class="w"> </span>demo.guardium
+</code></pre></div></td></tr></table></div></li>
+<li>Re-login to <strong>appnode2</strong> and confirm that name is changed
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code>restart<span class="w"> </span>network
+
+store<span class="w"> </span>product<span class="w"> </span>gid<span class="w"> </span><span class="m">4444</span>
+
+store<span class="w"> </span>system<span class="w"> </span>shared<span class="w"> </span>secret<span class="w"> </span>guardium
+
+store<span class="w"> </span>system<span class="w"> </span>small_disk
+
+store<span class="w"> </span>gui<span class="w"> </span>session_timeout<span class="w"> </span><span class="m">9999</span>
+
+store<span class="w"> </span>timeout<span class="w"> </span>cli_session<span class="w"> </span><span class="m">600</span>
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;cm_ip_address&gt;<span class="w"> </span>cm.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;coll1_ip_address&gt;<span class="w"> </span>coll1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;appnode1_ip_address&gt;<span class="w"> </span>appnode1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;kafka1_ip_address&gt;<span class="w"> </span>kafka1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;raptor_ip_address&gt;<span class="w"> </span>raptor.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;sauropod_ip_address&gt;<span class="w"> </span>sauropod.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;ceratops_ip_address&gt;<span class="w"> </span>ceratops.demo.guardium
+
+restart<span class="w"> </span>system
+</code></pre></div></td></tr></table></div></li>
+<li>We must do this same for <strong>kafka1</strong> appliance as well
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>run_cleanup_orphans_daily<span class="w"> </span>off
+
+store<span class="w"> </span>network<span class="w"> </span>interface<span class="w"> </span>ip<span class="w"> </span>&lt;kafka1_ip_address&gt;/24
+
+store<span class="w"> </span>system<span class="w"> </span>clock<span class="w"> </span>timezone<span class="w"> </span>Europe/London
+</code></pre></div></td></tr></table></div></li>
+<li>Re-login and continue on <strong>kafka1</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>hostname<span class="w"> </span><span class="m">0</span>.pool.ntp.org<span class="w"> </span><span class="m">1</span>.pool.ntp.org<span class="w"> </span><span class="m">2</span>.pool.ntp.org
+
+store<span class="w"> </span>system<span class="w"> </span>time_server<span class="w"> </span>state<span class="w"> </span>on
+
+store<span class="w"> </span>system<span class="w"> </span>hostname<span class="w"> </span>kafka1
+
+store<span class="w"> </span>system<span class="w"> </span>domain<span class="w"> </span>demo.guardium
+</code></pre></div></td></tr></table></div></li>
+<li>Re-login to <strong>kafka1</strong> and confirm that name is changed
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code>restart<span class="w"> </span>network
+
+store<span class="w"> </span>product<span class="w"> </span>gid<span class="w"> </span><span class="m">5555</span>
+
+store<span class="w"> </span>system<span class="w"> </span>shared<span class="w"> </span>secret<span class="w"> </span>guardium
+
+store<span class="w"> </span>system<span class="w"> </span>small_disk
+
+store<span class="w"> </span>gui<span class="w"> </span>session_timeout<span class="w"> </span><span class="m">9999</span>
+
+store<span class="w"> </span>timeout<span class="w"> </span>cli_session<span class="w"> </span><span class="m">600</span>
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;cm_ip_address&gt;<span class="w"> </span>cm.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;coll1_ip_address&gt;<span class="w"> </span>coll1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;appnode1_ip_address&gt;<span class="w"> </span>appnode1.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;appnode2_ip_address&gt;<span class="w"> </span>appnode2.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;raptor_ip_address&gt;<span class="w"> </span>raptor.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;sauropod_ip_address&gt;<span class="w"> </span>sauropod.demo.guardium
+
+support<span class="w"> </span>store<span class="w"> </span>hosts<span class="w"> </span>&lt;ceratops_ip_address&gt;<span class="w"> </span>ceratops.demo.guardium
+
+restart<span class="w"> </span>system
+</code></pre></div></td></tr></table></div></li>
+</ol>
+<h2 id="add-user-and-create-dashboard">Add user and create dashboard</h2>
+<ol>
+<li>Login to <strong>cm</strong> UI as an <strong>accessmgr</strong> user (use this same password like you used for <strong>cli</strong> access to appliances) and press <strong>Add User</strong> button in <strong>Access manager</strong> view
+<a href="../../images/appl23.webp"><img alt="TZ requests" src="../../images/appl23.webp" width="99%" /></a></li>
+<li>Create a new user - <strong>demo</strong>. Set password and description. Expand the <strong>Roles</strong> panel and select: <strong>admin, cli, fam, user</strong> and <strong>vulnerability assess</strong> roles.
+<a href="../../images/appl24.webp"><img alt="TZ requests" src="../../images/appl24.webp" width="99%" /></a></li>
+<li>Scroll slightly down, select <strong>Password never expires</strong>, then click <strong>Add</strong> to create the user.
+<a href="../../images/appl25.webp"><img alt="TZ requests" src="../../images/appl25.webp" width="60%" /></a></li>
+<li>The newly created user should appear at the bottom of the list. Then, use the <strong>State</strong> toggle for the <strong>guardium</strong> account to deactivate it.
+<a href="../../images/appl26.webp"><img alt="TZ requests" src="../../images/appl26.webp" width="99%" /></a></li>
+<li>Sign out of the <strong>accessmgr</strong> account and sign in as the newly created <strong>demo</strong> user.
+<a href="../../images/appl27.webp"><img alt="TZ requests" src="../../images/appl27.webp" width="99%" /></a></li>
+<li>In the <strong>Search</strong> field, enter <strong><em>License</em></strong> to filter the options. Select the <strong>License</strong> view and review the installed license keys. The <em>Central Manager</em>, as mentioned earlier, has pre-installed license keys for a centrally managed environment. Functional (<em>append</em>) keys enable <strong>DAM, FAM</strong> and <strong>VA</strong> features.
+<a href="../../images/appl28.webp"><img alt="TZ requests" src="../../images/appl28.webp" width="99%" /></a></li>
+<li>Navigate to the <strong>Feature Unlock</strong> tab and verify that the additional features have been loaded into the system. Note that this does not mean they have been activated.
+<a href="../../images/appl29.webp"><img alt="TZ requests" src="../../images/appl29.webp" width="99%" /></a></li>
+<li>Next, select <strong>Definition Export/Import</strong>, go to the <strong>Import</strong> tab, choose the report definition file <code>exp_report_two_of_training_dasboard.sql</code> from your exports folder (student materials), and click <strong>Upload</strong> file.
+<a href="../../images/appl30.webp"><img alt="TZ requests" src="../../images/appl30.webp" width="99%" /></a></li>
+<li>After a moment, the <em>Full SQL (Training)</em> report should appear in the <strong>Uploaded files</strong> section. Select it and click <strong>Import</strong>.
+<a href="../../images/appl31.webp"><img alt="TZ requests" src="../../images/appl31.webp" width="99%" /></a></li>
+<li>After a moment, a confirmation message should appear indicating the report was successfully imported.
+<a href="../../images/appl32.webp"><img alt="TZ requests" src="../../images/appl32.webp" width="99%" /></a></li>
+<li>Repeat the import process, but this time use the <code>exp_default_policy.sql</code> file. This will load the policy named <em>Default bootcamp policy</em>.
+<a href="../../images/appl33.webp"><img alt="TZ requests" src="../../images/appl33.webp" width="99%" /></a></li>
+<li>To create a dashboard, select the <strong>My Dashboards</strong> icon from the vertical menu, then choose <strong>Create New Dashboard</strong>. Edit the name (pencil icon) to <em>Training</em> and click <strong>Save</strong>. Next, click <strong>Add Report</strong> to open the report selection window and add three reports: the newly imported <em>Full SQL (Training)</em> and the built-in <em>SQL Errors</em> and <em>S-TAP and External S-TAP Statistics</em>. Reports are added to the dashboard upon selection from the list.
+<a href="../../images/appl34.webp"><img alt="TZ requests" src="../../images/appl34.webp" width="99%" /></a></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Uwaga</p>
+<p>Use <strong>demo</strong> account for all UI activities in the bootcamp labs unless a different one is explicitly required.</p>
+</div>
+<h2 id="register-appliances">Register appliances</h2>
+<ol>
+<li>From <strong>cm</strong> UI open <strong>Central Management</strong> application and select <strong>Register unit</strong> button from <strong>Actions</strong> list. Notice that there are no appliances managed by our <em>Central Manager</em> yet. Register unit pop-up will provide the possibility to insert <strong>coll1</strong> Unit IP (select appropriate one) and default communication port (8443) then press <strong>Register</strong> button.
+<a href="../../images/appl35.webp"><img alt="TZ requests" src="../../images/appl35.webp" width="99%" /></a></li>
+<li>After a longer wait (be patient), the view should refresh and the <strong>coll1</strong> collector will appear in the managed appliances list. Its presence on the list does not yet mean full synchronization—this process may take a few more minutes.
+<a href="../../images/appl36.webp"><img alt="TZ requests" src="../../images/appl36.webp" width="99%" /></a></li>
+<li>Sign in to the <strong>coll1</strong> via CLI and notice that the appliance mode has changed from Standalone to Managed.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
+</code></pre></div>
+<a href="../../images/appl37.webp"><img alt="TZ requests" src="../../images/appl37.webp" width="45%" /></a></li>
+<li>Repeat the full appliance registration process on <strong>appnode1</strong>, <strong>appnode2</strong> and <strong>kafka1</strong> and confirm that all appliances are visible from the <strong>cm</strong> <em>Central management</em> view.
+<a href="../../images/appl38.webp"><img alt="TZ requests" src="../../images/appl38.webp" width="99%" /></a></li>
+</ol>
+<h2 id="central-manager-patching">Central Manager patching</h2>
+<div class="admonition info">
+<p class="admonition-title">Screenshots</p>
+<p>Screenshots in this section may not exactly match the patch numbers available in your environment. The labs are frequently updated, so there may be some inconsistencies between this documentation and what is present on the machines.</p>
+</div>
+<ol>
+<li>In <strong>cm</strong> UI, open <strong>Installed Patches</strong> to confirm which patches are currently installed.
+<a href="../../images/appl39.webp"><img alt="TZ requests" src="../../images/appl39.webp" width="99%" /></a></li>
+<li>On <strong>raptor</strong>, there are several additional patches available that we will install on the <strong>cm</strong>. Patches are files with the <code>.sig</code> extension.
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/patches/
+</code></pre></div>
+<a href="../../images/appl40.webp"><img alt="TZ requests" src="../../images/appl40.webp" width="99%" /></a></li>
+<li>The directory also contains a <code>patch_order.txt</code> file that specifies the correct order for applying patches. In the next step, you will provide a list of patches for installation - make sure to follow the installation sequence defined in this file.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/patches/patch_order.txt
+</code></pre></div>
+<a href="../../images/appl41.webp"><img alt="TZ requests" src="../../images/appl41.webp" width="99%" /></a></li>
+<li>
+<p>Login to <strong>cm</strong> cli and upload all patches to it using flow below. Execute command:</p>
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install<span class="w"> </span>scp
+</code></pre></div>
+<div class="admonition abstract">
+<p class="admonition-title">Insert:</p>
+<ul>
+<li>raptor IP address: <strong>raptor.demo.guardium</strong></li>
+<li>user name: <strong>root</strong></li>
+<li>patch path: <code>/opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/patches/*.sig</code></li>
+<li>Port: <strong>2223</strong></li>
+<li>password for root account on raptor</li>
+</ul>
+</div>
+<p>Finally, you will be asked for order of patch installation, it must be comma separated list based on patch numbering on the displayed list (for example 4,3,2,1), please use correct order provided in patch_order.txt file mentioned above. Some other patches will be on the list - ignore them, they are related to previous patch processes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will be asked for patch <strong>9997</strong> reinstallation confirmation - <em>accept this!</em></p>
+</div>
+<p><a href="../../images/appl42.webp"><img alt="TZ requests" src="../../images/appl42.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Monitor installation progress using the relevant patch status commands. Some patches temporarily stop backend services, so one view may show errors. Check the list of downloaded patches on <strong>cm</strong>
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>available
+</code></pre></div>
+<a href="../../images/appl43.webp"><img alt="TZ requests" src="../../images/appl43.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>All freshly uploaded patches will be scheduled, and you can monitor the installation process using commands:
+    <div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>installed
+</code></pre></div>
+    <a href="../../images/appl44.webp"><img alt="TZ requests" src="../../images/appl44.webp" width="99%" /></a>
+    and
+    <div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>status
+</code></pre></div>
+    <a href="../../images/appl45.webp"><img alt="TZ requests" src="../../images/appl45.webp" width="99%" /></a>
+    The first command can produce errors if some patch installation tasks require stop collector backend (MySQL). In this case you can use the second one to check the progress.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Process can take several minutes (depending on patches applied during this course instance) and you must wait that all scheduled patches will be installed successfully. Some patches can force collector restart and you must re-login.</p>
+</div>
+</li>
+<li>
+<p>Confirm that all patches are installed. You can noticed warning at patch <strong>9997</strong> – you can ignore it.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>installed
+</code></pre></div>
+<a href="../../images/appl46.webp"><img alt="TZ requests" src="../../images/appl46.webp" width="99%" /></a></p>
+</li>
+<li>It is good practice to schedule the re-installation of patch <strong>9997</strong> at the beginning of every appliance patching process to ensure that the latest version available on the <strong>cm</strong> is installed.</li>
+</ol>
+<h2 id="collectors-patching">Collectors patching</h2>
+<ol>
+<li>Patching the remaining appliances can be managed centrally from the <strong>cm</strong>. In the <strong>cm</strong> UI, open <strong>Patch Management</strong>.
+    From the <em>Available patches</em> section, select patch <strong>9997</strong> (first in the <code>patch_order.txt</code> list), then select your collectors in the <em>Guardium systems</em> section. Click <strong>Install</strong>, which opens a popup where you can schedule the patch installation.
+    Choose <em>NOW</em> for immediate deployment and confirm by clicking <strong>Install</strong>. A confirmation popup should appear indicating that the installation job has been successfully created.
+    <a href="../../images/appl47.webp"><img alt="TZ requests" src="../../images/appl47.webp" width="99%" /></a></li>
+<li>Repeat these steps for all other patches mentioned in <code>patch_order.txt</code> list.</li>
+<li>To check the patch installation status, select one of the appliances and choose <em>Show all installed patches</em>. This will open a window displaying the list of patches on that system. You should see the newly scheduled patches listed with various installation statuses. Confirm that all patches have been installed.
+    <a href="../../images/appl48.webp"><img alt="TZ requests" src="../../images/appl48.webp" width="99%" /></a></li>
+</ol>
+<h2 id="collector-default-policy">Collector default policy</h2>
+<ol>
+<li>
+<p>A newly deployed collector has a default policy assigned that ignores all activity. To start collecting traffic, you need to install a meaningful policy—use the one previously imported.
+    In the <strong>cm</strong> UI, open <strong>Security Policies</strong>, filter the view to show only policies (uncheck <em>Include templates</em>), select <strong>Default bootcamp policy</strong>, and from the actions list choose <strong>Install</strong>.
+    In the popup, select your <strong>coll1.demo.guardium</strong> and choose the installation type <em>Install and override</em>, then confirm with <strong>OK</strong>. You should receive confirmation that the policy has been installed on the <strong>coll1</strong>.
+    Do not install this policy on other appliances, as they will be used for a different purposes.
+    <a href="../../images/appl49.webp"><img alt="TZ requests" src="../../images/appl49.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open <strong>Central management</strong> view on <strong>cm</strong>. Verify that we have our policy installed on collector <strong>coll1</strong> and generic one is still applied on the rest appliances.
+<a href="../../images/appl50.webp"><img alt="TZ requests" src="../../images/appl50.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="backup-configuration-profiles-optional">Backup, configuration profiles (optional)</h2>
+<ol>
+<li>
+<p>To configure scheduled appliance backup open in cm GUI the System Backup view</p>
+<div class="admonition abstract">
+<p class="admonition-title">Use this information to fill in a form:</p>
+<p><em>Endpoint URL</em>: <strong>s3.ams03.cloud-object-storage.appdomain.cloud</strong></p>
+<p><em>Access Key ID</em>: <strong>2a20bcab1bfc4503bc5466cd549aba6e</strong></p>
+<p><em>Secret access key</em>:  <strong>&lt;value available from TZ env materials&gt;</strong></p>
+</div>
+<p><a href="../../images/appl51.webp"><img alt="TZ requests" src="../../images/appl51.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Use <strong>Test connection</strong> button to check correctness of inserted values and then close pop-up message and <strong>Save</strong> configuration. Do not run the backup on the <strong>cm</strong>; we will do it in a moment on the <strong>coll1</strong>.
+<a href="../../images/appl52.webp"><img alt="TZ requests" src="../../images/appl52.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the centrally managed environment we can spread some configuration settings across managed appliances to avoid repetion of this same tasks in the large installation. Let’s do this with backup configuration. Open <strong>Distribute Configuration Profiles</strong> view and add a new one.
+<a href="../../images/appl53.webp"><img alt="TZ requests" src="../../images/appl53.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Insert the <strong>Name</strong>, for example – <em>Backup configuration</em> and press <strong>Next</strong> button
+<a href="../../images/appl54.webp"><img alt="TZ requests" src="../../images/appl54.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the <em>What to distribute</em> section create a new one and select <strong>System Backup</strong>
+<a href="../../images/appl55.webp"><img alt="TZ requests" src="../../images/appl55.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Similar to backup configuration for <strong>cm</strong>, define this same bucket and <strong>Save</strong> configuration</p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p><em>Endpoint URL</em>: <strong>s3.ams03.cloud-object-storage.appdomain.cloud</strong></p>
+<p><em>Access Key ID</em>: <strong>2a20bcab1bfc4503bc5466cd549aba6e</strong></p>
+<p><em>Secret access key</em>:  <strong>&lt;value available from TZ env materials&gt;</strong></p>
+</div>
+<p>Then press <strong>Bucket Name</strong> button and select <em>bucket-2znplpxrvg22c3v</em> bucket. Select only <em>Configuration</em> checkmark.
+<a href="../../images/appl56.webp"><img alt="TZ requests" src="../../images/appl56.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Just created configuration asset will appear on the list. Press <strong>Next</strong> button
+<a href="../../images/appl57.webp"><img alt="TZ requests" src="../../images/appl57.webp" width="99%" /></a></p>
+</li>
+<li>In the <em>Where to distribute</em> panel select <em>All Collectors</em> group and move it to <em>Selected groups</em> section. Then press <strong>Next</strong> button.
+<a href="../../images/appl58.webp"><img alt="TZ requests" src="../../images/appl58.webp" width="99%" /></a></li>
+<li><strong>Save</strong> configuration and press <strong>Run Now</strong> button to send configuration to the collector
+<a href="../../images/appl59.webp"><img alt="TZ requests" src="../../images/appl59.webp" width="99%" /></a></li>
+<li>Monitor the progress of profile distribution. Finally the <em>Review distribution results</em> section should appear and confirm that <strong>coll1</strong> and the rest of collectors are successfully synchronized.
+<a href="../../images/appl60.webp"><img alt="TZ requests" src="../../images/appl60.webp" width="99%" /></a></li>
+<li>Login to <strong>coll1</strong> UI and confirm that <strong>System Backup</strong> configuration has been successfully set. Press <strong>Run Once Now</strong> button
+<a href="../../images/appl61.webp"><img alt="TZ requests" src="../../images/appl61.webp" width="99%" /></a></li>
+<li>You can check status of task in <strong>Aggregation/Archive Log</strong> report (on <strong>coll1</strong>)
+<a href="../../images/appl62.webp"><img alt="TZ requests" src="../../images/appl62.webp" width="99%" /></a></li>
+<li>Ask instructor to display content of bucket
+<a href="../../images/appl63.webp"><img alt="TZ requests" src="../../images/appl63.webp" width="99%" /></a></li>
+</ol>
+<h2 id="guardcli-accounts-optional">guardcli accounts (optional)</h2>
+<ol>
+<li><strong>cli</strong> accounts are shared ones. To manage cli access accountable the <strong>Guardium</strong> introduce on each appliance the nine additional accounts from <strong>guardcli1</strong> to <strong>guardcli9</strong> (they have <em>OTP</em> set to <strong>guardium</strong>). Let’s us configure accountable access to <strong>cm cli</strong>.</li>
+<li>From <strong>raptor</strong> connect to <strong>cm</strong> using <strong>guardcli1</strong> shared account (instead <strong>cli</strong> one) and reset password from OTP “guardium” to desired one if you will asked for change (must be strong, you can notice a bug and could be forced to change password two times), so execute from <strong>raptor</strong>:
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-l<span class="w"> </span>guardcli1<span class="w"> </span>-p22<span class="w"> </span>cm
+</code></pre></div>
+<a href="../../images/appl64.webp"><img alt="TZ requests" src="../../images/appl64.webp" width="79%" /></a></li>
+<li>
+<p>Try to execute any administration command, for example:</p>
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>network<span class="w"> </span>int<span class="w"> </span>all
+</code></pre></div>
+<p><a href="../../images/appl65.webp"><img alt="TZ requests" src="../../images/appl65.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>You will be informed that you cannot execute commands before reauthentication using the named UI account. Then activate a full access to the CLI using command below (provide correct password for <strong>demo</strong> UI account). Then execute any administration command to confirm this ability now.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">set</span><span class="w"> </span>guiuser<span class="w"> </span>demo
+
+show<span class="w"> </span>network<span class="w"> </span>int<span class="w"> </span>all
+</code></pre></div></td></tr></table></div>
+<a href="../../images/appl66.webp"><img alt="TZ requests" src="../../images/appl66.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>Add to your <em>Training</em> dashboard on <strong>cm</strong> the <strong>Detailed Guardium User Activity Trail</strong> report. If <strong>Add Report</strong> button is inactive you must activate it by clicking <strong>Edit mode</strong></p>
+<p><a href="../../images/appl67.webp"><img alt="TZ requests" src="../../images/appl67.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open just added report in the <strong>Dashboard</strong> on <strong>cm</strong>. Notice that your <strong>guardcli1</strong> session is marked as belonging to <strong>demo</strong> UI account and we can track activity correctly.
+<a href="../../images/appl68.webp"><img alt="TZ requests" src="../../images/appl68.webp" width="99%" /></a></p>
+</li>
+<li>On the fresh installed appliance all <strong>guardcliX</strong> accounts have the well known OTP password – <strong>guardium</strong>. The good administration approach is access control to all proxy accounts. A good practice is to block those accounts or change the password to prevent unauthorized login attempts. To list <strong>guardcliX</strong> account status execute in CM cli session:
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>guarduser_state<span class="w"> </span>all
+</code></pre></div></li>
+<li>
+<p>Disable all proxy accounts - except just used above the <strong>guardcli1</strong> - by execution commands:</p>
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>guarduser_state<span class="w"> </span>disable<span class="w"> </span>&lt;guardcli<span class="o">[</span><span class="m">2</span>-9<span class="o">]</span>&gt;
+</code></pre></div>
+<p>Proxy account should be now set this way</p>
+<p><a href="../../images/appl69.webp"><img alt="TZ requests" src="../../images/appl69.webp" width="69%" /></a></p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+<p><strong>IBM Cloud</strong> URL for COS. It is COS bucket belonging to <strong>zibi</strong>. In case of self-managed training or led by another instructor the backup lab should refer to appropriate, accessible COS bucket.</p>
+<p><a href="https://cloud.ibm.com/objectstorage/crn%3Av1%3Abluemix%3Apublic%3Acloud-object-storage%3Aglobal%3Aa%2F8d537ccde33a156ac84a2890733b572d%3A7748e344-6c18-405c-be45-50b4742ee67c%3A%3A">https://cloud.ibm.com/objectstorage/crn%3Av1%3Abluemix%3Apublic%3Acloud-object-storage%3Aglobal%3Aa%2F8d537ccde33a156ac84a2890733b572d%3A7748e344-6c18-405c-be45-50b4742ee67c%3A%3A</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

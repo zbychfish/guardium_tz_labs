@@ -1,0 +1,877 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../appliance/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Access to Lab - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#access-environment-lab-00" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Access to Lab
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax-notation-in-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax notation in Labs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-deployed-environment-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get deployed environment details
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-to-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access to machines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax-notation-in-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax notation in Labs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-deployed-environment-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get deployed environment details
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-to-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access to machines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="access-environment-lab-00">Access environment (Lab 00)</h1>
+<h2 id="syntax-notation-in-labs">Syntax notation in Labs</h2>
+<p>Throughout the lab instructions, the following conventions are used:</p>
+<ul>
+<li><strong>Command and Option Names:</strong> Command names, flags, parameter names, and UI elements appear in <strong>bold</strong> (e.g., <strong>ssh</strong>, <strong>systemctl</strong>, <strong>-p</strong>).</li>
+<li><strong>Variable Parameters:</strong> Values that you must replace with specific data from your environment are enclosed in angle brackets: <code>&lt;parameter&gt;</code> (e.g., <code>&lt;raptor_public_ip&gt;</code>).</li>
+<li><strong>Mutually Exclusive Values / Choices:</strong> When a parameter or target accepts one of several possible values from a predefined list, options are separated by a vertical bar: <code>|</code> (e.g., <code>cm|coll1|kafka1|appnode1|appnode2</code>).</li>
+<li><strong>Value Ranges:</strong> When a parameter accepts a value within a defined numeric range, the allowed interval is shown in square brackets: <code>[minimum-maximum]</code> (e.g., <code>[1-10]</code>, <code>[0-100]</code>, <code>[1-65535]</code>).</li>
+</ul>
+<h2 id="get-deployed-environment-details">Get deployed environment details</h2>
+<ol>
+<li>Select <strong>My Requests</strong> in <strong>IBM Technology Zone</strong> to review the environments that are currently available or being deployed. Open the details (<strong>Open This Reservation</strong>) for the environment you want to access.
+<a href="../../images/acc1.webp"><img alt="TZ requests" src="../../images/acc1.webp" width="90%" /></a></li>
+<li>Confirm that the environment was created from the <strong>bootcamp manifest</strong>. The environment name should follow the format <strong>gdp_bootcamp_v13</strong>. The version number is incremented for newer releases of the training environment. Expand the deployment details by clicking the arrow next to the manifest name.
+<a href="../../images/acc2.webp"><img alt="TZ requests" src="../../images/acc2.webp" width="90%" /></a></li>
+<li>The expanded <strong>Output</strong> list contains key information about machines in the environment. The number of systems may vary depending on the bootcamp version, but the general principle remains the same. <em>Machine names</em> include a random suffix, which can be ignored throughout the lab environment.
+Some machines and services are accessible directly from the Internet. In those cases, use the <strong>public IP addresses</strong> listed in the machine descriptions.
+Record the <em>public IP addresses</em> of the <strong>raptor</strong>, <strong>cm</strong>, <strong>coll1</strong>, and <strong>ceratops</strong> machines, as you will access these systems directly from your workstation throughout the bootcamp.
+<a href="../../images/acc3.webp"><img alt="TZ requests" src="../../images/acc3.webp" width="90%" /></a></li>
+<li>The <strong>cm</strong>, <strong>coll1</strong>, <strong>appnode1</strong>, <strong>appnode2</strong>, and <strong>kafka1</strong> systems are <strong>Guardium</strong> appliances. Administrative access to these appliances is performed by connecting to them via SSH from the <strong>raptor</strong> machine. The appliances use the standard <em>SSH</em> port <em>22</em>.
+In addition, the <strong>cm</strong> and <strong>coll1</strong> systems provide access to the <em>Guardium UI</em>, which is available over <em>HTTPS</em> on port <em>8443</em>. You will access this interface using your local web browser.
+The <strong>sauropod</strong> machine is accessible from <strong>raptor</strong> through <em>SSH</em> on port <em>2223</em>.
+<a href="../../images/acc4.webp"><img alt="TZ requests" src="../../images/acc4.webp" width="90%" /></a></li>
+</ol>
+<h2 id="access-to-machines">Access to machines</h2>
+<ol>
+<li>To connect to <strong>raptor</strong>, use an <em>SSH client</em> on your workstation. On <em>Windows</em>, <strong>MobaXterm</strong> or the standard <strong>PuTTY</strong> client are recommended. On <em>macOS</em>, use <strong>iTerm</strong> or connect directly from the <strong>command line</strong> using the built-in <em>SSH client</em>. The <em>default password</em> for the environment services is provided in the <strong>TechZone</strong> environment description. Use this password to sign in to the <strong>root</strong> account. raptor can be accessed using non-standard <em>SSH</em> port number 2223.
+<a href="../../images/acc5.webp"><img alt="TZ requests" src="../../images/acc5.webp" width="90%" /></a>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-lroot<span class="w"> </span>-p2223<span class="w"> </span>&lt;raptor_public_ip&gt;
+</code></pre></div></li>
+<li>To sign in to the <strong>cli</strong> account on a <em>Guardium appliance</em>, connect via <em>SSH</em> from your <strong>raptor</strong> session. The password for the <strong>cli</strong> account is different from the password used for the other environment services and can also be found in the <strong>TechZone</strong> environment description.
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-lcli<span class="w"> </span>-p22<span class="w"> </span>cm<span class="p">|</span>coll1<span class="p">|</span>kafka1<span class="p">|</span>appnode1<span class="p">|</span>appnode2
+</code></pre></div>
+<a href="../../images/acc6.webp"><img alt="TZ requests" src="../../images/acc6.webp" width="90%" /></a></li>
+<li>To log in to the <strong>sauropod</strong> machine, you do not need to provide credentials, as the <strong>root</strong> accounts on <strong>raptor</strong> and <strong>sauropod</strong> are configured to use <em>SSH</em> key-based authentication.
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>sauropod
+</code></pre></div>
+<a href="../../images/acc7.webp"><img alt="TZ requests" src="../../images/acc7.webp" width="90%" /></a></li>
+<li>For security reasons, <em>RDP</em> access to the <em>ceratops</em> (<strong>Windows</strong>) machine is not exposed to the Internet. To temporarily access this machine, enable a tunnel on <strong>raptor</strong> using the following command.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>start<span class="w"> </span>socat-RDP
+</code></pre></div></li>
+<li>To connect to the <strong>ceratops</strong> Windows machine, use an <em>RDP</em> client on your workstation and specify the <strong>raptor</strong> <em>public IP address</em> on port <em>8443</em>. This will forward the connection to the <strong>ceratops</strong> machine. Sign in using the <strong>demo</strong> user account and the default environment services password.
+<a href="../../images/acc8.webp"><img alt="TZ requests" src="../../images/acc8.webp" width="90%" /></a></li>
+<li>Ensure that you sign in as <strong>.\demo</strong> using the default environment services password.
+<a href="../../images/acc9.webp"><img alt="TZ requests" src="../../images/acc9.webp" width="90%" /></a></li>
+<li>Close <em>RDP</em> session and stop tunnel. You will start it if needed.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>socat-RDP
+</code></pre></div></li>
+<li>For macOS, the recommended way to connect to the <strong>ceratops</strong> machine is to use the <strong>Windows App</strong> available from the <em>App Store</em>. Add a new machine by creating a new <strong>Configure PC</strong>, then enter the <em>public IP address</em> of the <strong>raptor</strong> machine and port <em>8443</em>. Sign in using the <strong>demo</strong> user account and the default environment services password.
+<a href="../../images/acc10.webp"><img alt="TZ requests" src="../../images/acc10.webp" width="90%" /></a>
+<a href="../../images/acc11.webp"><img alt="TZ requests" src="../../images/acc11.webp" width="90%" /></a></li>
+<li>The <strong>Central Manager</strong> and <strong>collector</strong> <em>GUIs</em> are accessible from a web browser on your workstation. Connect using <em>HTTPS</em> to the <em>appliance's public IP address</em> on port <em>8443</em>. Do not log into UI yet, only check connectivity and save access page in the Bookmarks to simplify connection later.
+<div class="highlight"><pre><span></span><code>https://<span class="p">&lt;</span><span class="nt">public_ip_cm</span><span class="err">|</span><span class="na">public_ip_coll1</span><span class="p">&gt;</span>:8443
+</code></pre></div>
+<a href="../../images/acc12.webp"><img alt="TZ requests" src="../../images/acc12.webp" width="90%" /></a></li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+<p>In case of on-site training passwords are provided by instructor<BR>
+In case of TZ automation, check the password file located there</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

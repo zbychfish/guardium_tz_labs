@@ -1,0 +1,1101 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../atap/">
+      
+      
+        <link rel="next" href="../logstash/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>EXIT (lab 5) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exit-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              EXIT (lab 5)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#db2-traffic-visibility-with-ktap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB2 traffic visibility with KTAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-db2-system-with-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure DB2 system with EXIT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#db2-traffic-visibility-with-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB2 traffic visibility with EXIT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#informix-monitoring-with-exit-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Informix monitoring with EXIT (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#db2-traffic-visibility-with-ktap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB2 traffic visibility with KTAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-db2-system-with-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure DB2 system with EXIT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#db2-traffic-visibility-with-exit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DB2 traffic visibility with EXIT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#informix-monitoring-with-exit-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Informix monitoring with EXIT (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="exit-configuration">EXIT configuration</h1>
+<h2 id="db2-traffic-visibility-with-ktap">DB2 traffic visibility with KTAP</h2>
+<ol>
+<li>
+<p>One of databases deployed on <strong>raptor</strong> is <em>DB2</em>. It is not configured to support encrypted connections. However for some databases the <em>KTAP</em> is not enough to sniff non-TCP/IP stack based connections. Let’s check this kind of case. Change context to <strong>db2inst1</strong> user on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>db2inst1
+</code></pre></div></p>
+</li>
+<li>
+<p>List configured connections types can be displayed using command
+<div class="highlight"><pre><span></span><code><span class="n">db2</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">directory</span>
+</code></pre></div>
+<a href="../../images/exit1.webp"><img alt="TZ requests" src="../../images/exit1.webp" width="69%" /></a>
+<BR>Notice that database SAMPLE can be referred (connected) using Remote (TCP/IP, mysample) or Indirect (Shared Memory, sample) alias.</p>
+</li>
+<li>
+<p>Let’s connect to <em>sample</em> database as a <strong>db2inst1</strong> user usinng <em>TCP</em> connection (<em>sampledb</em> alias)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">db2</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">mysample</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">db2inst1</span><span class="w"> </span>
+
+<span class="n">db2</span><span class="w"> </span><span class="ss">"SELECT 'TCP/IP connection test' FROM sysibm.sysdummy1"</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Then, connect to <strong>sample</strong> using <em>Shared Memory</em> connection (<em>sample</em> alias)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">db2</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">db2inst1</span><span class="w"> </span>
+
+<span class="n">db2</span><span class="w"> </span><span class="ss">"SELECT 'Shared Memory connection test' FROM sysibm.sysdummy1"</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Check traffic visibility in <em>Full SQL (Training)</em> report on <strong>coll1</strong>. Notice that activity from shared memory connection is not audited.
+<a href="../../images/exit2.webp"><img alt="TZ requests" src="../../images/exit2.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="configure-db2-system-with-exit">Configure DB2 system with EXIT</h2>
+<ol>
+<li>
+<p>As a <strong>root</strong> user on <strong>raptor</strong> authorize <strong>db2inst1</strong> user to send events to <em>STAP</em>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>authorize-user<span class="w"> </span>db2inst1
+</code></pre></div></p>
+</li>
+<li>
+<p>As a <strong>db2inst1</strong> user on <strong>raptor</strong> stop <em>DB2</em> instance.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>db2inst1
+
+db2stop
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>If command will not work you can force it using this one.
+<div class="highlight"><pre><span></span><code>db2stop<span class="w"> </span>force
+</code></pre></div></p>
+</li>
+<li>
+<p>Create directory for <em>EXIT</em> plugin in <em>DB2</em> home directory.
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/home/db2inst1/sqllib/security64/plugin/commexit
+</code></pre></div></p>
+</li>
+<li>
+<p>Link <em>EXIT</em> plugin to <em>DB2</em> directory.
+<div class="highlight"><pre><span></span><code>ln<span class="w"> </span>-fs<span class="w"> </span>/usr/lib64/libguard_db2_exit_64.so<span class="w"> </span>/home/db2inst1/sqllib/security64/plugin/commexit/libguard_db2_exit_64.so
+</code></pre></div></p>
+</li>
+<li>
+<p>Update <em>DB2</em> configuration to load <strong>Guardium</strong> <em>EXIT</em> library during engine start.
+<div class="highlight"><pre><span></span><code>db2<span class="w"> </span>update<span class="w"> </span>dbm<span class="w"> </span>cfg<span class="w"> </span>using<span class="w"> </span>comm_exit_list<span class="w"> </span>libguard_db2_exit_64
+</code></pre></div></p>
+</li>
+<li>
+<p>Check that plugin has been correctly registered using command below. The interesting us line should be at the end of command output.
+<div class="highlight"><pre><span></span><code>db2<span class="w"> </span>get<span class="w"> </span>database<span class="w"> </span>manager<span class="w"> </span>configuration
+</code></pre></div>
+<a href="../../images/exit3.webp"><img alt="TZ requests" src="../../images/exit3.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Start <em>DB2</em> engine.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>db2start
+
+<span class="nb">exit</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Now we must re-create existing <em>Inspection Engine</em> for <em>DB2</em> to adapt it to using <em>EXIT</em> data stream instead of <em>KTAP</em> one. We can do it directly from UI by removing old IE definition and adding a new one in <strong>S-TAP Control</strong> or execute API call. There is also possibility to execute <code>setup_exit.sh</code> script on machine where database and <em>STAP</em> is installed. Let's use a script. Execute on <strong>raptor</strong> as a <strong>root</strong>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/STAP/current/setup_exit.sh<span class="w"> </span>db2
+</code></pre></div>
+Script will require two answers – Y and N respectively.</p>
+<p><a href="../../images/exit4.webp"><img alt="TZ requests" src="../../images/exit4.webp" width="99%" /></a>  </p>
+</li>
+<li>
+<p>Restart <em>STAP</em>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/STAP/current/guard-config-update<span class="w"> </span>--restart<span class="w"> </span>stap
+</code></pre></div></p>
+</li>
+<li>Now, <em>DB2</em> is configured to use <em>EXIT</em>. We should even disable <em>KTAP</em> to avoid loading it to kernel space. However, we have on <strong>raptor</strong> many different databases that is why we do not want to disable <em>KTAP</em> and <em>ATAP</em> functionality for now.</li>
+</ol>
+<h2 id="db2-traffic-visibility-with-exit">DB2 traffic visibility with EXIT</h2>
+<ol>
+<li>
+<p>Login to <strong>raptor</strong> as <em>db2inst1</em> user and connect to <em>DB2</em> using shared memory connection
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>db2inst1
+
+db2<span class="w"> </span>connect<span class="w"> </span>to<span class="w"> </span>sample<span class="w"> </span>user<span class="w"> </span>db2inst1<span class="w"> </span>
+
+db2<span class="w"> </span><span class="s2">"SELECT 'Shared Memory SECOND connection test with EXIT' FROM sysibm.sysdummy1"</span>
+
+<span class="nb">exit</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Check <em>Full SQL (Training)</em> report and notice <strong>db2inst1</strong> user command has been sniffed.
+<a href="../../images/exit5.webp"><img alt="TZ requests" src="../../images/exit5.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="informix-monitoring-with-exit-optional">Informix monitoring with EXIT (optional)</h2>
+<ol>
+<li>
+<p>Start <em>informix</em> instance on <strong>raptor</strong> machine as a <strong>root</strong> user.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>start<span class="w"> </span>informix-ifxserver
+</code></pre></div></p>
+</li>
+<li>
+<p>Change context to <strong>informix</strong> user.
+<div class="highlight"><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>informix
+</code></pre></div></p>
+</li>
+<li>
+<p>Connect to the database instance as a super admin. Notice that the session is established using a <em>soctcp</em> connection, which indicates plain, unencrypted communication without SSL/TLS.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">dbaccess</span><span class="w"> </span><span class="n">sysmaster</span><span class="w"> </span><span class="o">-</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">sid</span><span class="p">,</span><span class="w"> </span><span class="k">TRIM</span><span class="p">(</span><span class="n">net_client_name</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">client_protocol</span><span class="p">,</span><span class="w"> </span><span class="n">net_client_type</span><span class="p">,</span><span class="w"> </span><span class="n">net_protocol</span><span class="p">,</span><span class="w"> </span><span class="n">net_options</span><span class="p">,</span><span class="w"> </span><span class="n">net_read_cnt</span><span class="p">,</span><span class="w"> </span><span class="n">net_write_cnt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sysnetworkio</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DBINFO</span><span class="p">(</span><span class="s1">'sessionid'</span><span class="p">);</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'INFORMIX session without SSL'</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+Close database session inserting <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span>
+<a href="../../images/exit6.webp"><img alt="TZ requests" src="../../images/exit6.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Confirm traffic visibility in <em>Full SQL (Training)</em> report on <strong>coll1</strong>.
+<a href="../../images/exit7.webp"><img alt="TZ requests" src="../../images/exit7.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Connect to <em>Informix</em> again but this time using encrypted channel. The first <code>SELECT</code> indicates that the connection is using the <em>socssl</em> protocol, which means the communication is encrypted using SSL/TLS. As expected, activity from this session will not be reported, because <em>EXIT</em> must be enabled to monitor encrypted connections.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">INFORMIXSERVER</span><span class="o">=</span>ifxserver_ssl
+
+dbaccess<span class="w"> </span>sysmaster<span class="w"> </span>-
+
+SELECT<span class="w"> </span>sid,<span class="w"> </span>TRIM<span class="o">(</span>net_client_name<span class="o">)</span><span class="w"> </span>AS<span class="w"> </span>client_protocol,<span class="w"> </span>net_client_type,<span class="w"> </span>net_protocol,<span class="w"> </span>net_options,<span class="w"> </span>net_read_cnt,<span class="w"> </span>net_write_cnt<span class="w"> </span>FROM<span class="w"> </span>sysnetworkio<span class="w"> </span>WHERE<span class="w"> </span><span class="nv">sid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DBINFO<span class="o">(</span><span class="s1">'sessionid'</span><span class="o">)</span><span class="p">;</span>
+
+SELECT<span class="w"> </span><span class="s1">'INFORMIX session with SSL'</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+Close database session inserting <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span> and <code>exit</code> from the <strong>informix</strong> user session.
+<a href="../../images/exit8.webp"><img alt="TZ requests" src="../../images/exit8.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>To configure <em>EXIT</em>, first switch to the <strong>root</strong> user and add the <strong>informix</strong> user to the guardium group.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>authorize-user<span class="w"> </span>informix
+</code></pre></div></p>
+</li>
+<li>
+<p>Execute the following commands in the context of the <strong>informix</strong> user. Create a symbolic link to the library in the database instance's <code>lib</code> directory.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>informix
+
+ln<span class="w"> </span>-fs<span class="w"> </span>/usr/lib64/libguard_informix_exit_64.so<span class="w"> </span><span class="nv">$INFORMIXDIR</span>/lib/libguard_informix_exit_64.so
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>An then you must enable <strong>EXIT</strong> manually because recent <em>Informix</em> versions contain a <em>defect</em> that prevents the use of the script previously used for the <em>DB2</em> database. First, as a informix user context, create a configuration file - <code>$INFORMIXDIR/etc/ifxguard.ifxserver</code> - for standard unencrypted TCP connections and populate it with the following contents:
+<div class="highlight"><pre><span></span><code>NAME   ifxguard.ifxserver
+WORKERS   6
+LIBPATH   /opt/ibm/informix/lib/libguard_informix_exit_64.so
+DEBUG   2
+LOGFILE   /tmp/ifxserver.log
+</code></pre></div>
+<a href="../../images/exit9.webp"><img alt="TZ requests" src="../../images/exit9.webp" width="82%" /></a> </p>
+</li>
+<li>
+<p>Next, create a configuration file for encrypted connections - <code>$INFORMIXDIR/etc/ifxguard.ifxserver_ssl</code> and populate it with the following contents:
+<div class="highlight"><pre><span></span><code>NAME   ifxguard.ifxserver_ssl
+WORKERS   6
+LIBPATH   /opt/ibm/informix/lib/libguard_informix_exit_64.so
+DEBUG   2
+LOGFILE   /tmp/ifxserver_ssl.log
+</code></pre></div>
+<a href="../../images/exit12.webp"><img alt="TZ requests" src="../../images/exit12.webp" width="82%" /></a> </p>
+</li>
+<li>
+<p>You can now start the <em>EXIT</em> services for each configuration (still in the <strong>informix</strong> user context).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>ifxguard<span class="w"> </span>-c<span class="w"> </span><span class="nv">$INFORMIXDIR</span>/etc/ifxguard.ifxserver
+
+ifxguard<span class="w"> </span>-c<span class="w"> </span><span class="nv">$INFORMIXDIR</span>/etc/ifxguard.ifxserver_ssl
+</code></pre></div></td></tr></table></div>
+<a href="../../images/exit10.webp"><img alt="TZ requests" src="../../images/exit10.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>You must remove the <em>Informix KTAP-based</em> inspection engine definition from the <em>STAP</em> and add the correct configuration required for <em>EXIT</em> monitoring. To do this, use the API. From the <strong>cli</strong> session on <strong>coll1</strong>, execute the following command:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>grdapi<span class="w"> </span>delete_stap_inspection_engine<span class="w"> </span><span class="nv">type</span><span class="o">=</span>informix<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+
+grdapi<span class="w"> </span>create_stap_inspection_engine<span class="w"> </span><span class="nv">dbUser</span><span class="o">=</span>informix<span class="w"> </span><span class="nv">dbVersion</span><span class="o">=</span><span class="m">15</span><span class="w"> </span><span class="nv">client</span><span class="o">=</span><span class="m">0</span>.0.0.0/0.0.0.0<span class="w"> </span><span class="nv">protocol</span><span class="o">=</span><span class="s2">"Informix Exit"</span><span class="w"> </span><span class="nv">procName</span><span class="o">=</span>/opt/ibm/informix/bin/oninit<span class="w"> </span><span class="nv">dbInstallDir</span><span class="o">=</span>/home/informix<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Once again, switch to the <strong>informix</strong> user on <strong>raptor</strong>, connect to the instance using SSL, and execute a query. This time, the activity should be properly audited and visible in <strong>Guardium</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">INFORMIXSERVER</span><span class="o">=</span>ifxserver_ssl
+
+dbaccess<span class="w"> </span>sysmaster<span class="w"> </span>-
+
+SELECT<span class="w"> </span>sid,<span class="w"> </span>TRIM<span class="o">(</span>net_client_name<span class="o">)</span><span class="w"> </span>AS<span class="w"> </span>client_protocol,<span class="w"> </span>net_client_type,<span class="w"> </span>net_protocol,<span class="w"> </span>net_options,<span class="w"> </span>net_read_cnt,<span class="w"> </span>net_write_cnt<span class="w"> </span>FROM<span class="w"> </span>sysnetworkio<span class="w"> </span>WHERE<span class="w"> </span><span class="nv">sid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DBINFO<span class="o">(</span><span class="s1">'sessionid'</span><span class="o">)</span><span class="p">;</span>
+
+SELECT<span class="w"> </span><span class="s1">'Second try of INFORMIX session with SSL'</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+Close database session inserting <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span> and <code>exit</code> from <strong>informix</strong> user session.
+<a href="../../images/exit11.webp"><img alt="TZ requests" src="../../images/exit11.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Stop <em>Informix</em> instance at the end of lab to free a <strong>raptor</strong> resources. As a <strong>root</strong> execute:
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>informix-ifxserver
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+<p>This lab deliverables are not referred in the other labs. So you can ignore it if needed.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

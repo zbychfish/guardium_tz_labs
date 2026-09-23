@@ -1,0 +1,1263 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../logstash/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ETAP (lab 7) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#external-s-tap-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ETAP (lab 7)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mysql-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MYSQL Traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker preparation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssl-certificate-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL certificate setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-etap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploy ETAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatic-start-of-etap-instance-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic start of ETAP instance (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mysql-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MYSQL Traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker preparation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssl-certificate-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL certificate setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-etap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploy ETAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatic-start-of-etap-instance-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic start of ETAP instance (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="external-s-tap-configuration">External S-TAP configuration</h1>
+<h2 id="mysql-traffic-visibility">MYSQL Traffic visibility</h2>
+<ol>
+<li>One of the databases working on <strong>raptor</strong> machine is <em>MySQL</em>. Let’s check connectivity and confirm <em>MySQL</em> session audibility. Login to the <strong>raptor</strong> and execute command:
+<div class="highlight"><pre><span></span><code>mysql
+</code></pre></div></li>
+<li>
+<p>Inside <em>MySQL</em> session execute (first command reveal information that session is not encrypted):
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'Ssl_cipher'</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'PLAINTEXT SESSION'</span><span class="p">;</span>
+
+<span class="n">exit</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/etap2.webp"><img alt="TZ requests" src="../../images/etap2.webp" width="59%" /></a> </p>
+</li>
+<li>
+<p>Login again  but this time refer to IP address of <strong>raptor</strong> machine.
+<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-h<span class="w"> </span>raptor.demo.guardium
+</code></pre></div></p>
+</li>
+<li>
+<p>Execute these commands in the session (notice, that session is encrypted):
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'Ssl_cipher'</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'ENCRYPTED SESSION SESSION'</span><span class="p">;</span>
+
+<span class="n">exit</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/etap3.webp"><img alt="TZ requests" src="../../images/etap3.webp" width="59%" /></a></p>
+</li>
+<li>
+<p>Go to <em>Full SQL (Training)</em> report in <strong>coll1</strong> dashboard and notice that only SQL’s related to plaintext session have been audited.
+<a href="../../images/etap4.webp"><img alt="TZ requests" src="../../images/etap4.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>There is no <em>ATAP</em> or <em>EXIT</em> for <em>MySQL</em>. In case of encrypted traffic for <em>MySQL</em> we need to use different method of monitoring which is not based on <em>STAP</em>.</p>
+</li>
+</ol>
+<h2 id="docker-preparation">Docker preparation</h2>
+<ol>
+<li>
+<p>Install <code>podman-docker</code> and <code>skopeo</code> packages.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>podman-docker<span class="w"> </span>skopeo
+</code></pre></div></p>
+</li>
+<li>
+<p>To check the latest available tag of <em>External S-TAP</em> image execute:
+<div class="highlight"><pre><span></span><code>skopeo<span class="w"> </span>list-tags<span class="w"> </span>docker://icr.io/guardium/guardium_external_s-tap
+</code></pre></div>
+<a href="../../images/etap5.webp"><img alt="TZ requests" src="../../images/etap5.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Pull <em>External S-TAP</em> image with the <strong>latest</strong> tag for Guardium 12.2 (screenshots presents example, use the latest image version).
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>icr.io/guardium/guardium_external_s-tap:v&lt;latest_12.2&gt;
+</code></pre></div>
+<a href="../../images/etap6.webp"><img alt="TZ requests" src="../../images/etap6.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>List local images and write in notebook <strong>container name</strong> and <strong>tag</strong>
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>images
+</code></pre></div>
+<a href="../../images/etap7.webp"><img alt="TZ requests" src="../../images/etap7.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="ssl-certificate-setup">SSL certificate setup</h2>
+<ol>
+<li>
+<p>On <strong>raptor</strong> create directory for CA, which we will deploy to serve <em>External S-TAP (ETAP)</em> demands.
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/ETAP/ca
+</code></pre></div></p>
+</li>
+<li>
+<p>Login to <strong>coll1</strong> <strong>cli</strong> and request certificate for <em>ETAP</em> instance (<em>CSR request</em>) using command:
+    <div class="highlight"><pre><span></span><code>create<span class="w"> </span>csr<span class="w"> </span>external_stap
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Insert certificate request parameters:</p>
+<ul>
+<li><em>unique alias</em>: raptor-mysql-etap</li>
+<li><em>etap certificate common name</em>: mysqlcoll1.demo.guardium</li>
+<li><em>organization unit name</em>: Demo</li>
+<li><em>add additional OU</em>: n</li>
+<li><em>organization name</em>: Guardium</li>
+<li><em>city</em>: &lt;your city name&gt;</li>
+<li><em>province</em>: &lt;your province name&gt;</li>
+<li><em>country code</em>: &lt;your 2-digits country code&gt;</li>
+<li><em>email of collector certificate owner, can be fake</em>: &lt;email_address&gt;</li>
+<li><em>accept default algorithm</em>: <span class="keys"><kbd class="key-enter">Enter</kbd></span></li>
+<li><em>accept default key length</em>: <span class="keys"><kbd class="key-enter">Enter</kbd></span></li>
+<li><em>insert FQDN of your collector for SAN #1</em>: coll1.demo.guardium</li>
+<li><em>press <span class="keys"><kbd class="key-enter">Enter</kbd></span> for SAN #2</em>: <span class="keys"><kbd class="key-enter">Enter</kbd></span></li>
+</ul>
+</div>
+<p><a href="../../images/etap8.webp"><img alt="TZ requests" src="../../images/etap8.webp" width="99%" /></a></p>
+<p>Then certificate request will be created and displayed</p>
+<p><a href="../../images/etap9.webp"><img alt="TZ requests" src="../../images/etap9.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Then copy displayed <em>Certificate Request</em> to file on raptor - <code>/opt/ETAP/ca/etap.csr</code> 
+    <a href="../../images/etap10.webp"><img alt="TZ requests" src="../../images/etap10.webp" width="79%" /></a>
+    <BR>and write down in notepad entire alias and related to it token (two bottom lines)
+    <a href="../../images/etap11.webp"><img alt="TZ requests" src="../../images/etap11.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Now we will create new <em>certification authority (CA)</em> on <strong>raptor</strong>. Go to directory <code>/opt/ETAP/ca</code> (where you saved <code>etap.csr</code> file) and create <em>RSA key</em>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/ETAP/ca
+
+openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>ca.key<span class="w"> </span><span class="m">2048</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/etap12.webp"><img alt="TZ requests" src="../../images/etap12.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>Create <em>CA certificate</em>, insert required certificate parameters</p>
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-sha256<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>ca.key<span class="w"> </span>-days<span class="w"> </span><span class="m">3650</span><span class="w"> </span>-out<span class="w"> </span>ca.pem
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Insert these values:</p>
+<ul>
+<li><em>Country Name</em>: &lt;your 2-digits country code&gt;</li>
+<li><em>Province</em>: &lt;your province name&gt;</li>
+<li><em>City</em>: &lt;your city name&gt;</li>
+<li><em>Organization</em>: Guardium</li>
+<li><em>Organization Unit</em>: Demo</li>
+<li><em>Common name</em>: etap_ca</li>
+<li><em>e-mail of CA owner, can be fake one</em>: &lt;email_address&gt;</li>
+</ul>
+</div>
+<p><a href="../../images/etap13.webp"><img alt="TZ requests" src="../../images/etap13.webp" width="99%" /></a></p>
+<p>In the current directory <code>ca.pem</code> certificate file will appear.</p>
+</li>
+<li>
+<p>Sign <em>certificate request</em> from <strong>coll1</strong> using just created <em>CA certificate</em>.
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-sha256<span class="w"> </span>-req<span class="w"> </span>-days<span class="w"> </span><span class="m">3650</span><span class="w"> </span>-CA<span class="w"> </span>ca.pem<span class="w"> </span>-CAkey<span class="w"> </span>ca.key<span class="w"> </span>-CAcreateserial<span class="w"> </span>-CAserial<span class="w"> </span>serial<span class="w"> </span>-in<span class="w"> </span>etap.csr<span class="w"> </span>-out<span class="w"> </span>etap.pem
+</code></pre></div>
+<a href="../../images/etap14.webp"><img alt="TZ requests" src="../../images/etap14.webp" width="99%" /></a>
+In the current directory certificate based on <em>CSR</em> generated on <strong>coll1</strong> will appear in <code>etap.pem</code> file.</p>
+</li>
+<li>
+<p>Install <em>CA certificate</em> on <strong>coll1</strong>. Provide unique name for <em>CA</em> (for example: <strong>etap_ca</strong>) and then insert content of <code>ca.pem</code> file from <code>/opt/ETAP/ca</code> directory. Open two SSH sessions to <strong>raptor</strong>, one to get access to certificates and second where you are logged to <strong>coll1</strong>, it will simplify certificate injection.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>certificate<span class="w"> </span>keystore_external_stap
+</code></pre></div>
+<a href="../../images/etap15.webp"><img alt="TZ requests" src="../../images/etap15.webp" width="99%" /></a> 
+Then insert <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span> keystroke.</p>
+</li>
+<li>
+<p>You should receive confirmation that <em>CA cert</em> has been imported.
+<a href="../../images/etap16.webp"><img alt="TZ requests" src="../../images/etap16.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Now we will import to the <strong>coll1</strong> the <em>External S-TAP certificate</em> - <code>etap.pem</code> file stored in <code>/opt/ETAP/ca</code>. You must provide as an alias the one generated during CSR request in point <strong>3</strong>.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>certificate<span class="w"> </span>external_stap
+</code></pre></div>
+<a href="../../images/etap17.webp"><img alt="TZ requests" src="../../images/etap17.webp" width="99%" /></a>  </p>
+</li>
+<li>
+<p>Confirm that import finished with success.
+<a href="../../images/etap18.webp"><img alt="TZ requests" src="../../images/etap18.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Execute command below to list <em>ETAP</em> certs stored on <strong>coll1</strong>. Confirm installation of <em>CA and ETAP cert</em>.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>certificate<span class="w"> </span>external_stap
+</code></pre></div>
+<a href="../../images/etap19.webp"><img alt="TZ requests" src="../../images/etap19.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="deploy-etap">Deploy ETAP</h2>
+<ol>
+<li>
+<p>On <strong>raptor</strong> go to <em>ETAP</em> lab directory and clone <em>External S-TAP</em> gitgub project.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/ETAP
+
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/IBM/Guardium_External_S-TAP.git
+</code></pre></div></td></tr></table></div>
+<a href="../../images/etap20.webp"><img alt="TZ requests" src="../../images/etap20.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The script used to create the container unfortunately does not support usage of SSH on port other than 22, so temporarily add this port to the sshd service on raptor. Edit <code>/etc/ssh/ssh_config.d/99-cluster-hosts.conf</code> and add an additional entry <strong>Port 22</strong> below the existing <strong>Port 2223</strong> for line describing the <em>Host</em> with <strong>raptor</strong> IP address. And below add one more section which will describe the <strong>localhost</strong> as well.<BR>
+<div class="highlight"><pre><span></span><code>Host &lt;your_raptor_ip&gt;
+    Port 2223
+    Port 22
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+    ForwardAgent yes
+
+Host localhost
+    Port 2223
+    Port 22
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+    ForwardAgent yes
+</code></pre></div>
+<a href="../../images/etap21.webp"><img alt="TZ requests" src="../../images/etap21.webp" width="39%" /></a></p>
+</li>
+<li>
+<p>Restart <strong>sshd</strong> service.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>restart<span class="w"> </span>sshd
+</code></pre></div></p>
+</li>
+<li>
+<p>Set some variables to deploy <em>ETAP</em> silenty and minimize mistakes in the container setup.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">STATE_FILE</span><span class="o">=</span>mysql_etap_state
+
+<span class="nv">DB_HOST</span><span class="o">=</span>&lt;raptor_ip&gt;
+
+<span class="nv">COLLECTOR</span><span class="o">=</span>&lt;coll1_ip&gt;
+
+<span class="nv">IMAGE</span><span class="o">=</span><span class="s1">'icr.io/guardium/guardium_external_s-tap:v&lt;latest_12.2&gt;'</span>
+
+<span class="nv">TOKEN</span><span class="o">=</span>&lt;token<span class="w"> </span>displayed<span class="w"> </span><span class="k">in</span><span class="w"> </span>point<span class="w"> </span><span class="m">3</span><span class="w"> </span>of<span class="w"> </span>SSL<span class="w"> </span>certificate<span class="w"> </span>setup<span class="w"> </span>section&gt;
+
+<span class="nv">DB_PORT</span><span class="o">=</span><span class="m">3306</span>
+
+<span class="nv">DB_TYPE</span><span class="o">=</span>mysql
+
+<span class="nv">PROXY_WORKERS</span><span class="o">=</span><span class="m">1</span>
+
+<span class="nv">PROXY_PROTOCOL</span><span class="o">=</span><span class="m">0</span>
+
+<span class="nv">PORT_RANGE</span><span class="o">=</span><span class="s1">'63333-63333'</span>
+
+<span class="nv">TENANT</span><span class="o">=</span>MYSQLETAP
+
+<span class="nv">LBMODE</span><span class="o">=</span><span class="m">0</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/etap22.webp"><img alt="TZ requests" src="../../images/etap22.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Go to <code>Guardium_External_S-TAP</code> directory and start <em>ETAP</em> deployment script. The command will generate a long output, but the key point is to confirm at the end that the new container has started successfully.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/ETAP/Guardium_External_S-TAP
+
+./container_mgmt.sh<span class="w"> </span>--state-file<span class="w"> </span><span class="nv">$STATE_FILE</span><span class="w"> </span>--db-host<span class="w"> </span><span class="nv">$DB_HOST</span><span class="w"> </span>--proxy-num-workers<span class="w"> </span><span class="nv">$PROXY_WORKERS</span><span class="w"> </span>--proxy-protocol<span class="w"> </span><span class="nv">$PROXY_PROTOCOL</span><span class="w"> </span>--db-port<span class="w"> </span><span class="nv">$DB_PORT</span><span class="w"> </span>--proxy-secret<span class="w"> </span><span class="nv">$TOKEN</span><span class="w"> </span>--db-type<span class="w"> </span><span class="nv">$DB_TYPE</span><span class="w"> </span>--sqlguard-ip<span class="w"> </span><span class="nv">$COLLECTOR</span><span class="w"> </span>--participate-in-load-balancing<span class="w"> </span><span class="nv">$LBMODE</span><span class="w"> </span>--tenant-id<span class="w"> </span><span class="nv">$TENANT</span><span class="w"> </span>--svc-image<span class="w"> </span><span class="nv">$IMAGE</span><span class="w"> </span>--svc-port-range<span class="w"> </span><span class="nv">$PORT_RANGE</span><span class="w"> </span>--ni<span class="w"> </span>--c
+</code></pre></div></td></tr></table></div>
+<a href="../../images/etap23.webp"><img alt="TZ requests" src="../../images/etap23.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Check container instance status
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
+</code></pre></div>
+<a href="../../images/etap24.webp"><img alt="TZ requests" src="../../images/etap24.webp" width="99%" /></a>  </p>
+</li>
+<li>
+<p>Login to <strong>coll1</strong> UI and open <strong>External S-TAP Instances</strong> view and confirm that just deployed instance is correctly registered on <strong>coll1</strong>.
+<a href="../../images/etap25.webp"><img alt="TZ requests" src="../../images/etap25.webp" width="99%" /></a>  </p>
+</li>
+</ol>
+<h2 id="check-traffic-visibility">Check traffic visibility</h2>
+<ol>
+<li>
+<p>Login to MySQL using External S-TAP proxy port and execute some SQL’s
+<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-P<span class="w"> </span><span class="m">63333</span><span class="w"> </span>-h<span class="w"> </span>raptor.demo.guardium
+</code></pre></div></p>
+</li>
+<li>
+<p>Execute some SQL’s
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'Ssl_cipher'</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'ENCRYPTED SESSION ON ETAP PORT 63333'</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/etap26.webp"><img alt="TZ requests" src="../../images/etap26.webp" width="69%" /></a> </p>
+</li>
+<li>
+<p>Check activity in <em>Full SQL (Training)</em> report on <strong>coll1</strong>. 
+<a href="../../images/etap27.webp"><img alt="TZ requests" src="../../images/etap27.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="automatic-start-of-etap-instance-optional">Automatic start of ETAP instance (optional)</h2>
+<ol>
+<li>
+<p>We used the script to create the <em>ETAP</em> container, but it will not start automatically the ETAP after a system reboot. Use the <em>quadlet</em> mechanism available in <strong>podman</strong> to ensure the <em>ETAP</em> container is persistently available and easily manageable using standard <strong>Linux</strong> system services.
+<BR>Before starting <em>ETAP</em> using system services, remove the currently running instance. Display the container details and record its <em>ID</em>.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
+</code></pre></div>
+<a href="../../images/etap28.webp"><img alt="TZ requests" src="../../images/etap28.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Stop the container and remove it.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>podman<span class="w"> </span>stop<span class="w"> </span>&lt;container_id&gt;
+
+podman<span class="w"> </span>rm<span class="w"> </span>&lt;container_id&gt;
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Copy the service template from the helper directory to the Podman services directory.
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/source_files/mysql/mysql_external_stap.container<span class="w"> </span>/etc/containers/systemd/mysql_etap.container
+</code></pre></div></p>
+</li>
+<li>
+<p>Edit just copied file - <code>/etc/containers/systemd/mysql_etap.container</code> and set some values.</p>
+<div class="admonition note">
+<p class="admonition-title">Values to modify:</p>
+<p>&lt;latest_etap_release&gt;: defined in Docker preparation point 2<BR>
+&lt;proxy_secret&gt;: token displayed in point 3 od SSL certificate setup<BR>
+&lt;coll1_IP_address&gt;: <strong>coll1</strong> IP address<BR>
+&lt;raptor_IP_address&gt;: <strong>raptor</strong> IP address</p>
+</div>
+<p><a href="../../images/etap29.webp"><img alt="TZ requests" src="../../images/etap29.webp" width="89%" /></a> </p>
+</li>
+<li>
+<p>Reload the network services configuration.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>daemon-reload
+</code></pre></div></p>
+</li>
+<li>
+<p>Start <em>ETAP</em> service.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>start<span class="w"> </span>mysql_etap
+</code></pre></div></p>
+</li>
+<li>
+<p>Check whether the container is running.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
+</code></pre></div>
+<a href="../../images/etap30.webp"><img alt="TZ requests" src="../../images/etap30.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Finally, connect to the database through ETAP and verify that the activity is being monitored.
+<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-P<span class="w"> </span><span class="m">63333</span><span class="w"> </span>-h<span class="w"> </span>raptor.demo.guardium
+</code></pre></div></p>
+</li>
+<li>
+<p>Execute some SQL’s
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'Ssl_cipher'</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'ENCRYPTED SESSION ON ETAP PORT 63333 – QUADLET SERVICE'</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/etap31.webp"><img alt="TZ requests" src="../../images/etap31.webp" width="79%" /></a><br />
+<a href="../../images/etap32.webp"><img alt="TZ requests" src="../../images/etap32.webp" width="99%" /></a>  </p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+<p>This lab is required for the Oracle lab and should be completed.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

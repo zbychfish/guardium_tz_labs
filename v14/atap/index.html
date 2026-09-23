@@ -1,0 +1,1495 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../ktap/">
+      
+      
+        <link rel="next" href="../exit/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ATAP (lab 4) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#atap-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ATAP (lab 4)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-stap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install STAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-encrypted-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check encrypted traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atap-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ATAP setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atap-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ATAP upgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stap-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STAP settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-stap-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        More STAP features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-inspection-engine-verification-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Inspection Engine Verification (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atap-for-mongo-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ATAP for Mongo (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-stap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install STAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-encrypted-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check encrypted traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atap-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ATAP setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atap-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ATAP upgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stap-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STAP settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-stap-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        More STAP features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-inspection-engine-verification-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Inspection Engine Verification (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atap-for-mongo-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ATAP for Mongo (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="atap-configuration">ATAP Configuration</h1>
+<h2 id="install-stap">Install STAP</h2>
+<ol>
+<li>
+<p>Install kernel-devel for currently used kernel.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>kernel-devel-<span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Install the latest <em>GIM client</em> on <strong>raptor</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/source_files/agents/shell/
+
+./guard-bundle-GIM-12.2.2.0_r123489_v12_x_1-rhel-9-linux-x86_64.gim.sh<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>/opt/guardium<span class="w"> </span>--tapip<span class="w"> </span>&lt;raptor_ip&gt;<span class="w"> </span>--sqlguardip<span class="w"> </span>&lt;cm_ip&gt;
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>In <strong>cm</strong> UI deploy <strong>STAP 12.2.1.1_r123268_5</strong>. Rember to ucheck option to see all available releases and confirm successful deployment.
+<a href="../../images/atap1.webp"><img alt="TZ requests" src="../../images/atap1.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Then check in <strong>S-TAP Control</strong> view in <strong>coll1</strong> UI that <em>Postgres</em> inspection engine (database instance) has been discovered by agent. Use <img alt="TZ requests" src="../../images/atap2.webp" width="14" /> icon in row where <strong>raptor</strong> <em>STAP</em> appears and select <strong>Edit</strong> option. In the pop-up point <strong>Inspection engines</strong> and locate <em>pgsql</em> instance on the list.
+<a href="../../images/atap3.webp"><img alt="TZ requests" src="../../images/atap3.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="check-encrypted-traffic-visibility">Check encrypted traffic visibility</h2>
+<ol>
+<li>
+<p>From <strong>root</strong> session on <strong>raptor</strong> connect to <em>Postgres</em> instance as a <strong>tom</strong> user using non-encrypted connection and then check connection type and execute simple dummy SQL (use default environment password).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=disable"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">tom</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_ssl</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pid</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'SELECT%'</span><span class="p">);</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'TOM’s SESSION WITHOUT SSL'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div>
+Notice that column ssl in output from first query has value f (false) what means that connection is not encrypted
+<a href="../../images/atap4.webp"><img alt="TZ requests" src="../../images/atap4.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Open <strong>Full SQL (Training)</strong> report in <em>Training</em> dashboard on <strong>coll1</strong>.
+<a href="../../images/atap5.webp"><img alt="TZ requests" src="../../images/atap5.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Connect to <em>Postgres</em> instance as a <strong>jerry</strong> using encrypted connection.
+<div class="highlight"><pre><span></span><code>psql<span class="w"> </span><span class="s2">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span>-U<span class="w"> </span>jerry<span class="w"> </span>-W
+</code></pre></div></p>
+</li>
+<li>
+<p>Check connection parameters and execute dummy SQL.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_ssl</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pid</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'SELECT%'</span><span class="p">);</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'JERRY’s SESSION USING SSL'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/atap6.webp"><img alt="TZ requests" src="../../images/atap6.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check <strong>Full SQL (Training)</strong> report again and notice that traffic related for encrypted session did not appear there. In case of encrypted connections the traffic visibility requires <em>ATAP</em> configuration (if available).</p>
+</li>
+</ol>
+<h2 id="atap-setup">ATAP setup</h2>
+<ol>
+<li>
+<p>As a <strong>root</strong> user on <strong>raptor</strong> execute these commands to configure <em>ATAP for Postgres</em> instance (<code>guardctl</code> command requires full path specification during execution).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>--db-user<span class="o">=</span>postgres<span class="w"> </span>--db-home<span class="o">=</span>/usr<span class="w"> </span>--db-user-dir<span class="o">=</span>/var/lib/pgsql<span class="w"> </span>--db-type<span class="o">=</span>postgres<span class="w"> </span>--db-instance<span class="o">=</span>postgres<span class="w"> </span>--db-version<span class="o">=</span><span class="m">16</span><span class="w"> </span>store-conf
+
+/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>authorize-user<span class="w"> </span>postgres
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Stop <em>Postgres</em> database engine.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>postgresql
+</code></pre></div></p>
+</li>
+<li>
+<p>Activate <em>ATAP</em>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>--db-instance<span class="o">=</span>postgres<span class="w"> </span>activate
+</code></pre></div>
+<a href="../../images/atap7.webp"><img alt="TZ requests" src="../../images/atap7.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Start <em>Postgres</em>.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>start<span class="w"> </span>postgresql
+</code></pre></div></p>
+</li>
+<li>
+<p>Connect to database with SSL using a <strong>jerry</strong> account again.
+<div class="highlight"><pre><span></span><code>psql<span class="w"> </span><span class="s2">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span>-U<span class="w"> </span>jerry<span class="w"> </span>-W
+</code></pre></div></p>
+</li>
+<li>
+<p>Execute again SQL’s inside encrypted session.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_ssl</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pid</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'SELECT%'</span><span class="p">);</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'A NEW JERRY’s SESSION USING SSL'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Check activity in <strong>Full SQL (Training)</strong> report and confirm that this time jerry’s session is correctly monitored.
+<a href="../../images/atap8.webp"><img alt="TZ requests" src="../../images/atap8.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="atap-upgrade">ATAP upgrade</h2>
+<ol>
+<li>
+<p>In <strong>cm</strong> UI open <strong>Setup by Client</strong> view and configure <em>STAP</em> upgrade from <strong>12.2.1.1</strong> to <strong>12.2.2.0</strong>.
+<a href="../../images/atap9.webp"><img alt="TZ requests" src="../../images/atap9.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Monitor upgrade process and it should finish with success. This behaviour is expected from release <strong>12.2</strong> and up. Before <strong>12.2</strong> the agent upgrade required the <em>ATAP</em> deactivation. Now process of <em>ATAP</em> upgrade works in live.
+<a href="../../images/atap10.webp"><img alt="TZ requests" src="../../images/atap10.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Login to <em>Postgres</em> as a tom using SSL channel on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>psql<span class="w"> </span><span class="s2">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span>-U<span class="w"> </span>tom<span class="w"> </span>-W
+</code></pre></div></p>
+</li>
+<li>
+<p>Execute some SQL’s.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_ssl</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pid</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'SELECT%'</span><span class="p">);</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'TOM’s SESSION USING SSL AFTER STAP UPGRADE'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Check <strong>Full SQL (Training)</strong> report on <strong>coll1</strong> and confirm that just executed activity is correctly audited.
+<a href="../../images/atap11.webp"><img alt="TZ requests" src="../../images/atap11.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="stap-settings">STAP settings</h2>
+<ol>
+<li>
+<p>Check on <strong>raptor</strong> connection to <strong>coll1</strong>.
+<div class="highlight"><pre><span></span><code>netstat<span class="w"> </span>-an<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;coll1_ip&gt;
+</code></pre></div>
+<a href="../../images/atap12.webp"><img alt="TZ requests" src="../../images/atap12.webp" width="99%" /></a>
+Only one connection on port <em>16016</em> is established between <em>STAP</em> and <strong>coll1</strong>. This port is used for clear text comunication (NO TLS communication)</p>
+</li>
+<li>
+<p>Check SSL settings on port <em>16016</em> to confirm that there is no SSL handshake possible on this port
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>&lt;coll1_ip&gt;:16016
+</code></pre></div>
+<a href="../../images/atap13.webp"><img alt="TZ requests" src="../../images/atap13.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Using <strong>Set up by Client</strong> view on <strong>cm</strong> modify <em>STAP module</em> parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Set parameters:</p>
+<ul>
+<li><em>STAP_USE_TLS</em>: <strong>1</strong></li>
+<li><em>STAP_STATISTICS</em>: <strong>-3</strong></li>
+<li><em>STAP_CONNECTION_POOL_SIZE</em>: <strong>2</strong></li>
+</ul>
+</div>
+<p>Select currently installed version of STAP (12.2.2.0). Confirm that changes are applied.</p>
+<p><a href="../../images/atap14.webp"><img alt="TZ requests" src="../../images/atap14.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Then check again connections list to <strong>coll1</strong> from <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>netstat<span class="w"> </span>-an<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;coll1_ip&gt;
+</code></pre></div>
+<a href="../../images/atap15.webp"><img alt="TZ requests" src="../../images/atap15.webp" width="99%" /></a>
+You should now see three connections. Notice that the connection on port <em>16016</em> is no longer available, as communication has switched to the encrypted channel between the agent and the <strong>coll1</strong> (<em>16018</em>). The two additional connections on port <em>16021</em> are also in use, corresponding to the two extra threads we configured.</p>
+</li>
+<li>
+<p>Test encryption status on these two ports (16018 and 16021)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>&lt;collector_ip&gt;:16018<span class="w"> </span>&lt;<span class="w"> </span>/dev/null
+
+openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>&lt;collector_ip&gt;:16021<span class="w"> </span>&lt;<span class="w"> </span>/dev/null
+</code></pre></div></td></tr></table></div>
+<a href="../../images/atap16.webp"><img alt="TZ requests" src="../../images/atap16.webp" width="99%" /></a> 
+<em>STAP_STATISTIC</em> parameter set to value <strong>-3</strong> we will check later on. On heavily loaded systems you can consider use additional port to manage more connection between <em>STAP</em> and <em>collector</em>. In this case you must change value of <em>STAP_CONNECTION_POOL_SIZE</em> parameter from <strong>0</strong> to <em>positive value</em>.</p>
+</li>
+<li>
+<p>To stop <em>STAP</em> from <em>GIM server</em> set parameter <em>STAP_ENABLED</em> to <strong>0</strong>. Notice that value <strong>2</strong> will force <em>STAP</em> restart.
+<a href="../../images/atap17.webp"><img alt="TZ requests" src="../../images/atap17.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Then check <em>STAP</em> status in <strong>S-TAP Control</strong> in the <strong>coll1</strong> UI and confirm that <em>STAP</em> is stopped.
+<a href="../../images/atap18.webp"><img alt="TZ requests" src="../../images/atap18.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Start <em>STAP</em> from command line on raptor.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/STAP/current/guard-config-update<span class="w"> </span>--enable<span class="w"> </span>stap
+</code></pre></div></p>
+</li>
+<li>
+<p>Then when <em>STAP</em> will be again operating, edit a <strong>raptor</strong> <em>STAP</em> configuration in <strong>S-TAP Control</strong> view on <strong>coll1</strong> – press <img alt="TZ requests" src="../../images/atap2.webp" width="14" /> icon to select <strong>Edit</strong> option. It opens <em>STAP</em> configuration pop-up. Select <em>Inspection engines</em> from left menu and select all of them then delete all using <strong>Delete Inspection Engine</strong> in the options bar. It opens a warning window to <strong>Confirm</strong> desired changes.
+<a href="../../images/atap19.webp"><img alt="TZ requests" src="../../images/atap19.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Now list of the <em>Inspection engines</em> should be empty. <strong>Save</strong> the changes.
+<a href="../../images/atap20.webp"><img alt="TZ requests" src="../../images/atap20.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The <em>STAP</em> will be in <em>Not synchronized</em> state (yellow) because requested change is not yet consumed by STAP.
+<a href="../../images/atap52.webp"><img alt="TZ requests" src="../../images/atap52.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>If you refresh the status after a while the status should change to <em>Configuration error</em> state (pink) because lack of inspection engine definitions. To rediscover them open again menu using <img alt="TZ requests" src="../../images/atap2.webp" width="14" /> icon and select <strong>Send</strong> commands option. It opens pop-up where one of the commands is <strong>Run database instance discovery</strong>. Select it and check the <strong>Replace Inspection Engines</strong> option. Then <strong>Apply</strong> changes.
+<a href="../../images/atap21.webp"><img alt="TZ requests" src="../../images/atap21.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>You back to <strong>S-TAP Control</strong> view and after a while (use refresh icon) the <em>STAP status</em> should change to <em>Online</em> because all IE’s has been rediscovered.
+<a href="../../images/atap22.webp"><img alt="TZ requests" src="../../images/atap22.webp" width="99%" /></a>
+<a href="../../images/atap23.webp"><img alt="TZ requests" src="../../images/atap23.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>We can do this same from command line on monitored machine what provides us also better understanding what is or is not discovered correctly. To re-discover inspection instances execute on <strong>raptor</strong> machine.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/STAP/current/guard_discovery<span class="w"> </span>/opt/guardium/modules/STAP/current/guard_tap.ini<span class="w"> </span>--print_output<span class="w"> </span>
+</code></pre></div>
+<a href="../../images/atap24.webp"><img alt="TZ requests" src="../../images/atap24.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Previous command produces list of identified <em>DB instances</em> on <strong>raptor</strong> and can modify the <em>STAP</em> configuration stored in <code>guard_tap.ini</code> file. Review the content of this file to identify <em>DB_[X]</em> sections.
+Each of them describes <em>database instance</em> which is monitored by <em>STAP agent</em> on <strong>raptor</strong> machine.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/opt/guardium/modules/STAP/current/guard_tap.ini
+</code></pre></div>
+<a href="../../images/atap25.webp"><img alt="TZ requests" src="../../images/atap25.webp" width="69%" /></a></p>
+</li>
+</ol>
+<h2 id="more-stap-features">More STAP features</h2>
+<ol>
+<li>
+<p>Review the content of <em>S-TAP and External S-TAP Statistics</em> report in <em>Dashboard</em> on <strong>coll1</strong>, check columns <em>S-TAP Total Packets Dropped</em>, <em>S-TAP Total Bytes Dropped</em>, <em>Stap CPU percent</em>, <em>Buffer recycled</em> (if for some reasons the report will be empty try again change <em>STAP_STATISTICS</em> flag form <strong>-3</strong> to <strong>-5</strong> for example, continue the lab and check result in the meantime).
+<a href="../../images/atap26.webp"><img alt="TZ requests" src="../../images/atap26.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Spend a while on statistics documentation to understand what mentioned in report above
+<a href="https://www.ibm.com/docs/en/guardium/12.x?topic=performance-linux-unix-s-tap-statistics">https://www.ibm.com/docs/en/guardium/12.x?topic=performance-linux-unix-s-tap-statistics</a></p>
+</li>
+<li>
+<p>From <strong>cm</strong> UI change <strong>raptor</strong> <em>STAP</em> settings and set <em>STAP-UTILS_START_MONITOR</em> value to <strong>Y</strong>.
+<a href="../../images/atap27.webp"><img alt="TZ requests" src="../../images/atap27.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check <code>/var/tmp/monitor</code> directory on raptor and notice that <code>guard_monitor.log</code> has been created there.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/tmp/monitor/guard_monitor.log
+</code></pre></div></p>
+</li>
+<li>
+<p>Check location of <em>STAP</em> logs by searching for <code>tap_log_dir</code> parameter in <code>/opt/guardium/modules/STAP/current/guard_tap.ini</code> file on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>tap_log_dir<span class="w"> </span>/opt/guardium/modules/STAP/current/guard_tap.ini
+</code></pre></div>
+<a href="../../images/atap28.webp"><img alt="TZ requests" src="../../images/atap28.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Notice that value is set to <em>NULL</em>, what means that <code>/tmp</code> directory is used to store main log file <code>guard_stap.stderr.txt</code>. Display log content.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/tmp/guard_stap.stderr.txt
+</code></pre></div></p>
+</li>
+<li>
+<p>Create new directory where logs should be stored.
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/root/glogs
+</code></pre></div></p>
+</li>
+<li>
+<p>Modify <code>/opt/guardium/modules/STAP/current/guard_tap.ini</code> file and set variables.</p>
+<div class="admonition info">
+<p class="admonition-title">Set variables:</p>
+<ul>
+<li><em>tap_debug_output_level</em>: <strong>1</strong></li>
+<li><em>tap_log_dir</em>: <code>**/root/glogs**</code></li>
+</ul>
+</div>
+<p><a href="../../images/atap29.webp"><img alt="TZ requests" src="../../images/atap29.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Restart <em>STAP</em>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/STAP/current/guard-config-update<span class="w"> </span>--restart<span class="w"> </span>stap
+</code></pre></div></p>
+</li>
+<li>
+<p>Check content of <code>/root/glogs</code> directory and notice that logs are now created there.
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>/root/glogs
+</code></pre></div>
+<a href="../../images/atap30.webp"><img alt="TZ requests" src="../../images/atap30.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>Check also <em>S-TAP Events</em> report on <strong>coll1</strong> and notice that events are there (sort report using <em>Timestamp</em> column, click column name).
+<a href="../../images/atap31.webp"><img alt="TZ requests" src="../../images/atap31.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Change debug logging level on <strong>raptor</strong> using <code>guard-config-update</code> back to value <strong>0</strong>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/STAP/current/guard-config-update<span class="w"> </span>--modify-tap<span class="w"> </span>tap_debug_output_level<span class="w"> </span><span class="m">0</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>We can create <em>STAP diagnostics</em> from <strong>coll1</strong> UI. In the <strong>S-TAP Control</strong> view press <img alt="TZ requests" src="../../images/atap2.webp" width="14" /> icon and select <strong>Send</strong> commands option. Then – in the pop-up - select <strong>Run diagnostics</strong> command and set <em>Debugging Level</em> to <strong>4</strong> and <strong>Apply</strong> request.
+<a href="../../images/atap32.webp"><img alt="TZ requests" src="../../images/atap32.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>After 2-3 minutes go to <strong>Support information gathering</strong> view and download requested <em>diag</em> file.
+<a href="../../images/atap33.webp"><img alt="TZ requests" src="../../images/atap33.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Try to uninstall <em>GIM client</em> on <strong>raptor</strong> using <code>uninstall.pl</code> and notice that <em>GIM client</em> is aware that <em>ATAP</em> is actived and will ignore request.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/GIM/current/uninstall.pl
+</code></pre></div>
+<a href="../../images/atap34.webp"><img alt="TZ requests" src="../../images/atap34.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="simple-inspection-engine-verification-optional">Simple Inspection Engine Verification (optional)</h2>
+<ol>
+<li>
+<p>From <strong>cli</strong> on <strong>coll1</strong> set the <em>inspection engine verification timeout</em> to <strong>10</strong> seconds.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>stap<span class="w"> </span>network_latency<span class="w"> </span><span class="m">10</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>In the <strong>coll1</strong> UI, locate and open the <strong>S-TAP Status Monitor</strong> view. This view displays the list of <em>S-TAP agents</em> connected to the <strong>coll1</strong>. In our case, it shows the agent installed on the <strong>raptor</strong> machine. Click the row containing the agent information.
+<a href="../../images/atap35.webp"><img alt="TZ requests" src="../../images/atap35.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>A list of <em>Inspection Engines</em> should appear. Select the one that corresponds to the <em>pgsql</em> on port <strong>5432</strong> (<em>postgres</em>) database. This will activate the list of available actions. Choose <strong>Verify</strong>. After a moment, you should receive a message indicating that the verification completed successfully. If the result is different, try running the verification again. 
+<a href="../../images/atap36.webp"><img alt="TZ requests" src="../../images/atap36.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Let’s now stop the <em>postgres</em> instance on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>postgresql
+</code></pre></div></p>
+</li>
+<li>
+<p>Try running the verification again.
+<a href="../../images/atap37.webp"><img alt="TZ requests" src="../../images/atap37.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>This time, the verification failed, and you can analyze the cause by using the <strong>Run Diagnostics</strong> option.
+<a href="../../images/atap38.webp"><img alt="TZ requests" src="../../images/atap38.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>After a moment, information about the possible causes of the failure will be displayed. As you can see, the <em>STAP</em> agent is running and the <strong>coll1</strong> can communicate with it, but the issue is related to the lack of connection to the database. This is expected, since we previously stopped the database instance.
+<a href="../../images/atap39.webp"><img alt="TZ requests" src="../../images/atap39.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Start <em>postgres</em> again on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>start<span class="w"> </span>postgresql
+</code></pre></div></p>
+</li>
+<li>
+<p>Run verification again and confirm that it works. Sometimes manually executed process of verification can fail without visible reasons. Try running diagnostics and probably will finish successfully. It should not happen if you schedule verification process.</p>
+</li>
+<li>
+<p>Check <strong>Failed Login Attempts</strong> view to realize that simple verification process uses the <strong>RESULTFD</strong> fake account to generate exception error.
+<a href="../../images/atap40.webp"><img alt="TZ requests" src="../../images/atap40.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To configure the advances verification select <em>pgsql</em> instance again in <strong>S-TAP Status Monitor</strong> and press <strong>Advanced Verify</strong>. In pop-up window use plus icon to add data source definition.
+<a href="../../images/atap41.webp"><img alt="TZ requests" src="../../images/atap41.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Configure access to <em>postgres</em> database.</p>
+<div class="admonition note">
+<p class="admonition-title">Form values:</p>
+</div>
+<ul>
+<li><em>Name</em>: postgres verification (raptor)</li>
+<li><em>Database type</em>: PostgreSQL</li>
+<li><em>User name</em>: tom</li>
+<li><em>Password</em>: &lt;default password&gt;</li>
+<li><em>Host name/IP</em>: raptor.demo.guardium</li>
+<li><em>Port number</em>: 5432</li>
+<li><em>Database</em>: postgres</li>
+</ul>
+<p>Then use <strong>Save</strong>, <strong>Test connection</strong> and <strong>Close</strong> buttons to store new definition and do the verification.</p>
+<p><a href="../../images/atap42.webp"><img alt="TZ requests" src="../../images/atap42.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>You should return to the <strong>Advanced Verification</strong> window with the name of the newly created data source already populated. Click <strong>Verify</strong> and wait for confirmation that traffic is visible on the monitored system.
+<a href="../../images/atap43.webp"><img alt="TZ requests" src="../../images/atap43.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Finally, verify that this time the instance validation generated an <em>SQL error</em> by executing a query against a non-existent table. Check the <em>Full SQL (Training)</em> and <em>SQL Errors</em> reports on the dashboard.
+<a href="../../images/atap44.webp"><img alt="TZ requests" src="../../images/atap44.webp" width="99%" /></a>
+<a href="../../images/atap45.webp"><img alt="TZ requests" src="../../images/atap45.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="atap-for-mongo-optional">ATAP for Mongo (optional)</h2>
+<ol>
+<li>
+<p>On the <strong>raptor</strong> machine, a <em>MongoDB</em> database is running and listening on port <strong>27017</strong>.
+<div class="highlight"><pre><span></span><code>lsof<span class="w"> </span>-i<span class="w"> </span>-P<span class="w"> </span>-n<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">27017</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Let’s manage some configuration tasks from cli instead of UI. In the <strong>coll1 cli</strong> session list the inspection engines on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>list_inspection_engines<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+</code></pre></div>
+<a href="../../images/atap46.webp"><img alt="TZ requests" src="../../images/atap46.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Notice that the current inpection engine definitions for <em>MySQL</em> uses the port range <strong>3306–33060</strong>, which unintentionally includes the port designated for the mongo instance (<strong>27017</strong>). To avoid this conflict, the <em>MySQL</em> inspection engine definitions should be adjusted to target only the specific ports required, instead of relying on a range. 
+<a href="../../images/atap47.webp"><img alt="TZ requests" src="../../images/atap47.webp" width="59%" /></a></p>
+</li>
+<li>
+<p>So, execute from <strong>coll1 cli</strong>:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>grdapi<span class="w"> </span>delete_stap_inspection_engine<span class="w"> </span><span class="nv">type</span><span class="o">=</span>mysql<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+
+grdapi<span class="w"> </span>create_stap_inspection_engine<span class="w"> </span><span class="nv">dbUser</span><span class="o">=</span>mysqld<span class="w"> </span><span class="nv">dbVersion</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">client</span><span class="o">=</span><span class="m">0</span>.0.0.0/0.0.0.0<span class="w"> </span><span class="nv">ktapDbPort</span><span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="nv">portMin</span><span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="nv">portMax</span><span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="nv">protocol</span><span class="o">=</span>mysql<span class="w"> </span><span class="nv">procName</span><span class="o">=</span>/usr/sbin/mysqld<span class="w"> </span><span class="nv">dbInstallDir</span><span class="o">=</span>/var/lib/mysql<span class="w"> </span><span class="nv">unixSocketMarker</span><span class="o">=</span>mysql.sock<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+
+grdapi<span class="w"> </span>create_stap_inspection_engine<span class="w"> </span><span class="nv">dbUser</span><span class="o">=</span>mysqld<span class="w"> </span><span class="nv">dbVersion</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">client</span><span class="o">=</span><span class="m">0</span>.0.0.0/0.0.0.0<span class="w"> </span><span class="nv">ktapDbPort</span><span class="o">=</span><span class="m">33060</span><span class="w"> </span><span class="nv">portMin</span><span class="o">=</span><span class="m">33060</span><span class="w"> </span><span class="nv">portMax</span><span class="o">=</span><span class="m">33060</span><span class="w"> </span><span class="nv">protocol</span><span class="o">=</span>mysql<span class="w"> </span><span class="nv">procName</span><span class="o">=</span>/usr/sbin/mysqld<span class="w"> </span><span class="nv">dbInstallDir</span><span class="o">=</span>/var/lib/mysql<span class="w"> </span><span class="nv">unixSocketMarker</span><span class="o">=</span>mysql.sock<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+
+grdapi<span class="w"> </span>create_stap_inspection_engine<span class="w"> </span><span class="nv">dbUser</span><span class="o">=</span>mysqld<span class="w"> </span><span class="nv">dbVersion</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">client</span><span class="o">=</span><span class="m">0</span>.0.0.0/0.0.0.0<span class="w"> </span><span class="nv">ktapDbPort</span><span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="nv">portMin</span><span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="nv">portMax</span><span class="o">=</span><span class="m">3306</span><span class="w"> </span><span class="nv">protocol</span><span class="o">=</span>mysql<span class="w"> </span><span class="nv">procName</span><span class="o">=</span>/usr/sbin/mysqld<span class="w"> </span><span class="nv">dbInstallDir</span><span class="o">=</span>/var/lib/mysql<span class="w"> </span><span class="nv">unixSocketMarker</span><span class="o">=</span>mysqlx.sock<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+
+grdapi<span class="w"> </span>create_stap_inspection_engine<span class="w"> </span><span class="nv">dbUser</span><span class="o">=</span>mysqld<span class="w"> </span><span class="nv">dbVersion</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">client</span><span class="o">=</span><span class="m">0</span>.0.0.0/0.0.0.0<span class="w"> </span><span class="nv">ktapDbPort</span><span class="o">=</span><span class="m">33060</span><span class="w"> </span><span class="nv">portMin</span><span class="o">=</span><span class="m">33060</span><span class="w"> </span><span class="nv">portMax</span><span class="o">=</span><span class="m">33060</span><span class="w"> </span><span class="nv">protocol</span><span class="o">=</span>mysql<span class="w"> </span><span class="nv">procName</span><span class="o">=</span>/usr/sbin/mysqld<span class="w"> </span><span class="nv">dbInstallDir</span><span class="o">=</span>/var/lib/mysql<span class="w"> </span><span class="nv">unixSocketMarker</span><span class="o">=</span>mysqlx.sock<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+
+grdapi<span class="w"> </span>list_inspection_engines<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
+</code></pre></div></td></tr></table></div>
+<a href="../../images/atap48.webp"><img alt="TZ requests" src="../../images/atap48.webp" width="59%" /></a><BR>
+We have recreated the <em>mysql’s</em> inspection engines to point one port per instance.</p>
+</li>
+<li>
+<p>Generate <em>mongo</em> traffic on <strong>raptor</strong> and check <em>Full SQL (Training)</em> report on <strong>coll1</strong>. Activity should be audited correctly.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">mongosh</span><span class="w"> </span><span class="err">$</span><span class="n">MONGO_URI</span>
+
+<span class="k">show</span><span class="w"> </span><span class="n">dbs</span>
+
+<span class="n">use</span><span class="w"> </span><span class="n">sample_mflix</span>
+
+<span class="k">show</span><span class="w"> </span><span class="n">tables</span>
+
+<span class="n">db</span><span class="p">.</span><span class="n">movies</span><span class="p">.</span><span class="n">find</span><span class="p">()</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/atap49.webp"><img alt="TZ requests" src="../../images/atap49.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The <em>MongoDB</em> instance is configured to use encrypted connections. Connect using this method, execute a few queries, and then verify that the activity is not captured for this session.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">mongosh</span><span class="w"> </span><span class="c1">--tls --tlsAllowInvalidCertificates $MONGO_URI</span>
+
+<span class="k">show</span><span class="w"> </span><span class="n">dbs</span>
+
+<span class="n">use</span><span class="w"> </span><span class="n">sample_mflix</span>
+
+<span class="k">show</span><span class="w"> </span><span class="n">tables</span>
+
+<span class="n">db</span><span class="p">.</span><span class="n">theaters</span><span class="p">.</span><span class="n">find</span><span class="p">()</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Configure <em>ATAP</em> for <em>mongo</em>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>authorize-user<span class="w"> </span>mongod
+
+/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>--db-type<span class="o">=</span>mongodb<span class="w"> </span>--db-instance<span class="o">=</span>mongo4<span class="w"> </span>--db-user<span class="o">=</span>mongod<span class="w"> </span>--db-home<span class="o">=</span>/usr<span class="w"> </span>--db-base<span class="o">=</span>/var/lib/mongo<span class="w"> </span>store-conf
+
+systemctl<span class="w"> </span>stop<span class="w"> </span>mongod
+
+/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>--db-instance<span class="o">=</span>mongo4<span class="w"> </span>activate
+
+systemctl<span class="w"> </span>start<span class="w"> </span>mongod
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Generate traffic again in the encrypted connection and confirm that <em>mongo</em> traffic is audited correctly.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">mongosh</span><span class="w"> </span><span class="c1">--tls --tlsAllowInvalidCertificates $MONGO_URI</span>
+
+<span class="k">show</span><span class="w"> </span><span class="n">dbs</span>
+
+<span class="n">use</span><span class="w"> </span><span class="n">sample_mflix</span>
+
+<span class="k">show</span><span class="w"> </span><span class="n">tables</span>
+
+<span class="n">db</span><span class="p">.</span><span class="n">theaters</span><span class="p">.</span><span class="n">find</span><span class="p">()</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/atap50.webp"><img alt="TZ requests" src="../../images/atap50.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To avoid the deleted <em>inspection engine</em> recreation by <em>STAP</em> let us disable this functionality on <strong>raptor</strong>. From <strong>cm</strong> UI in <strong>Setup by client</strong> select installed agent (<strong>12.2.2.0_r123489_3</strong>) and set these parameters:</p>
+<div class="admonition note">
+<p class="admonition-title">STAP parameters:</p>
+<ul>
+<li><em>STAP_DISCOVERY_ENABLED</em>: <strong>0</strong></li>
+<li><em>STAP_DISCOVERY_DBS</em>: <strong>oracle:db2:informix:postgres:sybase:teradata:netezza:memsql:mariadb:verticadb:mongodb</strong></li>
+</ul>
+</div>
+<p><a href="../../images/atap51.webp"><img alt="TZ requests" src="../../images/atap51.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+<p>It is crucial to finish all non-optional parts to be able continue.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+<ol>
+<li>ATAP documentation  <br />
+<a href="https://www.ibm.com/docs/en/gdp/12.x?topic=management-linux-unix-database-specific-guardctl-parameters">https://www.ibm.com/docs/en/gdp/12.x?topic=management-linux-unix-database-specific-guardctl-parameters</a></li>
+</ol>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

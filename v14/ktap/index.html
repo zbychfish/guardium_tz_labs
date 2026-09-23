@@ -1,0 +1,1551 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../gim/">
+      
+      
+        <link rel="next" href="../atap/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>KTAP (lab 3) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ktap-deployment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              KTAP (lab 3)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-downgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel downgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stap-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STAP installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-upgrade-stap-revisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel upgrade, STAP revisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ktap-with-flex-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KTAP with flex module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstall-stap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstall STAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stap-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STAP upgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-compiled-kernel-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self compiled kernel module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-custom-modules-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical custom modules usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-downgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel downgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stap-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STAP installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-upgrade-stap-revisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel upgrade, STAP revisions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ktap-with-flex-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KTAP with flex module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstall-stap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninstall STAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stap-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STAP upgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-compiled-kernel-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self compiled kernel module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-custom-modules-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical custom modules usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ktap-deployment">KTAP Deployment</h1>
+<h2 id="kernel-downgrade">Kernel downgrade</h2>
+<ol>
+<li>
+<p>In this lab, the goal is to handle various issues related to <em>KTAP</em> installation. To achieve this, you will install several different kernels on the raptor machine to analyze these scenarios in detail.</p>
+</li>
+<li>
+<p>Check the current <strong>raptor</strong> kernel level using command. Your default kernel can differ from presented on screenshot.
+<div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-r
+</code></pre></div>
+<a href="../../images/ktap1.webp"><img alt="TZ requests" src="../../images/ktap1.webp" width="35%" /></a></p>
+</li>
+<li>
+<p>Now we will downgrade kernel to version <strong>5.14.0-570.16.1.el9_6.x86_64</strong>.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>kernel-5.14.0-570.16.1.el9_6.x86_64<span class="w"> </span>-y
+</code></pre></div></p>
+</li>
+<li>
+<p>Check the list of available bootable kernels. The newly installed kernel is set as <strong>index 0</strong> in the grubby configuration.
+<div class="highlight"><pre><span></span><code>grubby<span class="w"> </span>--info<span class="o">=</span>ALL
+</code></pre></div>
+<a href="../../images/ktap2.webp"><img alt="TZ requests" src="../../images/ktap2.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Let’s also confirm that the installed kernel is now set as the default and reboot system.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>grubby<span class="w"> </span>--default-kernel
+
+shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap3.webp"><img alt="TZ requests" src="../../images/ktap3.webp" width="55%" /></a></p>
+</li>
+<li>
+<p>Sign back in to <strong>raptor</strong> and confirm that the kernel has been downgraded to version <strong>5.14.0-570.16.1</strong>.
+<div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-r
+</code></pre></div>
+<a href="../../images/ktap4.webp"><img alt="TZ requests" src="../../images/ktap4.webp" width="35%" /></a></p>
+</li>
+</ol>
+<h2 id="stap-installation">STAP installation</h2>
+<ol>
+<li>
+<p>Install <em>GIM client 12.2.2</em> on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/source_files/agents/shell/
+
+./guard-bundle-GIM-12.2.2.0_r123489_v12_x_1-rhel-9-linux-x86_64.gim.sh<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>/opt/guardium<span class="w"> </span>--tapip<span class="w"> </span>&lt;raptor_ip&gt;<span class="w"> </span>--sqlguardip<span class="w"> </span>&lt;cm_ip&gt;
+</code></pre></div></p>
+</li>
+<li>
+<p>To install <strong>STAP</strong> open <strong>Setup by Client</strong> view in <strong>cm</strong> UI, select <em>raptor GIM client</em> and push <strong>Next</strong> button. Uncheck option <em>Show only latest versions</em> and select from available bundles the <strong>BUNDLE-STAP 12.0.6.0_r120251_1</strong> one and push <strong>Next</strong>. Then in the <em>Choose parameters</em> section set the values for the two parameters and confirm by clicking <strong>Next</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Insert:</p>
+<ul>
+<li><em>STAP_SQLGUARD_IP</em>: <strong>&lt;coll1_ip_address&gt;</strong></li>
+<li><em>KTAP_ENABLED</em>: <strong>1</strong></li>
+</ul>
+</div>
+<p>then press <strong>Install</strong> button and finally request deployment using <strong>OK</strong> button in <em>Configure clients</em> section and track progress of installation by opening <strong>Show Status</strong> pop-up window</p>
+<p><a href="../../images/ktap5.webp"><img alt="TZ requests" src="../../images/ktap5.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Refresh the view till all components installation status will be changed to <em>INSTALLED</em> and then <strong>Close</strong> pop-up’s
+<a href="../../images/ktap6.webp"><img alt="TZ requests" src="../../images/ktap6.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the <strong>coll1</strong> UI check the <em>STAP agent</em> status. Open <strong>S-TAP control</strong> view and expand using <img alt="TZ requests" src="../../images/ktap7.webp" width="20" /> icon the agent menu and select <strong>Event log</strong>. The pop-up <strong>S-TAP Events</strong> report shows that kernel module for currently installed on <strong>raptor</strong> is available an installed.
+<a href="../../images/ktap8.webp"><img alt="TZ requests" src="../../images/ktap8.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To confirm <em>KTAP</em> installation on the <strong>collector</strong> the <strong>S-TAP Status</strong> view and notice that <em>KTAP module</em> is installed.
+<a href="../../images/ktap9.webp"><img alt="TZ requests" src="../../images/ktap9.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Execute on <strong>raptor</strong> the commands to confirm that <em>KTAP module</em> is loaded into kernel.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ktap
+
+modinfo<span class="w"> </span>ktap
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap10.webp"><img alt="TZ requests" src="../../images/ktap10.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Get the details from <code>/var/log/ktap_install.log</code>. Log clearly indicates that the installed agent version includes a module compiled specifically for the current kernel version (<em>Exact match</em>). 
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
+</code></pre></div>
+<a href="../../images/ktap11.webp"><img alt="TZ requests" src="../../images/ktap11.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>postgres
+
+psql
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'activity with kernel 5.14.0-570.16.1.el9_6 and STAP 12.0.6.0_r120251_1'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>In the <strong>coll1</strong> UI, open the <em>Training</em> dashboard and verify whether the recently executed query is visible in the <em>Full SQL (Training)</em> report.
+<a href="../../images/ktap12.webp"><img alt="TZ requests" src="../../images/ktap12.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="kernel-upgrade-stap-revisions">Kernel upgrade, STAP revisions</h2>
+<ol>
+<li>
+<p>Now upgrade the kernel on <strong>raptor</strong> from <strong>5.14.0-570.16.1.el9_6</strong> to <strong>5.14.0-570.24.1.el9_6</strong> and observe what happens.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>kernel-5.14.0-570.24.1.el9_6.x86_64<span class="w"> </span>-y
+
+shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>After reboot, confirm that the system is running kernel <strong>5.14.0-570.24.1.el9_6.x86_64</strong>.
+<div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-r
+</code></pre></div></p>
+</li>
+<li>
+<p>Verify that <em>KTAP</em> is not loaded.
+<div class="highlight"><pre><span></span><code>modinfo<span class="w"> </span>ktap
+</code></pre></div>
+<a href="../../images/ktap13.webp"><img alt="TZ requests" src="../../images/ktap13.webp" width="49%" /></a></p>
+</li>
+<li>
+<p>A file named <code>ktap_install_fail.txt</code> has appeared in the <code>/tmp</code> directory. Review its contents, as it indicates a kernel support issue with the currently running system version.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/tmp/ktap_install_fail.txt
+</code></pre></div>
+<a href="../../images/ktap14.webp"><img alt="TZ requests" src="../../images/ktap14.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>The logs indicate that <em>STAP</em> failed to compile the module and did not attempt to locate a <em>flex module</em>. Since no prebuilt module was available, the installation failed.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
+</code></pre></div>
+<a href="../../images/ktap15.webp"><img alt="TZ requests" src="../../images/ktap15.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>You can also check <strong>S-TAP Events</strong> and <strong>S-TAP Status</strong> in the <strong>coll1</strong> UI to clearly confirm that the module-related issue is reported there.
+<a href="../../images/ktap16.webp"><img alt="TZ requests" src="../../images/ktap16.webp" width="99%" /></a>
+<a href="../../images/ktap17.webp"><img alt="TZ requests" src="../../images/ktap17.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>It is also worth checking the modules archive in the <em>KTAP</em> installation directory. A simple search of its contents confirms that no module is available for the current kernel version.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium/modules/KTAP/current
+
+tar<span class="w"> </span>tvf<span class="w"> </span>modules-12.0.6.0_r120251_v12_0_1.tgz<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">5</span>.14.0-570.24.1.el9_6.x86_64
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>To verify whether your kernel is supported, visit <a href="https://ibm.github.io/guardium-ktap/">https://ibm.github.io/guardium-ktap/</a>. It turns out that kernel <strong>5.14.0-570.24.1.el9_6</strong> is supported by <em>EXACT</em> precompiled modules for agent <strong>12.0</strong>. Support became available with later revision. There is no information about <em>FLEX</em> support ☹
+<a href="../../images/ktap18.webp"><img alt="TZ requests" src="../../images/ktap18.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Let's install the fresher revision of agent <em>12.0.6</em>. In the <strong>cm</strong> UI, go again to <strong>Setup by Client</strong>. After selecting <strong>raptor</strong>, you will notice that two revisions of the <strong>12.0.6.0_r120251</strong> agent are available in the modules list—revision <strong>1</strong> (currently installed) and revision <strong>35</strong>.
+<a href="../../images/ktap20.webp"><img alt="TZ requests" src="../../images/ktap20.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Confirm that the task has been successfully completed.
+<a href="../../images/ktap21.webp"><img alt="TZ requests" src="../../images/ktap21.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>As expected, the agent revision included a precompiled module, which was successfully loaded.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ktap
+
+modinfo<span class="w"> </span>ktap
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap22.webp"><img alt="TZ requests" src="../../images/ktap22.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Also confirm that the new modules archive file contains the required module.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium/modules/KTAP/current
+
+tar<span class="w"> </span>tvf<span class="w"> </span>modules-12.0.6.0_r120251_v12_0_35.tgz<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">5</span>.14.0-570.24.1.el9_6.x86_64
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap23.webp"><img alt="TZ requests" src="../../images/ktap23.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query. Check Full SQL (Training) report to confirm that traffic is visible.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>postgres
+
+psql
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'activity with kernel 5.14.0-570.24.1.el9_6 and STAP 12.0.6.0_r120251_35'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap57.webp"><img alt="TZ requests" src="../../images/ktap57.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="ktap-with-flex-module">KTAP with flex module</h2>
+<ol>
+<li>
+<p>This time, you will switch to kernel <strong>5.14.0-570.62.1.el9_6.x86_64</strong>, but before doing so, verify on <a href="https://ibm.github.io/guardium-ktap/">https://ibm.github.io/guardium-ktap/</a> the support for this version for <strong>12.0</strong> agent.
+It turns out there is no precompiled module available for this kernel version, but you can use the <em>Flex</em> (EXACT-LIKE) mechanism, which allows loading a module built for a kernel version close to the target one.
+<a href="../../images/ktap24.webp"><img alt="TZ requests" src="../../images/ktap24.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>You can also verify exactly which compiled modules can be used as <em>Flex</em> (EXACT LIKE) for the target kernel. The file <code>ktap-combos.txt</code> contains their list. In this case, the currently installed <em>revision 35</em> includes three modules that can be used with kernel <strong>5.14.0-570.62.1.el9_6</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">guardium</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">KTAP</span><span class="o">/</span><span class="k">current</span>
+
+<span class="n">cat</span><span class="w"> </span><span class="n">ktap</span><span class="o">-</span><span class="n">combos</span><span class="p">.</span><span class="n">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="mi">14</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">570</span><span class="p">.</span><span class="mi">62</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="n">el9_6</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap25.webp"><img alt="TZ requests" src="../../images/ktap25.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Before upgrading the kernel, enable support for <em>Flex</em> modules. In the <strong>cm</strong> UI, go to <strong>Setup by Client</strong>, and for <em>revision 35</em>, add the additional parameter <strong>KTAP_ALLOW_MODULE_COMBOS</strong> with the value <strong>Y</strong>.
+<a href="../../images/ktap26.webp"><img alt="TZ requests" src="../../images/ktap26.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Now upgrade the kernel and reboot the system.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>kernel-5.14.0-570.62.1.el9_6.x86_64<span class="w"> </span>-y
+
+shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Check again whether the <em>KTAP</em> module is available and notice that it is still using the module built for version <strong>5.14.0-570.24.1</strong>, which is compatible with kernel <strong>5.14.0-570.62.1</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ktap
+
+modinfo<span class="w"> </span>ktap
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap27.webp"><img alt="TZ requests" src="../../images/ktap27.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Additionally check <code>/var/log/ktap_install.log</code> and notice that module compiled for kernel <strong>5.14.0-570.24.1.el9_6</strong> has been selected as flexible to cover currently installed.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
+</code></pre></div>
+<a href="../../images/ktap28.webp"><img alt="TZ requests" src="../../images/ktap28.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>postgres
+
+psql
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'activity with FLEX module on kernel 5.14.0-570.62.1.el9_6 and STAP 12.0.6.0_r120251_35'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap29.webp"><img alt="TZ requests" src="../../images/ktap29.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="uninstall-stap">Uninstall STAP</h2>
+<ol>
+<li>
+<p>Now simulate a common troubleshooting mistake—attempting to reinstall the agent while the <em>KTAP</em> module is still loaded. First, uninstall the <em>STAP</em> agent. In <strong>Setup by Client</strong>, select the currently installed <em>STAP</em> version (<strong>12.0.6.0_r120251_35</strong>) and click <strong>Uninstall</strong>. Confirm that the agent has been successfully removed.
+<a href="../../images/ktap30.webp"><img alt="TZ requests" src="../../images/ktap30.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Refresh <strong>Status</strong> pop-up till message that <em>BUNDLE-STAP is NOT_INSTALLED</em> will appear.
+<a href="../../images/ktap31.webp"><img alt="TZ requests" src="../../images/ktap31.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Try again install <strong>BUNDLE-STAP 12.0.6.0_r120251_35</strong> again.</p>
+<div class="admonition note">
+<p class="admonition-title">Set parameters:</p>
+<ul>
+<li><em>KTAP_ALLOW_MODULE_COMBOS</em>: <strong>Y</strong></li>
+<li><em>KTAP_ENABLED</em>: <strong>1</strong></li>
+<li><em>STAP_SQLGUARD_IP</em>: <strong>&lt;coll1.demo.guardium&gt;</strong></li>
+</ul>
+</div>
+<p><a href="../../images/ktap32.webp"><img alt="TZ requests" src="../../images/ktap32.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>This time the installation will fail because previously installed kernel module was not unloaded
+<a href="../../images/ktap33.webp"><img alt="TZ requests" src="../../images/ktap33.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Uninstallation process does not include the kernel module unload (what is very dangerous command on heavily used production systems). That is why the module will disappear only after system reboot. Because of that, any try to install <em>STAP</em> again will fail because of old <em>KTAP</em> appearance in kernel space. Check <code>ktap_install.log</code> to on <strong>raptor</strong> to confirm this situation.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
+</code></pre></div>
+<a href="../../images/ktap34.webp"><img alt="TZ requests" src="../../images/ktap34.webp" width="59%" /></a> </p>
+</li>
+<li>
+<p>Also <code>lsmod</code> command provides information that <em>KTAP</em> module from previous installation is still loaded and <code>modinfo</code> will point that module file has been removed from filesystem
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ktap
+
+modinfo<span class="w"> </span>ktap
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap35.webp"><img alt="TZ requests" src="../../images/ktap35.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Restart <strong>raptor</strong> machine to clean up kernel space
+<div class="highlight"><pre><span></span><code>shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="stap-upgrade">STAP upgrade</h2>
+<ol>
+<li>
+<p>Install again <strong>BUNDLE-STAP 12.0.6.0_r120251_35</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Set parameters:</p>
+<ul>
+<li><em>KTAP_ALLOW_MODULE_COMBOS</em>: <strong>Y</strong></li>
+<li><em>KTAP_ENABLED</em>: <strong>1</strong></li>
+<li><em>STAP_SQLGUARD_IP</em>: <strong>&lt;coll1.demo.guardium&gt;</strong></li>
+</ul>
+</div>
+<p><a href="../../images/ktap32.webp"><img alt="TZ requests" src="../../images/ktap32.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>This time, the installation succeeded because the raptor system was rebooted and the previously loaded module was unloaded. 
+<div class="highlight"><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ktap
+</code></pre></div>
+<a href="../../images/ktap36.webp"><img alt="TZ requests" src="../../images/ktap36.webp" width="43%" /></a> </p>
+</li>
+<li>
+<p>To upgrade <em>STAP</em> from <strong>12.0.6</strong> to <strong>12.2.2.0</strong> select in <strong>cm</strong> UI in the <strong>Set up by Client</strong> select <em>raptor GIM client</em> and choose <strong>BUNDLE-STAP 12.2.2.0_r123489_3</strong>.
+<a href="../../images/ktap37.webp"><img alt="TZ requests" src="../../images/ktap37.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Upgrade <em>STAP</em> by pressing <strong>Install</strong> button and confirm that it was successful.
+<a href="../../images/ktap38.webp"><img alt="TZ requests" src="../../images/ktap38.webp" width="79%" /></a> </p>
+</li>
+<li>
+<p>Check <em>KTAP</em> modules loaded on <strong>raptor</strong> machine and noticed that we have two of them for builds <strong>120251</strong> (<em>12.0.6</em>) and <strong>123489</strong> (<em>12.2.2.0</em>). The older one will be unloaded after next system reboot
+<div class="highlight"><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ktap
+</code></pre></div>
+<a href="../../images/ktap39.webp"><img alt="TZ requests" src="../../images/ktap39.webp" width="43%" /></a>  </p>
+</li>
+<li>
+<p>Confirm that <strong>12.2.2</strong> has precompiled module for <strong>5.14.0-570.62.1.el9_6</strong>.
+<div class="highlight"><pre><span></span><code>modinfo<span class="w"> </span>ktap
+</code></pre></div>
+<a href="../../images/ktap40.webp"><img alt="TZ requests" src="../../images/ktap40.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>postgres
+
+psql
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'activity with EXACT module on kernel 5.14.0-570.62.1.el9_6 and STAP 12.2.2.0_r123489_3 after upgrade'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap41.webp"><img alt="TZ requests" src="../../images/ktap41.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Restart <strong>raptor</strong> machine.
+<div class="highlight"><pre><span></span><code>shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></p>
+</li>
+<li>
+<p>And then check that only the latest module (<em>12.2.2.0</em>) is now loaded only into kernel.
+<div class="highlight"><pre><span></span><code>lsmod<span class="p">|</span>grep<span class="w"> </span>ktap
+</code></pre></div>
+<a href="../../images/ktap42.webp"><img alt="TZ requests" src="../../images/ktap42.webp" width="39%" /></a></p>
+</li>
+<li>
+<p>To disable <em>Flex</em> module support we must uninstall STAP agent because flag <strong>STAP_ALLOW_MODULE_COMBO</strong> cannot be switched off if is set to <strong>Y</strong> before. Reboot <strong>raptor</strong> system again.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>/opt/guardium/modules/GIM/current/uninstall.pl
+
+shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ol>
+<h2 id="self-compiled-kernel-module">Self compiled kernel module</h2>
+<ol>
+<li>
+<p>Install <em>GIM client</em> again on <strong>raptor</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/source_files/agents/shell/
+
+./guard-bundle-GIM-12.2.2.0_r123489_v12_x_1-rhel-9-linux-x86_64.gim.sh<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>/opt/guardium<span class="w"> </span>--tapip<span class="w"> </span>&lt;raptor_ip&gt;<span class="w"> </span>--sqlguardip<span class="w"> </span>&lt;cm_ip&gt;
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Then install <strong>STAP 12.2.2.0_r123489_3</strong> without <em>Flex</em> module support.</p>
+<div class="admonition note">
+<p class="admonition-title">Set parameters:</p>
+<ul>
+<li><em>KTAP_ALLOW_MODULE_COMBOS</em>: <strong>N</strong></li>
+<li><em>KTAP_ENABLED</em>: <strong>1</strong></li>
+<li><em>STAP_SQLGUARD_IP</em>: <strong>&lt;coll1.demo.guardium&gt;</strong></li>
+<li><em>KTAP_PREVENT_EXACT_MATCH_BUILD</em>: <strong>N</strong></li>
+</ul>
+</div>
+<p>Also note that variable <strong>KTAP_PREVENT_EXACT_MATCH_BUILD</strong> is set to <strong>N</strong> as a default, which means the system will attempt to compile the module if it is not available in the distribution. This variable cannot be changed after the agent is installed. If you want the agent to skip compilation attempts, it must be set to <strong>Y</strong> during the agent installation.</p>
+<p><a href="../../images/ktap43.webp"><img alt="TZ requests" src="../../images/ktap43.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check the version of initially installed kernel on <strong>raptor</strong> machine. Your kernel version may be newer than the one shown in the screenshot, as the cloud environment is automatically updated with important kernel releases. 
+<div class="highlight"><pre><span></span><code>grubby<span class="w"> </span>--info<span class="o">=</span>ALL
+</code></pre></div>
+<a href="../../images/ktap44.webp"><img alt="TZ requests" src="../../images/ktap44.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Regardless of which kernel version is currently the latest, it is not supported by the currently installed agent <strong>12.2.2.0_r123489_3</strong> using precompiled module.</p>
+</li>
+<li>
+<p>Set the latest available kernel as active and reboot the system.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>grubby<span class="w"> </span>--set-default-index<span class="o">=</span><span class="m">2</span>
+
+grubby<span class="w"> </span>--default-kernel
+
+shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap45.webp"><img alt="TZ requests" src="../../images/ktap45.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>After the reboot, it is not surprising that <em>KTAP</em> was not installed.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>uname<span class="w"> </span>-r
+
+modinfo<span class="w"> </span>ktap
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap46.webp"><img alt="TZ requests" src="../../images/ktap46.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The <code>/var/log/ktap_install.log</code> clearly shows that the <em>Flex</em> module was not loaded because the feature was disabled, and no compilation attempt was made since the required kernel development environment is missing.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
+</code></pre></div>
+<a href="../../images/ktap47.webp"><img alt="TZ requests" src="../../images/ktap47.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To make kernel module compilable install <code>kernel-devel</code> for current kernel version
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>kernel-devel-<span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Go back to the agent configuration on <strong>raptor</strong>, set <em>KTAP_ENABLED</em> from <strong>0</strong> to <strong>1</strong>, and confirm the change.
+<a href="../../images/ktap48.webp"><img alt="TZ requests" src="../../images/ktap48.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>Check <code>/var/log/ktap_install.log</code> again and notice that kernel module has been compiled this time.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap49.webp"><img alt="TZ requests" src="../../images/ktap49.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check if the module has been loaded
+<div class="highlight"><pre><span></span><code>modinfo<span class="w"> </span>ktap
+</code></pre></div>
+<a href="../../images/ktap50.webp"><img alt="TZ requests" src="../../images/ktap50.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>postgres
+
+psql
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'activity with CUSTOM module on kernel 5.14.0-570.114.1.el9_6 and STAP 12.2.2.0_r123489_3'</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap51.webp"><img alt="TZ requests" src="../../images/ktap51.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="practical-custom-modules-usage">Practical custom modules usage</h2>
+<ol>
+<li>
+<p>Compiling modules appears to be the most effective approach for managing agents in environments with frequent Linux kernel updates. However, the main drawback of this approach is the requirement to have development tools available on monitored/production systems, which in most cases violates security policies.</p>
+<p>In practice, kernel modules are therefore compiled in advance in a local development/test environment and then transferred to production, where they are loaded at the time of a kernel change.</p>
+</li>
+<li>
+<p>Verify that the module compiled in the previous section is physically present in <code>/opt/guardium/modules/KTAP/current</code> and that its filename contains the xCUSTOMX label as well as the kernel version for which it was compiled.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium/modules/KTAP/current
+
+ls
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap58.webp"><img alt="TZ requests" src="../../images/ktap58.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>There are two methods to manage this process: manual and using a <em>GIM server</em>. Let’s start by reviewing the manual process. The first method provides the possibility to add just compiled kernel module in <code>/opt/guardium/modules/KTAP/current</code> to modules archive (<code>modules-&lt;agent_build_number&gt;.tgz</code>) and manually copy it on target machine.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>./guard_ktap_append_modules
+
+tar<span class="w"> </span>tvf<span class="w"> </span>modules-12.2.2.0_r123489_v12_x_3.tgz<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">5</span>.14.0-570.114.1
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap52.webp"><img alt="TZ requests" src="../../images/ktap52.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Now simply copy the modules archive to a machine with the same agent version. After upgrading the kernel and rebooting, the module should be loaded automatically.</p>
+<p>However, remember that the decision to allow loading custom (externally provided) modules must be made during the <em>GIM agent</em> installation, which will be covered next.</p>
+</li>
+<li>
+<p>The second method involves installing a new agent revision using <em>GIM</em>, which should automatically appear on the <em>GIM server</em> after module compilation. This is the default behavior and can be controlled using the <em>STAP_UPLOAD_FEATURE</em> variable on source module agent.
+    In the cm UI, open the <strong>Upload Module</strong> view. At the end of the list, a new entry should appear with revision <em>800</em> for <strong>STAP 12.2.2.0_r123489</strong>. This is the version uploaded by <strong>raptor</strong> after compiling the custom module in the previous section.
+    <a href="../../images/ktap53.webp"><img alt="TZ requests" src="../../images/ktap53.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>However, to use this module, the <em>GIM client</em> must be installed with an additional option enabled.
+To simulate installing a self-compiled module on a production machine, first completely uninstall <em>STAP</em> and <em>GIM</em>, and then reboot the <strong>raptor</strong> machine.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span>
+
+/opt/guardium/modules/GIM/current/uninstall.pl
+
+shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Login to the <strong>raptor</strong> again. We must uninstall <code>kernel-devel</code> package to avoid module compilation during installation.
+<div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>remove<span class="w"> </span>kernel-devel-<span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Reinstall the <em>GIM client</em> with the additional option <code>install_customed_bundles</code>, which allows <em>STAP</em> to install custom modules provided from a lab/test environment.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/source_files/agents/shell/
+
+./guard-bundle-GIM-12.2.2.0_r123489_v12_x_1-rhel-9-linux-x86_64.gim.sh<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>/opt/guardium<span class="w"> </span>--install_customed_bundles<span class="w"> </span>--tapip<span class="w"> </span>&lt;raptor_ip&gt;<span class="w"> </span>--sqlguardip<span class="w"> </span>&lt;cm_ip&gt;
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Then, install <em>STAP</em> on <strong>raptor</strong> using an agent with the compiled and packaged <em>CUSTOM KTAP</em> before - <strong>12.2.2.0_r123489_800</strong> (wait for raptor gim client appearance). You must unselect <em>Show only latest version</em> option and choose <em>Include custom bundles</em> to see the custom one.
+Ensure that you disabled the <em>Flex</em> option. You will also need to confirm that you want to install the <em>custom module</em>. Finally, verify that the installation completed successfully.</p>
+<div class="admonition note">
+<p class="admonition-title">Set parameters:</p>
+<ul>
+<li><em>KTAP_ALLOW_MODULE_COMBOS</em>: <strong>N</strong></li>
+<li><em>KTAP_ENABLED</em>: <strong>1</strong></li>
+<li><em>STAP_SQLGUARD_IP</em>: <strong>&lt;coll1.demo.guardium&gt;</strong></li>
+</ul>
+</div>
+<p><a href="../../images/ktap54.webp"><img alt="TZ requests" src="../../images/ktap54.webp" width="99%" /></a>
+<a href="../../images/ktap55.webp"><img alt="TZ requests" src="../../images/ktap55.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Confirm that custom compiled and distributed by <em>GIM</em> kernel module was used
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
+
+modinfo<span class="w"> </span>ktap
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ktap56.webp"><img alt="TZ requests" src="../../images/ktap56.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To prepare the environment for the next lab, uninstall <em>STAP</em> and <em>GIM</em> on the <strong>raptor</strong> machine.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span>
+
+/opt/guardium/modules/GIM/current/uninstall.pl
+
+shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+<p>This chapter can be omitted if you are not interested in KTAP management on Linux machines. You can jump to ATAP lab.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+<ol>
+<li>Kernel modules locator  <br />
+<a href="https://ibm.github.io/guardium-ktap/index.html">https://ibm.github.io/guardium-ktap/index.html</a></li>
+</ol>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
