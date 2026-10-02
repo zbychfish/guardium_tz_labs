@@ -265,7 +265,6 @@ podman logs va-scanner-sauropod
 !!! note "Resources:"
     - Registry entitlement (use own or ask instruktor to provide one) <https://myibm.ibm.com/products-services/containerlibrary>
     
-    
 !!! note "Instructor notes:"
 
  
