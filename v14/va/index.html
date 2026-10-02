@@ -1,0 +1,1335 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../etap/">
+      
+      
+        <link rel="next" href="../winstap/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>VA (lab 8) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vulnerability-assessement-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VA (lab 8)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VA (lab 8)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VA (lab 8)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#va-feature-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VA Feature Flag
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-va-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update VA tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#va-roles-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VA roles scripts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-va-technical-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure VA technical account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-va-for-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure VA for PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings remediation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-remote-va-scanner-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup remote VA scanner (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#va-findings-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VA findings dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../winstap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WINSTAP (lab 9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oracle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORACLE MONITORING (lab 10)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#va-feature-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VA Feature Flag
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-va-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update VA tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#va-roles-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VA roles scripts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-va-technical-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure VA technical account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-va-for-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure VA for PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings remediation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-remote-va-scanner-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup remote VA scanner (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#va-findings-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VA findings dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="vulnerability-assessement-configuration">Vulnerability Assessement configuration</h1>
+<h2 id="va-feature-flag">VA Feature Flag</h2>
+<ol>
+<li>
+<p>Starting with version <strong>12.2</strong>, some <strong>Guardium</strong> features must be enabled through a mechanism called <em>feature flags</em>. Activating a <em>feature flag</em> is a two-step process. First, the appropriate feature options file must be loaded, which has already been completed in our environment.
+<a href="../../images/va1.webp"><img alt="TZ requests" src="../../images/va1.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To activate the <em>feature flag</em>, run the following command from the cm cli. The <em>VULNERABILITY_MANAGEMENT</em> flag enables an additional UI view that will be used in the later sections of this lab.
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>enable_disable_feature_flag<span class="w"> </span><span class="nv">flagName</span><span class="o">=</span>VULNERABILITY_MANAGEMENT<span class="w"> </span><span class="nv">action</span><span class="o">=</span><span class="nb">enable</span>
+</code></pre></div></p>
+</li>
+<li>And confirm operation
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>list_feature_flags
+</code></pre></div>
+<a href="../../images/va2.webp"><img alt="TZ requests" src="../../images/va2.webp" width="99%" /></a></li>
+</ol>
+<h2 id="update-va-tests">Update VA tests</h2>
+<ol>
+<li>
+<p>From browser go to <em>Fix Central</em> (<a href="https://ibm.com/support/fixcentral/">https://ibm.com/support/fixcentral/</a>) and look for <em>DPS</em> updates for <strong>Guardium 12.2</strong>
+<a href="../../images/va3.webp"><img alt="TZ requests" src="../../images/va3.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In <em>DPS</em> section locate the latest quarter update (position 4 in my case, Q4’25 update) and the latest <em>Rapid Response</em> update (if exists) related to quarter one (position 1 my case). Download this/these file/files.
+<a href="../../images/va4.webp"><img alt="TZ requests" src="../../images/va4.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Unpack zip file/files. Inside each archive you should have file with <code>enc</code> extension.
+<a href="../../images/va5.webp"><img alt="TZ requests" src="../../images/va5.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open <strong>Customer Uploads</strong> view on <strong>cm</strong> and press <strong>Browse</strong> button. Select quartely <em>DSP</em> update file and then use <strong>Upload</strong> button to load it to the engine.
+<a href="../../images/va6.webp"><img alt="TZ requests" src="../../images/va6.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Import <em>DPS</em> section will be refreshed and the uploaded file should appear. Press the <img alt="TZ requests" src="../../images/va7.webp" width="20" /> icon to start <em>DPS</em> import – popup with message “<em>Import DPS is in progress …</em>” should appear (wait a while to get pop-up). Close it and wait for next pop-up. It can takes even few minutes.
+<a href="../../images/va8.webp"><img alt="TZ requests" src="../../images/va8.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Accept the second pop-up with information that <em>DPS</em> import started and notice that message below of <em>DPS Upload</em> section is changed and refers to new <em>DPS</em> file and informs that process is running. If message will not appear, refresh browser tab and check it again.
+<a href="../../images/va9.webp"><img alt="TZ requests" src="../../images/va9.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>You can go back to <strong>Customer Upload</strong> view after few minutes and notice that <em>DPS import</em> process finished successfully. You can continue lab; there is no demand to have the latest updates. Sometimes <em>DPS import</em> takes hours.
+<a href="../../images/va10.webp"><img alt="TZ requests" src="../../images/va10.webp" width="69%" /></a></p>
+</li>
+<li>
+<p>If you have Rapid Response update repeat the upload procedure for it according to steps from <strong>4</strong> to <strong>7</strong>. You process the rapid update when quarter one is correctly imported</p>
+</li>
+</ol>
+<h2 id="va-roles-scripts"><del>VA roles scripts</del></h2>
+<!-- 1. Connect to **cm** cli and execute command to start a web based **fileserver** with access to files stored on appliance filesystem. The command parameters are: an *IP address* which points that connection will be possible only from our windows machine and the second one sets that service will be automatically shutdown *after 1 hour*. Do not press ++enter++ when **fileserver** will be started.
+<div class="highlight"><pre><span></span><code>fileserver<span class="w"> </span>&lt;ceratops_ip&gt;<span class="w"> </span><span class="m">3600</span>
+</code></pre></div>
+[![TZ requests](../images/va11.webp){ width="99%" }](../images/va11.webp)
+
+1.  In **RDP** session on **ceratops** start browser and go to URL – <https://cm.demo.guardium:8445>
+
+1.  Select Access logs and move to log/debug-logs/gdmonitor_scripts directory. This folder contains the scripts to create access role for all supported by VA databases.
+
+1.  Download gdmonitor-postgres.sql file ans save it on winsql machine
+1.  Back to CM cli session and stop fileserver – press <ENTER> in the ssh session  -->
+
+<h2 id="configure-va-technical-account">Configure VA technical account</h2>
+<ol>
+<li>On <strong>raptor</strong> connect to <em>PostreSQL</em> as superuser and create a new user account (<strong>sqlguard</strong>) and a new group (<strong>gdmmonitor</strong>). Assign to the group limited rights to read database configuration only (based on appliance scripts).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">postgres</span>
+
+<span class="n">psql</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">sqlguard</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">ENCRYPTED</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">'&lt;your_password&gt;'</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="n">gdmmonitor</span><span class="p">;</span>
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="n">gdmmonitor</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">sqlguard</span><span class="p">;</span>
+
+<span class="k">GRANT</span><span class="w"> </span><span class="n">pg_read_all_settings</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">gdmmonitor</span><span class="p">;</span>
+
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">pg_authid</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">gdmmonitor</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div></li>
+</ol>
+<h2 id="configure-va-for-postgresql">Configure VA for PostgreSQL</h2>
+<ol>
+<li>
+<p>Open <strong>Assessment Builder</strong> view on <strong>cm</strong> and create a new assessment definition (plus icon <img alt="icon" src="../../images/va15.webp" width="15" />)
+<a href="../../images/va16.webp"><img alt="TZ requests" src="../../images/va16.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Insert new assessment name <strong>postgres on raptor</strong> and press <strong>Add Datasource</strong> button
+<a href="../../images/va17.webp"><img alt="TZ requests" src="../../images/va17.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In Select datasource list use <img alt="icon" src="../../images/va15.webp" width="15" /> icon to add new datasource. Insert appropriate valies and <strong>Save</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Insert values:</p>
+<ul>
+<li>name: <strong>postgres on raptor</strong></li>
+<li>Database type: <strong>PostgreSQL</strong></li>
+<li>Shared datasource: <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></li>
+<li>User name: <strong>sqlguard</strong></li>
+<li>Password: &lt;defined in previous chapter&gt;</li>
+<li>Hostname/IP: <strong>raptor.demo.guardium</strong></li>
+<li>Port number: <strong>5432</strong></li>
+<li>Database: <strong>postgres</strong></li>
+</ul>
+</div>
+<p><a href="../../images/va18.webp"><img alt="TZ requests" src="../../images/va18.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Now, <strong>Test connection</strong> button should be active. Press it and confirm that connection to <em>PostgreSQL</em> on <strong>raptor</strong> is correctly configured. Then <strong>Close</strong> a <em>Create datasource</em> window.
+<a href="../../images/va19.webp"><img alt="TZ requests" src="../../images/va19.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>Select just created <em>datasource</em> and <strong>Save</strong> configuration.
+<a href="../../images/va20.webp"><img alt="TZ requests" src="../../images/va20.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>You will back to <strong>Security Assessment</strong> builder main view and just created PostgreSQL datasource should be listed in <em>Datasources</em> section. <strong>Apply</strong> changes and then <strong>Configure Tests</strong> button will be activated. Use it.
+<a href="../../images/va21.webp"><img alt="TZ requests" src="../../images/va21.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The <strong>Assessment Test Selections</strong> window will appear. Navigate to the <strong>POSTGRESQL</strong> tab to display all available <em>VA tests</em> for the <em>PostgresSQL</em> database.<BR>
+Exclude <em>CAS</em> tests by unchecking the <em>Include CAS</em> option, as we will not configure <em>CAS</em> in this lab.
+Next, select the first test on the list, then scroll down to the last one and select it while holding the <span class="keys"><kbd class="key-shift">Shift</kbd></span> key — this will highlight all tests.<BR>
+Finally, click <strong>Add Selections</strong> to add the selected tests to our assessment. Please wait until all tests appear in the selection area.
+<a href="../../images/va22.webp"><img alt="TZ requests" src="../../images/va22.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>As a result all marked tests will be moved to selected tests area. Now we can press <strong>Return</strong> button.
+<a href="../../images/va23.webp"><img alt="TZ requests" src="../../images/va23.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To execute just created <em>assessment</em>, select it on a list and press <strong>Run Once Now</strong> button. The pop-up will inform that we just started <em>assessment instance</em> and its execution can be monitored in <em>Guardium Job Queue</em> report.
+<a href="../../images/va24.webp"><img alt="TZ requests" src="../../images/va24.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open <em>Guardium Job Queue</em> report and refresh it till status will be changed to <strong>COMPLETED</strong> (be patient, sometimes the assessment row can disappear for a while).
+<a href="../../images/va25.webp"><img alt="TZ requests" src="../../images/va25.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Back to<strong> Security Assessement</strong> builder view and select our <em>PostgreSQL</em> assessment. This time press <strong>View Result</strong> button to open interactive <em>VA</em> report (you probably need to accept pop-up displayed in the browser).
+<a href="../../images/va26.webp"><img alt="TZ requests" src="../../images/va26.webp" width="74%" /></a></p>
+</li>
+<li>
+<p>Review <em>VA assessment</em> report and close it.
+<a href="../../images/va27.webp"><img alt="TZ requests" src="../../images/va27.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="findings-remediation">Findings remediation</h2>
+<ol>
+<li>
+<p>In <strong>cm</strong> UI open again the result set from the last <em>PostgreSQL</em> assessment. Press <strong>View Result</strong> when vulnerability assessment - <strong>postgres on raport</strong> is selected.
+<a href="../../images/va26.webp"><img alt="TZ requests" src="../../images/va26.webp" width="74%" /></a></p>
+</li>
+<li>
+<p>Look for test – <em>Ensure the pgcrypto extension is installed</em>. This extension allows implement column based data encryption. Unfortunately, it is not enabled in our <strong>raptor</strong> <em>PostgreSQL instance</em>.
+<a href="../../images/va28.webp"><img alt="TZ requests" src="../../images/va28.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>To enable the functionality mentioned in the test, log in on <strong>raptor</strong> to the database and execute the <strong>CREATE EXTENSION</strong> statement.
+<div class="highlight"><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">postgres</span>
+
+<span class="n">psql</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">pgcrypto</span><span class="p">;</span>
+
+<span class="o">/</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Run again our <strong>postgres on raptor</strong> <em>VA assessment</em> and check execution completeness in <em>Guardium Job Queue</em> report.
+ <a href="../../images/va29.webp"><img alt="TZ requests" src="../../images/va29.webp" width="79%" /></a> 
+ <a href="../../images/va30.webp"><img alt="TZ requests" src="../../images/va30.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open assessment results and notice that Test passing result has been changed. To find a difference you can press <strong>Compare with other results</strong> link and select previous execution with lower score. Press <strong>Go</strong> button.
+<a href="../../images/va31.webp"><img alt="TZ requests" src="../../images/va31.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Displayed pop-up report identifies that now <em>pgcrypto</em> library test has been passed.
+<a href="../../images/va32.webp"><img alt="TZ requests" src="../../images/va32.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="setup-remote-va-scanner-optional">Setup remote VA scanner (optional)</h2>
+<ol>
+<li>
+<p>Open again the <strong>VA Assessment</strong> builder and select <strong>postgres on raptor</strong> assessment. Then use the <strong>Run on Scanner</strong> button instead of <strong>Run Once Now</strong>. The pop-up message informs that request is trying to put this task to <em>va scanners</em> queue. If you press <strong>OK</strong> you should also get confirmation that task is now there.
+<a href="../../images/va33.webp"><img alt="TZ requests" src="../../images/va33.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open <strong>VA Scanner Job Queue</strong> view and notice that a new task is scheduled and it is <strong>WAITING</strong> for execution. In this case the task will be served by remote scanner which we must deploy first.
+<a href="../../images/va34.webp"><img alt="TZ requests" src="../../images/va34.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>We need two pieces of information. First one is <em>appliance UI certificate</em>. In our case we are using <strong>cm</strong> for <em>VA</em>, so let us get it public certificate. Open <strong>cm</strong> UI in your browser and save the certificate.</p>
+</li>
+<li>
+<p>Here are the steps for <em>Chrome</em>. Select certificate information just at <em>URL</em> and then <strong>Certificate details</strong>. Then switch to <strong>Details</strong> tab and <strong>Export</strong> to file.
+<a href="../../images/va35.webp"><img alt="TZ requests" src="../../images/va35.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Here this same in Microsoft Edge.
+<a href="../../images/va36.webp"><img alt="TZ requests" src="../../images/va36.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Just a saved file should contain the <strong>cm</strong> UI certificate in a <em>PEM</em> format. Save it on <strong>sauropod</strong> machine in the directory <code>/opt/vascanner/certs</code> as a <code>vascanner.pem</code> file. Use this command to create directory on sauropod
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/vascanner/certs
+</code></pre></div></p>
+</li>
+<li>
+<p>The <code>vascanner.pem</code> file should look like shown below:
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/root/gn-trainings/vascanner/certs/vascanner.pem<span class="w"> </span>
+</code></pre></div>
+<a href="../../images/va37.webp"><img alt="TZ requests" src="../../images/va37.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Login to <strong>cm</strong> cli and create a new <em>API key</em> for <em>vascanner</em>.
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>create_api_key<span class="w"> </span><span class="nv">name</span><span class="o">=</span>vascanner
+</code></pre></div>
+<a href="../../images/va38.webp"><img alt="TZ requests" src="../../images/va38.webp" width="99%" /></a>
+Write down the encoded API key, we need it soon.</p>
+</li>
+<li>
+<p>On <strong>sauropod</strong> login to the <em>IBM container registry</em> and check. The entitlement key is available in the <code>container_registry.txt</code> file in training materials.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>login<span class="w"> </span>cp.icr.io<span class="w"> </span>-u<span class="w"> </span>cp<span class="w"> </span>-p<span class="w"> </span>&lt;ibm_registry_key&gt;
+</code></pre></div>
+<a href="../../images/va39.webp"><img alt="TZ requests" src="../../images/va39.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Pull <em>VA scanner</em> image on <strong>sauropod</strong>.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>pull<span class="w"> </span>cp.icr.io/cp/ibm-guardium-data-security-center/guardium/vascanner-12.2.0/va-scanner:vascanner-v12.2.0
+</code></pre></div>
+<a href="../../images/va40.webp"><img alt="TZ requests" src="../../images/va40.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check that image is correctly pulled and wrote down information about <em>image id</em>.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>images
+</code></pre></div>
+<a href="../../images/va41.webp"><img alt="TZ requests" src="../../images/va41.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Create config file in the <code>/opt/vascanner/config</code> on <strong>sauropod</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Inside 4 variables must be set like that:</p>
+<ul>
+<li>GDP_HOST=<strong>cm.demo.guardium</strong></li>
+<li>GDP_HOST_PORT=<strong>8443</strong></li>
+<li>CLIENT_API_KEY=&lt;encoded API Key from point 8&gt;</li>
+<li>VA_AGENT_NAME=<strong>VA_SCANNER_ON_SAUROPOD</strong></li>
+</ul>
+</div>
+<p><a href="../../images/va42.webp"><img alt="TZ requests" src="../../images/va42.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>Now we are ready to start a <em>scanner</em> (insert correct <em>image id</em>)
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>-d<span class="w"> </span>--replace<span class="w"> </span>--env-file<span class="w"> </span>/opt/vascanner/config<span class="w"> </span>--name<span class="w"> </span>va-scanner-sauropod<span class="w"> </span>-v<span class="w"> </span>/opt/vascanner/certs:/var/vascanner/certs<span class="w"> </span>&lt;image<span class="w"> </span>ID<span class="w"> </span>from<span class="w"> </span>point<span class="w"> </span><span class="m">11</span>&gt;
+</code></pre></div></p>
+</li>
+<li>
+<p>You can monitor the container status using:
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps<span class="w"> </span>-a
+</code></pre></div>
+<a href="../../images/va43.webp"><img alt="TZ requests" src="../../images/va43.webp" width="99%" /></a>
+After one minute, even less, the container will stop working (it is expected).</p>
+</li>
+<li>
+<p>Check again the <strong>VA Scanner Job Queue</strong> view in <strong>cm</strong> UI and notice that job is completed and result set is consumed by <em>VA engine</em>.
+<a href="../../images/va44.webp"><img alt="TZ requests" src="../../images/va44.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>You can also check container logs on sauropod/
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>logs<span class="w"> </span>va-scanner-sauropod
+</code></pre></div>
+<a href="../../images/va45.webp"><img alt="TZ requests" src="../../images/va45.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="va-findings-dashboard">VA findings dashboard</h2>
+<ol>
+<li>
+<p>If the <strong>VULNERABILITY_MANAGEMENT</strong> <em>feature flag</em> is enabled on the <strong>cm</strong>, a new <strong>Vulnerability Management</strong> view becomes available. This view provides a quick overview of the security posture of the monitored database engines and centralizes vulnerability assessment findings. The charts provide a visual overview of the identified findings, categorized by critical, high, and other severity levels, as well as grouped by database engine type. Below the charts, you can review the findings in greater detail and examine the specific issues detected by the assessment.
+<a href="../../images/va46.webp"><img alt="TZ requests" src="../../images/va46.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Selecting a test from the list opens detailed information about the issue, including remediation guidance, and also allows you to add comments.
+<a href="../../images/va47.webp"><img alt="TZ requests" src="../../images/va47.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The new view can also be used to manage the remediation process by updating the finding status and assigning remediation tasks or other actions to users with Guardium accounts. This lightweight workflow can be a good fit for smaller organizations or serve as a temporary solution before implementing a full-scale remediation process based on exceptions and formal workflow management.
+<a href="../../images/va48.webp"><img alt="TZ requests" src="../../images/va48.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Findings can also be reviewed from the perspective of configured data sources (assets) or by examining the results of individual vulnerability assessment processes that have been configured and executed.
+<a href="../../images/va49.webp"><img alt="TZ requests" src="../../images/va49.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+<p>Deliverables from this lab are referred in other, it should be fully followed.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+<ul>
+<li>Registry entitlement (use own or ask instruktor to provide one) <a href="https://myibm.ibm.com/products-services/containerlibrary">https://myibm.ibm.com/products-services/containerlibrary</a></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

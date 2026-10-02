@@ -1,0 +1,1296 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../winstap/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ORACLE MONITORING (lab 10) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#oracle-monitoring-options" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ORACLE MONITORING (lab 10)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../va/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VA (lab 8)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../winstap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WINSTAP (lab 9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORACLE MONITORING (lab 10)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORACLE MONITORING (lab 10)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-stap-on-sauropod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install STAP on sauropod
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oracle-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oracle traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-stap-on-sauropod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install STAP on sauropod
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oracle-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oracle traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="oracle-monitoring-options">Oracle monitoring options</h1>
+<h2 id="install-stap-on-sauropod">Install STAP on sauropod</h2>
+<ol>
+<li>Login to sauropod and copy GIM installer from raptor to /opt/lab_files on local filesystem
+mkdir -p /opt/lab_files</li>
+</ol>
+<p>scp -P 2223 raptor.demo.guardium:/opt/guardium_tz_bootcamp_automation/upload/source_files/agents/shell/guard-bundle-GIM-12.2.2.0_r123489_v12_x_1-rhel-8-linux-x86_64.gim.sh /opt/lab_files/
+2.  Install gim client on sauropod
+cd /opt/lab_files</p>
+<p>chmod +x *.sh</p>
+<p>./guard-bundle-GIM-12.2.2.0_r123489_v12_x_1-rhel-8-linux-x86_64.gim.sh -- --dir /opt/guardium --tapip sauropod --sqlguardip cm
+3.  Login to cm UI and install STAP on sauropod. Select STAP 12.2.2_r123489_11 and set KTAP_ALLOW_MODULES_COMBO to Y and point coll1 as STAP_SQLGUARD_IP</p>
+<ol>
+<li>
+<p>Confirm that agent has been successfully deployed</p>
+</li>
+<li>
+<p>Check also S-TAP Status on coll1 to confirm that KTAP is deployed</p>
+</li>
+</ol>
+<h2 id="oracle-traffic-visibility">Oracle traffic visibility</h2>
+<ol>
+<li>We have Oracle instance ran on sauropod machine.</li>
+<li>
+<p>Check a list of instances as a root, you should see ORCLDB
+ps -ef | grep pmon</p>
+</li>
+<li>
+<p>Change context to oracle user
+su - oracle</p>
+</li>
+<li>
+<p>Let’s check what SID is set for this session
+echo $ORACLE_SID</p>
+</li>
+<li>
+<p>We have SQLcl available on sauropod, login to oracle instance as a system user with lab default password. The ORCLCDB is pluggable.
+sql system</p>
+</li>
+</ol>
+<p>SELECT name, cdb FROM v$database;</p>
+<ol>
+<li>
+<p>List of PDB instances. There is one with name ORCLPDB1.
+SELECT pdb_name, status FROM cdb_pdbs ORDER BY pdb_name;</p>
+</li>
+<li>
+<p>Let’s change the session context to ORCLPDB1 instance and check list of schemas and tables in one of it.
+ALTER SESSION SET CONTAINER = ORCLPDB1;</p>
+</li>
+</ol>
+<p>SELECT tablespace_name FROM dba_tablespaces ORDER BY tablespace_name;</p>
+<p>SELECT owner, table_name FROM dba_tables WHERE tablespace_name = 'HR_DATA';</p>
+<p>exit;</p>
+<ol>
+<li>
+<p>Check in coll1 UI the Full SQL (Training) report and confirm that Oracle traffic is visible.</p>
+</li>
+<li>
+<p>Clone Full SQL (Training) report. Name it Full SQL (session details) and proceed to the Selected Columns section by clicking Next.</p>
+</li>
+<li>
+<p>In this section, we can define what information will be displayed in the report. We can add attributes from the Entities and Attributes list to the Selected Columns list on the right. Attributes are grouped by entity. After selecting an attribute, use the arrow icon to add it to the report columns. Add four attributes:</p>
+</li>
+<li>Network Protocol from Client/Server</li>
+<li>DB Protocol from Client/Server</li>
+<li>Session Encrypted from Session</li>
+<li>Encryption Type from Session</li>
+<li>
+<p>Server Type from Client/Server
+and Expand a Conditions pane</p>
+</li>
+<li>
+<p>Add condition for the Server Type attribute from the Client/Server entity using the DB_Type parameter with the LIKE operator and Save report.</p>
+</li>
+<li>
+<p>A confirmation of the operation will appear and then Close the report editing window.</p>
+</li>
+<li>
+<p>Create new Oracle dashboard and add into it a just cloned report.</p>
+</li>
+<li>
+<p>Edit report parameters and set for DB_Type value ORACLE. Now report will show only activity belonging to Oracle</p>
+</li>
+<li>
+<p>Review tnsnames.ora file and notice that we have setup of four connection/protocol types there.
+cat $ORACLE_HOME/network/admin/tnsnames.ora</p>
+</li>
+<li>
+<p>Connect as an oracle user using ORCLPDB1_BEQ connection (Bequeath connection), then check traffic visibility in Full SQL (session details) report on coll1.
+sql system@ORCLPDB1_BEQ</p>
+</li>
+</ol>
+<p>SELECT 'BEQ session to ORCLPDB1' FROM dual;</p>
+<p>SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;</p>
+<p>exit</p>
+<ol>
+<li>Now connect using ORCLPDB_IPC connection (shared memory) and check activity events in the report
+sql system@ORCLPDB1_IPC</li>
+</ol>
+<p>SELECT 'IPC session to ORCLPDB1' FROM dual;</p>
+<p>ALTER SESSION SET CONTAINER = ORCLPDB1;</p>
+<p>SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;</p>
+<p>exit</p>
+<ol>
+<li>Next type of connection is TCP and use ORCLPDB1 connection string.
+sql system@ORCLPDB1</li>
+</ol>
+<p>SELECT 'TCP session to ORCLPDB1' FROM dual;</p>
+<p>SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;</p>
+<p>exit</p>
+<ol>
+<li>All previous connections used unencrypted communication between the Oracle client and server. Now connect using TCPS, which technically leverages SSL/TLS encryption between both endpoints.
+Oracle also provides its own native encryption mechanism (ASO – Advanced Security Option), which is also supported by Guardium.
+sql system@ORCLPDB1_SSL</li>
+</ol>
+<p>SELECT 'TCPS encrypted session to ORCLPDB1' FROM dual;</p>
+<p>SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;</p>
+<p>exit
+20. This time traffic will not appear in the report because ATAP must be deployed in place.
+III.  <br />
+ATAP setup  1.  To configure ATAP, we must stop the Oracle database services on sauropod.
+su - oracle</p>
+<p>lsnrctl stop</p>
+<p>sql / as sysdba</p>
+<p>shutdown immediate;</p>
+<p>exit</p>
+<p>exit
+2.  As a root we can now configure ATAP. Register oracle user for ATAP
+/opt/guardium/modules/ATAP/current/files/bin/guardctl authorize-user oracle
+3.  Set a new ATAP configuration for binaries located in /opt/oracle/product/19c/dbhome_1 (both instances uses this same ORACLE_HOME, so only one ATAP configuration is needed)
+/opt/guardium/modules/ATAP/current/files/bin/guardctl --db-type=oracle --db-instance=ORCLCDB --db_user=oracle --db_home=/u01/app/oracle/product/21c/dbhome_1/ --db_base=/home/oracle --db_version=21 store-conf
+4.  Activate ATAP for Oracle
+/opt/guardium/modules/ATAP/current/files/bin/guardctl --db-type=oracle --db-instance=ORCLCDB activate</p>
+<ol>
+<li>Now we can start Oracle instances again
+su - oracle</li>
+</ol>
+<p>sql / as sysdba</p>
+<p>startup</p>
+<p>exit</p>
+<p>lsnrctl start
+6.  Let’s connect to Oracle with SSL again and check traffic visibility.
+sql system@ORCLPDB1_SSL</p>
+<p>SELECT sys_context('USERENV', 'NETWORK_PROTOCOL') as network_protocol FROM dual;</p>
+<p>SELECT 'SSL connection to ORCLCDB' from dual;</p>
+<p>SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;</p>
+<p>exit</p>
+<p>IV. 
+Check Oracle instance in container  1.  On sauropod check as a root a status of Oracle container. Notice that the container is named oracle_db_21c, and the service is exposed on port 1522 to avoid conflicts with the listener already running on sauropod.
+podman ps</p>
+<ol>
+<li>
+<p>Confirm Oracle DB readiness. The container logs should indicate that the database is ready for use.
+podman logs oracle_db_21c | grep -C 5 'IS READY TO USE'</p>
+</li>
+<li>
+<p>To check instance connection open bash to our container and login to database as system (use password defined during instance creation). Log in using port 1521, as the connection is established from within the container.
+podman exec -it oracle_db_21c bash</p>
+</li>
+</ol>
+<p>sqlplus system@localhost/ORCLPDB1:1521</p>
+<ol>
+<li>Execute some simple queries (first one displays Oracle release and the second one the information about pluggable database support.
+SELECT BANNER FROM V$VERSION WHERE BANNER LIKE 'Oracle Database%';</li>
+</ol>
+<p>SELECT CDB FROM V$DATABASE;</p>
+<ol>
+<li>Confirm that Oracle Unified Audit OUA is activated in our instance
+SELECT VALUE AS ORACLE_UNIFIED_AUDIT_VALUE FROM V$OPTION WHERE PARAMETER = 'Unified Auditing';</li>
+</ol>
+<p>exit;</p>
+<p>exit</p>
+<p>V.<br />
+Traffic generator   1.  Check traffic generator configuration for oracle (on raptor) and notice that activity will be generated in the Oracle container on sauropod.
+cat /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic/config/oracle_container_sauropod.yaml</p>
+<ol>
+<li>On raptor, start the traffic generator for Oracle database running in a container on sauropod.
+cd /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic</li>
+</ol>
+<p>source venv/bin/activate</p>
+<p>guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml rebuild</p>
+<p>guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml run</p>
+<p>deactivate</p>
+<p>You can interrupt script by inserting CTRL+C keystroke.
+3.  Open Full SQL (session details) report on coll1 and notice that we see traffic generated in the container. This is not standard behavior and is only due to the use of virtualization/containerization (Docker) running directly on the host OS kernel, where the agent is already installed.
+In most cases, containers are orchestrated by Kubernetes or managed by a cloud/service provider, and the traffic will not be captured by the agent.
+It is also worth noting that only unencrypted traffic is visible. If the container were configured to use SSL or ASO, there would be no ability to install ATAP inside the container, and the traffic would not be captured.</p>
+<ol>
+<li>
+<p>Let’s disable KTAP on sauropod to be able focus on agentless methods of container monitoring. In cm UI set KTAP_ENABLED to 0.</p>
+</li>
+<li>
+<p>To unload KTAP from kernel restart sauropod machine (confirm that previous parameter change finished successfully)
+shutdown -r now</p>
+</li>
+<li>Then start the Oracle again on sauropod
+podman start  oracle_db_21c</li>
+<li>Execute dbtraffic generator again and confirm that new activity is not longer intercepted
+cd /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic</li>
+</ol>
+<p>source venv/bin/activate</p>
+<p>guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml run</p>
+<p>deactivate
+VI. 
+ETAP
+monitoring of containerized Oracle service  1.  Now configure ETAP on raptor to proxy traffic to the Oracle container on sauropod. To do this, generate a new certificate using the CA created earlier.
+2.  Login to coll1 cli and request certificate for E-TAP instance (CSR request) using command:
+create csr external_stap
+Insert certificate request parameters:
+- unique alias, like : sauropod-oracle-container-etap
+- etap certificate common name: oraclecoll1.demo.guardium
+- organization unit name: Demo
+- add additional OU: n
+- organization name: Guardium
+- city: <your city name>
+- province: <your province name>
+- country code: <your 2-digits country code>
+- email of collector certificate owner, can be fake: <email_address>
+- accept default algorithm: <ENTER>
+- accept default key length: <ENTER>
+- insert FQDN of your collector for SAN #1: coll1.demo.guardium
+- press ENTER for SAN #2: <ENTER></p>
+<p>Then CSR will be generated and write down in notepad the entire alias and related to it the token (two bottom lines)</p>
+<ol>
+<li>
+<p>Then copy displayed Certificate Request to file on raptor machine - /opt/ETAP/ca/etap2.csr </p>
+</li>
+<li>
+<p>Sign certificate request from coll1 using created in the previous lab a CA cert
+cd /opt/ETAP/ca</p>
+</li>
+</ol>
+<p>openssl x509 -sha256 -req -days 3650 -CA ca.pem -CAkey ca.key -CAcreateserial -CAserial serial -in etap2.csr -out etap2.pem</p>
+<p>In the current directory certificate based on CSR generated on collector will appear in etap2.pem file
+5.  Now on coll1 import External S-TAP certificate – etap2.pem stored in /opt/ETAP/ca. You must insert an alias name generated during the CSR request in point 2. Confirm correctness of CSR reference (Y).
+store certificate external_stap</p>
+<ol>
+<li>
+<p>Insert the certificate from etap2.pem fileand press and ENTER and CTRL+D</p>
+</li>
+<li>
+<p>Then certificate should imported to collector wallet.</p>
+</li>
+<li>
+<p>You can list E-TAP certificates on collector and notice that a new added appears on the list
+show certificate external_stap</p>
+</li>
+<li>
+<p>Check the image tag pulled earlier on raptor
+podman images</p>
+</li>
+<li>
+<p>Copy ETAP quadlet file for oracle to /etc/container/systemd on raptor
+cp /opt/guardium_tz_bootcamp_automation/upload/source_files/oracle/oracle_external_stap.container /etc/containers/systemd/oracle-etap.container</p>
+</li>
+<li>
+<p>Update quadlet file /etc/containers/systemd/oracle-etap.container and set the correct values for parameters:
+Image – insert correct ETAP release
+STAP_CONFIG_PROXY_SECRET – should be a token generated with certificate CSR in point 2
+STAP_CONFIG_SQLGUARD_0_SQLGUARD_IP – IP address of coll1
+STAP_CONFIG_PROXY_DB_HOST – IP address of proxied database service – it should be sauropod IP</p>
+</li>
+<li>
+<p>Reinitialize systemd deamon
+systemctl daemon-reload</p>
+</li>
+<li>Start ETAP instance
+systemctl start oracle-etap</li>
+<li>
+<p>Check list of ran ETAP containers on raptor. One will be just deployed for Oracle container instance working on sauropod.
+podman ps</p>
+</li>
+<li>
+<p>Check the coll1 UI the External S-TAP instances view and confirm that the new one appeared.</p>
+</li>
+<li>
+<p>Because we will get access to ETAP service remotely we must open the access point port (lets do it for two ETAP instances ran on raptor)
+firewall-cmd --permanent --add-port=63333/tcp --add-port=63334/tcp</p>
+</li>
+</ol>
+<p>firewall-cmd --reload
+17. Let us connect to Oracle containerized instance on sauropod through ETAP. We have Oracle client installed on sauropod so we must connect from oracle account located there.
+su - oracle</p>
+<p>sql system@//raptor.demo.guardium:63334/ORCLPDB1</p>
+<p>SELECT 'CONNECTION THROUGH ETAP' FROM DUAL</p>
+<p>SELECT BANNER FROM V$VERSION WHERE BANNER LIKE 'Oracle Database%';</p>
+<p>SELECT CDB FROM V$DATABASE;</p>
+<p>SELECT VALUE AS ORACLE_UNIFIED_AUDIT_VALUE FROM V$OPTION WHERE PARAMETER = 'Unified Auditing';</p>
+<p>exit</p>
+<p>exit
+18. Check events visibility in Full SQL (session details) report on coll1</p>
+<ol>
+<li>Run the traffic generator in the background without using the proxy and let it run continuously to support monitoring of the Oracle container database using two additional methods.
+cd /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic</li>
+</ol>
+<p>source venv/bin/activate</p>
+<p>guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml run --duration 300</p>
+<p>VII.  <br />
+Configure Oracle in container to store activity in OUA  1.  Let’s create user who can configure OUA settings, on sauropod login to ORCLPDB1 pluggable database and create secadmin user (define your password). Then grant to secadmin administrative rights for OUA configuration.
+su - oracle</p>
+<p>sql system@sauropod.demo.guardium:1522/ORCLPDB1</p>
+<p>create user secadmin identified by "<set_password>";</p>
+<p>grant CONNECT, SELECT ANY DICTIONARY, SELECT_CATALOG_ROLE, AUDIT_ADMIN, CREATE PROCEDURE, DROP ANY PROCEDURE, AUDIT SYSTEM, AUDIT ANY, CREATE JOB to secadmin;</p>
+<p>exit;
+2.  Now we will use just created secadmin user to configure OUA policy. OUA includes a lot of predefined policies and some of them are activated. To list of enabled policies, execute command:
+sql secadmin@sauropod.demo.guardium:1522/ORCLPDB1</p>
+<p>SELECT POLICY_NAME FROM AUDIT_UNIFIED_ENABLED_POLICIES;</p>
+<ol>
+<li>Check what SQL’s are audited by enabled policies. You should see grant and user related sql commands related to dbtraffic tool activity. However, there is no information about normal operations in application schema:
+SELECT SQL_TEXT FROM AUDSYS.AUD$UNIFIED;</li>
+<li>Create a new audit policy to audit all game application tables (/ is a separate command)
+BEGIN DECLARE v_cnt NUMBER; BEGIN SELECT COUNT(*) INTO v_cnt FROM audit_unified_policies WHERE policy_name='GAME_APP'; IF v_cnt=0 THEN EXECUTE IMMEDIATE 'CREATE AUDIT POLICY GAME_APP ACTIONS ALL ON game.customers, ALL ON game.credit_cards, ALL ON game.transactions, ALL ON game.extras, ALL ON game.features'; END IF; EXECUTE IMMEDIATE 'AUDIT POLICY GAME_APP'; END; END;</li>
+</ol>
+<p>/
+5.  Create scheduler to recreate policy if someone will remove it
+BEGIN DBMS_SCHEDULER.create_job(job_name=&gt;'ENSURE_GAME_APP_AUDIT', job_type=&gt;'STORED_PROCEDURE', job_action=&gt;'ENSURE_GAME_APP_AUDIT', repeat_interval=&gt;'FREQ=MINUTELY;INTERVAL=45', enabled=&gt;TRUE); END;</p>
+<p>/
+6.  Check our policy existence
+SELECT POLICY_NAME FROM AUDIT_UNIFIED_ENABLED_POLICIES;</p>
+<ol>
+<li>Then monitor the number of audited events by just activated policy and notice that its number is growing
+SELECT COUNT(*) from AUDSYS.AUD$UNIFIED WHERE UNIFIED_AUDIT_POLICIES='GAME_APP';</li>
+</ol>
+<p>exit
+8.  Now we need the Oracle user to get access to audited events by Guardium (let’s use simple ‘guardium’ password because of some issues when special characters appear in it)
+sql system@//sauropod.demo.guardium:1522/ORCLPDB1</p>
+<p>CREATE USER guardium IDENTIFIED BY guardium;</p>
+<p>GRANT CONNECT, RESOURCE to guardium;</p>
+<p>GRANT SELECT ANY DICTIONARY TO guardium;</p>
+<p>exec DBMS_NETWORK_ACL_ADMIN.APPEND_HOST_ACE(host =&gt; 'localhost', ace  =&gt;  xs$ace_type(privilege_list =&gt; xs$name_list('connect', 'resolve'),  principal_name  =&gt; 'guardium', principal_type =&gt; xs_acl.ptype_db));</p>
+<p>exit;
+9.  Connect as a guardium user and check access to audited events in OUA. Last SELECT is displaying local IP address of Oracle instance in the container. We should expect this value as a Server IP.
+sql guardium@//sauropod.demo.guardium:1522/ORCLPDB1</p>
+<p>SELECT COUNT(*) FROM AUDSYS.AUD$UNIFIED;</p>
+<p>SELECT UTL_INADDR.get_host_address FROM DUAL;</p>
+<p>exit</p>
+<p>exit</p>
+<p>VIII. <br />
+OUA with STAP   1.  Open in coll1 UI the S-TAP Status view and confirm that STAP on sauropod has no KTAP enabled</p>
+<ol>
+<li>
+<p>Also, the Full SQL (session details) report does not show the recent activity generated in the database.</p>
+</li>
+<li>
+<p>We will configure the STAP on sauropod to consume events from OUA tables in Oracle container. Technically, the STAP can be deployed anywhere but must have access to monitored instance over JDBC.</p>
+</li>
+<li>Let’s download from raptor and install Oracle instant client on sauropod machine
+scp -P 2223 raptor.demo.guardium:/opt/guardium_tz_bootcamp_automation/upload/source_files/oracle/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm /opt/lab_files/</li>
+</ol>
+<p>dnf -y install /opt/lab_files/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
+5.  Create the /usr/lib/oracle/21/client64/lib/network/admin/tnsnames.ora file and define inside the instance connection definition:
+ORCLPDB1 =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = sauropod.demo.guardium)(PORT = 1522))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = ORCLPDB1)
+    )
+  )
+6.  Edit STAP configuration of agent installed on sauropod in S-TAP Control in coll1 UI. In the Details section add two parameters:
+•   SQL configuration properties directory to /usr/lib/oracle/21/client64/lib/network/admin
+•   LD library paths to: /usr/lib/oracle/21/client64/lib
+The first refers to the directory where the tnsnames.ora file is located, and the second refers to the directory containing the Oracle Instant Client libraries. Then Save changes.</p>
+<ol>
+<li>We must save the Oracle guardium user credentials on coll1. Execute command from coll1 cli:
+grdapi store_sql_credentials stapHost=sauropod username=guardium password=guardium</li>
+<li>Then execute this command to create OUA consumer configuration (this is also possible from UI but there is a bug, so I recommend using API)
+grdapi create_sql_configuration dbType=Oracle instance=ORCLPDB1 stapHost=sauropod username=guardium</li>
+<li>
+<p>Check SQL activity report and notice that events appeared</p>
+</li>
+<li>
+<p>Now disable STAP OUA configuration. In the next chapter we will use a different method of OUA event consumption without STAp. In cm UI stop the agent on the sauropod machine by setting the STAP_ENABLED parameter to 0</p>
+</li>
+<li>
+<p>Confirm on coll1 in S-TAP Control view that agent on sauropod is disabled 
+IX. 
+OUA with UC 2.0 (with kafka consumer)   1.  First confirm that our coll1 is not working in the UC 1.0 (Legacy mode). From cli on collector:
+grdapi get_guard_param paramName=LEGACY_UC_CONFIG_ENABLED</p>
+</li>
+<li>
+<p>If value is true set disable UC 1.0 support:
+grdapi modify_guard_param paramName=LEGACY_UC_CONFIG_ENABLED paramValue=0</p>
+</li>
+<li>
+<p>Run UC events consumer framework on coll1 and confirm it is running
+grdapi run_universal_connector</p>
+</li>
+</ol>
+<p>grdapi get_universal_connector_status</p>
+<ol>
+<li>
+<p>We must convert kafka1 appliance to be a Kafka node. From raptor login to it and check unit type and notice that it is set to Standalone collector
+show unit type</p>
+</li>
+<li>
+<p>Set unit type to kafka-node (it will restart appliance)
+store unit type kafka-node</p>
+</li>
+<li>
+<p>Re-login to kafka1 and confirm the changed unit type (the appliance conversion takes time, so wait few minutes) 
+show unit type</p>
+</li>
+<li>
+<p>Open Central Management view on cm and confirm that kafka1 is displayed on the list with Kafka-Node label.</p>
+</li>
+<li>
+<p>In cm UI open Kafka Cluster Management view and create a New Cluster using plus ( ) icon. Provide cluster name kafka_cluster_1 and open kafka node list. Select our kafka1 node and press OK. </p>
+</li>
+<li>
+<p>Node should appear in the Cluster members list. Press OK to finalize cluster creation – ignore warning about minimum size of kafka cluster.</p>
+</li>
+<li>
+<p>Refresh cluster list from time to time till the status just created cluster will be notified as a ready ( )</p>
+</li>
+<li>
+<p>In cm UI open Credential Manager view and add new one. Insert descriptive name (oracle_container_sauropod), select JDBC Credentials type and provide guardium user and its password (Guardium). Just created guardium user credentials should appear on the list.</p>
+</li>
+<li>
+<p>Now add a new profile in Datasource Profile Management view on cm. Insert descriptive name (cannot contain spaces, oracle_21_container_sauropod), select OUA over JDBC connect 2.0 plugin. After plugin selection the rest of the configuration fields will appear. Select created earlier Credential (oracle_container_sauropod), Kafka cluster (kafka_cluster_1) and insert Hostname (sauropod.demo.guardium), Port (1522), Service name (ORCLPDB1). Upload the JDBC driver (ojdbc8.jar) located in oracle directory in student materials.</p>
+</li>
+<li>
+<p>When all required fields are filled up, we can save profile (OK) and the pop-up message will inform that configuration is accepted. Then our profile should appear on the list.</p>
+</li>
+<li>
+<p>Select profile and press Test connection. The configuration should be tested, and Status column should display now the green checkmark.</p>
+</li>
+<li>
+<p>Now, we can deploy profile on the coll1. Select just created profile and then select Install option from Install list and in the Install Profile window select our coll1 and press Run Now button (if deployment fails check the coll1 resolving). After a while (refresh a view) the profile should be updated with information that it was deployed.</p>
+</li>
+<li>
+<p>Check Full SQL (session details) report and confirm that Oracle traffic is consumed from OUA by Universal Connector</p>
+</li>
+</ol>
+<p>Appendix    Dependencies:
+It is better to select one of UC’s configuration instead doing both configurations 1.0 and 2.0
+The toolnode machine can be used for other purposes – LTR node for example. In case of plan to follow LTR lab you need to skip the UC 2.0 lab part</p>
+<p>Resources:
+STAP and OUA configuration
+https://www.ibm.com/docs/en/gdp/12.x?topic=lustcpdt-linux-unix-configuring-s-tap-interception-using-oracle-unified-audit 
+https://www.ibm.com/docs/en/gdp/12.x?topic=reference-create-sql-configuration
+UC 1.0 with OUA 
+https://github.com/IBM/universal-connectors/blob/main/filter-plugin/logstash-filter-oua-guardium/OuaOverPipeReadme.md
+UC 2.0 with OUA
+https://www.ibm.com/docs/en/gdp/12.x?topic=connector-configuring-universal-connectors-by-using-central-manager</p>
+<p>To do:
+-   Use SSL Between collector and stap and connect to OUA using SSL
+-   Do we support SSL in UC 2.0?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
