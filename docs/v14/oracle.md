@@ -189,13 +189,13 @@ exit
 ```bash
 /opt/guardium/modules/ATAP/current/files/bin/guardctl --db-type=oracle --db-instance=ORCLCDB --db_user=oracle --db_home=/u01/app/oracle/product/21c/dbhome_1/ --db_base=/home/oracle --db_version=21 store-conf
 ```
-1.	Activate ATAP for Oracle
+1.	Activate *ATAP* for *Oracle*.
 ```bash
 /opt/guardium/modules/ATAP/current/files/bin/guardctl --db-type=oracle --db-instance=ORCLCDB activate
 ```
 [![image](../images/oracle20.webp){ width="99%" }](../images/oracle20.webp)
 
-1.	Now we can start Oracle instances again
+1.	Now we can start *Oracle* instances again.
 ```sql linenums="1"
 su - oracle
 
@@ -208,7 +208,7 @@ exit
 lsnrctl start
 ```
 
-1.	Let’s connect to Oracle with SSL again and check traffic visibility.
+1.	Let’s connect to *Oracle* with *SSL* again and check traffic visibility (if connection will fail, wait a while to start *listener* services fully).
 ```sql linenums="1"
 sql system@ORCLPDB1_SSL
 
@@ -224,35 +224,54 @@ exit
 
 ## Check Oracle instance in container
 
-1.	On sauropod check as a root a status of Oracle container. Notice that the container is named oracle_db_21c, and the service is exposed on port 1522 to avoid conflicts with the listener already running on sauropod.
+1.	On **sauropod** check as a **root** a status of *Oracle container*. Notice that the container is named **oracle_db_21c**, and the service is exposed on port 1522 to avoid conflicts with the listener already running on **sauropod**.
+```bash
 podman ps
- 
-1.	Confirm Oracle DB readiness. The container logs should indicate that the database is ready for use.
+```
+[![image](../images/oracle22.webp){ width="99%" }](../images/oracle22.webp) 
+
+1.	Confirm *Oracle DB* readiness. The container logs should indicate that the database is ready for use.
+```bash
 podman logs oracle_db_21c | grep -C 5 'IS READY TO USE'
- 
-1.	To check instance connection open bash to our container and login to database as system (use password defined during instance creation). Log in using port 1521, as the connection is established from within the container.
+```
+[![image](../images/oracle23.webp){ width="89%" }](../images/oracle23.webp) 
+
+1.	To check instance connection open **bash** to our container and login to database as **system** (use the standard password for services). Log in using port **1521**, as the connection is established from within the container.
+```bash linenums="1"
 podman exec -it oracle_db_21c bash
 
 sqlplus system@localhost/ORCLPDB1:1521
- 
-1.	Execute some simple queries (first one displays Oracle release and the second one the information about pluggable database support.
+```
+[![image](../images/oracle24.webp){ width="79%" }](../images/oracle24.webp) 
+
+1.	Execute some simple queries (first one displays *Oracle* release and the second one the information about pluggable database support.
+```sql linenums="1"
 SELECT BANNER FROM V$VERSION WHERE BANNER LIKE 'Oracle Database%';
 
 SELECT CDB FROM V$DATABASE;
- 
-1.	Confirm that Oracle Unified Audit OUA is activated in our instance
+```
+[![image](../images/oracle25.webp){ width="89%" }](../images/oracle25.webp)
+
+1.	Confirm that *Oracle Unified Audit* *(OUA)* is activated in our instance.
+```sql linenums="1"
 SELECT VALUE AS ORACLE_UNIFIED_AUDIT_VALUE FROM V$OPTION WHERE PARAMETER = 'Unified Auditing';
 
 exit;
 
 exit
- 
+``` 
+[![image](../images/oracle26.webp){ width="99%" }](../images/oracle26.webp)
+
 ## Traffic generator
 
-1.	Check traffic generator configuration for oracle (on raptor) and notice that activity will be generated in the Oracle container on sauropod.
+1.	Check traffic generator configuration for *Oracle* (on **raptor**) and notice that activity will be generated in the *Oracle container* on **sauropod**.
+```bash
 cat /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic/config/oracle_container_sauropod.yaml
- 
-1.	On raptor, start the traffic generator for Oracle database running in a container on sauropod.
+```
+[![image](../images/oracle27.webp){ width="89%" }](../images/oracle27.webp)
+
+1.	On **raptor**, start the traffic generator for *Oracle* database running in a container on **sauropod**.
+```bash linenums="1"
 cd /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic
 
 source venv/bin/activate
@@ -260,99 +279,150 @@ source venv/bin/activate
 guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml rebuild
 
 guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml run
-
+```
+++ctrl+c++
+```bash
 deactivate
- 
-You can interrupt script by inserting CTRL+C keystroke.
-1.	Open Full SQL (session details) report on coll1 and notice that we see traffic generated in the container. This is not standard behavior and is only due to the use of virtualization/containerization (Docker) running directly on the host OS kernel, where the agent is already installed.
-In most cases, containers are orchestrated by Kubernetes or managed by a cloud/service provider, and the traffic will not be captured by the agent.
-It is also worth noting that only unencrypted traffic is visible. If the container were configured to use SSL or ASO, there would be no ability to install ATAP inside the container, and the traffic would not be captured.
- 
-1.	Let’s disable KTAP on sauropod to be able focus on agentless methods of container monitoring. In cm UI set KTAP_ENABLED to 0.
- 
-1.	To unload KTAP from kernel restart sauropod machine (confirm that previous parameter change finished successfully)
+```
+[![image](../images/oracle28.webp){ width="99%" }](../images/oracle28.webp)
+You can interrupt script by inserting ++ctrl+c++ keystroke.
+
+1.	Open *Full SQL (session details)* report on **coll1** and notice that we see traffic generated in the container. This is not standard behavior and is only due to the use of virtualization/containerization (*Docker*) running directly on the host *OS* kernel, where the agent is already installed.<BR>
+In most cases, containers are orchestrated by Kubernetes or managed by a cloud/service provider, and the traffic will not be captured by the agent. It is also worth noting that only unencrypted traffic is visible. If the container were configured to use *SSL* or *ASO*, there would be no ability to install *ATAP* inside the container, and the traffic would not be captured.
+[![image](../images/oracle29.webp){ width="99%" }](../images/oracle29.webp) 
+
+1.	Let’s disable *KTAP* on **sauropod** to be able focus on agentless methods of container monitoring. In **cm** UI set *KTAP_ENABLED* to **0** for **sauropod** *STAP*.
+[![image](../images/oracle30.webp){ width="99%" }](../images/oracle30.webp)
+
+1.	To unload *KTAP* from kernel restart **sauropod** machine (confirm that previous parameter change finished successfully).
+```bash
 shutdown -r now
-1.	Then start the Oracle again on sauropod
-podman start  oracle_db_21c
-1.	Execute dbtraffic generator again and confirm that new activity is not longer intercepted
+```
+
+1.	After a while run on **raptor** the traffic generator again and confirm that new activity is not longer intercepted (check lack a new queries in the report on **coll1**).
+```sql linenums="1"
 cd /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic
 
 source venv/bin/activate
 
 guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml run
-
+```
+++ctrl+c++
+```bash
 deactivate
+```
 
 ## ETAP monitoring of containerized Oracle service
 
-1.	Now configure ETAP on raptor to proxy traffic to the Oracle container on sauropod. To do this, generate a new certificate using the CA created earlier.
-1.	Login to coll1 cli and request certificate for E-TAP instance (CSR request) using command:
-create csr external_stap
-Insert certificate request parameters:
-- unique alias, like : sauropod-oracle-container-etap
-- etap certificate common name: oraclecoll1.demo.guardium
-- organization unit name: Demo
-- add additional OU: n
-- organization name: Guardium
-- city: <your city name>
-- province: <your province name>
-- country code: <your 2-digits country code>
-- email of collector certificate owner, can be fake: <email_address>
-- accept default algorithm: <ENTER>
-- accept default key length: <ENTER>
-- insert FQDN of your collector for SAN #1: coll1.demo.guardium
-- press ENTER for SAN #2: <ENTER>
+1.	Now configure *ETAP* on **raptor** to proxy traffic to the *Oracle container* on **sauropod**. To do this, generate a new certificate using the *CA* created in ETAP lab. Login to **coll1** cli and request certificate for *ETAP instance* (*CSR request*) using command:
+    ```bash
+    create csr external_stap
+    ```
+
+    !!! note "insert certificate request parameters:"
+        - unique alias, like : **sauropod-oracle-container-etap**
+        - etap certificate common name: **oraclecoll1.demo.guardium**
+        - organization unit name: **Demo**
+        - add additional OU: **n**
+        - organization name: **Guardium**
+        - city: &lt;your city name>
+        - province: &lt;your province name>
+        - country code: &lt;your 2-digits country code>
+        - email of collector certificate owner, can be fake: &lt;email_address>
+        - accept default algorithm: ++enter++
+        - accept default key length: ++enter++
+        - insert FQDN of your collector for SAN #1: **coll1.demo.guardium**
+        - press ENTER for SAN #2: ++enter++
+
+    [![image](../images/oracle31.webp){ width="99%" }](../images/oracle31.webp)
+
+    Then *CSR* will be generated and write down in notepad the entire *alias* and related to it the *token* (two bottom lines).
+    
+    [![image](../images/oracle32.webp){ width="99%" }](../images/oracle32.webp)
+
+1.	Then copy displayed *Certificate Request* to file on **raptor** machine - `/opt/ETAP/ca/etap2.csr`. 
+[![image](../images/oracle33.webp){ width="79%" }](../images/oracle33.webp)
  
-Then CSR will be generated and write down in notepad the entire alias and related to it the token (two bottom lines)
- 
-1.	Then copy displayed Certificate Request to file on raptor machine - /opt/ETAP/ca/etap2.csr 
- 
-1.	Sign certificate request from coll1 using created in the previous lab a CA cert
+1.	Sign *certificate request* from **coll1** using created in the *ETA*P lab a *CA cert*.
+```sql linenums="1"
 cd /opt/ETAP/ca
 
 openssl x509 -sha256 -req -days 3650 -CA ca.pem -CAkey ca.key -CAcreateserial -CAserial serial -in etap2.csr -out etap2.pem
- 
-In the current directory certificate based on CSR generated on collector will appear in etap2.pem file
-1.	Now on coll1 import External S-TAP certificate – etap2.pem stored in /opt/ETAP/ca. You must insert an alias name generated during the CSR request in point 2. Confirm correctness of CSR reference (Y).
+```
+[![image](../images/oracle34.webp){ width="99%" }](../images/oracle34.webp)
+In the current directory certificate based on *CSR* generated on **coll1** will appear in `etap2.pem` file.
+
+1.	Now on **coll1** import *ETAP* certificate – `etap2.pem` stored in `/opt/ETAP/ca`. You must insert an *alias name* generated during the *CSR request* in point 1. Confirm correctness of *CSR* reference **(Y)**.
+```bash
 store certificate external_stap
+```
+[![image](../images/oracle35.webp){ width="99%" }](../images/oracle35.webp)
+
+1.	Insert the certificate from `etap2.pem` file and press and ++enter++ and ++ctrl+d++.
+[![image](../images/oracle36.webp){ width="99%" }](../images/oracle36.webp)
  
-1.	Insert the certificate from etap2.pem fileand press and ENTER and CTRL+D
+1.	Then certificate should be imported to **coll1** wallet.
+[![image](../images/oracle37.webp){ width="99%" }](../images/oracle37.webp)
  
-1.	Then certificate should imported to collector wallet.
- 
-1.	You can list E-TAP certificates on collector and notice that a new added appears on the list
+1.	You can list *ETAP* certificates on **coll1** and notice that a new added appears on the list.
+```bash
 show certificate external_stap
- 
-1.	Check the image tag pulled earlier on raptor
+```
+[![image](../images/oracle38.webp){ width="99%" }](../images/oracle38.webp)
+1.	Check the *image tag* pulled earlier on **raptor**.
+```bash
 podman images
+```
+[![image](../images/oracle39.webp){ width="99%" }](../images/oracle39.webp)
  
-1.	Copy ETAP quadlet file for oracle to /etc/container/systemd on raptor
+1.	Copy *ETAP* *quadlet* file for Oracle to `/etc/container/systemd` on **raptor**.
+```bash
 cp /opt/guardium_tz_bootcamp_automation/upload/source_files/oracle/oracle_external_stap.container /etc/containers/systemd/oracle-etap.container
-1.	Update quadlet file /etc/containers/systemd/oracle-etap.container and set the correct values for parameters:
-Image – insert correct ETAP release
-STAP_CONFIG_PROXY_SECRET – should be a token generated with certificate CSR in point 2
-STAP_CONFIG_SQLGUARD_0_SQLGUARD_IP – IP address of coll1
-STAP_CONFIG_PROXY_DB_HOST – IP address of proxied database service – it should be sauropod IP
+```
+
+1.	Update *quadlet* file */etc/containers/systemd/oracle-etap.container* and set the correct values for parameters:
+
+    !!! note "quadlet parameters to set:"
+        - Image – insert correct ETAP release
+        - STAP_CONFIG_PROXY_SECRET – should be a token generated with certificate *CSR* in point 1
+        - STAP_CONFIG_SQLGUARD_0_SQLGUARD_IP – IP address of **coll1**
+        - STAP_CONFIG_PROXY_DB_HOST – IP address of proxied database service – it should be **sauropod** IP
+
+    [![image](../images/oracle40.webp){ width="99%" }](../images/oracle40.webp)
  
-1.	Reinitialize systemd deamon
+1.	Reinitialize **systemd** deamon.
+```bash
 systemctl daemon-reload
-1.	Start ETAP instance
+```
+
+1.	Start *ETAP* instance.
+```bash
 systemctl start oracle-etap
-1.	Check list of ran ETAP containers on raptor. One will be just deployed for Oracle container instance working on sauropod.
+```
+
+1.	Check list of ran *ETAP* containers on raptor. One will be just deployed for *Oracle container instance* working on **sauropod**.
+```bash
 podman ps
+```
+[![image](../images/oracle41.webp){ width="99%" }](../images/oracle41.webp)
  
-1.	Check the coll1 UI the External S-TAP instances view and confirm that the new one appeared.
- 
-1.	Because we will get access to ETAP service remotely we must open the access point port (lets do it for two ETAP instances ran on raptor)
+1.	Check the **coll1** UI the *External S-TAP instances* view (search *External S-TAP Control*) and confirm that the new one appeared.
+[![image](../images/oracle42.webp){ width="99%" }](../images/oracle42.webp)
+
+1.	Because we will get access to *ETAP* service remotely we must open the access point port (lets do it for both *ETAP* instances ran on **raptor**).
+```sql linenums="1"
 firewall-cmd --permanent --add-port=63333/tcp --add-port=63334/tcp
 
 firewall-cmd --reload
-1.	Let us connect to Oracle containerized instance on sauropod through ETAP. We have Oracle client installed on sauropod so we must connect from oracle account located there.
+```
+
+1.	Let us connect to *Oracle* containerized instance on **sauropod** through *ETAP*. We have *Oracle client* installed on **sauropod** so we must connect from oracle account located there.
+```sql linenums="1"
 su - oracle
 
 sql system@//raptor.demo.guardium:63334/ORCLPDB1
 
-SELECT 'CONNECTION THROUGH ETAP' FROM DUAL
+SELECT 'CONNECTION THROUGH ETAP' FROM DUAL;
 
 SELECT BANNER FROM V$VERSION WHERE BANNER LIKE 'Oracle Database%';
 
@@ -363,18 +433,24 @@ SELECT VALUE AS ORACLE_UNIFIED_AUDIT_VALUE FROM V$OPTION WHERE PARAMETER = 'Unif
 exit
 
 exit
-1.	Check events visibility in Full SQL (session details) report on coll1
+```
+
+1.	Check events visibility in *Full SQL (session details)* report on **coll1**.
+[![image](../images/oracle43.webp){ width="99%" }](../images/oracle43.webp)
  
-1.	Run the traffic generator in the background without using the proxy and let it run continuously to support monitoring of the Oracle container database using two additional methods.
+1.	On **raptor** run the traffic generator in the background *without* using the proxy and let it run continuously to support monitoring of the Oracle container database using two additional methods.
+```sql linenums="1"
 cd /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic
 
 source venv/bin/activate
 
 guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml run --duration 300
+```
 
 ## Configure Oracle in container to store activity in OUA
 
-1.	Let’s create user who can configure OUA settings, on sauropod login to ORCLPDB1 pluggable database and create secadmin user (define your password). Then grant to secadmin administrative rights for OUA configuration.
+1.	Let’s create user who can configure *Oracle Unified Audit* (*OUA*) settings, on **sauropod** login to **ORCLPDB1** pluggable database and create **secadmin** user (define your password). Then grant to **secadmin** administrative rights for *OUA* configuration.
+```sql linenums="1"
 su - oracle
 
 sql system@sauropod.demo.guardium:1522/ORCLPDB1
@@ -384,32 +460,53 @@ create user secadmin identified by "<set_password>";
 grant CONNECT, SELECT ANY DICTIONARY, SELECT_CATALOG_ROLE, AUDIT_ADMIN, CREATE PROCEDURE, DROP ANY PROCEDURE, AUDIT SYSTEM, AUDIT ANY, CREATE JOB to secadmin;
 
 exit;
-1.	Now we will use just created secadmin user to configure OUA policy. OUA includes a lot of predefined policies and some of them are activated. To list of enabled policies, execute command:
+```
+
+1.	Now we will use just created **secadmin** user to configure *OUA* policy. *OUA* includes a lot of predefined policies and some of them are activated. To list of enabled policies, execute command:
+```sql linenums="1"
 sql secadmin@sauropod.demo.guardium:1522/ORCLPDB1
 
 SELECT POLICY_NAME FROM AUDIT_UNIFIED_ENABLED_POLICIES;
- 
-1.	Check what SQL’s are audited by enabled policies. You should see grant and user related sql commands related to dbtraffic tool activity. However, there is no information about normal operations in application schema:
+```
+[![image](../images/oracle44.webp){ width="99%" }](../images/oracle44.webp)
+
+1.	Check what *SQL’s* are audited by enabled policies. You should see *GRANT* and *USER* related *SQL commands* related to dbtraffic tool activity. However, there is no information about normal operations in application schema:
+```sql
 SELECT SQL_TEXT FROM AUDSYS.AUD$UNIFIED;
-1.	Create a new audit policy to audit all game application tables (/ is a separate command)
+```
+
+1.	Create a new audit policy to audit all *game* application tables (/ is a separate command)
+```sql linenums="1"
 BEGIN DECLARE v_cnt NUMBER; BEGIN SELECT COUNT(*) INTO v_cnt FROM audit_unified_policies WHERE policy_name='GAME_APP'; IF v_cnt=0 THEN EXECUTE IMMEDIATE 'CREATE AUDIT POLICY GAME_APP ACTIONS ALL ON game.customers, ALL ON game.credit_cards, ALL ON game.transactions, ALL ON game.extras, ALL ON game.features'; END IF; EXECUTE IMMEDIATE 'AUDIT POLICY GAME_APP'; END; END;
 
 /
+```
+
 1.	Create scheduler to recreate policy if someone will remove it
+```sql linenums="1"
 BEGIN DBMS_SCHEDULER.create_job(job_name=>'ENSURE_GAME_APP_AUDIT', job_type=>'STORED_PROCEDURE', job_action=>'ENSURE_GAME_APP_AUDIT', repeat_interval=>'FREQ=MINUTELY;INTERVAL=45', enabled=>TRUE); END;
 
 /
+```
+
 1.	Check our policy existence
+```sql
 SELECT POLICY_NAME FROM AUDIT_UNIFIED_ENABLED_POLICIES;
- 
-1.	Then monitor the number of audited events by just activated policy and notice that its number is growing
+```
+[![image](../images/oracle45.webp){ width="99%" }](../images/oracle45.webp) 
+
+1.	Then monitor the number of audited events by just activated policy and notice that its number is growing because we have traffic generator ran.
+```sql linenums="1"
 SELECT COUNT(*) from AUDSYS.AUD$UNIFIED WHERE UNIFIED_AUDIT_POLICIES='GAME_APP';
 
 exit
-1.	Now we need the Oracle user to get access to audited events by Guardium (let’s use simple ‘guardium’ password because of some issues when special characters appear in it)
+```
+
+1.	Now we need the *Oracle* user to get access to audited events by **Guardium** (please use simple password like *guardium* because of some issues when special characters appear in it)
+```sql linenums="1"
 sql system@//sauropod.demo.guardium:1522/ORCLPDB1
 
-CREATE USER guardium IDENTIFIED BY guardium;
+CREATE USER guardium IDENTIFIED BY <password without special characters>;
 
 GRANT CONNECT, RESOURCE to guardium;
 
@@ -418,7 +515,10 @@ GRANT SELECT ANY DICTIONARY TO guardium;
 exec DBMS_NETWORK_ACL_ADMIN.APPEND_HOST_ACE(host => 'localhost', ace  =>  xs$ace_type(privilege_list => xs$name_list('connect', 'resolve'),  principal_name  => 'guardium', principal_type => xs_acl.ptype_db));
 
 exit;
-1.	Connect as a guardium user and check access to audited events in OUA. Last SELECT is displaying local IP address of Oracle instance in the container. We should expect this value as a Server IP.
+```
+
+1.	Connect as a **guardium** user and check access to audited events in *OUA*. Last *SELECT* is displaying local *IP address* of *Oracle instance* in the container. We should expect this value as a *Server IP* in the report.
+```sql linenums="1"
 sql guardium@//sauropod.demo.guardium:1522/ORCLPDB1
 
 SELECT COUNT(*) FROM AUDSYS.AUD$UNIFIED;
@@ -428,20 +528,25 @@ SELECT UTL_INADDR.get_host_address FROM DUAL;
 exit
 
 exit
- 
+``` 
+[![image](../images/oracle46.webp){ width="99%" }](../images/oracle46.webp) 
 
 ## OUA with STAP
 
-1.	Open in coll1 UI the S-TAP Status view and confirm that STAP on sauropod has no KTAP enabled
+1.	Open in *coll1* UI the S-TAP Status view and confirm that *STAP* on sauropod has no KTAP enabled.
+[![image](../images/oracle47.webp){ width="99%" }](../images/oracle47.webp) 
  
-1.	Also, the Full SQL (session details) report does not show the recent activity generated in the database.
- 
-1.	We will configure the STAP on sauropod to consume events from OUA tables in Oracle container. Technically, the STAP can be deployed anywhere but must have access to monitored instance over JDBC.
-1.	Let’s download from raptor and install Oracle instant client on sauropod machine
+1.	Also, the *Full SQL (session details)* report ran on **coll1** does not show the recent activity generated in the Oracle database.
+[![image](../images/oracle48.webp){ width="99%" }](../images/oracle48.webp) 
+
+1.	We will configure the *STAP* on **sauropod** to consume events from *OUA* tables in *Oracle container*. Technically, the *STAP* can be deployed anywhere but must have access to monitored instance over *JDBC*. Let’s download to **sauropod** *Oracle instant client* from **raptor** and install it (run on **sauropod**).
+```bash linenums="1"
 scp -P 2223 raptor.demo.guardium:/opt/guardium_tz_bootcamp_automation/upload/source_files/oracle/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm /opt/lab_files/
 
 dnf -y install /opt/lab_files/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
-1.	Create the /usr/lib/oracle/21/client64/lib/network/admin/tnsnames.ora file and define inside the instance connection definition:
+```
+1.	Create the `/usr/lib/oracle/21/client64/lib/network/admin/tnsnames.ora` file and define inside the instance connection definition:
+```cfg
 ORCLPDB1 =
   (DESCRIPTION =
     (ADDRESS = (PROTOCOL = TCP)(HOST = sauropod.demo.guardium)(PORT = 1522))
@@ -450,21 +555,36 @@ ORCLPDB1 =
       (SERVICE_NAME = ORCLPDB1)
     )
   )
-1.	Edit STAP configuration of agent installed on sauropod in S-TAP Control in coll1 UI. In the Details section add two parameters:
-•	SQL configuration properties directory to /usr/lib/oracle/21/client64/lib/network/admin
-•	LD library paths to: /usr/lib/oracle/21/client64/lib
-The first refers to the directory where the tnsnames.ora file is located, and the second refers to the directory containing the Oracle Instant Client libraries. Then Save changes.
+```
+1.	Edit *STAP* configuration of agent installed on **sauropod** in **S-TAP Control** in **coll1** UI.
+    
+    !!! note "in the *Details* section add two parameters:"
+        - *SQL configuration properties*: `/usr/lib/oracle/21/client64/lib/network/admin`
+        - *LD library paths*: `/usr/lib/oracle/21/client64/lib`
+        
+        The first refers to the directory where the `tnsnames.ora` file is located, and the second refers to the directory containing the `Oracle Instant Client` libraries.
 
+    [![image](../images/oracle49.webp){ width="99%" }](../images/oracle49.webp) 
+
+    Then **Save** changes.
  
-1.	We must save the Oracle guardium user credentials on coll1. Execute command from coll1 cli:
-grdapi store_sql_credentials stapHost=sauropod username=guardium password=guardium
-1.	Then execute this command to create OUA consumer configuration (this is also possible from UI but there is a bug, so I recommend using API)
+1.	We must save the *Oracle* **guardium** user credentials on **coll1**. Execute command from **coll1** cli:
+```bash
+grdapi store_sql_credentials stapHost=sauropod username=guardium password=<simple password provided in point 8 of previous chapter>
+```
+
+1.	Then execute this command to create *OUA* consumer configuration (this is also possible from UI but there is a bug, so I recommend using API)
+```bash
 grdapi create_sql_configuration dbType=Oracle instance=ORCLPDB1 stapHost=sauropod username=guardium
-1.	Check SQL activity report and notice that events appeared
+```
+1.	Check *SQL* activity report and notice that events appeared
+[![image](../images/oracle50.webp){ width="99%" }](../images/oracle50.webp) 
  
-1.	Now disable STAP OUA configuration. In the next chapter we will use a different method of OUA event consumption without STAp. In cm UI stop the agent on the sauropod machine by setting the STAP_ENABLED parameter to 0
- 
-1.	Confirm on coll1 in S-TAP Control view that agent on sauropod is disabled 
+1.	Now disable *STAP OUA* configuration. In the next chapter we will use a different method of *OUA* event consumption without *STAP*. In **cm** UI stop the agent on the **sauropod** machine by setting the *STAP_ENABLED* parameter to **0**.
+[![image](../images/oracle51.webp){ width="99%" }](../images/oracle51.webp) 
+
+1.	Confirm on **coll1** in **S-TAP Control** view that agent on **sauropod** is disabled.
+[![image](../images/oracle52.webp){ width="99%" }](../images/oracle52.webp) 
 
 ## OUA with UC 2.0 (with kafka consumer)
 
@@ -475,6 +595,7 @@ grdapi get_guard_param paramName=LEGACY_UC_CONFIG_ENABLED
 grdapi modify_guard_param paramName=LEGACY_UC_CONFIG_ENABLED paramValue=0
  
 1.	Run UC events consumer framework on coll1 and confirm it is running
+```sql linenums="1"
 grdapi run_universal_connector
 
 grdapi get_universal_connector_status
