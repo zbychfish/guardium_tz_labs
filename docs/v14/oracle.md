@@ -30,29 +30,43 @@ chmod +x *.sh
 [![image](../images/oracle2.webp){ width="99%" }](../images/oracle2.webp)
  
 1.	Check also in **S-TAP Status** on **coll1** that *KTAP* is deployed.
-[![image](../images/oracle3.webp){ width="99%" }](../images/oracle3.webp) 
+[![image](../images/oracle3.webp){ width="99%" }](../images/oracle3.webp)
 
 
 ## Oracle traffic visibility
 
-1.	We have Oracle instance ran on sauropod machine.
-1.	Check a list of instances as a root, you should see ORCLDB
+1.	We have *Oracle* instances ran on **sauropod** machine. Check a list of instances as a **root**, you should see *ORCLDB* and *ORCL*. The second one is belonging to Oracle working in the container, we will refer to it later in the lab.
+```bash
 ps -ef | grep pmon
- 
-1.	Change context to oracle user
+```
+[![image](../images/oracle4.webp){ width="99%" }](../images/oracle4.webp)
+
+1.	Change on **sauropod** context to **oracle** user.
+```bash
 su - oracle
-1.	Let’s check what SID is set for this session
+```
+1.	Let’s check what *SID* is set for this session
+```bash
 echo $ORACLE_SID
- 
-1.	We have SQLcl available on sauropod, login to oracle instance as a system user with lab default password. The ORCLCDB is pluggable.
+```
+[![image](../images/oracle5.webp){ width="49%" }](../images/oracle5.webp)
+
+1.	We have *SQLcl* installed on **sauropod**, login to *Oracle* instance as a **system** user with lab default password. The *ORCLCDB* is pluggable.
+```sql linenums="1"
 sql system
 
 SELECT name, cdb FROM v$database;
- 
-1.	List of PDB instances. There is one with name ORCLPDB1.
+``` 
+[![image](../images/oracle6.webp){ width="79%" }](../images/oracle6.webp)
+
+1.	List of *PDB* instances. There is one with name *ORCLPDB1*.
+```sql
 SELECT pdb_name, status FROM cdb_pdbs ORDER BY pdb_name;
- 
-1.	Let’s change the session context to ORCLPDB1 instance and check list of schemas and tables in one of it.
+```
+[![image](../images/oracle7.webp){ width="79%" }](../images/oracle7.webp)
+
+1.	Let’s change the session context to *ORCLPDB1* instance and check list of schemas and tables in one of it.
+```sql linenums="1"
 ALTER SESSION SET CONTAINER = ORCLPDB1;
 
 SELECT tablespace_name FROM dba_tablespaces ORDER BY tablespace_name;
@@ -60,31 +74,48 @@ SELECT tablespace_name FROM dba_tablespaces ORDER BY tablespace_name;
 SELECT owner, table_name FROM dba_tables WHERE tablespace_name = 'HR_DATA';
 
 exit;
+```
+[![image](../images/oracle8.webp){ width="99%" }](../images/oracle8.webp) 
+
+1.	Check in **coll1** UI the *Full SQL (Training)* report and confirm that *Oracle* traffic is visible.
+[![image](../images/oracle9.webp){ width="99%" }](../images/oracle9.webp)
  
-1.	Check in coll1 UI the Full SQL (Training) report and confirm that Oracle traffic is visible.
+1.	On **coll1** clone *Full SQL (Training)* report. Name it *Full SQL (session details)* and proceed to the *Selected Columns* section by clicking **Next**.
+[![image](../images/oracle10.webp){ width="99%" }](../images/oracle10.webp)
  
-1.	Clone Full SQL (Training) report. Name it Full SQL (session details) and proceed to the Selected Columns section by clicking Next.
+1.	In this section, we can define what information will be displayed in the report. We can add attributes from the *Entities and Attributes* list to the *Selected Columns* list on the right. Attributes are grouped by *entity*. After selecting an attribute, use the  :material-arrow-right: to add it to the report. Add five attributes:
+
+    !!! note "attributes:"
+        - **Network Protocol** from *Client/Server*
+        - **DB Protocol** from *Client/Server*
+        - **Session Encrypted** from *Session*
+        - **Encryption Type** from *Session*
+        - **Server Type** from *Client/Server*
+
+    and Expand a *Conditions* pane.
+
+    [![image](../images/oracle11.webp){ width="99%" }](../images/oracle11.webp)
  
-1.	In this section, we can define what information will be displayed in the report. We can add attributes from the Entities and Attributes list to the Selected Columns list on the right. Attributes are grouped by entity. After selecting an attribute, use the arrow icon to add it to the report columns. Add four attributes:
-- Network Protocol from Client/Server
-- DB Protocol from Client/Server
-- Session Encrypted from Session
-- Encryption Type from Session
-- Server Type from Client/Server
-and Expand a Conditions pane
+1.	Add condition for the **Server Type** attribute from the *Client/Server* entity using the **DB_Type** parameter with the *LIKE* operator and **Save** report.
+[![image](../images/oracle12.webp){ width="99%" }](../images/oracle12.webp)
  
-1.	Add condition for the Server Type attribute from the Client/Server entity using the DB_Type parameter with the LIKE operator and Save report.
+1.	A confirmation of the operation will appear and then **Close** the report editing window.
+[![image](../images/oracle13.webp){ width="99%" }](../images/oracle13.webp)
  
-1.	A confirmation of the operation will appear and then Close the report editing window.
+1.	Create new *dashboard* with name *Oracle* and add into it a just cloned report.
+[![image](../images/oracle14.webp){ width="99%" }](../images/oracle14.webp)
  
-1.	Create new Oracle dashboard and add into it a just cloned report.
+1.	Edit report parameters and set for *DB_Type* value **ORACLE**. Now report will show only activity belonging to *Oracle*.
+[![image](../images/oracle15.webp){ width="99%" }](../images/oracle15.webp)
  
-1.	Edit report parameters and set for DB_Type value ORACLE. Now report will show only activity belonging to Oracle
- 
-1.	Review tnsnames.ora file and notice that we have setup of four connection/protocol types there.
+1.	Review on **sauropod** the `tnsnames.ora` file and notice that we have setup of four connection/protocol types there.
+```bash
 cat $ORACLE_HOME/network/admin/tnsnames.ora
- 
-1.	Connect as an oracle user using ORCLPDB1_BEQ connection (Bequeath connection), then check traffic visibility in Full SQL (session details) report on coll1.
+```
+[![image](../images/oracle16.webp){ width="99%" }](../images/oracle16.webp)
+
+1.	Connect as an **oracle** user using *ORCLPDB1_BEQ* connection (*Bequeath* connection), then check traffic visibility in *Full SQL (session details)* report on **coll1**.
+```sql linenums="1"
 sql system@ORCLPDB1_BEQ
 
 SELECT 'BEQ session to ORCLPDB1' FROM dual;
@@ -92,8 +123,11 @@ SELECT 'BEQ session to ORCLPDB1' FROM dual;
 SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
- 
-1.	Now connect using ORCLPDB_IPC connection (shared memory) and check activity events in the report
+```
+[![image](../images/oracle17.webp){ width="99%" }](../images/oracle17.webp)
+
+1.	Now connect using *ORCLPDB_IPC* connection (shared memory) and check activity events in the report.
+```sql linenums="1"
 sql system@ORCLPDB1_IPC
 
 SELECT 'IPC session to ORCLPDB1' FROM dual;
@@ -103,8 +137,11 @@ ALTER SESSION SET CONTAINER = ORCLPDB1;
 SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
- 
+```
+[![image](../images/oracle18.webp){ width="99%" }](../images/oracle18.webp) 
+
 1.	Next type of connection is TCP and use ORCLPDB1 connection string.
+```sql linenums="1"
 sql system@ORCLPDB1
 
 SELECT 'TCP session to ORCLPDB1' FROM dual;
@@ -112,9 +149,12 @@ SELECT 'TCP session to ORCLPDB1' FROM dual;
 SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
- 
-1.	All previous connections used unencrypted communication between the Oracle client and server. Now connect using TCPS, which technically leverages SSL/TLS encryption between both endpoints.
-Oracle also provides its own native encryption mechanism (ASO – Advanced Security Option), which is also supported by Guardium.
+```
+[![image](../images/oracle19.webp){ width="99%" }](../images/oracle19.webp)
+
+1.	All previous connections used unencrypted communication between the *Oracle* client and server. Now connect using *TCPS*, which technically leverages *SSL/TLS* encryption between both endpoints.
+*Oracle* also provides its own native encryption mechanism (*ASO* – *Advanced Security Option*), which is also supported by **Guardium**.
+```sql linenums="1"
 sql system@ORCLPDB1_SSL
 
 SELECT 'TCPS encrypted session to ORCLPDB1' FROM dual;
@@ -122,11 +162,13 @@ SELECT 'TCPS encrypted session to ORCLPDB1' FROM dual;
 SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
-1.	This time traffic will not appear in the report because ATAP must be deployed in place.
+```
+This time traffic will not appear in the report because *ATAP* must be deployed in place.
 
 ## ATAP setup
 
-1.	To configure ATAP, we must stop the Oracle database services on sauropod.
+1.	To configure *ATAP*, we must stop the *Oracle* database services on **sauropod**.
+```sql linenums="1"
 su - oracle
 
 lsnrctl stop
@@ -138,14 +180,23 @@ shutdown immediate;
 exit
 
 exit
-1.	As a root we can now configure ATAP. Register oracle user for ATAP
+```
+1.	As a **root** we can now configure *ATAP*. Register **oracle** user for *ATAP*.
+```bash
 /opt/guardium/modules/ATAP/current/files/bin/guardctl authorize-user oracle
-1.	Set a new ATAP configuration for binaries located in /opt/oracle/product/19c/dbhome_1 (both instances uses this same ORACLE_HOME, so only one ATAP configuration is needed)
+```
+1.	Set a new *ATAP* configuration for binaries located in `/opt/oracle/product/19c/dbhome_1`.
+```bash
 /opt/guardium/modules/ATAP/current/files/bin/guardctl --db-type=oracle --db-instance=ORCLCDB --db_user=oracle --db_home=/u01/app/oracle/product/21c/dbhome_1/ --db_base=/home/oracle --db_version=21 store-conf
+```
 1.	Activate ATAP for Oracle
+```bash
 /opt/guardium/modules/ATAP/current/files/bin/guardctl --db-type=oracle --db-instance=ORCLCDB activate
- 
+```
+[![image](../images/oracle20.webp){ width="99%" }](../images/oracle20.webp)
+
 1.	Now we can start Oracle instances again
+```sql linenums="1"
 su - oracle
 
 sql / as sysdba
@@ -155,7 +206,10 @@ startup
 exit
 
 lsnrctl start
+```
+
 1.	Let’s connect to Oracle with SSL again and check traffic visibility.
+```sql linenums="1"
 sql system@ORCLPDB1_SSL
 
 SELECT sys_context('USERENV', 'NETWORK_PROTOCOL') as network_protocol FROM dual;
@@ -165,7 +219,9 @@ SELECT 'SSL connection to ORCLCDB' from dual;
 SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
- 
+```
+[![image](../images/oracle21.webp){ width="99%" }](../images/oracle21.webp) 
+
 ## Check Oracle instance in container
 
 1.	On sauropod check as a root a status of Oracle container. Notice that the container is named oracle_db_21c, and the service is exposed on port 1522 to avoid conflicts with the listener already running on sauropod.
