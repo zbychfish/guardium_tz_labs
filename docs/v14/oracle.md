@@ -588,66 +588,106 @@ grdapi create_sql_configuration dbType=Oracle instance=ORCLPDB1 stapHost=sauropo
 
 ## OUA with UC 2.0 (with kafka consumer)
 
-1.	First confirm that our coll1 is not working in the UC 1.0 (Legacy mode). From cli on collector:
+1.	First confirm that our **coll1** is not working in the *UC 1.0* (Legacy mode). From **cli** on **coll1**:
+```bash
 grdapi get_guard_param paramName=LEGACY_UC_CONFIG_ENABLED
- 
-1.	If value is true set disable UC 1.0 support:
+``` 
+[![image](../images/oracle53.webp){ width="89%" }](../images/oracle53.webp) 
+
+1.	If value is true disable UC 1.0 support:
+```bash
 grdapi modify_guard_param paramName=LEGACY_UC_CONFIG_ENABLED paramValue=0
- 
-1.	Run UC events consumer framework on coll1 and confirm it is running
-```sql linenums="1"
+``` 
+[![image](../images/oracle54.webp){ width="99%" }](../images/oracle54.webp) 
+
+1.	Run *UC* events consumer framework on **coll1** and confirm it is running.
+```bash linenums="1"
 grdapi run_universal_connector
 
 grdapi get_universal_connector_status
- 
-1.	We must convert kafka1 appliance to be a Kafka node. From raptor login to it and check unit type and notice that it is set to Standalone collector
+```
+[![image](../images/oracle55.webp){ width="69%" }](../images/oracle55.webp) 
+
+1.	We must convert **kafka1** appliance to be a *Kafka* node. From **raptor** login to **kafka1** appliance and check the *unit type* and notice that it is set to *Managed* collector
+```bash
 show unit type
- 
-1.	Set unit type to kafka-node (it will restart appliance)
+```
+[![image](../images/oracle56.webp){ width="45%" }](../images/oracle56.webp) 
+
+1.	Set *unit type* to *kafka-node* (it will restart appliance).
+```bash
 store unit type kafka-node
- 
-1.	Re-login to kafka1 and confirm the changed unit type (the appliance conversion takes time, so wait few minutes) 
+``` 
+[![image](../images/oracle57.webp){ width="99%" }](../images/oracle57.webp) 
+
+1.	Re-login to **kafka1** and confirm the changed *unit type* (the appliance conversion takes time, so wait few minutes).
+```bash
 show unit type
- 
-1.	Open Central Management view on cm and confirm that kafka1 is displayed on the list with Kafka-Node label.
- 
-1.	In cm UI open Kafka Cluster Management view and create a New Cluster using plus ( ) icon. Provide cluster name kafka_cluster_1 and open kafka node list. Select our kafka1 node and press OK. 
- 
-1.	Node should appear in the Cluster members list. Press OK to finalize cluster creation – ignore warning about minimum size of kafka cluster.
- 
-1.	Refresh cluster list from time to time till the status just created cluster will be notified as a ready ( )
- 
-1.	In cm UI open Credential Manager view and add new one. Insert descriptive name (oracle_container_sauropod), select JDBC Credentials type and provide guardium user and its password (Guardium). Just created guardium user credentials should appear on the list.
- 
-1.	Now add a new profile in Datasource Profile Management view on cm. Insert descriptive name (cannot contain spaces, oracle_21_container_sauropod), select OUA over JDBC connect 2.0 plugin. After plugin selection the rest of the configuration fields will appear. Select created earlier Credential (oracle_container_sauropod), Kafka cluster (kafka_cluster_1) and insert Hostname (sauropod.demo.guardium), Port (1522), Service name (ORCLPDB1). Upload the JDBC driver (ojdbc8.jar) located in oracle directory in student materials.
- 
-1.	When all required fields are filled up, we can save profile (OK) and the pop-up message will inform that configuration is accepted. Then our profile should appear on the list.
- 
-1.	Select profile and press Test connection. The configuration should be tested, and Status column should display now the green checkmark.
- 
-1.	Now, we can deploy profile on the coll1. Select just created profile and then select Install option from Install list and in the Install Profile window select our coll1 and press Run Now button (if deployment fails check the coll1 resolving). After a while (refresh a view) the profile should be updated with information that it was deployed.
-  
-1.	Check Full SQL (session details) report and confirm that Oracle traffic is consumed from OUA by Universal Connector
- 
-Appendix	Dependencies:
-It is better to select one of UC’s configuration instead doing both configurations 1.0 and 2.0
-The toolnode machine can be used for other purposes – LTR node for example. In case of plan to follow LTR lab you need to skip the UC 2.0 lab part
+```
+[![image](../images/oracle58.webp){ width="46%" }](../images/oracle58.webp) 
 
-Resources:
-STAP and OUA configuration
-https://www.ibm.com/docs/en/gdp/12.x?topic=lustcpdt-linux-unix-configuring-s-tap-interception-using-oracle-unified-audit 
-https://www.ibm.com/docs/en/gdp/12.x?topic=reference-create-sql-configuration
-UC 1.0 with OUA 
-https://github.com/IBM/universal-connectors/blob/main/filter-plugin/logstash-filter-oua-guardium/OuaOverPipeReadme.md
-UC 2.0 with OUA
-https://www.ibm.com/docs/en/gdp/12.x?topic=connector-configuring-universal-connectors-by-using-central-manager
+1.	Open *Central Management* view on **cm** and confirm that **kafka1** is displayed on the list with *Kafka-Node* label.
+[![image](../images/oracle59.webp){ width="99%" }](../images/oracle59.webp) 
 
-To do:
--	Use SSL Between collector and stap and connect to OUA using SSL
--	Do we support SSL in UC 2.0?
+1. Because of the certificate setup and synchronization. **Wait 90 minutes before contunuation of this lab!**
+ 
+1.	After minimum 90 minutes. In **cm** UI open **Kafka Cluster Management** view and create a *New Cluster* using plus (![image](../images/oracle60.webp){ width="20" }) icon. Provide cluster name **kafka_cluster_1** and open kafka node list. Select our **kafka1** node and press **OK**. 
+[![image](../images/oracle61.webp){ width="99%" }](../images/oracle61.webp) 
+ 
+1.	Node should appear in the *Cluster members* list. Press **OK** to finalize cluster creation – ignore warning about minimum size of kafka cluster.
+[![image](../images/oracle62.webp){ width="99%" }](../images/oracle62.webp) 
+ 
+1.	Refresh cluster list from time to time till the status just created cluster will be notified as a ready (![image](../images/oracle63.webp){ width="20" })
+[![image](../images/oracle64.webp){ width="99%" }](../images/oracle64.webp) 
+ 
+1.	In **cm** UI open **Credential Manager** view and add new one.
 
+    !!! note "Credential details:"
+        - Name: **oracle_container_sauropod**
+        - Credential type: **JDBC Credentials**
+        - JDBC Username: **guardium**
+        - JDBC Password: &lt;defined in the point 8 of *Configure Oracle in container to store activity in OUA* chapter>
 
+    [![image](../images/oracle65.webp){ width="99%" }](../images/oracle65.webp) 
 
+    Just created **guardium** user credentials should appear on the list.
 
+1.	Now add a new profile in **Datasource Profile Management** view on **cm**.
 
+    !!! note "Insert:"
+        - Name: **oracle_21_container_sauropod**
+        - Plug-in: **OUA over JDBC connect 2.0**
+        - Credential: **oracle_container_sauropod** (created earlier)
+        - Kafka cluster: **kafka_cluster_1**
+        - Hostname: **sauropod.demo.guardium**
+        - Port: **1522**
+        - Service name: **ORCLPDB1**
+        - JDBC driver library: &lt;upload the JDBC driver (ojdbc8.jar) located in oracle directory in student materials>
 
+    [![image](../images/oracle66.webp){ width="99%" }](../images/oracle66.webp)
+
+1.	When all required fields are filled up, we can save profile (**OK**) and the pop-up message will inform that configuration is accepted. Then our profile should appear on the list.
+[![image](../images/oracle67.webp){ width="99%" }](../images/oracle67.webp)  
+
+1.	Select profile and press **Test connection**. The configuration should be tested, and *Status* column should display now the green checkmark.
+[![image](../images/oracle68.webp){ width="99%" }](../images/oracle68.webp)  
+
+1.	Now, we can deploy profile on the **coll1**. Select just created profile and then select **Install** option from *Install* list and in the *Install Profile* window select our **coll1** and press **Run Now** button. After a while (refresh a view) the profile should be updated with information that it was deployed.
+[![image](../images/oracle69.webp){ width="99%" }](../images/oracle69.webp)   
+
+1.	Check *Full SQL (session details)* report on **coll1** and confirm that *Oracle* traffic is consumed by *OUA* by *universal connector*.
+[![image](../images/oracle70.webp){ width="99%" }](../images/oracle70.webp) 
+
+## Appendix
+
+!!! note "Dependencies:"
+    It is better to select one of *UC’s* configuration instead doing both configurations 1.0 and 2.0. The kafka1 machine can be used for other purposes – *LTR* node for example.
+
+!!! note "Resources:"
+    - STAP and OUA configuration:
+    <BR><https://www.ibm.com/docs/en/gdp/12.x?topic=lustcpdt-linux-unix-configuring-s-tap-interception-using-oracle-unified-audit>
+    <BR><https://www.ibm.com/docs/en/gdp/12.x?topic=reference-create-sql-configuration>
+    - UC 1.0 with OUA - <https://github.com/IBM/universal-connectors/blob/main/filter-plugin/logstash-filter-oua-guardium/OuaOverPipeReadme.md>
+    - UC 2.0 with OUA - <https://www.ibm.com/docs/en/gdp/12.x?topic=connector-configuring-universal-connectors-by-using-central-manager>
+    
+!!! note "Instructor notes:"
