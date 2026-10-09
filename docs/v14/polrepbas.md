@@ -757,6 +757,12 @@ BEGIN
 END;
 $$;
 ```
+and
+```bash linenums="1"
+\q
+
+exit
+```
 [![image](../images/polrepbas100.webp){ width="99%" }](../images/polrepbas100.webp) 
 
 ## Appendix
