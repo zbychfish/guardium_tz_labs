@@ -400,21 +400,33 @@ SELECT * FROM game.customers1;
 
 ## Access control on command level
 
-1.	Of course, administrators require access to the application schema. However, due to the sensitivity of the personal data stored there, assume that only the tom and jerry administrator accounts should have access, and that their access should be limited to read-only operations. To enforce this, create another rule by editing the active policy directly from the Installed Policies view.
+1.	Of course, administrators require access to the application schema. However, due to the sensitivity of the personal data stored there, assume that only the **tom** and **jerry** administrator accounts should have access, and that their access should be limited to read-only operations. To enforce this, create another rule by editing the active policy directly from the **Installed Policies** view.
 [![image](../images/polrepbas70.webp){ width="99%" }](../images/polrepbas70.webp) 
 
-1.	Select a Rules pane and add a new rule.
+1.	Select a *Rules* pane and add a new rule.
 [![image](../images/polrepbas71.webp){ width="99%" }](../images/polrepbas71.webp)
 
-1.	Name the rule Admin access to application data. Add two Session criteria: Database Type and Database User, the second referencing a new group named Postgres Administrators, whose members are the tom and jerry accounts. To restrict access to SELECT statements only, add an SQL criterion based on Command and reference the existing Select Command group. Limit also rule to Objects from Application tables on postgres. 
-[![image](../images/polrepbas72.webp){ width="99%" }](../images/polrepbas72.webp) 
-Add only the LOG FULL DETAILS action to the rule. This means that any activity matching this rule will be fully logged and allowed to proceed. Press OK button to save rule.
+1.	Name the rule *Admin access to application data*. Add two *Session* criteria: *Database Type* and *Database User*, the second referencing a new group named **Postgres Administrators**, whose members are the **tom** and **jerry** accounts. To restrict access to *SELECT* statements only, add an *SQL* criterion based on **Command** and reference the existing *Select Command* group. Limit also rule to **Objects** from *Application tables on postgres*. 
+
+    !!! note ""
+        - *Database Type* `=` POSTGRESSQL
+        - *Database User* `In Group` Postgres administrators
+        - *Object* `In Group` Application tables on postgres
+        - *Command* `In Group` Select Command
+  
+    !!! note "*Postgres administrators* members:"
+        - JERRY (SUPER USER)
+        - TOM (SUPER USER)
+
+    [![image](../images/polrepbas72.webp){ width="99%" }](../images/polrepbas72.webp) 
+
+    Add only the **LOG FULL DETAILS** action to the rule. This means that any activity matching this rule will be fully logged and allowed to proceed. Press **OK** button to save rule.
 
 1.	The newly created rule will appear at the bottom of the list. However, to make the policy logic work as intended, it must be moved to the second position. This ensures that administrators’ access to application data is evaluated before the third rule, which blocks all other operations.
-To reorder the rule, click the two vertical arrows icon in the policy toolbar. This will display the Order column. Then click the up-arrow icon in the row corresponding to the new rule to move it to the desired position.
+To reorder the rule, click the two vertical arrows icon in the policy toolbar. This will display the Order column. Then click the up-arrow icon in the row corresponding to the new rule to move it to the desired position. Use **OK** button to save changes.
 [![image](../images/polrepbas73.webp){ width="99%" }](../images/polrepbas73.webp) 
 
-1.	After saving the policy, you will return to the Policy Installation window. To refresh (reinstall) the policy, click Run Once Now. You should notice that the number of rules in the installed policy has changed from 3 to 4, and the policy installation timestamp has been updated to the current time.
+1.	After saving the policy, you will return to the **Policy Installation** window. To refresh (reinstall) the policy, click **Run Once Now**. You should notice that the number of rules in the installed policy has changed from 3 to 4, and the policy installation timestamp has been updated to the current time.
 [![image](../images/polrepbas74.webp){ width="99%" }](../images/polrepbas74.webp) 
 
 1.	Verify the rule behavior by logging in as one of the administrators and attempting to retrieve data from the game.customers table. Then try to delete several records and observe the outcome.
@@ -426,40 +438,71 @@ SELECT * FROM  game.customers LIMIT 10;
 DELETE FROM game.customers WHERE street='Gliwice';
 ```
 [![image](../images/polrepbas75.webp){ width="99%" }](../images/polrepbas75.webp) 
-
 As expected, the administrator was able to view customer data, but the attempt to delete records was blocked.
 
 ## Object references
 
-1.	Login to database as a postgres and confirm lack of access to game.credit_cards table
+1.	Login to database as a **postgres** and confirm lack of access to **game.credit_cards** table
+```sql linenums="1"
 su - postgres
 
 psql
 
 SELECT * FROM game.customers;
-1.	In the table name game.customers, we use a <schema.table> reference, which allows us to distinguish between objects with the same name in different schemas.
-However, it is possible to use a fully qualified table name, which in the case of Postgres has the form <database.schema.table>. The current database name you can gather from command:
+```
+
+1.	In the table name like **game.customers**, we use a &lt;schema.table> reference, which allows us to distinguish between objects with the same name in different schemas. However, it is possible to use a fully qualified table name, which in the case of Postgres has the form &lt;database.schema.table>. The current database name you can gather from command:
+```sql
 SELECT current_database();
-1.	Let's now try to retrieve data from the public.customer table in the postgres database.
+```
+
+1.	Let's now try to retrieve data from the **game.customer** table in the **postgres** database.
+```sql
 SELECT * FROM  postgres.game.credit_cards LIMIT 10;
- 
+```
+[![image](../images/polrepbas76.webp){ width="99%" }](../images/polrepbas76.webp) 
+
 1.	As it turns out, this time the agent did not block the query. Within a database session, there's a concept of the current session context, which can be defined to a default value after a user logs in. We can display this context using the command:
+```sql
 SELECT current_schema();
-1.	In other words, if we reference an object in the current session without providing a schema, the default one – public - will be assumed. If we change it to game one we will be able to refer tables by their names only. Again data will be leaked. 
+```
+
+1.	In other words, if we reference an object in the current session without providing a schema, the default one – **public** - will be assumed. If we change it to **game** one we will be able to refer tables by their names only. Again data will be leaked. 
+```sql linenums="1"
 SET search_path TO game;
 
 SELECT current_schema();
 
 SELECT * FROM credit_cards LIMIT 10;
+```
+[![image](../images/polrepbas77.webp){ width="99%" }](../images/polrepbas77.webp) 
+
+1.	And once again, data from the customers table was retrieved. The reason for this is that our rule indicates only references to the **game.customers** object should be blocked, but in a real environment, our table can also be referenced as **postgres.game.customer** and **customers**. These three forms can be replaced with two references to the objects: **customers** and **%.customers**, where the second element uses a wildcard pattern preceding the table name. Let's try to modify our policy.
+
+1.	Information about the application tables is stored in the *Application tables on postgres* group. You can edit it through the rule definition, but you can also modify it directly from **Group Builder**. Open the **Group Builder** view, select the desired group, and click the pencil icon to edit it.
+[![image](../images/polrepbas78.webp){ width="99%" }](../images/polrepbas78.webp)
+
+1.	To cover all possible object reference formats, enter each of the five tables using both **&lt;table>** and **&lt;%.table>** notation. The second format acts as a pattern that matches references made either through the schema name or though the database and schema name.
+
+    !!! note "Expected member list:"
+        - credit_cards
+        - %.credit_cards
+        - customers
+        - %.customers
+        - extras
+        - %.extras
+        - features
+        - %.features
+        - transaction
+        - %.transaction
+
+    [![image](../images/polrepbas79.webp){ width="99%" }](../images/polrepbas79.webp)
  
-1.	And once again, data from the customers table was retrieved. The reason for this is that our rule indicates only references to the public.customers object should be blocked, but in a real environment, our table can also be referenced as postgres.public.customer and customers. These three forms can be replaced with two references to the objects: customers and %.customers, where the second element uses a wildcard pattern preceding the table name. Let's try to modify our policy.
-1.	Information about the application tables is stored in the Application Tables on Postgres group. You can edit it through the rule definition, but you can also modify it directly from Group Builder. Open the Group Builder view, select the desired group, and click the pencil icon to edit it.
+1.	After saving the changes to the group, reopen the **Policy Installation** view and click **Run Once Now** to refresh the policy on the collector.
+[![image](../images/polrepbas80.webp){ width="99%" }](../images/polrepbas80.webp)
  
-1.	To cover all possible object reference formats, enter each of the five tables using both <table> and <%.table> notation. The second format acts as a pattern that matches references made either through the schema name or though the database and schema name.
- 
-1.	After saving the changes to the group, reopen the Policy Installation view and click Run Once Now to refresh the policy on the collector.
- 
-1.	Try again access to object using three different object references as a tom user. Confirm that all table references are correctly blocked.
+1.	Try again access to object using three different object references as a **postgres** user. Confirm that all table references are correctly blocked.
+```sql linenums="1"
 su - postgres
 
 psql
@@ -473,20 +516,48 @@ SET search_path TO game;
 SELECT * FROM customers;
 
 \q
- 
+
+exit
+```
+[![image](../images/polrepbas81.webp){ width="79%" }](../images/polrepbas81.webp)
+
 
 ## Blocking on column level
-1.	Implement an additional rule that restricts access to payment card data to a specific set of users. The credit_cards table contains a card_number column, and this is the data element that requires additional protection. Assume that only the jerry administrator account should be allowed to view this data.
+
+1.	Implement an additional rule that restricts access to payment card data to a specific set of users. The **credit_cards** table contains a *card_number* column, and this is the data element that requires additional protection. Assume that only the **jerry** administrator account should be allowed to view this data.
+```sql linenums="1"
 psql "postgresql://raptor.demo.guardium:5432/postgres?sslmode=require" -U tom -W
 
 SELECT * FROM game.credit_cards LIMIT 10;
+
+\q
+```
+[![image](../images/polrepbas82.webp){ width="99%" }](../images/polrepbas82.webp) 
+
+1.	Edit the policy and add a new rule named *Access to PCI data on postgres*. Add two *Session* criteria. The first should limit the rule to POSTGRESQL traffic. The second should restrict access to database users not defined in a new group named *Administrators with access to PCI data*, which initially contains a single member: **jerry**. Next, add two SQL criteria to limit the activity to *SELECT* statements and to specific table columns. Use *Object / Field* Group and create a new group named *Postgres PCI fields*. This group should contain two-part values consisting of the table name and column name. Add references to the card_number column using all supported table notations (&lt;table> and &lt;%.table>) to ensure that every possible reference format to the protected column is covered.
+
+    !!! note ""
+        - *Database Type* `=` POSTGRESSQL
+        - *Database User* `Not in Group` Administrators with access to PCI data
+        - *Object/Field* `In Group` Postgres PCI fields
+        - *Command* `In Group` Select Command
+
+    !!! note "*Administrators with access to PCI data* members:"
+        - JERRY (SUPER USER)
+
+    !!! note "*Postgres PCI fields* members:"
+        - credit_cards+card_number
+        - %.credit_cards+card_number
+
+    [![image](../images/polrepbas83.webp){ width="99%" }](../images/polrepbas83.webp) 
+
+    The conditions in this rule identify an unauthorized attempt to access PCI data, so add the following two actions: **S-GATE TERMINATE** and **LOG FULL DETAILS**.
+
+1.	After saving the rule, move it to position 2 and **Save** the policy.
+[![image](../images/polrepbas84.webp){ width="99%" }](../images/polrepbas84.webp)
  
-1.	Edit the policy and add a new rule named Access to PCI data on postgres. Add two Session criteria. The first should limit the rule to POSTGRESQL traffic. The second should restrict access to database users not defined in a new group named Administrators with access to PCI data, which initially contains a single member: jerry. Next, add two SQL criteria to limit the activity to SELECT statements and to specific table columns. Use Object / Field Group and create a new group named Postgres PCI fields. This group should contain two-part values consisting of the table name and column name. Add references to the card_number column using all supported table notations (<table> and <%.table>) to ensure that every possible reference format to the protected column is covered.
- 
-The conditions in this rule identify an unauthorized attempt to access PCI data, so add the following two actions: S-GATE TERMINATE and LOG FULL DETAILS.
-1.	After saving the rule, move it to position 2 and save the policy.
- 
-1.	Reinstall policy and let’s test it as tom user.  Access to the credit_cards table is terminated whenever a SELECT statement directly or indirectly references the card_number column. If a query does not reference this data, it is allowed to be executed successfully.
+1.	Reinstall policy and let’s test it as **tom** user.  Access to the **credit_cards** table is terminated whenever a *SELECT* statement directly or indirectly references the **card_number** column. If a query does not reference this data, it is allowed to be executed successfully (if action is *SELECT*).
+```sql linenums="1"
 psql "postgresql://raptor.demo.guardium:5432/postgres?sslmode=require" -U tom -W
 
 SELECT * FROM game.credit_cards LIMIT 10;
@@ -496,8 +567,11 @@ SELECT card_number FROM game.credit_cards LIMIT 10;
 SELECT card_id FROM postgres.game.credit_cards LIMIT 10;
 
 \q
- 
-1.	And now, do the same thing as jerry and confirm his access to PCI data.
+```
+[![image](../images/polrepbas85.webp){ width="99%" }](../images/polrepbas85.webp)
+
+1.	And now, do the same thing as **jerry** and confirm his access to *PCI* data.
+```sql linenums="1"
 psql "postgresql://localhost:5432/postgres?sslmode=require" -U jerry -W
 
 SELECT * FROM game.credit_cards LIMIT 10;
@@ -507,10 +581,13 @@ SELECT card_number FROM game.credit_cards LIMIT 10;
 SELECT card_id FROM postgres.game.credit_cards LIMIT 10;
 
 \q
-
+```
+[![image](../images/polrepbas101.webp){ width="99%" }](../images/polrepbas101.webp)
 
 ## Hacker is smarter
-1.	Let's assume we are dealing with a security breach where someone with stolen postgres user credentials on the raptor machine wants to retrieve customer data and executes:
+
+1.	Let's assume we are dealing with a security breach where someone with stolen **postgres** user credentials on the **raptor** machine wants to retrieve customer data and executes:
+```sql linenums="1"
 su - postgres
 
 psql
@@ -520,87 +597,155 @@ psql
 select * from game.credit_cards limit 1;
 
 \d game.credit_cards;
-1.	The first command is a simple reconnaissance aimed at finding interesting tables. The name credit_cards should be interesting to the intruder, and he tries to retrieve one row from this table. He specifically limits the data scope so as not to trigger policies controlling massive data extraction. He realizes that some mechanism controls access to this table and decide to check table structure.
+```
+
+1.	The first command is a simple reconnaissance aimed at finding interesting tables. The name **credit_cards** should be interesting to the intruder, and he tries to retrieve one row from this table. He specifically limits the data scope so as not to trigger policies controlling massive data extraction. He realizes that some mechanism controls access to this table and decide to check table structure.
+[![image](../images/polrepbas86.webp){ width="99%" }](../images/polrepbas86.webp)
  
 1.	Knowledge of the table structure opens the possibility for us to reference data indirectly through the mechanism of parameterized functions. A hypothetical bad guy can create a procedure like this one:
+```sql
 SET search_path TO game;
-
+```
+and
+```sql
 CREATE FUNCTION get_table(tablename text)
 RETURNS SETOF record AS $$
 BEGIN
     RETURN QUERY EXECUTE format('SELECT * FROM %I', tablename);
 END;
 $$ LANGUAGE plpgsql;
- 
+```
+[![image](../images/polrepbas87.webp){ width="89%" }](../images/polrepbas87.webp)
+
 1.	Because the account used for the attack has high privileges, the function was created and can now be easily invoked. Thanks to the knowledge of the data stream returned from the table, the data can be retrieved.
+```sql
 SELECT * FROM get_table('credit_cards') AS t(cid uuid, userid uuid, cc character varying(30), cv character varying(12) ) LIMIT 1;
+```
+[![image](../images/polrepbas88.webp){ width="99%" }](../images/polrepbas88.webp)
  
 1.	After data extraction, an experienced hacker will try to cover their tracks by deleting the function.
+```sql
 DROP FUNCTION get_table;
 
 \q
-
+```
 
 ## Alert on suspicious activity
 
-1.	Blocking, and preventative actions in general, seem at first glance to be a good mechanism for data protection, but due to the sensitivity of production environments to configuration changes, they are rarely implemented. The previous example also illustrates how deceptive the assumption that we control all data access vectors can be, and that there may always be methods we are not aware of. This makes it even more critical to have full monitoring of privileged user access and the ability to inform the organization's security systems about a situation. Typically, such a solution is a SIEM, which we feed events. Let's try to build a new rule that will send information to an external system about the use of the functions that are of interest to us in this case: CREATE FUNCTION and DROP FUNCTION.
-To do this, re-edit our policy and add a new rule with name Alert suspicious commands execution. The session will again narrow its scope to the Postgres database and traffic not belonging to application.
-At the SQL criteria level, search for the use of the CREATE FUNCTION and DROP FUNCTION SQL commands. Store the list of suspicious commands in a group named Suspicious commands for non application traffic.
-For the rule action, add ALERT ONCE PER SESSION from the ALERT action group. When selecting any alert action, an additional configuration window will appear where you must specify the message template and the delivery method. Select the standard template and Remote SYSLOG.
+1.	Blocking, and preventative actions in general, seem at first glance to be a good mechanism for data protection, but due to the sensitivity of production environments to configuration changes, they are rarely implemented. The previous example also illustrates how deceptive the assumption that we control all data access vectors can be, and that there may always be methods we are not aware of. This makes it even more critical to have full monitoring of privileged user access and the ability to inform the organization's security systems about a situation. Typically, such a solution is a *SIEM*, which we feed events. Let's try to build a new rule that will send information to an external system about the use of the functions that are of interest to us in this case: **CREATE FUNCTION** and **DROP FUNCTION**.
+
+    To do this, re-edit our policy and add a new rule with name *Alert suspicious commands execution*. The session will again narrow its scope to the **PostgresSQL** database and traffic not belonging to application.
+
+    At the SQL criteria level, search for the use of the **CREATE FUNCTION** and **DROP FUNCTION** SQL commands. Store the list of suspicious commands in a group named *Suspicious commands for non application traffic*.
+
+    For the rule action, add **ALERT ONCE PER SESSION** from the *ALERT* action group. When selecting any alert action, an additional configuration window will appear where you must specify the message template and the delivery method. Select the **standard template** and *Remote SYSLOG*.
+
+    !!! note "policy rule criteria:"
+        - *Database Type* `=` **POSTGRESQL**
+        - *Tuple 5 values* `Not In Group` **Postgres application profiles**
+        - *Command* `In Group` **Suspicious commands for non application traffic**
+
+    !!! note "*Suspicious commands for non application traffic* group members"
+        - CREATE FUNCTION
+        - DROP FUNCTION
+
+    [![image](../images/polrepbas89.webp){ width="99%" }](../images/polrepbas89.webp)
  
-1.	After saving the rule, move it above the Block access for other users rule and save the policy.
+1.	After saving the rule, move it above the *Block access for other users* rule and **Save** the policy.
+[![image](../images/polrepbas90.webp){ width="99%" }](../images/polrepbas90.webp)
  
 1.	Don't forget to reinstall the policy.
- 
-1.	Let's test the new policy functionality.
+[![image](../images/polrepbas91.webp){ width="99%" }](../images/polrepbas91.webp)
+
+1.	Let's test the new policy rule functionality.
+```sql linenums="1"
 psql
 
 SET search_path TO game;
-
+```
+and
+```sql
 CREATE FUNCTION get_table(tablename text)
 RETURNS SETOF record AS $$
 BEGIN
     RETURN QUERY EXECUTE format('SELECT * FROM %I', tablename);
 END;
 $$ LANGUAGE plpgsql;
-
+```
+and
+```sql linenums="1"
 SELECT * FROM get_table('credit_cards') AS t(cid uuid, userid uuid, cc character varying(30), cv character varying(12) ) LIMIT 1;
 
 DROP FUNCTION get_table;
 
 \q
-1.	Let's check the violations report. We should be surprised that two records appeared in the report instead of the one we expected, which was related to the ALERT ONCE PER SESSION action. In Guardium, the violations presented in this report are internal events and are always stored unless we explicitly discard them using ALERT ONLY action.
+
+exit
+```
+
+1.	Let's check the *Policy Violations Details* report. We should be surprised that two records appeared in the report instead of the one we expected, which was related to the **ALERT ONCE PER SESSION** action. In **Guardium**, the violations presented in this report are internal events and are always stored unless we explicitly discard them using **ALERT ONLY** action.
+[![image](../images/polrepbas92.webp){ width="99%" }](../images/polrepbas92.webp)
  
-1.	To see what events were sent via syslog, we will build a new report. Open Query-Report Builder, select the Alert report domain, and use the plus icon.
- 
-1.	Enter the report name Sent alerts (Training), and set the main entity to the value Message Sent, and then proceed to the Selected Columns section. Add the Message Date, Message Type, and Message STATUS fields from the Message Sent entity, and the Message Text field from the entity with the same name to the report. Switch to Sort Order section. Set the sorting in descending order for the Message Date column and save the report definition.
- 
-1.	Add the just created report to our Policies and Reports dashboard.
-1.	Review our new report, and you should see only one sent event related to our previous session, which contains a reference to the first monitored command: CREATE FUNCTION.
- 
-10.	We will now feed the SIEM system with information about suspicious commands executed by privileged users.
+1.	To see what events were sent via syslog, we will build a new report. Open **Query-Report Builder**, select the **Alert** report domain, and use the plus icon <span class="mb">+</span>.
+[![image](../images/polrepbas93.webp){ width="99%" }](../images/polrepbas93.webp)
+
+1.	Enter the report name *Sent alerts (Training)*, and set the **main entity** to the value *Message Sent*, and then proceed to the *Selected Columns* section. Add the *Message Date*, *Message Type*, and *Message STATUS* fields from the *Message Sent* entity, and the *Message Text* field from the entity with the same name to the report. Switch to *Sort Order* section. Set the sorting in descending order for the *Message Date* column and Save the report definition.
+
+    !!! note "report fields:"
+        - Messages Sent :material-arrow-right: Message Date
+        - Messages Sent :material-arrow-right: Message Type
+        - Messages Sent :material-arrow-right: Message STATUS
+        - Messages Text :material-arrow-right: Message Text
+
+    [![image](../images/polrepbas94.webp){ width="99%" }](../images/polrepbas94.webp) 
+
+1.	Add the just created report to our *Policies and Reports* dashboard. Review our new report, and you should see only one sent event related to our previous session, which contains a reference to the first monitored command: **CREATE FUNCTION**.
+[![image](../images/polrepbas95.webp){ width="99%" }](../images/polrepbas95.webp)
+
+1.	We will now feed the SIEM system with information about suspicious commands executed by privileged users.
 
 ## Bad guys will always find a way
-1.	Data access languages provide many different methods for referencing data. Even though we block access to an object by name and alert on the attempt to create a function that could lead to data leakage, other possibilities likely still exist.
-1.	Let's once again become a hypothetical intruder who, as we remember, was able to learn what the table structure looks like.
+
+1.	Data access languages provide many different methods for referencing data. Even though we block access to an object by name and alert on the attempt to create a function that could lead to data leakage, other possibilities likely still exist. Let's once again become a hypothetical intruder who, as we remember, was able to learn what the table structure looks like.
+```sql linenums="1"
+su - postgres
+
 psql
 
 \d game.credit_cards
- 
-1.	It should make us wonder why the command \d game.credit_cards was not blocked, since it refers to a table we are protecting. The answer is simple - \d is not a command, but only a postgres client alias which translates it into a proper SQL command and presents the desired result, which is the table structure.
+```
+[![image](../images/polrepbas96.webp){ width="99%" }](../images/polrepbas96.webp)  
+
+1.	It should make us wonder why the command `\d game.credit_cards` was not blocked, since it refers to a table we are protecting. The answer is simple - \d is not a command, but only a postgres client alias which translates it into a proper *SQL* command and presents the desired result, which is the table structure.
 So what is being executed, and why didn't the system block this activity?
-Analyze the list of SQL in the current session of the user postgres in the Full SQL (Policies) report. You will notice many complex queries, and one of them will look as follows:
+
+    Analyze the list of *SQL* in the current session of the user postgres in the *Full SQL (Policies)* report. You will notice many complex queries, and one of them will look as follows:
+    
+    [![image](../images/polrepbas97.webp){ width="99%" }](../images/polrepbas97.webp)
+    
+    Execute it yourself.
+
+    ```sql
+    SELECT c.oid, n.nspname, c.relname FROM pg_catalog.pg_class c LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace WHERE c.relname OPERATOR(pg_catalog.~) '^(credit_cards)$' COLLATE pg_catalog.default AND n.nspname OPERATOR(pg_catalog.~) '^(game)$' COLLATE pg_catalog.default ORDER BY 2, 3;
+    ```
+    
+    [![image](../images/polrepbas98.webp){ width="99%" }](../images/polrepbas98.webp)
+
+1.	It turns out that this *SQL* translates the table name into its *unique ID* and does not reference the table directly, but only the information catalog about tables (the **OID** number is specific to the environment and yours may differ from the one presented in the lab).
+
+    Look closely at the *SQLs* in the report and you will notice that instead of the table name, the *Postgres* client uses **OID** references.
+    
+    [![image](../images/polrepbas99.webp){ width="99%" }](../images/polrepbas99.webp)
  
-Execute it yourself.
-SELECT c.oid, n.nspname, c.relname FROM pg_catalog.pg_class c LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace WHERE c.relname OPERATOR(pg_catalog.~) '^(credit_cards)$' COLLATE pg_catalog.default AND n.nspname OPERATOR(pg_catalog.~) '^(game)$' COLLATE pg_catalog.default ORDER BY 2, 3;
- 
-1.	It turns out that this SQL translates the table name into its unique ID and does not reference the table directly, but only the information catalog about tables (the OID number is specific to the environment and yours may differ from the one presented in the lab). 
-Look closely at the SQLs in the report and you will notice that instead of the table name, the Postgres client uses OID references.
- 
-1.	An experienced Postgres database administrator knows very well that they can reference a table via OID instead of its name and retrieve data from it, as long as they know the column names (replace <your_customers_OID> by appropriate value retrieved in your lab instance).
+1.	An experienced *Postgres* database administrator knows very well that they can reference a table via **OID** instead of its name and retrieve data from it, as long as they know the column names (replace &lt;your_customers_OID> by appropriate value retrieved in your lab instance).
+```sql
+SET myvars.myoid = '<your credit_cards table OID>';
+```
+and
+```sql
 DO $$
 DECLARE
-    t_oid oid := 16418;
+    t_oid oid := current_setting('myvars.myoid')::oid;
     sql text;
     rec record;
 BEGIN
@@ -611,13 +756,15 @@ BEGIN
     END LOOP;
 END;
 $$;
- 
+```
+[![image](../images/polrepbas100.webp){ width="99%" }](../images/polrepbas100.webp) 
 
+## Appendix
 
-Appendix	Dependencies:
-This lab assumes that you finished the ATAP lab and postgres is installed and configured to intercept encrypted traffic.
-If you did not cover Oracle lab you can skip step I.6
-
-Resources:
+!!! note "Dependencies:"
+    
+!!! note "Resources:"
+        
+!!! note "Instructor notes:"
 
 
