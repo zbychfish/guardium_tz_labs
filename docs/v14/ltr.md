@@ -7,7 +7,7 @@
 cd /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic
 ```
 
-1.	Initiate traffic tool schema
+1.	Start traffic generation on raptor (*PostgresSQL*).
 ```bash linenums="1"
 source venv/bin/activate
 
@@ -372,7 +372,7 @@ grdapi list_cold_storages
 1.	A list of batch jobs running on the **coll1** will be displayed in the report. Among them, there will be activities related to data extraction and transferring the data to the seaweedFS server. The job names will start with *Export:Insights:v6*. The *Next Fire Time* column indicates when the data will be prepared and when we should expect the data to appear in LTR.
 [![image](../images/ltr27.webp){ width="99%" }](../images/ltr27.webp)
  
-1.	In the **cli** session on the **coll1**, run the command below and review the datamart definitions. It is executed every hour, and the data is sent to the seaweedFS server.
+1.	In the **cli** session on the **coll1**, run the command below and review the datamart definitions. It is executed every hour, and the data is sent to the *seaweedFS* server.
 ```bash
 grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 ``` 
@@ -380,7 +380,7 @@ grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 
 ## Use LTR data
 
-1.	A few hours after configuring *LTR*, we should be able to report on the stored data. First, let’s check the datamart status again from the **cli** on the **coll1**. This time, the *Extraction Log* section should contain information about a file in Parquet format that was sent to the seaweedFS server.
+1.	A few hours after configuring *LTR*, we should be able to report on the stored data. First, let’s check the datamart status again from the **cli** on the **coll1**. This time, the *Extraction Log* section should contain information about a file in Parquet format that was sent to the *seaweedFS* server.
 ```bash
 grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 ```
