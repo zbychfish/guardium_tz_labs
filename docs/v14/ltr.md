@@ -350,25 +350,33 @@ grdapi get_cold_storage_app_nodes
 
 grdapi list_cold_storages
 ```
-[![image](../images/ltr21.webp){ width="79%" }](../images/ltr21.webp) 
+[![image](../images/ltr21.webp){ width="79%" }](../images/ltr21.webp)
 
 ## Configuring system to use LTR data
 
-1.	To monitor the process of transferring data from collectors to LTR, create a copy of the default Datamart Extraction Log report. Open on the Central Manager the standard report and use the edit icon. Choose the option to create a copy of the report.
+1.	To monitor the process of transferring data from collectors to *LTR*, create a copy of the default *Datamart Extraction Log* report. Open on the **cm** UI the standard report and use the edit icon :material-pencil:. Choose the option to create a copy of the report.
+[![image](../images/ltr22.webp){ width="99%" }](../images/ltr22.webp)
  
-1.	Name the report LTR Datamart Extraction, then add sorting by Datamart Run Id and add an additional condition so that only Datamart Name containing the word Export in the name are displayed. Save the modified report.
+1.	Name the report *LTR Datamart Extraction*, then add sorting by *Datamart Run Id* and add an additional condition so that only *Datamart Name* containing the word *Export* in the name are displayed. **Save** the modified report.
+[![image](../images/ltr23.webp){ width="99%" }](../images/ltr23.webp)
  
-1.	Next, create a new dashboard named LTR and add to it the report we just created – LTR Datamart Extraction
+1.	Next, create a new dashboard named *LTR* and add to it the report we just created – *LTR Datamart Extraction*,
+[![image](../images/ltr24.webp){ width="99%" }](../images/ltr24.webp)
+
+1.	Add to *LTR* dashboard three more reports: *Cold Storage Ingestion Logs*, *Cold Storage Maintenance Logs* and *Scheduled Jobs*
+[![image](../images/ltr25.webp){ width="99%" }](../images/ltr25.webp)
  
-1.	Add to LTR dashboard three more reports to it: Cold Storage Ingestion Logs, Cold Storage Maintenance Logs and Scheduled Jobs
+1.	Open the *Scheduled Jobs* report in the dashboard and edit the *Runtime Parameters*. Select the **coll1** as the data source.
+[![image](../images/ltr26.webp){ width="99%" }](../images/ltr26.webp)
+
+1.	A list of batch jobs running on the **coll1** will be displayed in the report. Among them, there will be activities related to data extraction and transferring the data to the seaweedFS server. The job names will start with *Export:Insights:v6*. The *Next Fire Time* column indicates when the data will be prepared and when we should expect the data to appear in LTR.
+[![image](../images/ltr27.webp){ width="99%" }](../images/ltr27.webp)
  
-1.	Open the Scheduled Jobs report in the dashboard and edit the Runtime Parameters. Select the collector as the data source.
- 
-1.	A list of batch jobs running on the collector will be displayed in the report. Among them, there will be activities related to data extraction and transferring the data to the MinIO server. The job names will start with Export:Insights:v6. The Next Fire Time column indicates when the data will be prepared and when we should expect the data to appear in LTR.
- 
-1.	In the cli session on the coll1, run the command below and review the datamart definitions. It is executed every hour, and the data is sent to the MinIO server.
+1.	In the **cli** session on the **coll1**, run the command below and review the datamart definitions. It is executed every hour, and the data is sent to the seaweedFS server.
+```bash
 grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
- 
+``` 
+[![image](../images/ltr28.webp){ width="99%" }](../images/ltr28.webp)
 
 ## Use LTR data
 
