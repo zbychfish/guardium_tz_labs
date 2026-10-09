@@ -357,7 +357,7 @@ grdapi list_cold_storages
 1.	To monitor the process of transferring data from collectors to *LTR*, create a copy of the default *Datamart Extraction Log* report. Open on the **cm** UI the standard report and use the edit icon :material-pencil:. Choose the option to create a copy of the report.
 [![image](../images/ltr22.webp){ width="99%" }](../images/ltr22.webp)
  
-1.	Name the report *LTR Datamart Extraction*, then add sorting by *Datamart Run Id* and add an additional condition so that only *Datamart Name* containing the word *Export* in the name are displayed. **Save** the modified report.
+1.	Name the report *LTR Datamart Extraction*, then add descending sorting by *Datamart Run Id* and add an additional condition so that only *Datamart Name* containing the word *%Export%* in the name are displayed. **Save** the modified report.
 [![image](../images/ltr23.webp){ width="99%" }](../images/ltr23.webp)
  
 1.	Next, create a new dashboard named *LTR* and add to it the report we just created – *LTR Datamart Extraction*,
@@ -380,19 +380,23 @@ grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 
 ## Use LTR data
 
-1.	A few hours after configuring LTR, we should be able to report on the stored data.
-1.	First, let’s check the datamart status again from the cli on the coll1. This time, the Extraction Log section should contain information about a file in Parquet format that was sent to the MinIO server.
+1.	A few hours after configuring *LTR*, we should be able to report on the stored data. First, let’s check the datamart status again from the **cli** on the **coll1**. This time, the *Extraction Log* section should contain information about a file in Parquet format that was sent to the seaweedFS server.
 ```bash
 grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 ```
+[![image](../images/ltr29.webp){ width="99%" }](../images/ltr29.webp)
 
-1.	Open the LTR dashboard on the Central Manager, and within it open the Scheduled Jobs report with reference to the collector data. Observe that the jobs related to the datamarts are being executed according to the scheduler.
+1.	Open the *LTR* dashboard on the **cm**, and within it open the *Scheduled Jobs* report with reference to the **coll1** data. Observe that the jobs related to the datamarts are being executed according to the scheduler.
+[![image](../images/ltr30.webp){ width="99%" }](../images/ltr30.webp)
  
-1.	Switch to the LTR Datamart Extraction in the dashboard and select the coll1 as the data source. Observe that each job execution is recorded in detail and includes information about how many records were transferred.
+1.	Switch to the *LTR Datamart Extraction* report in the dashboard and select the **coll1** as the data source. Observe that each job execution is recorded in detail and includes information about how many records were transferred.
+[![image](../images/ltr31.webp){ width="99%" }](../images/ltr31.webp)
  
-1.	The Cold Storage Ingestion Logs report indicates whether the datamart transferred from the collector has been processed and whether the data is ready for use.
- 
-1.	Let’s verify whether the data stored in MinIO can be reported from the Central Manager. In the cm UI, select the new view – Data Lake Reports. It contains several predefined reports. Proceed to run the Full SQL Report by selecting it from the list.
+1.	The *Cold Storage Ingestion Logs* report indicates whether the datamart transferred from the **coll1** has been processed and whether the data is ready for use.
+[![image](../images/ltr32.webp){ width="99%" }](../images/ltr32.webp)
+
+1.	Let’s verify whether the data stored in seaweesFS can be reported from the **cm**. In the **cm** UI, select the new view – **Data Lake Reports**. It contains several predefined reports. Proceed to run the *Data Lake Connection profiling listFull SQL Report* by selecting **Edit** from :material-dots-vertical: menu.
+[![image](../images/ltr33.webp){ width="99%" }](../images/ltr33.webp)
  
 1.	In the report configuration window, select Custom time range and cover the entire current day by choosing from yesterday to tomorrow. Then select Next.
  
@@ -402,9 +406,14 @@ grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
  
 1.	To view the report select it from Report Activity list 
 
-Appendix	Dependencies:
-This lab requires that Oracle lab is fully covered before
+## Appendix
 
-Resources:
+!!! note "Dependencies:"
+    This lab requires that Oracle lab is fully covered before.
+
+!!! note "Resources:"
+    
+    
+!!! note "Instructor notes:"
 
 
