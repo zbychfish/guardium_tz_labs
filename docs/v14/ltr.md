@@ -395,16 +395,23 @@ grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 1.	The *Cold Storage Ingestion Logs* report indicates whether the datamart transferred from the **coll1** has been processed and whether the data is ready for use.
 [![image](../images/ltr32.webp){ width="99%" }](../images/ltr32.webp)
 
-1.	Let’s verify whether the data stored in seaweesFS can be reported from the **cm**. In the **cm** UI, select the new view – **Data Lake Reports**. It contains several predefined reports. Proceed to run the *Data Lake Connection profiling listFull SQL Report* by selecting **Edit** from :material-dots-vertical: menu.
+1.	Let’s verify whether the data stored in seaweesFS can be reported from the **cm**. In the **cm** UI, select the new view – **Data Lake Reports**. It contains several predefined reports. Proceed to run the *Data Lake Connection profiling list* by selecting **Edit** from :material-dots-vertical: menu at the end of the row with its name.
 [![image](../images/ltr33.webp){ width="99%" }](../images/ltr33.webp)
  
-1.	In the report configuration window, select Custom time range and cover the entire current day by choosing from yesterday to tomorrow. Then select Next.
+1.	In the *Define Report* window, select *Custom* time frame and use the available controls to define the report timeframe (from today until tomorrow). Then click **Next**.
+[![image](../images/ltr34.webp){ width="99%" }](../images/ltr34.webp)
  
-1.	Next page allows to schedule report execution or execute just one time (scheduler is enabled if email address has been specified on the previous screen)
- 
-1.	The running report instance should appear in the Report Activity section. Use the Refresh option to monitor the job status. After several dozen seconds, the report should be ready, and the Actions column will provide an option to download the report data in CSV format.
- 
-1.	To view the report select it from Report Activity list 
+1.	On the next page, you can manually modify the query. Since we are running a predefined report, the query body is disabled and cannot be edited. For customized queries, you will be able to adjust the report according to your specific requirements. Press **Next**.
+[![image](../images/ltr35.webp){ width="99%" }](../images/ltr35.webp)
+
+1.	The next step of the report configuration allows you to schedule report execution. In this lab, we want to run the report ad hoc, so we will skip the scheduling options and use **Save Report** immediately.
+[![image](../images/ltr36.webp){ width="99%" }](../images/ltr36.webp)
+
+1.	To generate the report, click the ![image](../images/ltr39.webp){ width="18" } icon. This starts the process of retrieving data from the files stored in the S3 bucket, extracting the contents, and processing the data according to the query definition. The progress of the operation is indicated by dynamically updated status values such as Running and Complete. Once the report has been successfully generated, click the ![image](../images/ltr40.webp){ width="22" } icon to view the results.
+[![image](../images/ltr37.webp){ width="99%" }](../images/ltr37.webp)
+
+1. Review result and **Close** report window.
+[![image](../images/ltr41.webp){ width="99%" }](../images/ltr41.webp)
 
 ## Appendix
 
