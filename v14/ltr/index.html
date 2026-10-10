@@ -1,0 +1,1489 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../polrepbas/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>LTR (lab 12) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#long-term-retention" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LTR (lab 12)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../va/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VA (lab 8)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../winstap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WINSTAP (lab 9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oracle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle monitoring options (lab 10)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../polrepbas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies and Reports basics (lab 11)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LTR (lab 12)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LTR (lab 12)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generate-background-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate background traffic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-s3-bucket-for-ltr-seaweedfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup S3 bucket for LTR (seaweedFS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-ltr-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup LTR node
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#central-manager-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Central Manager setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-system-to-use-ltr-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring system to use LTR data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-ltr-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use LTR data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generate-background-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate background traffic
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-s3-bucket-for-ltr-seaweedfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup S3 bucket for LTR (seaweedFS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-ltr-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup LTR node
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#central-manager-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Central Manager setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-system-to-use-ltr-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring system to use LTR data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-ltr-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use LTR data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="long-term-retention">Long Term Retention</h1>
+<h2 id="generate-background-traffic">Generate background traffic</h2>
+<ol>
+<li>
+<p>On the <strong>raptor</strong> machine, navigate to the directory where the traffic generator is located.
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic
+</code></pre></div></p>
+</li>
+<li>
+<p>Start traffic generation on raptor (<em>PostgresSQL</em>).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+
+guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/pgsql.yaml<span class="w"> </span>run<span class="w"> </span>--duration<span class="w"> </span><span class="m">600</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ltr3.webp"><img alt="image" src="../../images/ltr3.webp" width="99%" /></a> </p>
+</li>
+<li>Confirm that traffic is visible in the <em>Full SQL (Training)</em> report on the Training dashboard on the <strong>coll1</strong>. Keep this session opened to generate traffic in the background.
+<a href="../../images/ltr4.webp"><img alt="image" src="../../images/ltr4.webp" width="99%" /></a> </li>
+</ol>
+<h2 id="setup-s3-bucket-for-ltr-seaweedfs">Setup S3 bucket for LTR (seaweedFS)</h2>
+<ol>
+<li>
+<p>First, on the <strong>raptor</strong>, we will create certificates that will be used by the <em>seaweedFS</em> service. We start with the directory structure.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seaweedfs/<span class="o">{</span>data,certs,nginx<span class="o">}</span>
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seaweedfs/certs/ca
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Create the <em>CA</em> certificate and copy it to the <code>/home/seaweedfs</code> subdirectory
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.key<span class="w"> </span><span class="m">4096</span>
+
+openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-new<span class="w"> </span>-nodes<span class="w"> </span>-key<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.key<span class="w"> </span>-sha256<span class="w"> </span>-days<span class="w"> </span><span class="m">3650</span><span class="w"> </span>-subj<span class="w"> </span><span class="s2">"/CN=seaweedFS-Root-CA"</span><span class="w"> </span>-out<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.crt
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Add the new <em>CA</em> certificate to the trusted certificates on the <strong>raptor</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>cp<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.crt<span class="w"> </span>/etc/pki/ca-trust/source/anchors/
+
+update-ca-trust
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Create the private key for the <em>seaweedFS</em> service certificate and then generate the <em>CSR</em>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>/opt/seaweedfs/certs/tls.key<span class="w"> </span><span class="m">4096</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/opt/seaweedfs/certs/tls.key
+
+openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>/opt/seaweedfs/certs/tls.key<span class="w"> </span>-out<span class="w"> </span>/opt/seaweedfs/seaweedfs.csr<span class="w"> </span>-subj<span class="w"> </span><span class="s2">"/CN=seaweedfs.demo.guardium"</span><span class="w"> </span>-addext<span class="w"> </span><span class="s2">"subjectAltName=DNS:raptor.demo.guardium,IP:&lt;raptor_IP_address&gt;"</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Create the <em>seaweedFS</em> certificate based on the new <em>CA</em> and the <em>CSR</em>. Insert the correct IP address of <strong>raptor</strong> machine!
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-in<span class="w"> </span>/opt/seaweedfs/seaweedfs.csr<span class="w"> </span>-CA<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.crt<span class="w"> </span>-CAkey<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.key<span class="w"> </span>-CAcreateserial<span class="w"> </span>-out<span class="w"> </span>/opt/seaweedfs/certs/tls.crt<span class="w"> </span>-days<span class="w"> </span><span class="m">3600</span><span class="w"> </span>-sha256<span class="w"> </span>-copy_extensions<span class="w"> </span>copy
+</code></pre></div></p>
+</li>
+<li>
+<p>Create file with full certificate chain and set the correct access to files in <code>seaweedfs</code> directory.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>cat<span class="w"> </span>/opt/seaweedfs/certs/tls.crt<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.crt<span class="w"> </span>&gt;<span class="w"> </span>/opt/seaweedfs/certs/fullchain.crt
+
+chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/opt/seaweedfs/certs/*
+
+chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/opt/seaweedfs/certs/tls.key<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.key
+
+chcon<span class="w"> </span>-Rt<span class="w"> </span>container_file_t<span class="w"> </span>/opt/seaweedfs
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Create <strong>nginx</strong> configuration file <code>/opt/seaweedfs/nginx/nginx.conf</code>.
+<div class="highlight"><pre><span></span><code><span class="k">events</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">worker_connections</span><span class="w"> </span><span class="mi">1024</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">upstream</span><span class="w"> </span><span class="s">seaweedfs_s3</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">server</span><span class="w"> </span><span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">8332</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">listen</span><span class="w"> </span><span class="mi">8333</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">server_name</span><span class="w"> </span><span class="s">raptor.demo.guardium</span><span class="w"> </span><span class="s">_</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kn">ssl_certificate</span><span class="w"> </span><span class="s">/etc/nginx/certs/fullchain.crt</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/etc/nginx/certs/tls.key</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1"># Zwiększenie limitu uploadu dla S3</span>
+<span class="w">        </span><span class="kn">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://seaweedfs_s3</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$http_host</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1"># Wymagane dla streamingu dużych plików S3</span>
+<span class="w">            </span><span class="kn">proxy_http_version</span><span class="w"> </span><span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+<span class="w">            </span><span class="kn">proxy_request_buffering</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Create file to define <strong>s3admin</strong> user - <code>/opt/seaweedfs/s3.json</code>. Set you own <em>secret key</em> value.
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"identities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3admin"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"credentials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"accessKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3admin"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"secretKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your s3 secret&gt;"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"Admin"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"Read"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"Write"</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">"List"</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Create <code>/opt/seaweedfs/security.toml</code> file with key. As a key used random value, for example generate by command:
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">32</span>
+</code></pre></div>
+<code>/opt/seaweedfs/security.toml</code> content:
+<div class="highlight"><pre><span></span><code><span class="k">[jwt.filer_signing]</span>
+<span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&lt;random hex value&gt;"</span>
+
+<span class="k">[jwt.filer_signing.read]</span>
+<span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&lt;random hex value&gt;"</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Set correct rights to <strong>nginx</strong> config file.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/opt/seaweedfs/nginx/nginx.conf
+chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/opt/seaweedfs/s3.json
+chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/opt/seaweedfs/security.toml
+chcon<span class="w"> </span>-t<span class="w"> </span>container_file_t<span class="w"> </span>/opt/seaweedfs/nginx/nginx.conf
+chcon<span class="w"> </span>-t<span class="w"> </span>container_file_t<span class="w"> </span>/opt/seaweedfs/s3.json
+chcon<span class="w"> </span>-t<span class="w"> </span>container_file_t<span class="w"> </span>/opt/seaweedfs/security.toml
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Create <em>quadlet</em> file for <em>seaweedfs</em> service - <code>/etc/systemd/system/seaweedfs-stack.service</code>.
+<div class="highlight"><pre><span></span><code><span class="k">[Unit]</span>
+<span class="n">Description</span><span class="o">=</span><span class="err">SeaweedFS S</span><span class="mi">3</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="n">Nginx</span><span class="w"> </span><span class="n">TLS</span><span class="w"> </span><span class="n">Proxy</span><span class="w"> </span><span class="n">Stack</span>
+<span class="n">After</span><span class="o">=</span><span class="err">network-online.target</span>
+<span class="n">Wants</span><span class="o">=</span><span class="err">network-online.target</span>
+
+<span class="k">[Service]</span>
+<span class="n">Restart</span><span class="o">=</span><span class="err">always</span>
+<span class="n">TimeoutStartSec</span><span class="o">=</span><span class="mi">120</span>
+
+<span class="n">ExecStartPre</span><span class="o">=</span><span class="err">-/usr/bin/podman pod rm -f seaweedfs-pod</span>
+<span class="n">ExecStartPre</span><span class="o">=</span><span class="err">/usr/bin/podman pod create --name seaweedfs-pod -p </span><span class="mi">8333</span><span class="err">:</span><span class="n">8333</span><span class="w"> </span><span class="n">-p</span><span class="w"> </span><span class="n">9333</span><span class="err">:</span><span class="n">9333</span>
+
+<span class="n">ExecStartPre</span><span class="o">=</span><span class="err">/usr/bin/podman run -d --pod seaweedfs-pod --name seaweedfs-server \</span>
+<span class="w">  </span><span class="n">-v</span><span class="w"> </span><span class="err">/</span><span class="n">opt</span><span class="err">/</span><span class="n">seaweedfs</span><span class="err">/</span><span class="n">data</span><span class="err">:/</span><span class="n">data</span><span class="err">:</span><span class="n">z</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="n">-v</span><span class="w"> </span><span class="err">/</span><span class="n">opt</span><span class="err">/</span><span class="n">seaweedfs</span><span class="err">/</span><span class="n">s3</span><span class="p">.</span><span class="n">json</span><span class="err">:/</span><span class="n">etc</span><span class="err">/</span><span class="n">seaweedfs</span><span class="err">/</span><span class="n">s3</span><span class="p">.</span><span class="n">json</span><span class="err">:</span><span class="n">ro</span><span class="err">,</span><span class="n">z</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="n">-v</span><span class="w"> </span><span class="err">/</span><span class="n">opt</span><span class="err">/</span><span class="n">seaweedfs</span><span class="err">/</span><span class="n">security</span><span class="p">.</span><span class="n">toml</span><span class="err">:/</span><span class="n">etc</span><span class="err">/</span><span class="n">seaweedfs</span><span class="err">/</span><span class="n">security</span><span class="p">.</span><span class="n">toml</span><span class="err">:</span><span class="n">ro</span><span class="err">,</span><span class="n">z</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="n">chrislusf</span><span class="err">/</span><span class="n">seaweedfs</span><span class="err">:</span><span class="n">latest</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">-dir</span><span class="o">=</span><span class="err">/data -filer -s</span><span class="mi">3</span><span class="w"> </span><span class="n">-s3</span><span class="p">.</span><span class="n">port</span><span class="o">=</span><span class="mi">8332</span><span class="w"> </span><span class="n">-s3</span><span class="p">.</span><span class="n">iam</span><span class="p">.</span><span class="n">config</span><span class="o">=</span><span class="err">/etc/seaweedfs/s</span><span class="mi">3</span><span class="p">.</span><span class="n">json</span>
+
+<span class="n">ExecStartPre</span><span class="o">=</span><span class="err">/usr/bin/sleep </span><span class="mi">2</span>
+
+<span class="n">ExecStart</span><span class="o">=</span><span class="err">/usr/bin/podman run --rm --pod seaweedfs-pod --name seaweedfs-proxy \</span>
+<span class="w">  </span><span class="n">-v</span><span class="w"> </span><span class="err">/</span><span class="n">opt</span><span class="err">/</span><span class="n">seaweedfs</span><span class="err">/</span><span class="n">nginx</span><span class="err">/</span><span class="n">nginx</span><span class="p">.</span><span class="n">conf</span><span class="err">:/</span><span class="n">etc</span><span class="err">/</span><span class="n">nginx</span><span class="err">/</span><span class="n">nginx</span><span class="p">.</span><span class="n">conf</span><span class="err">:</span><span class="n">ro</span><span class="err">,</span><span class="n">z</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="n">-v</span><span class="w"> </span><span class="err">/</span><span class="n">opt</span><span class="err">/</span><span class="n">seaweedfs</span><span class="err">/</span><span class="n">certs</span><span class="err">:/</span><span class="n">etc</span><span class="err">/</span><span class="n">nginx</span><span class="err">/</span><span class="n">certs</span><span class="err">:</span><span class="n">ro</span><span class="err">,</span><span class="n">z</span><span class="w"> </span><span class="err">\</span>
+<span class="w">  </span><span class="n">docker</span><span class="p">.</span><span class="n">io</span><span class="err">/</span><span class="n">library</span><span class="err">/</span><span class="n">nginx</span><span class="err">:</span><span class="n">alpine</span><span class="w"> </span><span class="n">nginx</span><span class="w"> </span><span class="n">-g</span><span class="w"> </span><span class="s2">"daemon off;"</span>
+
+<span class="n">ExecStop</span><span class="o">=</span><span class="err">/usr/bin/podman pod stop seaweedfs-pod</span>
+<span class="n">ExecStopPost</span><span class="o">=</span><span class="err">/usr/bin/podman pod rm -f seaweedfs-pod</span>
+
+<span class="k">[Install]</span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="err">multi-user.target</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Open the <em>TLS</em> port (8333).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">8333</span>/tcp
+
+firewall-cmd<span class="w"> </span>--reload
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Now we can start the seaweedFS container.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>systemctl<span class="w"> </span>daemon-reload
+
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>seaweedfs-stack
+
+systemctl<span class="w"> </span>start<span class="w"> </span>--now<span class="w"> </span>seaweedfs-stack
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Check <em>TLS</em> connection to service.
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>raptor.demo.guardium:8333<span class="w"> </span>-servername<span class="w"> </span>raptor.demo.guardium<span class="w"> </span>&lt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"(Issuer:|Subject:|Not After|DNS:|IP Address:)"</span>
+</code></pre></div>
+<a href="../../images/ltr1.webp"><img alt="image" src="../../images/ltr1.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Install the <strong>AWS</strong> client.
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span>
+
+curl<span class="w"> </span><span class="s2">"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">"awscliv2.zip"</span>
+
+unzip<span class="w"> </span>awscliv2.zip
+
+./aws/install
+
+aws<span class="w"> </span>--version
+</code></pre></div>
+<a href="../../images/ltr2.webp"><img alt="image" src="../../images/ltr2.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Configure access to <em>seaweedFS</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">profile parameters:</p>
+<ul>
+<li>AWS Access Key ID: s3admin</li>
+<li>AWS Secret Access Key: &lt;secret key defined in point 8&gt;</li>
+<li>Default region name: us-east-1</li>
+<li>Default output format: json</li>
+</ul>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>configure<span class="w"> </span>--profile<span class="w"> </span>seaweed
+
+aws<span class="w"> </span>configure<span class="w"> </span><span class="nb">set</span><span class="w"> </span>profile.seaweed.ca_bundle<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.crt
+</code></pre></div></td></tr></table></div>
+<p><a href="../../images/ltr38.webp"><img alt="image" src="../../images/ltr38.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Create an <em>S3</em> bucket for <em>LTR</em> purposes (name it <strong>guardium-ltr</strong>)
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>--profile<span class="w"> </span>seaweed<span class="w"> </span>--endpoint-url<span class="w"> </span>https://raptor.demo.guardium:8333<span class="w"> </span>s3<span class="w"> </span>mb<span class="w"> </span>s3://guardium-ltr
+
+aws<span class="w"> </span>--profile<span class="w"> </span>seaweed<span class="w"> </span>--endpoint-url<span class="w"> </span>https://raptor.demo.guardium:8333<span class="w"> </span>s3<span class="w"> </span>ls
+</code></pre></div>
+<a href="../../images/ltr5.webp"><img alt="image" src="../../images/ltr5.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="setup-ltr-node">Setup LTR node</h2>
+<ol>
+<li>
+<p>Although the <em>LTR</em> functionality does not require activation via a specific feature flag, the mechanism itself must be enabled.
+In the <strong>cm</strong> UI, navigate to the <strong>License</strong> view and verify that the extensions appropriate for your <strong>Guardium</strong> version are available.
+<a href="../../images/ltr8.webp"><img alt="image" src="../../images/ltr8.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check the unit type on <strong>appnode1</strong>. As a <strong>cli</strong> user execute:
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
+</code></pre></div>
+<a href="../../images/ltr9.webp"><img alt="image" src="../../images/ltr9.webp" width="49%" /></a></p>
+</li>
+<li>
+<p>If the appliance is still of type <em>Managed Netinsp stap</em>, change it to <strong>app-node</strong> using command below. The command requires a system restart—confirm by entering <code>y</code>.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span><span class="w"> </span>app-node
+</code></pre></div>
+<a href="../../images/ltr10.webp"><img alt="image" src="../../images/ltr10.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Re-login and confirm that the appliance is now set as Managed App-Node.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
+</code></pre></div>
+<a href="../../images/ltr11.webp"><img alt="image" src="../../images/ltr11.webp" width="49%" /></a></p>
+</li>
+<li>
+<p>Now install on <strong>appnode1</strong> as a <strong>cli</strong> user the patch that enables the <em>LTR</em> functionality.</p>
+<div class="admonition note">
+<p class="admonition-title">patch installation values:</p>
+<ul>
+<li>Host: raptor.demo.guardium</li>
+<li>User: root </li>
+<li>Path: /opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/extensions/SqlGuard-12.0p90230_datalake_Jun_15_2026.tgz.enc.sig</li>
+<li>Port: press 2223</li>
+<li>Password: &lt;root password on raptor&gt;</li>
+</ul>
+</div>
+<p>After downloading the patch file, the command will prompt its installation. Enter the patch number – <strong>1</strong> – and confirm with <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install<span class="w"> </span>scp
+</code></pre></div>
+<a href="../../images/ltr12.webp"><img alt="image" src="../../images/ltr12.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Monitor the installation using the command below until the patch installation is confirmed.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install<span class="w"> </span>
+</code></pre></div>
+<a href="../../images/ltr13.webp"><img alt="image" src="../../images/ltr13.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Install the <em>LTR</em> services on <strong>appnode1</strong> (restart <strong>cli</strong> session).
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>datalake<span class="w"> </span>install
+</code></pre></div>
+<a href="../../images/ltr14.webp"><img alt="image" src="../../images/ltr14.webp" width="49%" /></a></p>
+</li>
+<li>
+<p>Set the size of the <em>LTR</em> services.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>datalake<span class="w"> </span>all_in_one<span class="w"> </span>xxsmall
+</code></pre></div>
+<a href="../../images/ltr15.webp"><img alt="image" src="../../images/ltr15.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>Start LTR services
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>datalake<span class="w"> </span>service<span class="w"> </span>start
+</code></pre></div>
+<a href="../../images/ltr16.webp"><img alt="image" src="../../images/ltr16.webp" width="59%" /></a></p>
+</li>
+<li>
+<p>Check the status of the services, we expect status 0
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>datalake<span class="w"> </span>status
+</code></pre></div>
+<a href="../../images/ltr17.webp"><img alt="image" src="../../images/ltr17.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="central-manager-setup">Central Manager setup</h2>
+<ol>
+<li>
+<p>First, we need to import the <em>CA</em> certificate used by <em>seaweedFS</em>. To do this, on the <strong>cm</strong> run the command below and paste the certificate located on the appnode in the file <code>/opt/seaweedfs/certs/ca/ca.crt</code>.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>certificate<span class="w"> </span>application<span class="w"> </span>datalake<span class="w"> </span>s3<span class="w"> </span>console
+</code></pre></div>
+<a href="../../images/ltr18.webp"><img alt="image" src="../../images/ltr18.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Verify that the certificate is visible
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>certificate<span class="w"> </span>application<span class="w"> </span>datalake<span class="w"> </span>s3
+</code></pre></div>
+<a href="../../images/ltr6.webp"><img alt="image" src="../../images/ltr6.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>We now need to distribute the certificate used by the <em>cm</em> and <em>LTR</em> to all appliances in the environment.
+<div class="highlight"><pre><span></span><code>distribute<span class="w"> </span>application<span class="w"> </span>certificate<span class="w"> </span>datalake<span class="w"> </span>all_managed<span class="w"> </span>--metastore_unit<span class="o">=</span>appnode1.demo.guardium
+</code></pre></div>
+<a href="../../images/ltr7.webp"><img alt="image" src="../../images/ltr7.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>This takes some time, so you need to monitor the synchronization process with the command below (we expect the toolnode to have both certificates downloaded).
+<div class="highlight"><pre><span></span><code>distribute<span class="w"> </span>certificate<span class="w"> </span>showlog<span class="w"> </span>all
+</code></pre></div>
+<a href="../../images/ltr19.webp"><img alt="image" src="../../images/ltr19.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Configure the connection to the S3 bucket. You need to enter the seaweeFS keystore password used when configuring the S3 service. The command requires some time to complete.
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>configure_complete_cold_storage<span class="w"> </span><span class="nv">protocol</span><span class="o">=</span><span class="s2">"CUSTOM"</span><span class="w"> </span><span class="nv">objectStorageEndpoint</span><span class="o">=</span><span class="s2">"https://raptor.demo.guardium:8333"</span><span class="w"> </span><span class="nv">accessKey</span><span class="o">=</span>s3admin<span class="w"> </span><span class="nv">secretKey</span><span class="o">=</span><span class="s2">"&lt;strong_admin_password&gt;"</span><span class="w"> </span><span class="nv">dataBucket</span><span class="o">=</span>guardium-ltr<span class="w"> </span><span class="nv">resultSchema</span><span class="o">=</span><span class="s2">"datalake_reports"</span><span class="w"> </span><span class="nv">region</span><span class="o">=</span><span class="s2">"US_EAST_1"</span><span class="w"> </span><span class="nv">coldCatalogEndpoint</span><span class="o">=</span><span class="s2">"https://appnode1.demo.guardium:8443"</span><span class="w"> </span><span class="nv">coldCatalogSchema</span><span class="o">=</span><span class="s2">"datalake"</span><span class="w"> </span><span class="nv">coldStorageName</span><span class="o">=</span><span class="s2">"datalake"</span><span class="w"> </span><span class="nv">queryEngineHost</span><span class="o">=</span><span class="s2">"appnode1.demo.guardium"</span><span class="w"> </span><span class="nv">debug</span><span class="o">=</span><span class="m">3</span>
+</code></pre></div>
+<a href="../../images/ltr20.webp"><img alt="image" src="../../images/ltr20.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Finally, check list of ltr nodes and cold storages.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>grdapi<span class="w"> </span>get_cold_storage_app_nodes
+
+grdapi<span class="w"> </span>list_cold_storages
+</code></pre></div></td></tr></table></div>
+<a href="../../images/ltr21.webp"><img alt="image" src="../../images/ltr21.webp" width="79%" /></a></p>
+</li>
+</ol>
+<h2 id="configuring-system-to-use-ltr-data">Configuring system to use LTR data</h2>
+<ol>
+<li>
+<p>To monitor the process of transferring data from collectors to <em>LTR</em>, create a copy of the default <em>Datamart Extraction Log</em> report. Open on the <strong>cm</strong> UI the standard report and use the edit icon <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg></span>. Choose the option to create a copy of the report.
+<a href="../../images/ltr22.webp"><img alt="image" src="../../images/ltr22.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Name the report <em>LTR Datamart Extraction</em>, then add descending sorting by <em>Datamart Run Id</em> and add an additional condition so that only <em>Datamart Name</em> containing the word <em>%Export%</em> in the name are displayed. <strong>Save</strong> the modified report.
+<a href="../../images/ltr23.webp"><img alt="image" src="../../images/ltr23.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Next, create a new dashboard named <em>LTR</em> and add to it the report we just created – <em>LTR Datamart Extraction</em>,
+<a href="../../images/ltr24.webp"><img alt="image" src="../../images/ltr24.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Add to <em>LTR</em> dashboard three more reports: <em>Cold Storage Ingestion Logs</em>, <em>Cold Storage Maintenance Logs</em> and <em>Scheduled Jobs</em>
+<a href="../../images/ltr25.webp"><img alt="image" src="../../images/ltr25.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open the <em>Scheduled Jobs</em> report in the dashboard and edit the <em>Runtime Parameters</em>. Select the <strong>coll1</strong> as the data source.
+<a href="../../images/ltr26.webp"><img alt="image" src="../../images/ltr26.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>A list of batch jobs running on the <strong>coll1</strong> will be displayed in the report. Among them, there will be activities related to data extraction and transferring the data to the seaweedFS server. The job names will start with <em>Export:Insights:v6</em>. The <em>Next Fire Time</em> column indicates when the data will be prepared and when we should expect the data to appear in LTR.
+<a href="../../images/ltr27.webp"><img alt="image" src="../../images/ltr27.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the <strong>cli</strong> session on the <strong>coll1</strong>, run the command below and review the datamart definitions. It is executed every hour, and the data is sent to the <em>seaweedFS</em> server.
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>get_datamart_info<span class="w"> </span><span class="nv">datamart_name</span><span class="o">=</span><span class="s2">"Export:Insights:v6:Session Log"</span>
+</code></pre></div>
+<a href="../../images/ltr28.webp"><img alt="image" src="../../images/ltr28.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="use-ltr-data">Use LTR data</h2>
+<ol>
+<li>
+<p>A few hours after configuring <em>LTR</em>, we should be able to report on the stored data. First, let’s check the datamart status again from the <strong>cli</strong> on the <strong>coll1</strong>. This time, the <em>Extraction Log</em> section should contain information about a file in Parquet format that was sent to the <em>seaweedFS</em> server.
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>get_datamart_info<span class="w"> </span><span class="nv">datamart_name</span><span class="o">=</span><span class="s2">"Export:Insights:v6:Session Log"</span>
+</code></pre></div>
+<a href="../../images/ltr29.webp"><img alt="image" src="../../images/ltr29.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open the <em>LTR</em> dashboard on the <strong>cm</strong>, and within it open the <em>Scheduled Jobs</em> report with reference to the <strong>coll1</strong> data. Observe that the jobs related to the datamarts are being executed according to the scheduler.
+<a href="../../images/ltr30.webp"><img alt="image" src="../../images/ltr30.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Switch to the <em>LTR Datamart Extraction</em> report in the dashboard and select the <strong>coll1</strong> as the data source. Observe that each job execution is recorded in detail and includes information about how many records were transferred.
+<a href="../../images/ltr31.webp"><img alt="image" src="../../images/ltr31.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The <em>Cold Storage Ingestion Logs</em> report indicates whether the datamart transferred from the <strong>coll1</strong> has been processed and whether the data is ready for use.
+<a href="../../images/ltr32.webp"><img alt="image" src="../../images/ltr32.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Let’s verify whether the data stored in seaweesFS can be reported from the <strong>cm</strong>. In the <strong>cm</strong> UI, select the new view – <strong>Data Lake Reports</strong>. It contains several predefined reports. Proceed to run the <em>Data Lake Connection profiling list</em> by selecting <strong>Edit</strong> from <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2"/></svg></span> menu at the end of the row with its name.
+<a href="../../images/ltr33.webp"><img alt="image" src="../../images/ltr33.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the <em>Define Report</em> window, select <em>Custom</em> time frame and use the available controls to define the report timeframe (from today until tomorrow). Then click <strong>Next</strong>.
+<a href="../../images/ltr34.webp"><img alt="image" src="../../images/ltr34.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>On the next page, you can manually modify the query. Since we are running a predefined report, the query body is disabled and cannot be edited. For customized queries, you will be able to adjust the report according to your specific requirements. Press <strong>Next</strong>.
+<a href="../../images/ltr35.webp"><img alt="image" src="../../images/ltr35.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The next step of the report configuration allows you to schedule report execution. In this lab, we want to run the report ad hoc, so we will skip the scheduling options and use <strong>Save Report</strong> immediately.
+<a href="../../images/ltr36.webp"><img alt="image" src="../../images/ltr36.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To generate the report, click the <img alt="image" src="../../images/ltr39.webp" width="18" /> icon. This starts the process of retrieving data from the files stored in the S3 bucket, extracting the contents, and processing the data according to the query definition. The progress of the operation is indicated by dynamically updated status values such as Running and Complete. Once the report has been successfully generated, click the <img alt="image" src="../../images/ltr40.webp" width="22" /> icon to view the results.
+<a href="../../images/ltr37.webp"><img alt="image" src="../../images/ltr37.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Review result and <strong>Close</strong> report window.
+<a href="../../images/ltr41.webp"><img alt="image" src="../../images/ltr41.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+<p>This lab requires that Oracle lab is fully covered before.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

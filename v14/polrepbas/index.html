@@ -1,0 +1,2191 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../oracle/">
+      
+      
+        <link rel="next" href="../ltr/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Policies and Reports basics (lab 11) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#policies-and-reports-basics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Policies and Reports basics (lab 11)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../va/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VA (lab 8)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../winstap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WINSTAP (lab 9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oracle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle monitoring options (lab 10)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies and Reports basics (lab 11)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies and Reports basics (lab 11)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#new-dashboard-for-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Dashboard for Policies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-report-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check report changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-table-with-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create table with sensitive data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypted-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encrypted traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-traffic-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application traffic analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewall-mode-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firewall mode on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-access-to-application-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block access to application tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control-on-command-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access control on command level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object references
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocking-on-column-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blocking on column level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hacker-is-smarter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hacker is smarter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-on-suspicious-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert on suspicious activity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bad-guys-will-always-find-a-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bad guys will always find a way
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LTR (lab 12)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#new-dashboard-for-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Dashboard for Policies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-report-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check report changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-table-with-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create table with sensitive data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypted-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encrypted traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-traffic-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application traffic analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewall-mode-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firewall mode on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#block-access-to-application-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block access to application tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-control-on-command-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access control on command level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object references
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocking-on-column-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blocking on column level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hacker-is-smarter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hacker is smarter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-on-suspicious-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert on suspicious activity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bad-guys-will-always-find-a-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bad guys will always find a way
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="policies-and-reports-basics">Policies and Reports basics</h1>
+<h2 id="new-dashboard-for-policies">New Dashboard for Policies</h2>
+<ol>
+<li>
+<p>Because the <strong>raptor</strong> machine is used throughout the bootcamp for multiple purposes, it runs a large number of services while having only minimal available resources. In this exercise, you will be analyzing a significant volume of traffic, which may lead to memory shortages. To avoid potential issues, stop several services on <strong>raptor</strong> before proceeding.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>informix-ifxserver
+
+systemctl<span class="w"> </span>stop<span class="w"> </span>mongod
+
+systemctl<span class="w"> </span>stop<span class="w"> </span>mysqld
+
+systemctl<span class="w"> </span>stop<span class="w"> </span>mysql-etap
+
+systemctl<span class="w"> </span>stop<span class="w"> </span>oracle-etap
+
+systemctl<span class="w"> </span>disable<span class="w"> </span>informix-ifxserver
+
+systemctl<span class="w"> </span>disable<span class="w"> </span>mongod
+
+systemctl<span class="w"> </span>disable<span class="w"> </span>mysqld
+
+systemctl<span class="w"> </span>disable<span class="w"> </span>mysql-etap
+
+systemctl<span class="w"> </span>disable<span class="w"> </span>oracle-etap
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>In this lab do all UI actions on <strong>coll1</strong> unless another access will be requested. Clone <em>Full SQL (Training)</em> report from <strong>Training</strong> dashboard. Name clone one as <em>Full SQL (Policies)</em> and proceed to the <em>Selected Columns</em> section by clicking <strong>Next</strong>.
+<a href="../../images/polrepbas1.webp"><img alt="image" src="../../images/polrepbas1.webp" width="99%" /></a>  </p>
+</li>
+<li>
+<p>The area is divided into two main parts. The left one (<em>Entities and Attributes</em>) allows you to select an attribute that should appear in the right part (<em>Selected Columns</em>). Then drop-down list <span class="mb">1</span> allows you to narrow down the list of attributes contained in a given <em>Entity</em>. Select <em>Client/Server</em> and then search <span class="mb">2</span> for an attribute with a name containing the string "<em>Type</em>". You should see one attribute named <strong>Server Type</strong>. Select it <span class="mb">3</span> and move it to the list on the right <span class="mb">4</span>, and then proceed to the <em>Conditions</em> section.
+<a href="../../images/polrepbas2.webp"><img alt="image" src="../../images/polrepbas2.webp" width="99%" /></a>  </p>
+</li>
+<li>
+<p>This section contains filters that are usually parameters. Add new condition <span class="mb">1</span> based on new parameter, use the <em>Search</em> icon <span class="mb">2</span> to select the column we are interested in, by which the results can be filtered. Expand the <strong>Client/Server</strong> Entity <span class="mb">3</span>, then find <span class="mb">4</span> the <strong>Server Type</strong> parameter <span class="mb">5</span> and confirm <span class="mb">6</span>.
+<a href="../../images/polrepbas3.webp"><img alt="image" src="../../images/polrepbas3.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Expand the filtering type list <span class="mb">1</span> and select the <em>LIKE</em> option <span class="mb">2</span>, choose from the list <span class="mb">3</span> the filter type as <em>Parameter</em> <span class="mb">4</span> and enter its name <strong>ServerType</strong> <span class="mb">5</span> (the name can be any unique string of characters for the report and should not contain spaces). Next, save the changes with the Save button <span class="mb">6</span>.
+<a href="../../images/polrepbas4.webp"><img alt="image" src="../../images/polrepbas4.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Wait until the report update confirmation appears and <strong>Close</strong> report edition window.
+<a href="../../images/polrepbas5.webp"><img alt="image" src="../../images/polrepbas5.webp" width="49%" /></a></p>
+</li>
+<li>
+<p>Then <strong>Create New Dashboard</strong> and name it as <em>Policies and Reports</em> (edit random generated name) and <strong>Save</strong>. Use <strong>Add Report</strong> button.
+<a href="../../images/polrepbas6.webp"><img alt="image" src="../../images/polrepbas6.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>And add <em>Full SQL (Policies)</em> report into dashboard.
+<a href="../../images/polrepbas7.webp"><img alt="image" src="../../images/polrepbas7.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Notice that column <em>Server Type</em> appears at the last in the report. Then use the <strong>Parameters</strong> icon and confirm that the <em>ServerType</em> parameter appears with a default value of <code>%</code> (in Guardium, similar to <em>SQL</em>, <code>%</code> means any string of characters). <strong>Close</strong> pop-up window.
+<a href="../../images/polrepbas8.webp"><img alt="image" src="../../images/polrepbas8.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="check-report-changes">Check report changes</h2>
+<ol>
+<li>Login to raptor. On raptor change the user context to postgres
+<div class="highlight"><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>postgres
+</code></pre></div></li>
+<li>Connect to postgres instance
+<div class="highlight"><pre><span></span><code><span class="n">psql</span>
+</code></pre></div></li>
+<li>
+<p>Execute the dummy sql
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'it is dummy SQL'</span><span class="p">;</span>
+</code></pre></div>
+<a href="../../images/polrepbas9.webp"><img alt="image" src="../../images/polrepbas9.webp" width="69%" /></a></p>
+</li>
+<li>
+<p>Return to the browser and refresh the report <img alt="image" src="../../images/polrepbas10.webp" width="17" />, then confirm that information about the <em>SQL</em> just executed on the <em>PostgresSQL</em> database has appeared. Since many databases are running on the <strong>raptor</strong> and generating traffic, to make browsing easier, we will filter the report to show only traffic generated on the PostgresSQL database. To do this, use the <strong>Parameters</strong> icon again and change the <strong>ServerType</strong> value from <code>%</code> to <code>POSTGRESQL</code>. Confirm with the <strong>OK</strong> button and refresh the report again <img alt="image" src="../../images/polrepbas10.webp" width="17" />. Now only one row, last command should appear in the report.
+<a href="../../images/polrepbas11.webp"><img alt="image" src="../../images/polrepbas11.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="create-table-with-sensitive-data">Create table with sensitive data</h2>
+<ol>
+<li>
+<p>Return to the session on the <strong>raptor</strong> where you are logged in to the database as the <strong>postgres</strong> user and run the command:
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_ssl</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pid</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'SELECT%'</span><span class="p">);</span>
+</code></pre></div>
+<a href="../../images/polrepbas12.webp"><img alt="image" src="../../images/polrepbas12.webp" width="99%" /></a>
+The <em>ssl</em> field indicates that the session is not using an encrypted connection.</p>
+</li>
+<li>
+<p>Display the list of accounts in the database and notice that accounts for <strong>jerry</strong> and <strong>tom</strong> exist, which have superuser privileges.
+<div class="highlight"><pre><span></span><code><span class="err">\</span><span class="n">du</span>
+</code></pre></div>
+<a href="../../images/polrepbas13.webp"><img alt="image" src="../../images/polrepbas13.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Open second <em>ssh</em> session to <strong>raptor</strong> and run dbtraffic generator.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic
+
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+
+guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/pgsql.yaml<span class="w"> </span>rebuild
+
+guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/pgsql.yaml<span class="w"> </span>run
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Back to <em>PostgreSQL</em> session and display list of tables in <em>game</em> schema.
+<div class="highlight"><pre><span></span><code><span class="err">\</span><span class="n">dt</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="o">*</span>
+</code></pre></div>
+<a href="../../images/polrepbas14.webp"><img alt="image" src="../../images/polrepbas14.webp" width="49%" /></a></p>
+</li>
+<li>
+<p>And then display table content and close database session.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas15.webp"><img alt="image" src="../../images/polrepbas15.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="encrypted-traffic-visibility">Encrypted traffic visibility</h2>
+<ol>
+<li>
+<p>The <em>PostgreSQL</em> instance has been configured to use encrypted connections between clients and the database. The Guardium agent can monitor encrypted sessions. For this purpose, the ATAP service has been configured on the <strong>raptor</strong>. The following command will confirm that the agent has been configured correctly, and the <em>ATAP</em> instance is active.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>list-active
+</code></pre></div>
+<a href="../../images/polrepbas16.webp"><img alt="image" src="../../images/polrepbas16.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Let's confirm this by logging into the database as the user <strong>jerry</strong> in <em>SSL</em> mode.
+<div class="highlight"><pre><span></span><code>psql<span class="w"> </span><span class="s2">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span>-U<span class="w"> </span>jerry<span class="w"> </span>-W
+</code></pre></div></p>
+</li>
+<li>
+<p>Execute <em>SQL</em> below and confirm that session is encrypted.
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">pid</span><span class="p">,</span><span class="n">a</span><span class="p">.</span><span class="n">usename</span><span class="p">,</span><span class="n">a</span><span class="p">.</span><span class="n">client_addr</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="n">ssl</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="k">version</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="n">cipher</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">pg_stat_ssl</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">USING</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span>
+</code></pre></div>
+<a href="../../images/polrepbas17.webp"><img alt="image" src="../../images/polrepbas17.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Confirm that users <strong>jerry</strong> and <strong>tom</strong> can get access to <code>game.customers</code> table.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://localhost:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">tom</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Back to <strong>coll1</strong> UI and refresh <em>Full SQL (Policies)</em> report, you should see activities generated by dbtraffic via encrypted connections
+<a href="../../images/polrepbas18.webp"><img alt="image" src="../../images/polrepbas18.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>You can filter traffic to check activity executed by <strong>tom</strong> user using report parameter <em>DBUserName</em> ((insert <code>%TOM%</code>)).
+<a href="../../images/polrepbas19.webp"><img alt="image" src="../../images/polrepbas19.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="application-traffic-analysis">Application traffic analysis</h2>
+<ol>
+<li>
+<p>Create a new report to analyze <em>PostgreSQL</em> database connections. To do this, open <strong>Query-Report Builder</strong>, select the <em>Access</em> domain, and click the plus <span class="mb">+</span> icon to create a new query.
+<a href="../../images/polrepbas20.webp"><img alt="image" src="../../images/polrepbas20.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Name it <em>Application access profiles</em> set <strong>Main entitiy</strong> to <em>CLient/Server</em> and proceed to the <strong>Next</strong> step.
+<a href="../../images/polrepbas21.webp"><img alt="image" src="../../images/polrepbas21.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>Select the following four fields and add them to the report.</p>
+<div class="admonition note">
+<p class="admonition-title">fields:</p>
+<ul>
+<li>Client/Server <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Client IP</li>
+<li>Client/Server <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Server IP</li>
+<li>Client/Server <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Source Program</li>
+<li>Client/Server <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> DB User Name</li>
+</ul>
+</div>
+<p>Enable the <em>Distinct</em> option and proceed to the next step by clicking <strong>Next</strong>.</p>
+<p><a href="../../images/polrepbas22.webp"><img alt="image" src="../../images/polrepbas22.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Add an <em>ascending</em> sort condition on the <em>DB User Name</em> field and proceed to the <em>Conditions</em> step.</p>
+<p><a href="../../images/polrepbas23.webp"><img alt="image" src="../../images/polrepbas23.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>Add a filter parameter for the <em>Server Type</em> field, similar to the one created in the <em>Full SQL (Policies)</em> report, and <strong>Save</strong> the report.
+<a href="../../images/polrepbas24.webp"><img alt="image" src="../../images/polrepbas24.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Add report to <em>Policies and Reports</em> dashboard.
+<a href="../../images/polrepbas25.webp"><img alt="image" src="../../images/polrepbas25.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Edit the parameters of the new report and set:</p>
+<div class="admonition note">
+<ul>
+<li>QUERY_FROM_DATE: <strong>NOW -12 MONTH</strong></li>
+<li>Server_Type: <strong>POSTGRESQL</strong></li>
+</ul>
+</div>
+<p>In the <em>Client/Server</em> domain, which serves as the <em>main entity</em> for this report, the time range is determined by the <strong>Timestamp</strong> field within that entity and corresponds to the first occurrence of the profile on the <strong>coll1</strong>. We could also build this report using the <em>Session</em> domain; however, doing so would significantly increase the query cost, as all sessions within the selected reporting time range would need to be filtered.</p>
+<p><a href="../../images/polrepbas26.webp"><img alt="image" src="../../images/polrepbas26.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>A quick analysis of the report identifies two accounts, <strong>APPUSER1</strong> and <strong>APPUSER2</strong>, that are likely associated with application activity. Both accounts connect from the same IP address and identify themselves as <strong>POSTGRESQL CLIENT PROGRAM</strong>.
+<a href="../../images/polrepbas27.webp"><img alt="image" src="../../images/polrepbas27.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Further refinement of application account identification can be achieved by creating a report that shows the distribution of connections across profiles. Create a new report in the <em>Access</em> domain using <strong>Query-Report Builder</strong>. This time, use <em>Session</em> as the <strong>Main Entity</strong>. Name the report <em>Session distribution</em> and add the same four fields used in the previous report. However, instead of selecting <em>Distinct</em>, select <em>Count</em>, which will aggregate the number of recurring rows based on the selected fields. As demonstrated in the previous report, these fields uniquely identify a database connection profile. As before, sort the results in ascending order by <em>DB User Name</em> and add a filter parameter for <em>Server Type</em>.
+<a href="../../images/polrepbas28.webp"><img alt="image" src="../../images/polrepbas28.webp" width="99%" /></a></p>
+</li>
+<li>
+<p><strong>Save</strong> the report and add it to the <em>Policies and Reports</em> dashboard. Then configure the filter to display only <em>POSTGRESQL</em> activity.
+<a href="../../images/polrepbas29.webp"><img alt="image" src="../../images/polrepbas29.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>This time, the <strong>APPUSER1</strong> and <strong>APPUSER2</strong> accounts are responsible for the majority of database sessions. In real-world environments, the number of sessions generated by application accounts can be several orders of magnitude higher than those associated with other types of connections.
+<a href="../../images/polrepbas30.webp"><img alt="image" src="../../images/polrepbas30.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Create one more report named <em>SQL Distribution</em> that, similarly to the previous session report, shows how many SQL statements are executed per connection profile. The report configuration should be identical to the previous one, except that the <strong>Main Entity</strong> should be set to <em>SQL</em>, allowing you to count the total number of executed SQL statements. Of course, <strong>Save</strong> the report, add it to the <em>Policies and Reports</em> dashboard, and configure the filter to display only <em>POSTGRESQL</em> activity.
+<a href="../../images/polrepbas31.webp"><img alt="image" src="../../images/polrepbas31.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>As expected, the vast majority of the activity is associated with two accounts, which can be confidently identified as application accounts.
+<a href="../../images/polrepbas32.webp"><img alt="image" src="../../images/polrepbas32.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="firewall-mode-on">Firewall mode on</h2>
+<ol>
+<li>
+<p>The <em>DBF</em> (database firewall) mode is turned off by default. To activate it, we will use the remote agent administration mechanism - <em>GIM</em> (<em>Guardium Installation Manager</em>). To do this, in the <strong>cm</strong> UI, use the search field to open the <strong>Set up by Client</strong> view.
+For <em>STAP</em> on <strong>raptor</strong> select <strong>STAP 12.2.2.0_r123489_3</strong> release and set two parameters:</p>
+<div class="admonition note">
+<ul>
+<li>STAP_FIREWALL_INSTALLED: <strong>1</strong> </li>
+<li>STAP_FIREWALL_DEFAULT_STATE: <strong>1</strong></li>
+</ul>
+</div>
+<p><a href="../../images/polrepbas33.webp"><img alt="image" src="../../images/polrepbas33.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Refresh the status view periodically until all elements have an <em>INSTALLED</em> status.
+<a href="../../images/polrepbas34.webp"><img alt="image" src="../../images/polrepbas34.webp" width="99%" /></a>
+Close all pop-up’s.</p>
+</li>
+</ol>
+<h2 id="block-access-to-application-tables">Block access to application tables</h2>
+<ol>
+<li>
+<p>Let's try to configure the system to protect application data. Open <strong>Policy Builder for Data</strong> and click the plus <span class="mb">+</span> button to create a new policy.
+<a href="../../images/polrepbas35.webp"><img alt="image" src="../../images/polrepbas35.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In this lab, you will work with <em>standard Data Security Policies</em>. Although <em>Session-Level Policies</em> provide new mechanisms for identifying and handling captured traffic, they are a separate policy type and will be covered in a future lab.</p>
+</li>
+<li>
+<p>Name the policy <em>Application data access control</em> and select the <em>Rules</em> section.
+<a href="../../images/polrepbas36.webp"><img alt="image" src="../../images/polrepbas36.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In this section, you can manage the rules that are evaluated from bottom to top. To add the first rule, click the plus <span class="mb">+</span> icon.
+<a href="../../images/polrepbas37.webp"><img alt="image" src="../../images/polrepbas37.webp" width="99%" /></a></p>
+</li>
+<li>
+<p><em>Rule</em> creation is divided into three components. In the first section, define the <em>rule type</em>. The default type is <strong>Access</strong>, meaning the rule evaluates the <em>SQL statement</em> submitted for execution. The system can also analyze <em>SQL errors</em> and, to a limited extent, the result set returned by the query.</p>
+</li>
+<li>
+<p>Name the first rule "<em>Log and switch to open mode the application connections</em>" and select <em>Rule criteria</em> bar.
+In the previous step, you enabled the firewall in closed mode (<em>FIREWALL_DEFAULT_STATE=1</em>). This mode introduces additional <em>SQL</em> execution latency because the system must obtain a verdict on whether a given statement should be allowed to execute. In general, <em>DBF</em> is not intended for application traffic. The recommended approach is to move application traffic to open mode as quickly as possible or stop monitoring it.
+<a href="../../images/polrepbas38.webp"><img alt="image" src="../../images/polrepbas38.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>For easier understanding of rule behavior, the criteria for Access rule type are divided into three categories: <em>Session</em>, <em>SQL</em>, and <em>Other</em>. The <em>Session</em> category is used to identify sessions/connections and is evaluated only when a new connection is established. The <em>SQL</em> category applies to executed <em>SQL</em> statements, while <em>Other</em> covers additional conditions that can be monitored by the rule, such as the number of <em>SQL</em> statements executed within a specific time period.
+Add the first condition to limit the analysis to <em>PostgreSQL</em> sessions only by selecting <em>Database Type</em> = <strong>POSTGRESQL</strong>. And press <span class="mb">+</span> to add one more condition for session.
+<a href="../../images/polrepbas39.webp"><img alt="image" src="../../images/polrepbas39.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>A very convenient mechanism for identifying sessions is based on grouping a set of session attributes, known in <strong>Guardium</strong> as <em>tuples</em>. In the newer policy framework (<em>Session-Level Policies</em>), this mechanism is significantly more advanced, allowing custom attribute sets to be defined for purposes beyond session identification. However, in this Standard Policies, you can only use the predefined <em>5-tuple</em> and <em>7-tuple</em> options. Select the <em>5-tuple</em> and leave the reference as a group, which you will create using the plus <span class="mb">+</span> button.
+<a href="../../images/polrepbas40.webp"><img alt="image" src="../../images/polrepbas40.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Name the group <em>Postgres application profiles</em>, switch to the <em>Members</em> tab, and use the plus <span class="mb">+</span> button to add a value for the <em>5-tuple</em> profile.
+<a href="../../images/polrepbas41.webp"><img alt="image" src="../../images/polrepbas41.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Enter values and press <strong>OK</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Tuple values:</p>
+<ul>
+<li>Client IP: &lt;raptor_ip_address&gt;</li>
+<li>Src App.: <strong>POSTGRESQL CLIENT PROGRAM</strong></li>
+<li>DB User: <strong>APPUSER%</strong></li>
+<li>Server IP: &lt;raptor_ip_address&gt;</li>
+<li>Svc Name: <strong>%</strong></li>
+</ul>
+</div>
+<p><a href="../../images/polrepbas42.webp"><img alt="image" src="../../images/polrepbas42.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The saved value will appear on the list. <strong>Save</strong> group definition.
+<a href="../../images/polrepbas43.webp"><img alt="image" src="../../images/polrepbas43.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>As a result, you will return to the rule creation screen, where the newly created group is referenced by the tuple. Now add the actions for the rule by selecting the <em>Rule Action</em> section.
+<a href="../../images/polrepbas44.webp"><img alt="image" src="../../images/polrepbas44.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Use the plus <span class="mb">+</span> button to add an <em>action</em>. From the <em>action</em> list, expand the <em>S-GATE</em> action group and select <strong>S-GATE DETACH</strong>, which ensures that all sessions associated with this rule (application traffic) is monitored without latency.
+<a href="../../images/polrepbas45.webp"><img alt="image" src="../../images/polrepbas45.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Accept the newly defined policy rule by clicking <strong>OK</strong>.
+<a href="../../images/polrepbas46.webp"><img alt="image" src="../../images/polrepbas46.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Save the policy with the newly created rule - press <strong>OK</strong>.
+<a href="../../images/polrepbas47.webp"><img alt="image" src="../../images/polrepbas47.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The policy created so far focuses exclusively on application traffic. Your next objective is to extend it so that no users other than the application accounts can access the tables used by the application. To do this, edit the policy. First enable <em>Continue to next</em> rule switch. It pushes system to evaluate events by other rules even current one is matched. Use plus <span class="mb">+</span> icon to add new rule.
+<a href="../../images/polrepbas48.webp"><img alt="image" src="../../images/polrepbas48.webp" width="99%" /></a> 
+<a href="../../images/polrepbas49.webp"><img alt="image" src="../../images/polrepbas49.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Name the rule <em>Block access for other users</em> and ensure that no users other than the application accounts can access data stored in the application tables.
+<a href="../../images/polrepbas50.webp"><img alt="image" src="../../images/polrepbas50.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>First, add two criteria to ensure that only <em>PostgreSQL</em> traffic is evaluated and that the traffic does not belong to application users. To achieve this, use the <em>Not In Group</em> operator and reference the previously created <em>5-tuple</em> group, which identifies the application accounts.
+To limit the scope of the rule to application tables, select the <strong>Object</strong> parameter in the <em>SQL Criteria</em> section and create a new group that will contain the list of protected tables.
+<a href="../../images/polrepbas51.webp"><img alt="image" src="../../images/polrepbas51.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The application uses five tables. In the group named <em>Application tables on postgres</em>, switch to the <em>Members</em> tab and add the table names using the <em>schema.table</em> notation. After entering all protected object names, <strong>Save</strong> the group.
+<a href="../../images/polrepbas52.webp"><img alt="image" src="../../images/polrepbas52.webp" width="59%" /></a>
+<a href="../../images/polrepbas53.webp"><img alt="image" src="../../images/polrepbas53.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>After returning to the rule definition, the newly created group should be referenced by the <em>Object</em> criterion. <strong>Next</strong>, proceed to defining the rule actions.
+<a href="../../images/polrepbas54.webp"><img alt="image" src="../../images/polrepbas54.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Add two actions to the rule. From the <em>S-GATE</em> action group, select <strong>S-GATE TERMINATE</strong> to terminate the session, and from the <em>LOG</em> action group, select <strong>LOG FULL DETAILS</strong> to ensure that any unauthorized access attempt is fully audited. Save the rule using <strong>OK</strong> button.
+<a href="../../images/polrepbas55.webp"><img alt="image" src="../../images/polrepbas55.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The two rules you created focus on very specific traffic patterns. If neither rule is matched, all remaining traffic will not be logged with full details. Therefore, add a final rule stating that all remaining traffic should also be logged.
+<a href="../../images/polrepbas56.webp"><img alt="image" src="../../images/polrepbas56.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Name the rule <em>Log the remaining traffic</em>. Do not define any criteria, which means the rule will always be matched if traffic reaches it during policy evaluation. In the <em>Actions</em> section, add <strong>LOG FULL DETAILS</strong>.
+<a href="../../images/polrepbas57.webp"><img alt="image" src="../../images/polrepbas57.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>The policy now contains three rules and is ready for testing. Save it by clicking <strong>OK</strong>.
+<a href="../../images/polrepbas58.webp"><img alt="image" src="../../images/polrepbas58.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the <strong>Policies</strong> view, select your newly created policy, expand the menu, and choose <strong>Install</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> <strong>Install</strong>. This will open the <strong>Install Policy</strong> window. Select <em>Install and Override</em>, then confirm the action. You should see a confirmation message indicating that the policy was successfully installed. After this operation, the new policy should be marked as installed on the <strong>coll1</strong>.
+<a href="../../images/polrepbas59.webp"><img alt="image" src="../../images/polrepbas59.webp" width="99%" /></a>
+<a href="../../images/polrepbas60.webp"><img alt="image" src="../../images/polrepbas60.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the session where dbtraffic is running, verify that traffic is still being generated without interruption.
+<a href="../../images/polrepbas61.webp"><img alt="image" src="../../images/polrepbas61.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the <em>SSH</em> session on the <strong>raptor</strong>, re-login to the <strong>postgres</strong> account and notice that you're able to display users, but access to the customers table is now blocked (if for some reasons you will get slow response of <code>psql</code> client and blocking will not work, ask instructor for help).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">postgres</span>
+
+<span class="n">psql</span>
+
+<span class="err">\</span><span class="n">du</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas62.webp"><img alt="image" src="../../images/polrepbas62.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>Do the same for users <strong>tom</strong> and <strong>jerry</strong> and confirm they also cannot get access to application schema.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">tom</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">du</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">jerry</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">du</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas63.webp"><img alt="image" src="../../images/polrepbas63.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Find the <strong>Policy Violations Details</strong> view on <strong>coll1</strong> and confirm that the blocked access attempts to the customers table by users postgres, <strong>tom</strong> and <strong>jerry</strong> are listed in the violations list.
+<a href="../../images/polrepbas64.webp"><img alt="image" src="../../images/polrepbas64.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>If you review the <em>Full SQL (Policies)</em> report, you'll notice that the blocked <em>SELECT</em> commands are displayed on the list. Before continuing, set the report filter to display only administrator activity by filtering on user names that contain <em>SUPER USER</em>, which will exclude the application traffic from the results.
+<a href="../../images/polrepbas65.webp"><img alt="image" src="../../images/polrepbas65.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Notice, that the report does not indicate which queries were successfully executed and which were not. <strong>Guardium</strong> can collect this information, but first modify the report and add three additional fields:</p>
+<div class="admonition note">
+<ul>
+<li>Full SQL <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> <strong>Records Affected</strong></li>
+<li>Full SQL <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> <strong>Succeeded</strong></li>
+<li>Full SQL <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> <strong>Access Rule Description</strong></li>
+</ul>
+</div>
+<p><a href="../../images/polrepbas66.webp"><img alt="image" src="../../images/polrepbas66.webp" width="99%" /></a></p>
+</li>
+<li>
+<p><strong>Save</strong> and <strong>Close</strong> query editor and <strong>Refresh</strong> report. Values of <strong>-1</strong> and <strong>1</strong> in these fields indicate that no records were returned and the queries were successfully executed. Fortunately, we can determine that the event was audited by the blocking rule. Based on this, we can indirectly conclude that the <strong>SQL</strong> statement did not complete successfully. However, an additional mechanism for collecting more detailed information can be enabled. Keep in mind that activating these options increases collector resource consumption. 
+<a href="../../images/polrepbas67.webp"><img alt="image" src="../../images/polrepbas67.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To enable these functionalities, you must open the <strong>Inspection Engine Configuration</strong> view <span class="mb">1</span>, <span class="mb">2</span>. Then, check the boxes for <em>Log Records Affected</em>, <em>Inspect Returned Data</em> and <em>Record Empty Sessions</em> (<span class="mb">3</span>, <span class="mb">4</span>, <span class="mb">5</span>) and press the <strong>Apply</strong> <span class="mb">6</span> button, followed by the <strong>Restart Inspection Engines</strong> button <span class="mb">7</span>, confirming this operation when prompted <span class="mb">8</span>.
+The <strong>raptor</strong> machine has limited resource and it is probable that you will notice issue with SQL execution after change. Ask instructor to solve the issue, *STAP * restart is the best approach.
+<a href="../../images/polrepbas68.webp"><img alt="image" src="../../images/polrepbas68.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>The changes above can also affect the agent, and existing sessions may stop working. Therefore, this inspection engine configuration change should be performed during a maintenance window or before the agent is installed. Switch to the session where dbtraffic is running, stop the program (<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>), and then start it again.
+<div class="highlight"><pre><span></span><code>guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/pgsql.yaml<span class="w"> </span>run
+</code></pre></div></p>
+</li>
+<li>
+<p>Once again, attempt to access the application data as <strong>tom</strong> and <strong>jerry</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">tom</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">du</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers1</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">jerry</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">du</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers1</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Analyze the returned metadata. For the blocked query against the customers table, you can see that no records were returned and that the blocking rule was triggered. However, the query is still marked as successful. This occurs because the blocking rule terminates the session, and the agent never receives the final execution status of the statement. As a result, it assumes the query completed successfully. This is a known limitation that must be accepted. For the query that returned the list of users, you can see that eight records were returned. When the invalid query against the non-existent customers1 table was executed, the metadata additionally shows that the <em>SQL</em> statement did not execute successfully.
+<a href="../../images/polrepbas69.webp"><img alt="image" src="../../images/polrepbas69.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="access-control-on-command-level">Access control on command level</h2>
+<ol>
+<li>
+<p>Of course, administrators require access to the application schema. However, due to the sensitivity of the personal data stored there, assume that only the <strong>tom</strong> and <strong>jerry</strong> administrator accounts should have access, and that their access should be limited to read-only operations. To enforce this, create another rule by editing the active policy directly from the <strong>Installed Policies</strong> view.
+<a href="../../images/polrepbas70.webp"><img alt="image" src="../../images/polrepbas70.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Select a <em>Rules</em> pane and add a new rule.
+<a href="../../images/polrepbas71.webp"><img alt="image" src="../../images/polrepbas71.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Name the rule <em>Admin access to application data</em>. Add two <em>Session</em> criteria: <em>Database Type</em> and <em>Database User</em>, the second referencing a new group named <strong>Postgres Administrators</strong>, whose members are the <strong>tom</strong> and <strong>jerry</strong> accounts. To restrict access to <em>SELECT</em> statements only, add an <em>SQL</em> criterion based on <strong>Command</strong> and reference the existing <em>Select Command</em> group. Limit also rule to <strong>Objects</strong> from <em>Application tables on postgres</em>. </p>
+<div class="admonition note">
+<ul>
+<li><em>Database Type</em> <code>=</code> POSTGRESSQL</li>
+<li><em>Database User</em> <code>In Group</code> Postgres administrators</li>
+<li><em>Object</em> <code>In Group</code> Application tables on postgres</li>
+<li><em>Command</em> <code>In Group</code> Select Command</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><em>Postgres administrators</em> members:</p>
+<ul>
+<li>JERRY (SUPER USER)</li>
+<li>TOM (SUPER USER)</li>
+</ul>
+</div>
+<p><a href="../../images/polrepbas72.webp"><img alt="image" src="../../images/polrepbas72.webp" width="99%" /></a> </p>
+<p>Add only the <strong>LOG FULL DETAILS</strong> action to the rule. This means that any activity matching this rule will be fully logged and allowed to proceed. Press <strong>OK</strong> button to save rule.</p>
+</li>
+<li>
+<p>The newly created rule will appear at the bottom of the list. However, to make the policy logic work as intended, it must be moved to the second position. This ensures that administrators’ access to application data is evaluated before the third rule, which blocks all other operations.
+To reorder the rule, click the two vertical arrows icon in the policy toolbar. This will display the Order column. Then click the up-arrow icon in the row corresponding to the new rule to move it to the desired position. Use <strong>OK</strong> button to save changes.
+<a href="../../images/polrepbas73.webp"><img alt="image" src="../../images/polrepbas73.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>After saving the policy, you will return to the <strong>Policy Installation</strong> window. To refresh (reinstall) the policy, click <strong>Run Once Now</strong>. You should notice that the number of rules in the installed policy has changed from 3 to 4, and the policy installation timestamp has been updated to the current time.
+<a href="../../images/polrepbas74.webp"><img alt="image" src="../../images/polrepbas74.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Verify the rule behavior by logging in as one of the administrators and attempting to retrieve data from the game.customers table. Then try to delete several records and observe the outcome.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">jerry</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">street</span><span class="o">=</span><span class="s1">'Gliwice'</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas75.webp"><img alt="image" src="../../images/polrepbas75.webp" width="99%" /></a> 
+As expected, the administrator was able to view customer data, but the attempt to delete records was blocked.</p>
+</li>
+</ol>
+<h2 id="object-references">Object references</h2>
+<ol>
+<li>
+<p>Login to database as a <strong>postgres</strong> and confirm lack of access to <strong>game.credit_cards</strong> table
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">postgres</span>
+
+<span class="n">psql</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>In the table name like <strong>game.customers</strong>, we use a &lt;schema.table&gt; reference, which allows us to distinguish between objects with the same name in different schemas. However, it is possible to use a fully qualified table name, which in the case of Postgres has the form &lt;database.schema.table&gt;. The current database name you can gather from command:
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">current_database</span><span class="p">();</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Let's now try to retrieve data from the <strong>game.customer</strong> table in the <strong>postgres</strong> database.
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w">  </span><span class="n">postgres</span><span class="p">.</span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</code></pre></div>
+<a href="../../images/polrepbas76.webp"><img alt="image" src="../../images/polrepbas76.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>As it turns out, this time the agent did not block the query. Within a database session, there's a concept of the current session context, which can be defined to a default value after a user logs in. We can display this context using the command:
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">current_schema</span><span class="p">();</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>In other words, if we reference an object in the current session without providing a schema, the default one – <strong>public</strong> - will be assumed. If we change it to <strong>game</strong> one we will be able to refer tables by their names only. Again data will be leaked. 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">game</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">current_schema</span><span class="p">();</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas77.webp"><img alt="image" src="../../images/polrepbas77.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>And once again, data from the customers table was retrieved. The reason for this is that our rule indicates only references to the <strong>game.customers</strong> object should be blocked, but in a real environment, our table can also be referenced as <strong>postgres.game.customer</strong> and <strong>customers</strong>. These three forms can be replaced with two references to the objects: <strong>customers</strong> and <strong>%.customers</strong>, where the second element uses a wildcard pattern preceding the table name. Let's try to modify our policy.</p>
+</li>
+<li>
+<p>Information about the application tables is stored in the <em>Application tables on postgres</em> group. You can edit it through the rule definition, but you can also modify it directly from <strong>Group Builder</strong>. Open the <strong>Group Builder</strong> view, select the desired group, and click the pencil icon to edit it.
+<a href="../../images/polrepbas78.webp"><img alt="image" src="../../images/polrepbas78.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To cover all possible object reference formats, enter each of the five tables using both <strong>&lt;table&gt;</strong> and <strong>&lt;%.table&gt;</strong> notation. The second format acts as a pattern that matches references made either through the schema name or though the database and schema name.</p>
+<div class="admonition note">
+<p class="admonition-title">Expected member list:</p>
+<ul>
+<li>credit_cards</li>
+<li>%.credit_cards</li>
+<li>customers</li>
+<li>%.customers</li>
+<li>extras</li>
+<li>%.extras</li>
+<li>features</li>
+<li>%.features</li>
+<li>transaction</li>
+<li>%.transaction</li>
+</ul>
+</div>
+<p><a href="../../images/polrepbas79.webp"><img alt="image" src="../../images/polrepbas79.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>After saving the changes to the group, reopen the <strong>Policy Installation</strong> view and click <strong>Run Once Now</strong> to refresh the policy on the collector.
+<a href="../../images/polrepbas80.webp"><img alt="image" src="../../images/polrepbas80.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Try again access to object using three different object references as a <strong>postgres</strong> user. Confirm that all table references are correctly blocked.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">postgres</span>
+
+<span class="n">psql</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgres</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">customers</span><span class="p">;</span>
+
+<span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">game</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas81.webp"><img alt="image" src="../../images/polrepbas81.webp" width="79%" /></a></p>
+</li>
+</ol>
+<h2 id="blocking-on-column-level">Blocking on column level</h2>
+<ol>
+<li>
+<p>Implement an additional rule that restricts access to payment card data to a specific set of users. The <strong>credit_cards</strong> table contains a <em>card_number</em> column, and this is the data element that requires additional protection. Assume that only the <strong>jerry</strong> administrator account should be allowed to view this data.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">tom</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas82.webp"><img alt="image" src="../../images/polrepbas82.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Edit the policy and add a new rule named <em>Access to PCI data on postgres</em>. Add two <em>Session</em> criteria. The first should limit the rule to POSTGRESQL traffic. The second should restrict access to database users not defined in a new group named <em>Administrators with access to PCI data</em>, which initially contains a single member: <strong>jerry</strong>. Next, add two SQL criteria to limit the activity to <em>SELECT</em> statements and to specific table columns. Use <em>Object / Field</em> Group and create a new group named <em>Postgres PCI fields</em>. This group should contain two-part values consisting of the table name and column name. Add references to the card_number column using all supported table notations (&lt;table&gt; and &lt;%.table&gt;) to ensure that every possible reference format to the protected column is covered.</p>
+<div class="admonition note">
+<ul>
+<li><em>Database Type</em> <code>=</code> POSTGRESSQL</li>
+<li><em>Database User</em> <code>Not in Group</code> Administrators with access to PCI data</li>
+<li><em>Object/Field</em> <code>In Group</code> Postgres PCI fields</li>
+<li><em>Command</em> <code>In Group</code> Select Command</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><em>Administrators with access to PCI data</em> members:</p>
+<ul>
+<li>JERRY (SUPER USER)</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><em>Postgres PCI fields</em> members:</p>
+<ul>
+<li>credit_cards+card_number</li>
+<li>%.credit_cards+card_number</li>
+</ul>
+</div>
+<p><a href="../../images/polrepbas83.webp"><img alt="image" src="../../images/polrepbas83.webp" width="99%" /></a> </p>
+<p>The conditions in this rule identify an unauthorized attempt to access PCI data, so add the following two actions: <strong>S-GATE TERMINATE</strong> and <strong>LOG FULL DETAILS</strong>.</p>
+</li>
+<li>
+<p>After saving the rule, move it to position 2 and <strong>Save</strong> the policy.
+<a href="../../images/polrepbas84.webp"><img alt="image" src="../../images/polrepbas84.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Reinstall policy and let’s test it as <strong>tom</strong> user.  Access to the <strong>credit_cards</strong> table is terminated whenever a <em>SELECT</em> statement directly or indirectly references the <strong>card_number</strong> column. If a query does not reference this data, it is allowed to be executed successfully (if action is <em>SELECT</em>).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://raptor.demo.guardium:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">tom</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">card_number</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">card_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgres</span><span class="p">.</span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas85.webp"><img alt="image" src="../../images/polrepbas85.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>And now, do the same thing as <strong>jerry</strong> and confirm his access to <em>PCI</em> data.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">psql</span><span class="w"> </span><span class="ss">"postgresql://localhost:5432/postgres?sslmode=require"</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">jerry</span><span class="w"> </span><span class="o">-</span><span class="n">W</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">card_number</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">card_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgres</span><span class="p">.</span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas101.webp"><img alt="image" src="../../images/polrepbas101.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="hacker-is-smarter">Hacker is smarter</h2>
+<ol>
+<li>
+<p>Let's assume we are dealing with a security breach where someone with stolen <strong>postgres</strong> user credentials on the <strong>raptor</strong> machine wants to retrieve customer data and executes:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">postgres</span>
+
+<span class="n">psql</span>
+
+<span class="err">\</span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span>
+
+<span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">d</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>The first command is a simple reconnaissance aimed at finding interesting tables. The name <strong>credit_cards</strong> should be interesting to the intruder, and he tries to retrieve one row from this table. He specifically limits the data scope so as not to trigger policies controlling massive data extraction. He realizes that some mechanism controls access to this table and decide to check table structure.
+<a href="../../images/polrepbas86.webp"><img alt="image" src="../../images/polrepbas86.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Knowledge of the table structure opens the possibility for us to reference data indirectly through the mechanism of parameterized functions. A hypothetical bad guy can create a procedure like this one:
+<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">game</span><span class="p">;</span>
+</code></pre></div>
+and
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">get_table</span><span class="p">(</span><span class="n">tablename</span><span class="w"> </span><span class="nb">text</span><span class="p">)</span>
+<span class="k">RETURNS</span><span class="w"> </span><span class="k">SETOF</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="k">EXECUTE</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="s1">'SELECT * FROM %I'</span><span class="p">,</span><span class="w"> </span><span class="n">tablename</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span>
+</code></pre></div>
+<a href="../../images/polrepbas87.webp"><img alt="image" src="../../images/polrepbas87.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>Because the account used for the attack has high privileges, the function was created and can now be easily invoked. Thanks to the knowledge of the data stream returned from the table, the data can be retrieved.
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">get_table</span><span class="p">(</span><span class="s1">'credit_cards'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">cid</span><span class="w"> </span><span class="n">uuid</span><span class="p">,</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="n">uuid</span><span class="p">,</span><span class="w"> </span><span class="n">cc</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="n">cv</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+<a href="../../images/polrepbas88.webp"><img alt="image" src="../../images/polrepbas88.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>After data extraction, an experienced hacker will try to cover their tracks by deleting the function.
+<div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">get_table</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="alert-on-suspicious-activity">Alert on suspicious activity</h2>
+<ol>
+<li>
+<p>Blocking, and preventative actions in general, seem at first glance to be a good mechanism for data protection, but due to the sensitivity of production environments to configuration changes, they are rarely implemented. The previous example also illustrates how deceptive the assumption that we control all data access vectors can be, and that there may always be methods we are not aware of. This makes it even more critical to have full monitoring of privileged user access and the ability to inform the organization's security systems about a situation. Typically, such a solution is a <em>SIEM</em>, which we feed events. Let's try to build a new rule that will send information to an external system about the use of the functions that are of interest to us in this case: <strong>CREATE FUNCTION</strong> and <strong>DROP FUNCTION</strong>.</p>
+<p>To do this, re-edit our policy and add a new rule with name <em>Alert suspicious commands execution</em>. The session will again narrow its scope to the <strong>PostgresSQL</strong> database and traffic not belonging to application.</p>
+<p>At the SQL criteria level, search for the use of the <strong>CREATE FUNCTION</strong> and <strong>DROP FUNCTION</strong> SQL commands. Store the list of suspicious commands in a group named <em>Suspicious commands for non application traffic</em>.</p>
+<p>For the rule action, add <strong>ALERT ONCE PER SESSION</strong> from the <em>ALERT</em> action group. When selecting any alert action, an additional configuration window will appear where you must specify the message template and the delivery method. Select the <strong>standard template</strong> and <em>Remote SYSLOG</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">policy rule criteria:</p>
+<ul>
+<li><em>Database Type</em> <code>=</code> <strong>POSTGRESQL</strong></li>
+<li><em>Tuple 5 values</em> <code>Not In Group</code> <strong>Postgres application profiles</strong></li>
+<li><em>Command</em> <code>In Group</code> <strong>Suspicious commands for non application traffic</strong></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><em>Suspicious commands for non application traffic</em> group members</p>
+<ul>
+<li>CREATE FUNCTION</li>
+<li>DROP FUNCTION</li>
+</ul>
+</div>
+<p><a href="../../images/polrepbas89.webp"><img alt="image" src="../../images/polrepbas89.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>After saving the rule, move it above the <em>Block access for other users</em> rule and <strong>Save</strong> the policy.
+<a href="../../images/polrepbas90.webp"><img alt="image" src="../../images/polrepbas90.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Don't forget to reinstall the policy.
+<a href="../../images/polrepbas91.webp"><img alt="image" src="../../images/polrepbas91.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Let's test the new policy rule functionality.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">psql</span>
+
+<span class="k">SET</span><span class="w"> </span><span class="n">search_path</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">game</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+and
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">get_table</span><span class="p">(</span><span class="n">tablename</span><span class="w"> </span><span class="nb">text</span><span class="p">)</span>
+<span class="k">RETURNS</span><span class="w"> </span><span class="k">SETOF</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="err">$$</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="k">EXECUTE</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="s1">'SELECT * FROM %I'</span><span class="p">,</span><span class="w"> </span><span class="n">tablename</span><span class="p">);</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span>
+</code></pre></div>
+and
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">get_table</span><span class="p">(</span><span class="s1">'credit_cards'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">cid</span><span class="w"> </span><span class="n">uuid</span><span class="p">,</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="n">uuid</span><span class="p">,</span><span class="w"> </span><span class="n">cc</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="n">cv</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="k">DROP</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">get_table</span><span class="p">;</span>
+
+<span class="err">\</span><span class="n">q</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Let's check the <em>Policy Violations Details</em> report. We should be surprised that two records appeared in the report instead of the one we expected, which was related to the <strong>ALERT ONCE PER SESSION</strong> action. In <strong>Guardium</strong>, the violations presented in this report are internal events and are always stored unless we explicitly discard them using <strong>ALERT ONLY</strong> action.
+<a href="../../images/polrepbas92.webp"><img alt="image" src="../../images/polrepbas92.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To see what events were sent via syslog, we will build a new report. Open <strong>Query-Report Builder</strong>, select the <strong>Alert</strong> report domain, and use the plus icon <span class="mb">+</span>.
+<a href="../../images/polrepbas93.webp"><img alt="image" src="../../images/polrepbas93.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Enter the report name <em>Sent alerts (Training)</em>, and set the <strong>main entity</strong> to the value <em>Message Sent</em>, and then proceed to the <em>Selected Columns</em> section. Add the <em>Message Date</em>, <em>Message Type</em>, and <em>Message STATUS</em> fields from the <em>Message Sent</em> entity, and the <em>Message Text</em> field from the entity with the same name to the report. Switch to <em>Sort Order</em> section. Set the sorting in descending order for the <em>Message Date</em> column and Save the report definition.</p>
+<div class="admonition note">
+<p class="admonition-title">report fields:</p>
+<ul>
+<li>Messages Sent <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Message Date</li>
+<li>Messages Sent <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Message Type</li>
+<li>Messages Sent <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Message STATUS</li>
+<li>Messages Text <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Message Text</li>
+</ul>
+</div>
+<p><a href="../../images/polrepbas94.webp"><img alt="image" src="../../images/polrepbas94.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Add the just created report to our <em>Policies and Reports</em> dashboard. Review our new report, and you should see only one sent event related to our previous session, which contains a reference to the first monitored command: <strong>CREATE FUNCTION</strong>.
+<a href="../../images/polrepbas95.webp"><img alt="image" src="../../images/polrepbas95.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>We will now feed the SIEM system with information about suspicious commands executed by privileged users.</p>
+</li>
+</ol>
+<h2 id="bad-guys-will-always-find-a-way">Bad guys will always find a way</h2>
+<ol>
+<li>
+<p>Data access languages provide many different methods for referencing data. Even though we block access to an object by name and alert on the attempt to create a function that could lead to data leakage, other possibilities likely still exist. Let's once again become a hypothetical intruder who, as we remember, was able to learn what the table structure looks like.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">postgres</span>
+
+<span class="n">psql</span>
+
+<span class="err">\</span><span class="n">d</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas96.webp"><img alt="image" src="../../images/polrepbas96.webp" width="99%" /></a>  </p>
+</li>
+<li>
+<p>It should make us wonder why the command <code>\d game.credit_cards</code> was not blocked, since it refers to a table we are protecting. The answer is simple - \d is not a command, but only a postgres client alias which translates it into a proper <em>SQL</em> command and presents the desired result, which is the table structure.
+So what is being executed, and why didn't the system block this activity?</p>
+<p>Analyze the list of <em>SQL</em> in the current session of the user postgres in the <em>Full SQL (Policies)</em> report. You will notice many complex queries, and one of them will look as follows:</p>
+<p><a href="../../images/polrepbas97.webp"><img alt="image" src="../../images/polrepbas97.webp" width="99%" /></a></p>
+<p>Execute it yourself.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">oid</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="n">pg_class</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="n">pg_namespace</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">oid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relnamespace</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="w"> </span><span class="k">OPERATOR</span><span class="p">(</span><span class="n">pg_catalog</span><span class="p">.</span><span class="o">~</span><span class="p">)</span><span class="w"> </span><span class="s1">'^(credit_cards)$'</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="k">default</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="w"> </span><span class="k">OPERATOR</span><span class="p">(</span><span class="n">pg_catalog</span><span class="p">.</span><span class="o">~</span><span class="p">)</span><span class="w"> </span><span class="s1">'^(game)$'</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="k">default</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</code></pre></div>
+<p><a href="../../images/polrepbas98.webp"><img alt="image" src="../../images/polrepbas98.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>It turns out that this <em>SQL</em> translates the table name into its <em>unique ID</em> and does not reference the table directly, but only the information catalog about tables (the <strong>OID</strong> number is specific to the environment and yours may differ from the one presented in the lab).</p>
+<p>Look closely at the <em>SQLs</em> in the report and you will notice that instead of the table name, the <em>Postgres</em> client uses <strong>OID</strong> references.</p>
+<p><a href="../../images/polrepbas99.webp"><img alt="image" src="../../images/polrepbas99.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>An experienced <em>Postgres</em> database administrator knows very well that they can reference a table via <strong>OID</strong> instead of its name and retrieve data from it, as long as they know the column names (replace &lt;your_customers_OID&gt; by appropriate value retrieved in your lab instance).
+<div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="n">myvars</span><span class="p">.</span><span class="n">myoid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'&lt;your credit_cards table OID&gt;'</span><span class="p">;</span>
+</code></pre></div>
+and
+<div class="highlight"><pre><span></span><code><span class="k">DO</span><span class="w"> </span><span class="err">$$</span>
+<span class="k">DECLARE</span>
+<span class="w">    </span><span class="n">t_oid</span><span class="w"> </span><span class="n">oid</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">current_setting</span><span class="p">(</span><span class="s1">'myvars.myoid'</span><span class="p">)::</span><span class="n">oid</span><span class="p">;</span>
+<span class="w">    </span><span class="k">sql</span><span class="w"> </span><span class="nb">text</span><span class="p">;</span>
+<span class="w">    </span><span class="n">rec</span><span class="w"> </span><span class="n">record</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="k">sql</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="s1">'SELECT card_id, customer_id, card_number, card_validity FROM %s LIMIT 10'</span><span class="p">,</span><span class="w"> </span><span class="n">t_oid</span><span class="p">::</span><span class="n">regclass</span><span class="p">);</span>
+<span class="w">    </span><span class="k">FOR</span><span class="w"> </span><span class="n">rec</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">EXECUTE</span><span class="w"> </span><span class="k">sql</span>
+<span class="w">    </span><span class="n">LOOP</span>
+<span class="w">        </span><span class="n">RAISE</span><span class="w"> </span><span class="n">NOTICE</span><span class="w"> </span><span class="s1">'cid = %, cusid = %, cc = %, cv = %'</span><span class="p">,</span><span class="w"> </span><span class="n">rec</span><span class="p">.</span><span class="n">card_id</span><span class="p">,</span><span class="w"> </span><span class="n">rec</span><span class="p">.</span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">rec</span><span class="p">.</span><span class="n">card_number</span><span class="p">,</span><span class="w"> </span><span class="n">rec</span><span class="p">.</span><span class="n">card_validity</span><span class="p">;</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">LOOP</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="err">$$</span><span class="p">;</span>
+</code></pre></div>
+and
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="se">\q</span>
+
+<span class="nb">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/polrepbas100.webp"><img alt="image" src="../../images/polrepbas100.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

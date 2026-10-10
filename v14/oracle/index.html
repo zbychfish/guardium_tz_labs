@@ -1,0 +1,1971 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+        <link rel="prev" href="../winstap/">
+      
+      
+        <link rel="next" href="../polrepbas/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Oracle monitoring options (lab 10) - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#oracle-monitoring-options" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Oracle monitoring options (lab 10)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../va/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VA (lab 8)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../winstap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WINSTAP (lab 9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle monitoring options (lab 10)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle monitoring options (lab 10)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-stap-on-sauropod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install STAP on sauropod
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oracle-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oracle traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atap-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ATAP setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-oracle-instance-in-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Oracle instance in container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traffic-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etap-monitoring-of-containerized-oracle-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETAP monitoring of containerized Oracle service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-oracle-in-container-to-store-activity-in-oua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Oracle in container to store activity in OUA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oua-with-stap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OUA with STAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oua-with-uc-20-with-kafka-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OUA with UC 2.0 (with kafka consumer)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../polrepbas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies and Reports basics (lab 11)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LTR (lab 12)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-stap-on-sauropod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install STAP on sauropod
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oracle-traffic-visibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oracle traffic visibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atap-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ATAP setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-oracle-instance-in-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Oracle instance in container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traffic-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic generator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etap-monitoring-of-containerized-oracle-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETAP monitoring of containerized Oracle service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-oracle-in-container-to-store-activity-in-oua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Oracle in container to store activity in OUA
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oua-with-stap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OUA with STAP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oua-with-uc-20-with-kafka-consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OUA with UC 2.0 (with kafka consumer)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="oracle-monitoring-options">Oracle monitoring options</h1>
+<h2 id="install-stap-on-sauropod">Install STAP on sauropod</h2>
+<ol>
+<li>
+<p>Login to <strong>sauropod</strong> and copy <em>GIM installer</em> from <strong>raptor</strong> to <code>/opt/lab_files</code> on local filesystem.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/lab_files
+
+scp<span class="w"> </span>-P<span class="w"> </span><span class="m">2223</span><span class="w"> </span>raptor.demo.guardium:/opt/guardium_tz_bootcamp_automation/upload/source_files/agents/shell/guard-bundle-GIM-12.2.2.0_r123489_v12_x_1-rhel-8-linux-x86_64.gim.sh<span class="w"> </span>/opt/lab_files/
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Install <em>GIM client</em> on <strong>sauropod</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/lab_files
+
+chmod<span class="w"> </span>+x<span class="w"> </span>*.sh
+
+./guard-bundle-GIM-12.2.2.0_r123489_v12_x_1-rhel-8-linux-x86_64.gim.sh<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>/opt/guardium<span class="w"> </span>--tapip<span class="w"> </span>sauropod<span class="w"> </span>--sqlguardip<span class="w"> </span>cm
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Login to <strong>cm</strong> UI and install <em>STAP</em> on <strong>sauropod</strong>. Select <strong>STAP 12.2.2_r123489_11</strong> and set options:</p>
+<div class="admonition note">
+<p class="admonition-title">Parameters:</p>
+<ul>
+<li>KTAP_ALLOW_MODULES_COMBO: <strong>Y</strong></li>
+<li>STAP_SQLGUARD_IP: <strong>coll1.demo.guardium</strong></li>
+</ul>
+</div>
+<p><a href="../../images/oracle1.webp"><img alt="image" src="../../images/oracle1.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Confirm that agent has been successfully deployed.
+<a href="../../images/oracle2.webp"><img alt="image" src="../../images/oracle2.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check also in <strong>S-TAP Status</strong> on <strong>coll1</strong> that <em>KTAP</em> is deployed.
+<a href="../../images/oracle3.webp"><img alt="image" src="../../images/oracle3.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="oracle-traffic-visibility">Oracle traffic visibility</h2>
+<ol>
+<li>
+<p>We have <em>Oracle</em> instances ran on <strong>sauropod</strong> machine. Check a list of instances as a <strong>root</strong>, you should see <em>ORCLDB</em> and <em>ORCL</em>. The second one is belonging to Oracle working in the container, we will refer to it later in the lab.
+<div class="highlight"><pre><span></span><code>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>pmon
+</code></pre></div>
+<a href="../../images/oracle4.webp"><img alt="image" src="../../images/oracle4.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Change on <strong>sauropod</strong> context to <strong>oracle</strong> user.
+<div class="highlight"><pre><span></span><code>su<span class="w"> </span>-<span class="w"> </span>oracle
+</code></pre></div></p>
+</li>
+<li>
+<p>Let’s check what <em>SID</em> is set for this session
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$ORACLE_SID</span>
+</code></pre></div>
+<a href="../../images/oracle5.webp"><img alt="image" src="../../images/oracle5.webp" width="49%" /></a></p>
+</li>
+<li>
+<p>We have <em>SQLcl</em> installed on <strong>sauropod</strong>, login to <em>Oracle</em> instance as a <strong>system</strong> user with lab default password. The <em>ORCLCDB</em> is pluggable.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="k">system</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">cdb</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">v$database</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle6.webp"><img alt="image" src="../../images/oracle6.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>List of <em>PDB</em> instances. There is one with name <em>ORCLPDB1</em>.
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pdb_name</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cdb_pdbs</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pdb_name</span><span class="p">;</span>
+</code></pre></div>
+<a href="../../images/oracle7.webp"><img alt="image" src="../../images/oracle7.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>Let’s change the session context to <em>ORCLPDB1</em> instance and check list of schemas and tables in one of it.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ORCLPDB1</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">tablespace_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dba_tablespaces</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">tablespace_name</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="k">owner</span><span class="p">,</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dba_tables</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">tablespace_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'HR_DATA'</span><span class="p">;</span>
+
+<span class="n">exit</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle8.webp"><img alt="image" src="../../images/oracle8.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Check in <strong>coll1</strong> UI the <em>Full SQL (Training)</em> report and confirm that <em>Oracle</em> traffic is visible.
+<a href="../../images/oracle9.webp"><img alt="image" src="../../images/oracle9.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>On <strong>coll1</strong> clone <em>Full SQL (Training)</em> report. Name it <em>Full SQL (session details)</em> and proceed to the <em>Selected Columns</em> section by clicking <strong>Next</strong>.
+<a href="../../images/oracle10.webp"><img alt="image" src="../../images/oracle10.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In this section, we can define what information will be displayed in the report. We can add attributes from the <em>Entities and Attributes</em> list to the <em>Selected Columns</em> list on the right. Attributes are grouped by <em>entity</em>. After selecting an attribute, use the  <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> to add it to the report. Add five attributes:</p>
+<div class="admonition note">
+<p class="admonition-title">attributes:</p>
+<ul>
+<li><strong>Network Protocol</strong> from <em>Client/Server</em></li>
+<li><strong>DB Protocol</strong> from <em>Client/Server</em></li>
+<li><strong>Session Encrypted</strong> from <em>Session</em></li>
+<li><strong>Encryption Type</strong> from <em>Session</em></li>
+<li><strong>Server Type</strong> from <em>Client/Server</em></li>
+</ul>
+</div>
+<p>and Expand a <em>Conditions</em> pane.</p>
+<p><a href="../../images/oracle11.webp"><img alt="image" src="../../images/oracle11.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Add condition for the <strong>Server Type</strong> attribute from the <em>Client/Server</em> entity using the <strong>DB_Type</strong> parameter with the <em>LIKE</em> operator and <strong>Save</strong> report.
+<a href="../../images/oracle12.webp"><img alt="image" src="../../images/oracle12.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>A confirmation of the operation will appear and then <strong>Close</strong> the report editing window.
+<a href="../../images/oracle13.webp"><img alt="image" src="../../images/oracle13.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Create new <em>dashboard</em> with name <em>Oracle</em> and add into it a just cloned report.
+<a href="../../images/oracle14.webp"><img alt="image" src="../../images/oracle14.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Edit report parameters and set for <em>DB_Type</em> value <strong>ORACLE</strong>. Now report will show only activity belonging to <em>Oracle</em>.
+<a href="../../images/oracle15.webp"><img alt="image" src="../../images/oracle15.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Review on <strong>sauropod</strong> the <code>tnsnames.ora</code> file and notice that we have setup of four connection/protocol types there.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span><span class="nv">$ORACLE_HOME</span>/network/admin/tnsnames.ora
+</code></pre></div>
+<a href="../../images/oracle16.webp"><img alt="image" src="../../images/oracle16.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Connect as an <strong>oracle</strong> user using <em>ORCLPDB1_BEQ</em> connection (<em>Bequeath</em> connection), then check traffic visibility in <em>Full SQL (session details)</em> report on <strong>coll1</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="k">system</span><span class="o">@</span><span class="n">ORCLPDB1_BEQ</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'BEQ session to ORCLPDB1'</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">hr</span><span class="p">.</span><span class="n">employees</span><span class="w"> </span><span class="k">FETCH</span><span class="w"> </span><span class="k">FIRST</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">ONLY</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle17.webp"><img alt="image" src="../../images/oracle17.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Now connect using <em>ORCLPDB_IPC</em> connection (shared memory) and check activity events in the report.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="k">system</span><span class="o">@</span><span class="n">ORCLPDB1_IPC</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'IPC session to ORCLPDB1'</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span>
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ORCLPDB1</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">hr</span><span class="p">.</span><span class="n">employees</span><span class="w"> </span><span class="k">FETCH</span><span class="w"> </span><span class="k">FIRST</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">ONLY</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle18.webp"><img alt="image" src="../../images/oracle18.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Next type of connection is TCP and use ORCLPDB1 connection string.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="k">system</span><span class="o">@</span><span class="n">ORCLPDB1</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'TCP session to ORCLPDB1'</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">hr</span><span class="p">.</span><span class="n">employees</span><span class="w"> </span><span class="k">FETCH</span><span class="w"> </span><span class="k">FIRST</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">ONLY</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle19.webp"><img alt="image" src="../../images/oracle19.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>All previous connections used unencrypted communication between the <em>Oracle</em> client and server. Now connect using <em>TCPS</em>, which technically leverages <em>SSL/TLS</em> encryption between both endpoints.
+<em>Oracle</em> also provides its own native encryption mechanism (<em>ASO</em> – <em>Advanced Security Option</em>), which is also supported by <strong>Guardium</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="k">system</span><span class="o">@</span><span class="n">ORCLPDB1_SSL</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'TCPS encrypted session to ORCLPDB1'</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">hr</span><span class="p">.</span><span class="n">employees</span><span class="w"> </span><span class="k">FETCH</span><span class="w"> </span><span class="k">FIRST</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">ONLY</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+This time traffic will not appear in the report because <em>ATAP</em> must be deployed in place.</p>
+</li>
+</ol>
+<h2 id="atap-setup">ATAP setup</h2>
+<ol>
+<li>To configure <em>ATAP</em>, we must stop the <em>Oracle</em> database services on <strong>sauropod</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">oracle</span>
+
+<span class="n">lsnrctl</span><span class="w"> </span><span class="n">stop</span>
+
+<span class="k">sql</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sysdba</span>
+
+<span class="n">shutdown</span><span class="w"> </span><span class="k">immediate</span><span class="p">;</span>
+
+<span class="n">exit</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div></li>
+<li>As a <strong>root</strong> we can now configure <em>ATAP</em>. Register <strong>oracle</strong> user for <em>ATAP</em>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>authorize-user<span class="w"> </span>oracle
+</code></pre></div></li>
+<li>Set a new <em>ATAP</em> configuration for binaries located in <code>/opt/oracle/product/19c/dbhome_1</code>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>--db-type<span class="o">=</span>oracle<span class="w"> </span>--db-instance<span class="o">=</span>ORCLCDB<span class="w"> </span>--db_user<span class="o">=</span>oracle<span class="w"> </span>--db_home<span class="o">=</span>/u01/app/oracle/product/21c/dbhome_1/<span class="w"> </span>--db_base<span class="o">=</span>/home/oracle<span class="w"> </span>--db_version<span class="o">=</span><span class="m">21</span><span class="w"> </span>store-conf
+</code></pre></div></li>
+<li>
+<p>Activate <em>ATAP</em> for <em>Oracle</em>.
+<div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>--db-type<span class="o">=</span>oracle<span class="w"> </span>--db-instance<span class="o">=</span>ORCLCDB<span class="w"> </span>activate
+</code></pre></div>
+<a href="../../images/oracle20.webp"><img alt="image" src="../../images/oracle20.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Now we can start <em>Oracle</em> instances again.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">oracle</span>
+
+<span class="k">sql</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sysdba</span>
+
+<span class="n">startup</span>
+
+<span class="n">exit</span>
+
+<span class="n">lsnrctl</span><span class="w"> </span><span class="k">start</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Let’s connect to <em>Oracle</em> with <em>SSL</em> again and check traffic visibility (if connection will fail, wait a while to start <em>listener</em> services fully).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="k">system</span><span class="o">@</span><span class="n">ORCLPDB1_SSL</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">sys_context</span><span class="p">(</span><span class="s1">'USERENV'</span><span class="p">,</span><span class="w"> </span><span class="s1">'NETWORK_PROTOCOL'</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">network_protocol</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'SSL connection to ORCLCDB'</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dual</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">hr</span><span class="p">.</span><span class="n">employees</span><span class="w"> </span><span class="k">FETCH</span><span class="w"> </span><span class="k">FIRST</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">ONLY</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle21.webp"><img alt="image" src="../../images/oracle21.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="check-oracle-instance-in-container">Check Oracle instance in container</h2>
+<ol>
+<li>
+<p>On <strong>sauropod</strong> check as a <strong>root</strong> a status of <em>Oracle container</em>. Notice that the container is named <strong>oracle_db_21c</strong>, and the service is exposed on port 1522 to avoid conflicts with the listener already running on <strong>sauropod</strong>.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
+</code></pre></div>
+<a href="../../images/oracle22.webp"><img alt="image" src="../../images/oracle22.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Confirm <em>Oracle DB</em> readiness. The container logs should indicate that the database is ready for use.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>logs<span class="w"> </span>oracle_db_21c<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-C<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="s1">'IS READY TO USE'</span>
+</code></pre></div>
+<a href="../../images/oracle23.webp"><img alt="image" src="../../images/oracle23.webp" width="89%" /></a> </p>
+</li>
+<li>
+<p>To check instance connection open <strong>bash</strong> to our container and login to database as <strong>system</strong> (use the standard password for services). Log in using port <strong>1521</strong>, as the connection is established from within the container.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>oracle_db_21c<span class="w"> </span>bash
+
+sqlplus<span class="w"> </span>system@localhost/ORCLPDB1:1521
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle24.webp"><img alt="image" src="../../images/oracle24.webp" width="79%" /></a> </p>
+</li>
+<li>
+<p>Execute some simple queries (first one displays <em>Oracle</em> release and the second one the information about pluggable database support.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">BANNER</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">V$VERSION</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">BANNER</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'Oracle Database%'</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">CDB</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">V$DATABASE</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle25.webp"><img alt="image" src="../../images/oracle25.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>Confirm that <em>Oracle Unified Audit</em> <em>(OUA)</em> is activated in our instance.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">VALUE</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ORACLE_UNIFIED_AUDIT_VALUE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">V$OPTION</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">PARAMETER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Unified Auditing'</span><span class="p">;</span>
+
+<span class="n">exit</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle26.webp"><img alt="image" src="../../images/oracle26.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="traffic-generator">Traffic generator</h2>
+<ol>
+<li>
+<p>Check traffic generator configuration for <em>Oracle</em> (on <strong>raptor</strong>) and notice that activity will be generated in the <em>Oracle container</em> on <strong>sauropod</strong>.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic/config/oracle_container_sauropod.yaml
+</code></pre></div>
+<a href="../../images/oracle27.webp"><img alt="image" src="../../images/oracle27.webp" width="89%" /></a></p>
+</li>
+<li>
+<p>On <strong>raptor</strong>, start the traffic generator for <em>Oracle</em> database running in a container on <strong>sauropod</strong>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic
+
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+
+guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/oracle_container_sauropod.yaml<span class="w"> </span>rebuild
+
+guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/oracle_container_sauropod.yaml<span class="w"> </span>run
+</code></pre></div></td></tr></table></div>
+<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>
+<div class="highlight"><pre><span></span><code>deactivate
+</code></pre></div>
+<a href="../../images/oracle28.webp"><img alt="image" src="../../images/oracle28.webp" width="99%" /></a>
+You can interrupt script by inserting <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> keystroke.</p>
+</li>
+<li>
+<p>Open <em>Full SQL (session details)</em> report on <strong>coll1</strong> and notice that we see traffic generated in the container. This is not standard behavior and is only due to the use of virtualization/containerization (<em>Docker</em>) running directly on the host <em>OS</em> kernel, where the agent is already installed.<BR>
+In most cases, containers are orchestrated by Kubernetes or managed by a cloud/service provider, and the traffic will not be captured by the agent. It is also worth noting that only unencrypted traffic is visible. If the container were configured to use <em>SSL</em> or <em>ASO</em>, there would be no ability to install <em>ATAP</em> inside the container, and the traffic would not be captured.
+<a href="../../images/oracle29.webp"><img alt="image" src="../../images/oracle29.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Let’s disable <em>KTAP</em> on <strong>sauropod</strong> to be able focus on agentless methods of container monitoring. In <strong>cm</strong> UI set <em>KTAP_ENABLED</em> to <strong>0</strong> for <strong>sauropod</strong> <em>STAP</em>.
+<a href="../../images/oracle30.webp"><img alt="image" src="../../images/oracle30.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>To unload <em>KTAP</em> from kernel restart <strong>sauropod</strong> machine (confirm that previous parameter change finished successfully).
+<div class="highlight"><pre><span></span><code>shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</code></pre></div></p>
+</li>
+<li>
+<p>After a while run on <strong>raptor</strong> the traffic generator again and confirm that new activity is not longer intercepted (check lack a new queries in the report on <strong>coll1</strong>).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">guardium_tz_bootcamp_automation</span><span class="o">/</span><span class="n">upload</span><span class="o">/</span><span class="n">guardium_notes_dbtraffic</span>
+
+<span class="k">source</span><span class="w"> </span><span class="n">venv</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="n">guardium</span><span class="o">-</span><span class="n">notes</span><span class="o">-</span><span class="n">dbtraffic</span><span class="w"> </span><span class="c1">--config config/oracle_container_sauropod.yaml run</span>
+</code></pre></div></td></tr></table></div>
+<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>
+<div class="highlight"><pre><span></span><code>deactivate
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="etap-monitoring-of-containerized-oracle-service">ETAP monitoring of containerized Oracle service</h2>
+<ol>
+<li>
+<p>Now configure <em>ETAP</em> on <strong>raptor</strong> to proxy traffic to the <em>Oracle container</em> on <strong>sauropod</strong>. To do this, generate a new certificate using the <em>CA</em> created in ETAP lab. Login to <strong>coll1</strong> cli and request certificate for <em>ETAP instance</em> (<em>CSR request</em>) using command:
+    <div class="highlight"><pre><span></span><code>create<span class="w"> </span>csr<span class="w"> </span>external_stap
+</code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">insert certificate request parameters:</p>
+<ul>
+<li>unique alias, like : <strong>sauropod-oracle-container-etap</strong></li>
+<li>etap certificate common name: <strong>oraclecoll1.demo.guardium</strong></li>
+<li>organization unit name: <strong>Demo</strong></li>
+<li>add additional OU: <strong>n</strong></li>
+<li>organization name: <strong>Guardium</strong></li>
+<li>city: &lt;your city name&gt;</li>
+<li>province: &lt;your province name&gt;</li>
+<li>country code: &lt;your 2-digits country code&gt;</li>
+<li>email of collector certificate owner, can be fake: &lt;email_address&gt;</li>
+<li>accept default algorithm: <span class="keys"><kbd class="key-enter">Enter</kbd></span></li>
+<li>accept default key length: <span class="keys"><kbd class="key-enter">Enter</kbd></span></li>
+<li>insert FQDN of your collector for SAN #1: <strong>coll1.demo.guardium</strong></li>
+<li>press ENTER for SAN #2: <span class="keys"><kbd class="key-enter">Enter</kbd></span></li>
+</ul>
+</div>
+<p><a href="../../images/oracle31.webp"><img alt="image" src="../../images/oracle31.webp" width="99%" /></a></p>
+<p>Then <em>CSR</em> will be generated and write down in notepad the entire <em>alias</em> and related to it the <em>token</em> (two bottom lines).</p>
+<p><a href="../../images/oracle32.webp"><img alt="image" src="../../images/oracle32.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Then copy displayed <em>Certificate Request</em> to file on <strong>raptor</strong> machine - <code>/opt/ETAP/ca/etap2.csr</code>. 
+<a href="../../images/oracle33.webp"><img alt="image" src="../../images/oracle33.webp" width="79%" /></a></p>
+</li>
+<li>
+<p>Sign <em>certificate request</em> from <strong>coll1</strong> using created in the <em>ETA</em>P lab a <em>CA cert</em>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">ETAP</span><span class="o">/</span><span class="n">ca</span>
+
+<span class="n">openssl</span><span class="w"> </span><span class="n">x509</span><span class="w"> </span><span class="o">-</span><span class="n">sha256</span><span class="w"> </span><span class="o">-</span><span class="n">req</span><span class="w"> </span><span class="o">-</span><span class="n">days</span><span class="w"> </span><span class="mi">3650</span><span class="w"> </span><span class="o">-</span><span class="n">CA</span><span class="w"> </span><span class="n">ca</span><span class="p">.</span><span class="n">pem</span><span class="w"> </span><span class="o">-</span><span class="n">CAkey</span><span class="w"> </span><span class="n">ca</span><span class="p">.</span><span class="k">key</span><span class="w"> </span><span class="o">-</span><span class="n">CAcreateserial</span><span class="w"> </span><span class="o">-</span><span class="n">CAserial</span><span class="w"> </span><span class="nb">serial</span><span class="w"> </span><span class="o">-</span><span class="k">in</span><span class="w"> </span><span class="n">etap2</span><span class="p">.</span><span class="n">csr</span><span class="w"> </span><span class="o">-</span><span class="k">out</span><span class="w"> </span><span class="n">etap2</span><span class="p">.</span><span class="n">pem</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle34.webp"><img alt="image" src="../../images/oracle34.webp" width="99%" /></a>
+In the current directory certificate based on <em>CSR</em> generated on <strong>coll1</strong> will appear in <code>etap2.pem</code> file.</p>
+</li>
+<li>
+<p>Now on <strong>coll1</strong> import <em>ETAP</em> certificate – <code>etap2.pem</code> stored in <code>/opt/ETAP/ca</code>. You must insert an <em>alias name</em> generated during the <em>CSR request</em> in point 1. Confirm correctness of <em>CSR</em> reference <strong>(Y)</strong>.
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>certificate<span class="w"> </span>external_stap
+</code></pre></div>
+<a href="../../images/oracle35.webp"><img alt="image" src="../../images/oracle35.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Insert the certificate from <code>etap2.pem</code> file and press and <span class="keys"><kbd class="key-enter">Enter</kbd></span> and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span>.
+<a href="../../images/oracle36.webp"><img alt="image" src="../../images/oracle36.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Then certificate should be imported to <strong>coll1</strong> wallet.
+<a href="../../images/oracle37.webp"><img alt="image" src="../../images/oracle37.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>You can list <em>ETAP</em> certificates on <strong>coll1</strong> and notice that a new added appears on the list.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>certificate<span class="w"> </span>external_stap
+</code></pre></div>
+<a href="../../images/oracle38.webp"><img alt="image" src="../../images/oracle38.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check the <em>image tag</em> pulled earlier on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>images
+</code></pre></div>
+<a href="../../images/oracle39.webp"><img alt="image" src="../../images/oracle39.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Copy <em>ETAP</em> <em>quadlet</em> file for Oracle to <code>/etc/container/systemd</code> on <strong>raptor</strong>.
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/source_files/oracle/oracle_external_stap.container<span class="w"> </span>/etc/containers/systemd/oracle-etap.container
+</code></pre></div></p>
+</li>
+<li>
+<p>Update <em>quadlet</em> file <em>/etc/containers/systemd/oracle-etap.container</em> and set the correct values for parameters:</p>
+<div class="admonition note">
+<p class="admonition-title">quadlet parameters to set:</p>
+<ul>
+<li>Image – insert correct ETAP release</li>
+<li>STAP_CONFIG_PROXY_SECRET – should be a token generated with certificate <em>CSR</em> in point 1</li>
+<li>STAP_CONFIG_SQLGUARD_0_SQLGUARD_IP – IP address of <strong>coll1</strong></li>
+<li>STAP_CONFIG_PROXY_DB_HOST – IP address of proxied database service – it should be <strong>sauropod</strong> IP</li>
+</ul>
+</div>
+<p><a href="../../images/oracle40.webp"><img alt="image" src="../../images/oracle40.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Reinitialize <strong>systemd</strong> deamon.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>daemon-reload
+</code></pre></div></p>
+</li>
+<li>
+<p>Start <em>ETAP</em> instance.
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>start<span class="w"> </span>oracle-etap
+</code></pre></div></p>
+</li>
+<li>
+<p>Check list of ran <em>ETAP</em> containers on raptor. One will be just deployed for <em>Oracle container instance</em> working on <strong>sauropod</strong>.
+<div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
+</code></pre></div>
+<a href="../../images/oracle41.webp"><img alt="image" src="../../images/oracle41.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check the <strong>coll1</strong> UI the <em>External S-TAP instances</em> view (search <em>External S-TAP Control</em>) and confirm that the new one appeared.
+<a href="../../images/oracle42.webp"><img alt="image" src="../../images/oracle42.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Because we will get access to <em>ETAP</em> service remotely we must open the access point port (lets do it for both <em>ETAP</em> instances ran on <strong>raptor</strong>).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span><span class="w"> </span><span class="c1">--permanent --add-port=63333/tcp --add-port=63334/tcp</span>
+
+<span class="n">firewall</span><span class="o">-</span><span class="n">cmd</span><span class="w"> </span><span class="c1">--reload</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Let us connect to <em>Oracle</em> containerized instance on <strong>sauropod</strong> through <em>ETAP</em>. We have <em>Oracle client</em> installed on <strong>sauropod</strong> so we must connect from oracle account located there.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">oracle</span>
+
+<span class="k">sql</span><span class="w"> </span><span class="k">system</span><span class="o">@//</span><span class="n">raptor</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">guardium</span><span class="p">:</span><span class="mi">63334</span><span class="o">/</span><span class="n">ORCLPDB1</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">'CONNECTION THROUGH ETAP'</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">DUAL</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">BANNER</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">V$VERSION</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">BANNER</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'Oracle Database%'</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">CDB</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">V$DATABASE</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">VALUE</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ORACLE_UNIFIED_AUDIT_VALUE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">V$OPTION</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">PARAMETER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Unified Auditing'</span><span class="p">;</span>
+
+<span class="n">exit</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Check events visibility in <em>Full SQL (session details)</em> report on <strong>coll1</strong>.
+<a href="../../images/oracle43.webp"><img alt="image" src="../../images/oracle43.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>On <strong>raptor</strong> run the traffic generator in the background <em>without</em> using the proxy and let it run continuously to support monitoring of the Oracle container database using two additional methods.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">guardium_tz_bootcamp_automation</span><span class="o">/</span><span class="n">upload</span><span class="o">/</span><span class="n">guardium_notes_dbtraffic</span>
+
+<span class="k">source</span><span class="w"> </span><span class="n">venv</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="n">guardium</span><span class="o">-</span><span class="n">notes</span><span class="o">-</span><span class="n">dbtraffic</span><span class="w"> </span><span class="c1">--config config/oracle_container_sauropod.yaml run --duration 300</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ol>
+<h2 id="configure-oracle-in-container-to-store-activity-in-oua">Configure Oracle in container to store activity in OUA</h2>
+<ol>
+<li>
+<p>Let’s create user who can configure <em>Oracle Unified Audit</em> (<em>OUA</em>) settings, on <strong>sauropod</strong> login to <strong>ORCLPDB1</strong> pluggable database and create <strong>secadmin</strong> user (define your password). Then grant to <strong>secadmin</strong> administrative rights for <em>OUA</em> configuration.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">su</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">oracle</span>
+
+<span class="k">sql</span><span class="w"> </span><span class="k">system</span><span class="o">@</span><span class="n">sauropod</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">guardium</span><span class="p">:</span><span class="mi">1522</span><span class="o">/</span><span class="n">ORCLPDB1</span>
+
+<span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">secadmin</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="ss">"&lt;set_password&gt;"</span><span class="p">;</span>
+
+<span class="k">grant</span><span class="w"> </span><span class="k">CONNECT</span><span class="p">,</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ANY</span><span class="w"> </span><span class="k">DICTIONARY</span><span class="p">,</span><span class="w"> </span><span class="n">SELECT_CATALOG_ROLE</span><span class="p">,</span><span class="w"> </span><span class="n">AUDIT_ADMIN</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="p">,</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">ANY</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="p">,</span><span class="w"> </span><span class="n">AUDIT</span><span class="w"> </span><span class="k">SYSTEM</span><span class="p">,</span><span class="w"> </span><span class="n">AUDIT</span><span class="w"> </span><span class="k">ANY</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">JOB</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">secadmin</span><span class="p">;</span>
+
+<span class="n">exit</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Now we will use just created <strong>secadmin</strong> user to configure <em>OUA</em> policy. <em>OUA</em> includes a lot of predefined policies and some of them are activated. To list of enabled policies, execute command:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="n">secadmin</span><span class="o">@</span><span class="n">sauropod</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">guardium</span><span class="p">:</span><span class="mi">1522</span><span class="o">/</span><span class="n">ORCLPDB1</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">POLICY_NAME</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">AUDIT_UNIFIED_ENABLED_POLICIES</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle44.webp"><img alt="image" src="../../images/oracle44.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check what <em>SQL’s</em> are audited by enabled policies. You should see <em>GRANT</em> and <em>USER</em> related <em>SQL commands</em> related to dbtraffic tool activity. However, there is no information about normal operations in application schema:
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">SQL_TEXT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">AUDSYS</span><span class="p">.</span><span class="n">AUD$UNIFIED</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Create a new audit policy to audit all <em>game</em> application tables (/ is a separate command)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">BEGIN</span><span class="w"> </span><span class="k">DECLARE</span><span class="w"> </span><span class="n">v_cnt</span><span class="w"> </span><span class="nb">NUMBER</span><span class="p">;</span><span class="w"> </span><span class="k">BEGIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_cnt</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">audit_unified_policies</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">policy_name</span><span class="o">=</span><span class="s1">'GAME_APP'</span><span class="p">;</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="n">v_cnt</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="k">EXECUTE</span><span class="w"> </span><span class="k">IMMEDIATE</span><span class="w"> </span><span class="s1">'CREATE AUDIT POLICY GAME_APP ACTIONS ALL ON game.customers, ALL ON game.credit_cards, ALL ON game.transactions, ALL ON game.extras, ALL ON game.features'</span><span class="p">;</span><span class="w"> </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span><span class="w"> </span><span class="k">EXECUTE</span><span class="w"> </span><span class="k">IMMEDIATE</span><span class="w"> </span><span class="s1">'AUDIT POLICY GAME_APP'</span><span class="p">;</span><span class="w"> </span><span class="k">END</span><span class="p">;</span><span class="w"> </span><span class="k">END</span><span class="p">;</span>
+
+<span class="o">/</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Create scheduler to recreate policy if someone will remove it
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">BEGIN</span><span class="w"> </span><span class="n">DBMS_SCHEDULER</span><span class="p">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">job_name</span><span class="o">=&gt;</span><span class="s1">'ENSURE_GAME_APP_AUDIT'</span><span class="p">,</span><span class="w"> </span><span class="n">job_type</span><span class="o">=&gt;</span><span class="s1">'STORED_PROCEDURE'</span><span class="p">,</span><span class="w"> </span><span class="n">job_action</span><span class="o">=&gt;</span><span class="s1">'ENSURE_GAME_APP_AUDIT'</span><span class="p">,</span><span class="w"> </span><span class="n">repeat_interval</span><span class="o">=&gt;</span><span class="s1">'FREQ=MINUTELY;INTERVAL=45'</span><span class="p">,</span><span class="w"> </span><span class="n">enabled</span><span class="o">=&gt;</span><span class="k">TRUE</span><span class="p">);</span><span class="w"> </span><span class="k">END</span><span class="p">;</span>
+
+<span class="o">/</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Check our policy existence
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">POLICY_NAME</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">AUDIT_UNIFIED_ENABLED_POLICIES</span><span class="p">;</span>
+</code></pre></div>
+<a href="../../images/oracle45.webp"><img alt="image" src="../../images/oracle45.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Then monitor the number of audited events by just activated policy and notice that its number is growing because we have traffic generator ran.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">AUDSYS</span><span class="p">.</span><span class="n">AUD$UNIFIED</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">UNIFIED_AUDIT_POLICIES</span><span class="o">=</span><span class="s1">'GAME_APP'</span><span class="p">;</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Now we need the <em>Oracle</em> user to get access to audited events by <strong>Guardium</strong> (please use simple password like <em>guardium</em> because of some issues when special characters appear in it)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="k">system</span><span class="o">@//</span><span class="n">sauropod</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">guardium</span><span class="p">:</span><span class="mi">1522</span><span class="o">/</span><span class="n">ORCLPDB1</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">guardium</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="o">&lt;</span><span class="n">password</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="n">special</span><span class="w"> </span><span class="n">characters</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="k">GRANT</span><span class="w"> </span><span class="k">CONNECT</span><span class="p">,</span><span class="w"> </span><span class="n">RESOURCE</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">guardium</span><span class="p">;</span>
+
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ANY</span><span class="w"> </span><span class="k">DICTIONARY</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">guardium</span><span class="p">;</span>
+
+<span class="k">exec</span><span class="w"> </span><span class="n">DBMS_NETWORK_ACL_ADMIN</span><span class="p">.</span><span class="n">APPEND_HOST_ACE</span><span class="p">(</span><span class="k">host</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'localhost'</span><span class="p">,</span><span class="w"> </span><span class="n">ace</span><span class="w">  </span><span class="o">=&gt;</span><span class="w">  </span><span class="n">xs$ace_type</span><span class="p">(</span><span class="n">privilege_list</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">xs$name_list</span><span class="p">(</span><span class="s1">'connect'</span><span class="p">,</span><span class="w"> </span><span class="s1">'resolve'</span><span class="p">),</span><span class="w">  </span><span class="n">principal_name</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'guardium'</span><span class="p">,</span><span class="w"> </span><span class="n">principal_type</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">xs_acl</span><span class="p">.</span><span class="n">ptype_db</span><span class="p">));</span>
+
+<span class="n">exit</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Connect as a <strong>guardium</strong> user and check access to audited events in <em>OUA</em>. Last <em>SELECT</em> is displaying local <em>IP address</em> of <em>Oracle instance</em> in the container. We should expect this value as a <em>Server IP</em> in the report.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">sql</span><span class="w"> </span><span class="n">guardium</span><span class="o">@//</span><span class="n">sauropod</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">guardium</span><span class="p">:</span><span class="mi">1522</span><span class="o">/</span><span class="n">ORCLPDB1</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">AUDSYS</span><span class="p">.</span><span class="n">AUD$UNIFIED</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">UTL_INADDR</span><span class="p">.</span><span class="n">get_host_address</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">DUAL</span><span class="p">;</span>
+
+<span class="n">exit</span>
+
+<span class="n">exit</span>
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle46.webp"><img alt="image" src="../../images/oracle46.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="oua-with-stap">OUA with STAP</h2>
+<ol>
+<li>
+<p>Open in <em>coll1</em> UI the S-TAP Status view and confirm that <em>STAP</em> on sauropod has no KTAP enabled.
+<a href="../../images/oracle47.webp"><img alt="image" src="../../images/oracle47.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Also, the <em>Full SQL (session details)</em> report ran on <strong>coll1</strong> does not show the recent activity generated in the Oracle database.
+<a href="../../images/oracle48.webp"><img alt="image" src="../../images/oracle48.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>We will configure the <em>STAP</em> on <strong>sauropod</strong> to consume events from <em>OUA</em> tables in <em>Oracle container</em>. Technically, the <em>STAP</em> can be deployed anywhere but must have access to monitored instance over <em>JDBC</em>. Let’s download to <strong>sauropod</strong> <em>Oracle instant client</em> from <strong>raptor</strong> and install it (run on <strong>sauropod</strong>).
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>scp<span class="w"> </span>-P<span class="w"> </span><span class="m">2223</span><span class="w"> </span>raptor.demo.guardium:/opt/guardium_tz_bootcamp_automation/upload/source_files/oracle/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm<span class="w"> </span>/opt/lab_files/
+
+dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>/opt/lab_files/oracle-instantclient-basic-21.1.0.0.0-1.x86_64.rpm
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>Create the <code>/usr/lib/oracle/21/client64/lib/network/admin/tnsnames.ora</code> file and define inside the instance connection definition:
+<div class="highlight"><pre><span></span><code><span class="na">ORCLPDB1</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="na">(DESCRIPTION</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">(ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(PROTOCOL = TCP)(HOST = sauropod.demo.guardium)(PORT = 1522))</span>
+<span class="w">    </span><span class="na">(CONNECT_DATA</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="na">(SERVER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">DEDICATED)</span>
+<span class="w">      </span><span class="na">(SERVICE_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ORCLPDB1)</span>
+<span class="w">    </span><span class="na">)</span>
+<span class="w">  </span><span class="na">)</span>
+</code></pre></div></li>
+<li>
+<p>Edit <em>STAP</em> configuration of agent installed on <strong>sauropod</strong> in <strong>S-TAP Control</strong> in <strong>coll1</strong> UI.</p>
+<div class="admonition note">
+<p class="admonition-title">in the <em>Details</em> section add two parameters:</p>
+<ul>
+<li><em>SQL configuration properties</em>: <code>/usr/lib/oracle/21/client64/lib/network/admin</code></li>
+<li><em>LD library paths</em>: <code>/usr/lib/oracle/21/client64/lib</code></li>
+</ul>
+<p>The first refers to the directory where the <code>tnsnames.ora</code> file is located, and the second refers to the directory containing the <code>Oracle Instant Client</code> libraries.</p>
+</div>
+<p><a href="../../images/oracle49.webp"><img alt="image" src="../../images/oracle49.webp" width="99%" /></a> </p>
+<p>Then <strong>Save</strong> changes.</p>
+</li>
+<li>
+<p>We must save the <em>Oracle</em> <strong>guardium</strong> user credentials on <strong>coll1</strong>. Execute command from <strong>coll1</strong> cli:
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>store_sql_credentials<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>sauropod<span class="w"> </span><span class="nv">username</span><span class="o">=</span>guardium<span class="w"> </span><span class="nv">password</span><span class="o">=</span>&lt;simple<span class="w"> </span>password<span class="w"> </span>provided<span class="w"> </span><span class="k">in</span><span class="w"> </span>point<span class="w"> </span><span class="m">8</span><span class="w"> </span>of<span class="w"> </span>previous<span class="w"> </span>chapter&gt;
+</code></pre></div></p>
+</li>
+<li>
+<p>Then execute this command to create <em>OUA</em> consumer configuration (this is also possible from UI but there is a bug, so I recommend using API)
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>create_sql_configuration<span class="w"> </span><span class="nv">dbType</span><span class="o">=</span>Oracle<span class="w"> </span><span class="nv">instance</span><span class="o">=</span>ORCLPDB1<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>sauropod<span class="w"> </span><span class="nv">username</span><span class="o">=</span>guardium
+</code></pre></div></p>
+</li>
+<li>
+<p>Check <em>SQL</em> activity report and notice that events appeared
+<a href="../../images/oracle50.webp"><img alt="image" src="../../images/oracle50.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Now disable <em>STAP OUA</em> configuration. In the next chapter we will use a different method of <em>OUA</em> event consumption without <em>STAP</em>. In <strong>cm</strong> UI stop the agent on the <strong>sauropod</strong> machine by setting the <em>STAP_ENABLED</em> parameter to <strong>0</strong>.
+<a href="../../images/oracle51.webp"><img alt="image" src="../../images/oracle51.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Confirm on <strong>coll1</strong> in <strong>S-TAP Control</strong> view that agent on <strong>sauropod</strong> is disabled.
+<a href="../../images/oracle52.webp"><img alt="image" src="../../images/oracle52.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="oua-with-uc-20-with-kafka-consumer">OUA with UC 2.0 (with kafka consumer)</h2>
+<ol>
+<li>
+<p>First confirm that our <strong>coll1</strong> is not working in the <em>UC 1.0</em> (Legacy mode). From <strong>cli</strong> on <strong>coll1</strong>:
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>get_guard_param<span class="w"> </span><span class="nv">paramName</span><span class="o">=</span>LEGACY_UC_CONFIG_ENABLED
+</code></pre></div>
+<a href="../../images/oracle53.webp"><img alt="image" src="../../images/oracle53.webp" width="89%" /></a> </p>
+</li>
+<li>
+<p>If value is true disable UC 1.0 support:
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>modify_guard_param<span class="w"> </span><span class="nv">paramName</span><span class="o">=</span>LEGACY_UC_CONFIG_ENABLED<span class="w"> </span><span class="nv">paramValue</span><span class="o">=</span><span class="m">0</span>
+</code></pre></div>
+<a href="../../images/oracle54.webp"><img alt="image" src="../../images/oracle54.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Run <em>UC</em> events consumer framework on <strong>coll1</strong> and confirm it is running.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>grdapi<span class="w"> </span>run_universal_connector
+
+grdapi<span class="w"> </span>get_universal_connector_status
+</code></pre></div></td></tr></table></div>
+<a href="../../images/oracle55.webp"><img alt="image" src="../../images/oracle55.webp" width="69%" /></a> </p>
+</li>
+<li>
+<p>We must convert <strong>kafka1</strong> appliance to be a <em>Kafka</em> node. From <strong>raptor</strong> login to <strong>kafka1</strong> appliance and check the <em>unit type</em> and notice that it is set to <em>Managed</em> collector
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
+</code></pre></div>
+<a href="../../images/oracle56.webp"><img alt="image" src="../../images/oracle56.webp" width="45%" /></a> </p>
+</li>
+<li>
+<p>Set <em>unit type</em> to <em>kafka-node</em> (it will restart appliance).
+<div class="highlight"><pre><span></span><code>store<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span><span class="w"> </span>kafka-node
+</code></pre></div>
+<a href="../../images/oracle57.webp"><img alt="image" src="../../images/oracle57.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Re-login to <strong>kafka1</strong> and confirm the changed <em>unit type</em> (the appliance conversion takes time, so wait few minutes).
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
+</code></pre></div>
+<a href="../../images/oracle58.webp"><img alt="image" src="../../images/oracle58.webp" width="46%" /></a> </p>
+</li>
+<li>
+<p>Open <em>Central Management</em> view on <strong>cm</strong> and confirm that <strong>kafka1</strong> is displayed on the list with <em>Kafka-Node</em> label.
+<a href="../../images/oracle59.webp"><img alt="image" src="../../images/oracle59.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Because of the certificate setup and synchronization. <strong>Wait 90 minutes before contunuation of this lab!</strong></p>
+</li>
+<li>
+<p>After minimum 90 minutes. In <strong>cm</strong> UI open <strong>Kafka Cluster Management</strong> view and create a <em>New Cluster</em> using plus (<img alt="image" src="../../images/oracle60.webp" width="20" />) icon. Provide cluster name <strong>kafka_cluster_1</strong> and open kafka node list. Select our <strong>kafka1</strong> node and press <strong>OK</strong>. 
+<a href="../../images/oracle61.webp"><img alt="image" src="../../images/oracle61.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Node should appear in the <em>Cluster members</em> list. Press <strong>OK</strong> to finalize cluster creation – ignore warning about minimum size of kafka cluster.
+<a href="../../images/oracle62.webp"><img alt="image" src="../../images/oracle62.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>Refresh cluster list from time to time till the status just created cluster will be notified as a ready (<img alt="image" src="../../images/oracle63.webp" width="20" />)
+<a href="../../images/oracle64.webp"><img alt="image" src="../../images/oracle64.webp" width="99%" /></a> </p>
+</li>
+<li>
+<p>In <strong>cm</strong> UI open <strong>Credential Manager</strong> view and add new one.</p>
+<div class="admonition note">
+<p class="admonition-title">Credential details:</p>
+<ul>
+<li>Name: <strong>oracle_container_sauropod</strong></li>
+<li>Credential type: <strong>JDBC Credentials</strong></li>
+<li>JDBC Username: <strong>guardium</strong></li>
+<li>JDBC Password: &lt;defined in the point 8 of <em>Configure Oracle in container to store activity in OUA</em> chapter&gt;</li>
+</ul>
+</div>
+<p><a href="../../images/oracle65.webp"><img alt="image" src="../../images/oracle65.webp" width="99%" /></a> </p>
+<p>Just created <strong>guardium</strong> user credentials should appear on the list.</p>
+</li>
+<li>
+<p>Now add a new profile in <strong>Datasource Profile Management</strong> view on <strong>cm</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Insert:</p>
+<ul>
+<li>Name: <strong>oracle_21_container_sauropod</strong></li>
+<li>Plug-in: <strong>OUA over JDBC connect 2.0</strong></li>
+<li>Credential: <strong>oracle_container_sauropod</strong> (created earlier)</li>
+<li>Kafka cluster: <strong>kafka_cluster_1</strong></li>
+<li>Hostname: <strong>sauropod.demo.guardium</strong></li>
+<li>Port: <strong>1522</strong></li>
+<li>Service name: <strong>ORCLPDB1</strong></li>
+<li>JDBC driver library: &lt;upload the JDBC driver (ojdbc8.jar) located in oracle directory in student materials&gt;</li>
+</ul>
+</div>
+<p><a href="../../images/oracle66.webp"><img alt="image" src="../../images/oracle66.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>When all required fields are filled up, we can save profile (<strong>OK</strong>) and the pop-up message will inform that configuration is accepted. Then our profile should appear on the list.
+<a href="../../images/oracle67.webp"><img alt="image" src="../../images/oracle67.webp" width="99%" /></a>  </p>
+</li>
+<li>
+<p>Select profile and press <strong>Test connection</strong>. The configuration should be tested, and <em>Status</em> column should display now the green checkmark.
+<a href="../../images/oracle68.webp"><img alt="image" src="../../images/oracle68.webp" width="99%" /></a>  </p>
+</li>
+<li>
+<p>Now, we can deploy profile on the <strong>coll1</strong>. Select just created profile and then select <strong>Install</strong> option from <em>Install</em> list and in the <em>Install Profile</em> window select our <strong>coll1</strong> and press <strong>Run Now</strong> button. After a while (refresh a view) the profile should be updated with information that it was deployed.
+<a href="../../images/oracle69.webp"><img alt="image" src="../../images/oracle69.webp" width="99%" /></a>   </p>
+</li>
+<li>
+<p>Check <em>Full SQL (session details)</em> report on <strong>coll1</strong> and confirm that <em>Oracle</em> traffic is consumed by <em>OUA</em> by <em>universal connector</em>.
+<a href="../../images/oracle70.webp"><img alt="image" src="../../images/oracle70.webp" width="99%" /></a> </p>
+</li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+<p>It is better to select one of <em>UC’s</em> configuration instead doing both configurations 1.0 and 2.0. The kafka1 machine can be used for other purposes – <em>LTR</em> node for example.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+<ul>
+<li>STAP and OUA configuration:
+<BR><a href="https://www.ibm.com/docs/en/gdp/12.x?topic=lustcpdt-linux-unix-configuring-s-tap-interception-using-oracle-unified-audit">https://www.ibm.com/docs/en/gdp/12.x?topic=lustcpdt-linux-unix-configuring-s-tap-interception-using-oracle-unified-audit</a>
+<BR><a href="https://www.ibm.com/docs/en/gdp/12.x?topic=reference-create-sql-configuration">https://www.ibm.com/docs/en/gdp/12.x?topic=reference-create-sql-configuration</a></li>
+<li>UC 1.0 with OUA - <a href="https://github.com/IBM/universal-connectors/blob/main/filter-plugin/logstash-filter-oua-guardium/OuaOverPipeReadme.md">https://github.com/IBM/universal-connectors/blob/main/filter-plugin/logstash-filter-oua-guardium/OuaOverPipeReadme.md</a></li>
+<li>UC 2.0 with OUA - <a href="https://www.ibm.com/docs/en/gdp/12.x?topic=connector-configuring-universal-connectors-by-using-central-manager">https://www.ibm.com/docs/en/gdp/12.x?topic=connector-configuring-universal-connectors-by-using-central-manager</a></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
