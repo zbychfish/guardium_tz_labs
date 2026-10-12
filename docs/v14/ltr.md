@@ -165,7 +165,7 @@ ExecStartPre=/usr/bin/podman run -d --pod seaweedfs-pod --name seaweedfs-server 
   -v /opt/seaweedfs/data:/data:z \
   -v /opt/seaweedfs/s3.json:/etc/seaweedfs/s3.json:ro,z \
   -v /opt/seaweedfs/security.toml:/etc/seaweedfs/security.toml:ro,z \
-  chrislusf/seaweedfs:latest server -dir=/data -filer -s3 -s3.port=8332 -s3.iam.config=/etc/seaweedfs/s3.json
+  docker.io/chrislusf/seaweedfs:latest server -dir=/data -filer -s3 -s3.port=8332 -s3.iam.config=/etc/seaweedfs/s3.json
 
 ExecStartPre=/usr/bin/sleep 2
 
@@ -268,11 +268,11 @@ show unit type
 1.	Now install on **appnode1** as a **cli** user the patch that enables the *LTR* functionality.
 
     !!! note "patch installation values:"
-        - Host: raptor.demo.guardium
-        - User: root 
-        - Path: /opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/extensions/SqlGuard-12.0p90230_datalake_Jun_15_2026.tgz.enc.sig
-        - Port: press 2223
-        - Password: &lt;root password on raptor>
+        - Host: **raptor.demo.guardium**
+        - User: **root** 
+        - Path: **/opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/extensions/SqlGuard-12.0p90230_datalake_Jun_15_2026.tgz.enc.sig**
+        - Port: **2223**
+        - Password: **&lt;root password on raptor>**
      
     After downloading the patch file, the command will prompt its installation. Enter the patch number – **1** – and confirm with ++enter++.
     
@@ -337,8 +337,13 @@ distribute certificate showlog all
 ```
 [![image](../images/ltr19.webp){ width="99%" }](../images/ltr19.webp) 
 
+1. It is crucial to restart **appnode1** GUI now (temporary workaround for missing cert reload on LTR node). From **cli** session on **appnode1** execute command below (confirm by inserting ++y++) and wait for confirmation.
+```bash
+restart gui
+```
+[![image](../images/ltr42.webp){ width="59%" }](../images/ltr42.webp) 
 
-1.	Configure the connection to the S3 bucket. You need to enter the seaweeFS keystore password used when configuring the S3 service. The command requires some time to complete.
+1.	Configure the connection to the S3 bucket (back to **cm cli** session). You need to enter the seaweeFS keystore password used when configuring the S3 service. The command requires some time to complete.
 ```bash
 grdapi configure_complete_cold_storage protocol="CUSTOM" objectStorageEndpoint="https://raptor.demo.guardium:8333" accessKey=s3admin secretKey="<strong_admin_password>" dataBucket=guardium-ltr resultSchema="datalake_reports" region="US_EAST_1" coldCatalogEndpoint="https://appnode1.demo.guardium:8443" coldCatalogSchema="datalake" coldStorageName="datalake" queryEngineHost="appnode1.demo.guardium" debug=3
 ```
