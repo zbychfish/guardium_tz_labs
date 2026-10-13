@@ -335,7 +335,7 @@ distribute application certificate datalake all_managed --metastore_unit=appnode
 ```bash
 distribute certificate showlog all
 ```
-[![image](../images/ltr19.webp){ width="99%" }](../images/ltr19.webp) 
+[![image](../images/ltr19.webp){ width="99%" }](../images/ltr19.webp)
 
 1. It is crucial to restart **appnode1** GUI now (temporary workaround for missing cert reload on LTR node). From **cli** session on **appnode1** execute command below (confirm by inserting ++y++) and wait for confirmation.
 ```bash
