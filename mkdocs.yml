@@ -6,9 +6,20 @@ theme:
   
 
   palette:
-    scheme: slate
-    primary: deep purple
-    accent: amber
+    # Palette toggle for dark mode (default)
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Przełącz na tryb jasny
+    # Palette toggle for light mode
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Przełącz na tryb ciemny
   features:
     - navigation.tabs
     - navigation.sections
@@ -17,6 +28,7 @@ theme:
     - toc.follow
     - search.highlight
     - content.code.copy
+    - content.code.annotate
 
 plugins:
   - search
@@ -34,6 +46,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.tilde
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - attr_list
   - pymdownx.keys
   - md_in_html
