@@ -92,57 +92,29 @@ systemctl status filebeat
 systemctl enable filebeat
 ```
 
-## Install and configure UC plugin
+## Configure UC plugin
 
-1.	Starting from **Guardium 12.1** the new architecture of *universal connectors* with *Kafka Connect* consumer was introduced. In this case the *UC* can be managed from Central Manager only. Still the legacy configuration workflow with logstash can be enabled and it will be used in this lab. To enable old configuration approach we must enable legacy workflow by executing this command on **coll1** (from **cli** session)
-```bash
-grdapi modify_guard_param paramName=LEGACY_UC_CONFIG_ENABLED paramValue=1
-```
+1. Login to **cm** UI nad open the **Datasource Profile Management** view and click the :material-plus: icon to create a new *Universal Connector* profile. Select the *Cassandra* plug-in from the list. This will display additional configuration options.
 
-1.	Run *universal connector* engine on **coll1**.
-```bash
-grdapi run_universal_connector
-```
+    !!! node "parameters:"
+        - Name: **cassandra on sauropod**
+        - Description: **logstash based cassandra UC**
+        - Plug-in: **Cassandra Over Filebeat**
+        - Datasource Tag: **cassandra** (must correspond to ID defined in `filebeat.yml`)
+        - Port: **5047** (must correspond to port defined in `filebeat.yml`)
+        - Include codec tag: :material-check:
 
-1.	There is only one *Cassandra* filter plugin version – **1.0.1** and it is preinstalled on **coll1**.
-You can check a list of all actually available *universal connector plugins* on appliance by execution command below on coll1:
-```bash
-grdapi show_universal_connector_plugins
-``` 
-[![TZ requests](../images/logstash8.webp){ width="79%" }](../images/logstash8.webp)
-<BR>One on the list is `cassandra_guardium_plugin_filter` – revision **1.0.1**.
-If new *universal connector plugin* version will be released and it is not preloaded on your collector you should upload it on appliance (it is not our case).
+    Click OK. A dialog box will appear indicating that the configuration is being saved. Wait for the operation to complete and confirm the message when prompted.
+    
+    [![TZ requests](../images/logstash8.webp){ width="99%" }](../images/logstash8.webp)
 
-1.	Login to **coll1** UI, confirm that there is no *universal connectors* configured (**Configure Universal Connector** view), the *universal connector engine* is running and add new instance using icon ![TZ requests](../images/logstash9.webp){ width="18" }.
+1. The newly created *Universal Connector* profile should now appear in the list. To deploy it to a collector, select the profile and choose **Install** from the **Install** menu. In the *Install Profile* window, select **coll1.demo.guardium** as the target collector and click **Run Now** to start the deployment.
+[![TZ requests](../images/logstash9.webp){ width="99%" }](../images/logstash9.webp)
+
+1. After returning to the main **Datasource Profile Management** view, a progress indicator :material-sync: should appear in the **Deployed** column. Refresh the view periodically :material-reload: until the deployment completes and a confirmation is displayed indicating that the *Universal Connector* has been successfully configured on the collector.
 [![TZ requests](../images/logstash10.webp){ width="99%" }](../images/logstash10.webp)
 
-1.	Configure *universal connector* instance for *Cassandra* with *Connector name* set to **cassandra**.
-[![TZ requests](../images/logstash11.webp){ width="99%" }](../images/logstash11.webp)
-In the Input configuration section modify port used in filebeat configuration (select appropriate port). Use spaces for indentation:
-```yaml
-beats {
-  port => "5047"
-  type => "filebeat"
-}
-```
-[![TZ requests](../images/logstash12.webp){ width="99%" }](../images/logstash12.webp)
-In the Filter configuration section replace content by configuration below:
-```yaml
-if [type] == "filebeat" {
-  mutate { add_field => { "serverIP" => "%{[@metadata][ip_address]}" } add_field   => { "serverHostname" => "%{[host][name]}" } }
-  cassandra_guardium_plugin_filter{}
-  mutate { remove_field => ["serverHostname","@version","@timestamp","type","sequence","message","host","tags","input","log","ecs","agent","serverIP"]}
-}
-```
-[![TZ requests](../images/logstash13.webp){ width="99%" }](../images/logstash13.webp)
-
-1.	Save configuration and wait a while for success confirmation (takes a while).
-[![TZ requests](../images/logstash14.webp){ width="99%" }](../images/logstash14.webp)
- 
-1.	Confirm that new instance is displayed on the list
-[![TZ requests](../images/logstash15.webp){ width="99%" }](../images/logstash15.webp)
-
-1.	Open **S-TAP Status** view. You should see a new *Cassandra* universal connector instance listed. If the status will be *Inactive* it means that there is no currently traffic processes but our configuration but universal connector is set correctly.
+1.	Open **S-TAP Status** view in **coll1** UI. You should see a new *Cassandra* universal connector instance listed. If the status will be *Inactive* it means that there is no currently traffic processes but our configuration but universal connector is set correctly.
 [![TZ requests](../images/logstash16.webp){ width="99%" }](../images/logstash16.webp)
 
 ## Check traffic visibility
@@ -175,9 +147,9 @@ exit;
 1.	In the **coll1** UI open **S-TAP Status** view. Just installed universal connector instance should be now *Active*. 
 [![TZ requests](../images/logstash19.webp){ width="99%" }](../images/logstash19.webp)
 
-## ~~Set TLS connection between filebeat and logstash (optional)~~
+## Set TLS connection between filebeat and logstash (optional)
 
-1.	On **coll1** regenerate self-signed certificate for universal connector and copy public certificate to buffer (domain is **demo.guardium**)
+1.	On **coll1** as a **cli** user regenerate self-signed certificate for universal connector and copy public certificate to buffer (domain is **demo.guardium**)
 ```bash
 grdapi generate_ssl_key_universal_connector overwrite=1 hostname=*.demo.guardium
 ```
@@ -192,21 +164,33 @@ openssl s_client -connect coll1.demo.guardium:5047
 ```
 [![TZ requests](../images/logstash22.webp){ width="79%" }](../images/logstash22.webp) 
 
-1.	Login to **coll1** UI and edit *universal connector* instance definition (**Configure Universal Connector** view). Add some lines related to use encrypted communication between filebeat and logstash in the *Input configuration* section (remember about correct indentation):
-```yaml
-  ssl => true
-  ssl_certificate => "${SSL_DIR}/cert.pem"
-  ssl_key => "${SSL_DIR}/key.pem"
-```
-[![TZ requests](../images/logstash23.webp){ width="79%" }](../images/logstash23.webp) 
- 
+1.	In **cm** UI and edit :material-pencil: *universal connector* instance definition (**Datasource Profile Management** view). Select **SSL authentication** flag :material-check: and save change - **OK** button.
+[![TZ requests](../images/logstash11.webp){ width="99%" }](../images/logstash11.webp) 
+
+1. Po chwili zmiany zostaną zapisane ale nie zdeployowane, co widoczne będzie ikoną :material-alert-outline: przy nazwie UC.
+[![TZ requests](../images/logstash12.webp){ width="99%" }](../images/logstash12.webp) 
+
+1. To reinstall the *Universal Connector* on the **coll1**, select the profile and choose **Reinstall** from the **Install** menu. You will be prompted to confirm the operation and then specify when the reinstall should be performed. Select **Run Now**.
+  After a short time, you will be returned to the main **Datasource Profile Management** view. As with the initial deployment, wait for the operation to complete and refresh the view periodically until the status confirms that the reinstall has been successfully applied.
+  [![TZ requests](../images/logstash13.webp){ width="99%" }](../images/logstash13.webp) 
+
 1.	Check TLS *logstash* readiness on **coll1** from **sauropod** machine
 ```bash
 openssl s_client -connect coll1.demo.guardium:5047 < /dev/null
 ```
 [![TZ requests](../images/logstash24.webp){ width="89%" }](../images/logstash24.webp) 
 
-1.	Modify *output.logstash* section in `/etc/filebeat/filebeat.yml` store on **sauropod** machine by enabling *ssl.certificate_authorities* parameter with path to file created in point 2 (`/etc/filebeat/guardium.pem`)
+1.	Modify *output.logstash* section in `/etc/filebeat/filebeat.yml` store on **sauropod** machine by enabling *ssl.certificate_authorities* parameter with path to file cert file created in point 2 (`/etc/filebeat/guardium.pem`) and *ssl.verification_mode set* to **none** because a temporary bug with cert generation in point 1.
+```yaml
+output.logstash:
+  # The Logstash hosts
+  hosts: ["coll1.demo.guardium:5047"]
+
+  # Optional SSL. By default is off.
+  # List of root certificates for HTTPS server verifications
+  ssl.certificate_authorities: ["/etc/filebeat/guardium.pem"]
+  ssl.verification_mode: none
+```
 [![TZ requests](../images/logstash25.webp){ width="75%" }](../images/logstash25.webp)  
 
 1.	Restart filebeat service on sauropod machine
