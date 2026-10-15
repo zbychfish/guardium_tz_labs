@@ -1,0 +1,1105 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Labs for TZ based Guardium Data Protection workshop">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Edge Gateway - Guardium Notes Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#edge-gateway" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Guardium Notes Labs" class="md-header__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Guardium Notes Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Edge Gateway
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../access/" class="md-tabs__link">
+          
+  
+  
+  V14
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Guardium Notes Labs" class="md-nav__button md-logo" aria-label="Guardium Notes Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Guardium Notes Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    V14
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    V14
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access to Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appliance setup (lab 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIM (lab 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ktap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KTAP (lab 3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ATAP (lab 4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EXIT (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logstash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UC 1.0 - logstash based (lab 6)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../va/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VA (lab 8)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../winstap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WINSTAP (lab 9)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oracle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle monitoring options (lab 10)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../polrepbas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies and Reports basics (lab 11)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../varesultset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VA result sets processing (lab 12)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ltr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LTR (lab 12)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cm-upgrade-to-manage-edge-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CM upgrade to manage Edge Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-traffic-generator-mssql-on-ceratops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start traffic generator - MSSQL on ceratops
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3s-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K3s installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-edge-gateway-config-on-cm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Edge Gateway config on CM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edge-gateway-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge Gateway deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#send-traffic-from-stap-to-edge-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Send traffic from STAP to Edge Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="edge-gateway">Edge Gateway</h1>
+<h2 id="cm-upgrade-to-manage-edge-gateway">CM upgrade to manage Edge Gateway</h2>
+<ol>
+<li>
+<p>Log in to <strong>cm</strong> cli and execute <em>Edge Gateway</em> patch retrieval process.</p>
+<div class="admonition note">
+<p class="admonition-title">parameters:</p>
+<ul>
+<li>Host: <strong>raptor.demo.guardium</strong></li>
+<li>User: <strong>root</strong> </li>
+<li>Path: <strong>/opt/guardium_tz_bootcamp_automation/upload/source_files/appliances/extensions/SqlGuard-12.0p15004_Edge_Sep_02_2026.tgz.enc.sig</strong></li>
+<li>Port: <strong>2223</strong></li>
+<li>Password: <strong>&lt;default service password&gt;</strong></li>
+</ul>
+</div>
+<p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install<span class="w"> </span>scp
+</code></pre></div>
+Monitor the progress as the patch downloads to the appliance, noting that the large file size may require a while to complete. Once the download finishes and the patch appears in the available list, do not initiate the installation from the command line. Because this specific update must be managed via the User Interface (<em>UI</em>) or the <em>API</em>, finish the current cli command by selecting the <code>q</code> option.</p>
+<p><a href="../../images/edge1.webp"><img alt="image" src="../../images/edge1.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Register patch and retrieve information about it (because patch is huge it takes time).
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>available
+</code></pre></div>
+<a href="../../images/edge2.webp"><img alt="image" src="../../images/edge2.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>From <strong>cm</strong> UI open <strong>Patch Management</strong> view. Select the <em>Central Manager</em> <span class="mb">1</span> and locate the patch <span class="mb">2</span> that was just uploaded to the system. Trigger the installation process by clicking the <strong>Install</strong> option <span class="mb">3</span>. Choose the immediate installation <span class="mb">4</span> and confirm your selection <span class="mb">5</span> to finalize the task. The system will then schedule the specified patch for deployment
+<a href="../../images/edge3.webp"><img alt="image" src="../../images/edge3.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>While the patch installation runs in the background, shift your focus to the additional laboratory tasks to maintain workflow efficiency.</p>
+</li>
+</ol>
+<h2 id="start-traffic-generator-mssql-on-ceratops">Start traffic generator - MSSQL on ceratops</h2>
+<ol>
+<li>
+<p>Start dbtraffic generator on <strong>raptor</strong> and keep this session running
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic
+
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+
+guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/mssql_ceratops.yaml<span class="w"> </span>rebuild
+
+guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/mssql_ceratops.yaml<span class="w"> </span>run<span class="w"> </span>--speed<span class="w"> </span>slow
+</code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>Confirm on <strong>coll1</strong> the visibility the <em>MSSQL</em> events in Full <em>SQL (Training)</em> report.
+<a href="../../images/edge30.webp"><img alt="image" src="../../images/edge30.webp" width="99%" /></a></p>
+</li>
+</ol>
+<h2 id="k3s-installation">K3s installation</h2>
+<ol>
+<li>
+<p>Deploy a <em>k3s</em> cluster on the <strong>sauropod</strong> machine. Configure the installation to disable the default traefik service to ensure the <em>Edge Gateway</em> can utilize the preferred routing mechanism based on <strong>nginx</strong> proxy.
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sfL<span class="w"> </span>https://get.k3s.io<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nv">INSTALL_K3S_VERSION</span><span class="o">=</span>v1.32.13+k3s1<span class="w"> </span>sh<span class="w"> </span>-s<span class="w"> </span>-<span class="w"> </span>--disable<span class="w"> </span>traefik
+</code></pre></div></p>
+</li>
+<li>
+<p>Check node readiness.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+</code></pre></div></td></tr></table></div>
+<a href="../../images/edge5.webp"><img alt="image" src="../../images/edge5.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Add the name resolving for <em>cm.gdemo.com</em> within the cluster configuration. Ensure that the host entry is correctly mapped to allow multiple services to establish a connection with the <em>Central Manager</em>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>patch<span class="w"> </span>configmap<span class="w"> </span>coredns<span class="w"> </span>--type<span class="o">=</span><span class="s1">'json'</span><span class="w"> </span>-p<span class="o">=</span><span class="s1">'[{"op":"replace","path":"/data/NodeHosts","value":"&lt;sauropod_ip&gt; sauropod.demo.guardium\n&lt;cm_ip&gt; cm.demo.guardium\n&lt;cm_ip&gt; cm.demo.guardium.demo.guardium\n"}]'</span>
+
+kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>patch<span class="w"> </span>configmap<span class="w"> </span>coredns<span class="w"> </span>--type<span class="o">=</span>json<span class="w"> </span>-p<span class="o">=</span><span class="s1">'[{"op":"replace","path":"/data/Corefile","value":".:53 {\n    errors\n    health\n    ready\n    kubernetes cluster.local in-addr.arpa ip6.arpa {\n        pods insecure\n        fallthrough in-addr.arpa ip6.arpa\n    }\n    hosts {\n        &lt;cm_ip&gt; cm.demo.guardium\n        &lt;cm_ip&gt; cm.demo.guardium.demo.guardium\n        fallthrough\n    }\n    prometheus :9153\n    forward . /etc/resolv.conf\n    cache 30\n    loop\n    reload\n    loadbalance\n}\n"}]'</span>
+
+kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>rollout<span class="w"> </span>restart<span class="w"> </span>deployment<span class="w"> </span>coredns
+</code></pre></div></td></tr></table></div></p>
+</li>
+</ol>
+<h2 id="setup-edge-gateway-config-on-cm">Setup Edge Gateway config on CM</h2>
+<ol>
+<li>
+<p>Confirm the installation of patch 15004 from the cm command line. If the installation is still in progress, wait for the process to be completed before proceeding.
+<div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>installed
+</code></pre></div>
+<a href="../../images/edge6.webp"><img alt="image" src="../../images/edge6.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Check that feature flag responsible for <em>Edge Gateway</em> is enabled.
+<div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>list_feature_flags
+</code></pre></div>
+<a href="../../images/edge7.webp"><img alt="image" src="../../images/edge7.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>Access the <em>Central Manager</em> view within the <strong>cm</strong> UI and select <em>Register Edge Gateway</em> from the Actions dropdown menu.
+<a href="../../images/edge8.webp"><img alt="image" src="../../images/edge8.webp" width="99%" /></a></p>
+</li>
+<li>
+<p>In the registration window, enter the required information and press <strong>Register Edge Gateway</strong> button.</p>
+<div class="admonition note">
+<p class="admonition-title">Edge parameters:</p>
+<ul>
+<li>Edge name: <strong>sauropod.demo.guardium</strong> (hostname of the machine where the Edge Gateway and Kubernetes cluster are running)</li>
+<li>Namespace: <strong>edge</strong> (namespace where Edge Gateway will be deployed)</li>
+<li>Storage class: <strong>local-path</strong> (storage class used by the Edge Gateway; it must support RWO mode)</li>
+<li>Export to: <strong>cm.demo.guardium</strong> (aggregator for audited events; for this lab, we are using the Central Manager)</li>
+<li>Version: <strong>2.0.1</strong> (Edge Gateway version to be installed)</li>
+<li>Use HAProxy for ingress: (Routing between services and the aggregator will be configured via HAProxy; otherwise, manual NodePort configuration may be required)</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The Install edge bundle window will appear along with a prompt to save the generated deployment archive. Save the file and confirm that the new appliance now appears in the Central Manager view.</p>
+</li>
+<li>
+<p>Execute this command to download deployment scripts on sauropod</p>
+</li>
+<li>
+<p>Unpack downloaded archive
+tar xvf <bundle_archive></p>
+</li>
+</ol>
+<h2 id="edge-gateway-deployment">Edge Gateway deployment</h2>
+<ol>
+<li>The deployment initialization script requires the expect tool on sauropod.
+dnf -y install expect</li>
+<li>Navigate to the directory with the extracted archive and run the edge-install.sh script to initialize the Edge Gateway installation.
+The script will prompt for the Kubernetes cluster type to be used for the deployment, whether to add the image repository certificates located on the Central Manager, and whether to create the namespace specified earlier during the service definition (select Yes for each of the following prompts).
+cd /root/sauropod.demo.guardium/</li>
+</ol>
+<p>./edge-install.sh</p>
+<ol>
+<li>After a short while, you should observe a deployment started.
+kubectl get pods -A</li>
+<li>
+<p>After a while the strimzi operator will be restarted and deployment will be continued. You should soon see on the list the edge_manager pod
+kubectl get pods -A</p>
+</li>
+<li>
+<p>After few minutes the Edge Gateway deployment should finish with success. Execute this loop to confirm it (provide you edge-manager pod name). 
+while true; do LINE=$(kubectl logs <edge_manager_pod_name> -n edge | grep "EDGE_SERVICES_INSTALLATION_STATUS is Completed" | tail -n 1); [ -n "$LINE" ] &amp;&amp; echo "$LINE" &amp;&amp; break; sleep 5; done</p>
+</li>
+<li>
+<p>Open the Central Manager view in the CM UI and confirm the status change for the Edge Gateway. A green checkmark should now appear, confirming that communication is working correctly.</p>
+</li>
+<li>
+<p>In the cm UI, create a new dashboard and name it - Edge Gateway. Then, add the following four reports: Edge Buff Usage Monitor, Edge Extraction Log, Edge Live Full SQL, Edge Live Session List. Even though you are not sending any events to the Edge Gateway yet, the Edge Buff Usage Monitor report should show sniffer statistics generated every minute.</p>
+</li>
+<li>
+<p>The next step is to set the policy. In the cm UI, open the Security Policies view. Select the Log Everything policy, and then select the Install option from the dropdown list. In the window that appears, select just deployed Edge Gateway and the Install and Override option. The execution of the change will be confirmed by an additional message.</p>
+</li>
+<li>
+<p>In the refreshed view, information about the installation of the new policy should appear. </p>
+</li>
+</ol>
+<h2 id="send-traffic-from-stap-to-edge-gateway">Send traffic from STAP to Edge Gateway</h2>
+<ol>
+<li>
+<p>In the Central Management view, select the Edge Gateway. This will display a list of ports where the service is listening for specific traffic types. These ports are randomly assigned from the NodePorts pool for each Edge Gateway instance. Make a note of both ports assigned to Unix-TAP, as you will need them for the next configuration step</p>
+</li>
+<li>
+<p>Open the Setup by Client view and select the ceratops.demo.guardium client. Then, choose the currently installed S-TAP version - 12.2_r120202259_1 - and change the values:
+WINSTAP_USING_EDGE from 0 to 1
+WINSTAP_SQLGUARD_IP to sauropod.demo.guardium
+WINSTAP_SQLGUARD_PORT to node port identified in point 1 as a Windows S-TAP
+WINSTAP_SQLGUARD_TLS_PORT to node port identified in point 1 as a Windows S-TAP (TLS)</p>
+</li>
+<li>
+<p>Confirm the change by monitoring the status of the task.</p>
+</li>
+<li>
+<p>In the Edge Buff Usage Monitor report (in the Edge Gateway dashboard), the Analyzer Total value should begin to change, indicating the number of events analyzed by the sniffer. </p>
+</li>
+<li>
+<p>Reports with Edge Live in their name provide a new functionality that allows you to download a fragment of the data currently being processed on the Edge Gateway. This confirms the correct operation of policies without having to wait for the full cycle on the aggregator side. The report is equipped with an additional Edge Gateway Data Refresh option, which enables sending a request to the sniffer. Use this option in the Edge Live Session List report.</p>
+</li>
+<li>
+<p>After a moment, use the new option again to confirm that the data has been transmitted. </p>
+</li>
+<li>
+<p>Refresh the report and ensure that the data is flowing to the Edge Gateway and is being properly audited according to the installed policy.</p>
+</li>
+<li>
+<p>You can also check the Edge Live Full SQL report and notice that SQL’s are logged correctly.</p>
+</li>
+<li>
+<p>By default, data is synchronized with the aggregator every hour. Depending on the volume of events, this process can be delayed or accelerated. In our laboratory environment, we can change this value to 10 minutes. To do this, select the Edge Gateway in the Central management view and select the Edit edge parameters option from the context menu.</p>
+</li>
+<li>
+<p>In the Configure edge gateway parameters window, expand the Environments list, which allows for editing individual service parameters. Select data-manager and change the value of the DB_ROTATE_INTERVAL parameter from 3600 to 600, then confirm the change – Update parameters.  </p>
+</li>
+<li>From now on, events processed by the Edge Gateway will appear in reports every 10 minutes. Open the standard Full SQL (Training) report in the Training dashboard and confirm that the data is indeed updating according to this schedule.</li>
+</ol>
+<p>Appendix    Dependencies:
+This lab requires that Oracle lab is fully covered before</p>
+<p>Resources:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
