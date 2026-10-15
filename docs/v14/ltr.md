@@ -13,9 +13,9 @@ source venv/bin/activate
 
 guardium-notes-dbtraffic --config config/pgsql.yaml run --duration 600
 ```
-[![image](../images/ltr3.webp){ width="99%" }](../images/ltr3.webp) 
+![image](../images/ltr3.webp){ width="99%" } 
 1.	Confirm that traffic is visible in the *Full SQL (Training)* report on the Training dashboard on the **coll1**. Keep this session opened to generate traffic in the background.
-[![image](../images/ltr4.webp){ width="99%" }](../images/ltr4.webp) 
+![image](../images/ltr4.webp){ width="99%" } 
 	
 ## Setup S3 bucket for LTR (seaweedFS)
 
@@ -201,7 +201,7 @@ systemctl start --now seaweedfs-stack
 ```bash
 openssl s_client -connect raptor.demo.guardium:8333 -servername raptor.demo.guardium </dev/null 2>/dev/null | openssl x509 -noout -text | grep -E "(Issuer:|Subject:|Not After|DNS:|IP Address:)"
 ```
-[![image](../images/ltr1.webp){ width="99%" }](../images/ltr1.webp)
+![image](../images/ltr1.webp){ width="99%" }
 
 1.	Install the **AWS** client.
 ```bash
@@ -215,7 +215,7 @@ unzip awscliv2.zip
 
 aws --version
 ```
-[![image](../images/ltr2.webp){ width="99%" }](../images/ltr2.webp)
+![image](../images/ltr2.webp){ width="99%" }
 
 1.	Configure access to *seaweedFS*.
 
@@ -231,7 +231,7 @@ aws --version
     aws configure set profile.seaweed.ca_bundle /opt/seaweedfs/certs/ca/ca.crt
     ```
 
-    [![image](../images/ltr38.webp){ width="99%" }](../images/ltr38.webp)
+    ![image](../images/ltr38.webp){ width="99%" }
 
 1. Create an *S3* bucket for *LTR* purposes (name it **guardium-ltr**)
 ```bash
@@ -239,31 +239,31 @@ aws --profile seaweed --endpoint-url https://raptor.demo.guardium:8333 s3 mb s3:
 
 aws --profile seaweed --endpoint-url https://raptor.demo.guardium:8333 s3 ls
 ```
-[![image](../images/ltr5.webp){ width="99%" }](../images/ltr5.webp)
+![image](../images/ltr5.webp){ width="99%" }
 
 ## Setup LTR node
 
 1.	Although the *LTR* functionality does not require activation via a specific feature flag, the mechanism itself must be enabled.
 In the **cm** UI, navigate to the **License** view and verify that the extensions appropriate for your **Guardium** version are available.
-[![image](../images/ltr8.webp){ width="99%" }](../images/ltr8.webp)
+![image](../images/ltr8.webp){ width="99%" }
  
 1.	Check the unit type on **appnode1**. As a **cli** user execute:
 ```bash
 show unit type
 ```
-[![image](../images/ltr9.webp){ width="49%" }](../images/ltr9.webp)
+![image](../images/ltr9.webp){ width="49%" }
 
 1.	If the appliance is still of type *Managed Netinsp stap*, change it to **app-node** using command below. The command requires a system restart—confirm by entering `y`.
 ```bash
 store unit type app-node
 ``` 
-[![image](../images/ltr10.webp){ width="99%" }](../images/ltr10.webp)
+![image](../images/ltr10.webp){ width="99%" }
 
 1.	Re-login and confirm that the appliance is now set as Managed App-Node.
 ```bash
 show unit type
 ```
-[![image](../images/ltr11.webp){ width="49%" }](../images/ltr11.webp)
+![image](../images/ltr11.webp){ width="49%" }
 
 1.	Now install on **appnode1** as a **cli** user the patch that enables the *LTR* functionality.
 
@@ -279,37 +279,37 @@ show unit type
     ```bash
     store system patch install scp
     ```
-    [![image](../images/ltr12.webp){ width="99%" }](../images/ltr12.webp)
+    ![image](../images/ltr12.webp){ width="99%" }
 
 1.	Monitor the installation using the command below until the patch installation is confirmed.
 ```bash
 show system patch install 
 ```
-[![image](../images/ltr13.webp){ width="99%" }](../images/ltr13.webp)
+![image](../images/ltr13.webp){ width="99%" }
 
 1.	Install the *LTR* services on **appnode1** (restart **cli** session).
 ```bash
 store datalake install
 ```
-[![image](../images/ltr14.webp){ width="49%" }](../images/ltr14.webp)
+![image](../images/ltr14.webp){ width="49%" }
 
 1.	Set the size of the *LTR* services.
 ```bash
 store datalake all_in_one xxsmall
 ```
-[![image](../images/ltr15.webp){ width="89%" }](../images/ltr15.webp)
+![image](../images/ltr15.webp){ width="89%" }
 
 1.	Start LTR services
 ```bash
 store datalake service start
 ``` 
-[![image](../images/ltr16.webp){ width="59%" }](../images/ltr16.webp)
+![image](../images/ltr16.webp){ width="59%" }
 
 1.	Check the status of the services, we expect status 0
 ```bash
 show datalake status
 ```
-[![image](../images/ltr17.webp){ width="99%" }](../images/ltr17.webp)
+![image](../images/ltr17.webp){ width="99%" }
 
 ## Central Manager setup
 
@@ -317,37 +317,37 @@ show datalake status
 ```bash
 store certificate application datalake s3 console
 ```
-[![image](../images/ltr18.webp){ width="99%" }](../images/ltr18.webp)
+![image](../images/ltr18.webp){ width="99%" }
 
 1.	Verify that the certificate is visible
 ```bash
 show certificate application datalake s3
 ```
-[![image](../images/ltr6.webp){ width="89%" }](../images/ltr6.webp)
+![image](../images/ltr6.webp){ width="89%" }
 
 1.	We now need to distribute the certificate used by the *cm* and *LTR* to all appliances in the environment.
 ```bash
 distribute application certificate datalake all_managed --metastore_unit=appnode1.demo.guardium
 ```
-[![image](../images/ltr7.webp){ width="99%" }](../images/ltr7.webp)
+![image](../images/ltr7.webp){ width="99%" }
 
 1.	This takes some time, so you need to monitor the synchronization process with the command below (we expect the toolnode to have both certificates downloaded).
 ```bash
 distribute certificate showlog all
 ```
-[![image](../images/ltr19.webp){ width="99%" }](../images/ltr19.webp)
+![image](../images/ltr19.webp){ width="99%" }
 
 1. It is crucial to restart **appnode1** GUI now (temporary workaround for missing cert reload on LTR node). From **cli** session on **appnode1** execute command below (confirm by inserting ++y++) and wait for confirmation.
 ```bash
 restart gui
 ```
-[![image](../images/ltr42.webp){ width="59%" }](../images/ltr42.webp) 
+![image](../images/ltr42.webp){ width="59%" } 
 
 1.	Configure the connection to the S3 bucket (back to **cm cli** session). You need to enter the seaweeFS keystore password used when configuring the S3 service. The command requires some time to complete.
 ```bash
 grdapi configure_complete_cold_storage protocol="CUSTOM" objectStorageEndpoint="https://raptor.demo.guardium:8333" accessKey=s3admin secretKey="<strong_admin_password>" dataBucket=guardium-ltr resultSchema="datalake_reports" region="US_EAST_1" coldCatalogEndpoint="https://appnode1.demo.guardium:8443" coldCatalogSchema="datalake" coldStorageName="datalake" queryEngineHost="appnode1.demo.guardium" debug=3
 ```
-[![image](../images/ltr20.webp){ width="99%" }](../images/ltr20.webp) 
+![image](../images/ltr20.webp){ width="99%" } 
 
 1.	Finally, check list of ltr nodes and cold storages.
 ```bash linenums="1"
@@ -355,33 +355,33 @@ grdapi get_cold_storage_app_nodes
 
 grdapi list_cold_storages
 ```
-[![image](../images/ltr21.webp){ width="79%" }](../images/ltr21.webp)
+![image](../images/ltr21.webp){ width="79%" }
 
 ## Configuring system to use LTR data
 
 1.	To monitor the process of transferring data from collectors to *LTR*, create a copy of the default *Datamart Extraction Log* report. Open on the **cm** UI the standard report and use the edit icon :material-pencil:. Choose the option to create a copy of the report.
-[![image](../images/ltr22.webp){ width="99%" }](../images/ltr22.webp)
+![image](../images/ltr22.webp){ width="99%" }
  
 1.	Name the report *LTR Datamart Extraction*, then add descending sorting by *Datamart Run Id* and add an additional condition so that only *Datamart Name* containing the word *%Export%* in the name are displayed. **Save** the modified report.
-[![image](../images/ltr23.webp){ width="99%" }](../images/ltr23.webp)
+![image](../images/ltr23.webp){ width="99%" }
  
 1.	Next, create a new dashboard named *LTR* and add to it the report we just created – *LTR Datamart Extraction*,
-[![image](../images/ltr24.webp){ width="99%" }](../images/ltr24.webp)
+![image](../images/ltr24.webp){ width="99%" }
 
 1.	Add to *LTR* dashboard three more reports: *Cold Storage Ingestion Logs*, *Cold Storage Maintenance Logs* and *Scheduled Jobs*
-[![image](../images/ltr25.webp){ width="99%" }](../images/ltr25.webp)
+![image](../images/ltr25.webp){ width="99%" }
  
 1.	Open the *Scheduled Jobs* report in the dashboard and edit the *Runtime Parameters*. Select the **coll1** as the data source.
-[![image](../images/ltr26.webp){ width="99%" }](../images/ltr26.webp)
+![image](../images/ltr26.webp){ width="99%" }
 
 1.	A list of batch jobs running on the **coll1** will be displayed in the report. Among them, there will be activities related to data extraction and transferring the data to the seaweedFS server. The job names will start with *Export:Insights:v6*. The *Next Fire Time* column indicates when the data will be prepared and when we should expect the data to appear in LTR.
-[![image](../images/ltr27.webp){ width="99%" }](../images/ltr27.webp)
+![image](../images/ltr27.webp){ width="99%" }
  
 1.	In the **cli** session on the **coll1**, run the command below and review the datamart definitions. It is executed every hour, and the data is sent to the *seaweedFS* server.
 ```bash
 grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 ``` 
-[![image](../images/ltr28.webp){ width="99%" }](../images/ltr28.webp)
+![image](../images/ltr28.webp){ width="99%" }
 
 ## Use LTR data
 
@@ -389,34 +389,34 @@ grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 ```bash
 grdapi get_datamart_info datamart_name="Export:Insights:v6:Session Log"
 ```
-[![image](../images/ltr29.webp){ width="99%" }](../images/ltr29.webp)
+![image](../images/ltr29.webp){ width="99%" }
 
 1.	Open the *LTR* dashboard on the **cm**, and within it open the *Scheduled Jobs* report with reference to the **coll1** data. Observe that the jobs related to the datamarts are being executed according to the scheduler.
-[![image](../images/ltr30.webp){ width="99%" }](../images/ltr30.webp)
+![image](../images/ltr30.webp){ width="99%" }
  
 1.	Switch to the *LTR Datamart Extraction* report in the dashboard and select the **coll1** as the data source. Observe that each job execution is recorded in detail and includes information about how many records were transferred.
-[![image](../images/ltr31.webp){ width="99%" }](../images/ltr31.webp)
+![image](../images/ltr31.webp){ width="99%" }
  
 1.	The *Cold Storage Ingestion Logs* report indicates whether the datamart transferred from the **coll1** has been processed and whether the data is ready for use.
-[![image](../images/ltr32.webp){ width="99%" }](../images/ltr32.webp)
+![image](../images/ltr32.webp){ width="99%" }
 
 1.	Let’s verify whether the data stored in seaweesFS can be reported from the **cm**. In the **cm** UI, select the new view – **Data Lake Reports**. It contains several predefined reports. Proceed to run the *Data Lake Connection profiling list* by selecting **Edit** from :material-dots-vertical: menu at the end of the row with its name.
-[![image](../images/ltr33.webp){ width="99%" }](../images/ltr33.webp)
+![image](../images/ltr33.webp){ width="99%" }
  
 1.	In the *Define Report* window, select *Custom* time frame and use the available controls to define the report timeframe (from today until tomorrow). Then click **Next**.
-[![image](../images/ltr34.webp){ width="99%" }](../images/ltr34.webp)
+![image](../images/ltr34.webp){ width="99%" }
  
 1.	On the next page, you can manually modify the query. Since we are running a predefined report, the query body is disabled and cannot be edited. For customized queries, you will be able to adjust the report according to your specific requirements. Press **Next**.
-[![image](../images/ltr35.webp){ width="99%" }](../images/ltr35.webp)
+![image](../images/ltr35.webp){ width="99%" }
 
 1.	The next step of the report configuration allows you to schedule report execution. In this lab, we want to run the report ad hoc, so we will skip the scheduling options and use **Save Report** immediately.
-[![image](../images/ltr36.webp){ width="99%" }](../images/ltr36.webp)
+![image](../images/ltr36.webp){ width="99%" }
 
 1.	To generate the report, click the ![image](../images/ltr39.webp){ width="18" } icon. This starts the process of retrieving data from the files stored in the S3 bucket, extracting the contents, and processing the data according to the query definition. The progress of the operation is indicated by dynamically updated status values such as Running and Complete. Once the report has been successfully generated, click the ![image](../images/ltr40.webp){ width="22" } icon to view the results.
-[![image](../images/ltr37.webp){ width="99%" }](../images/ltr37.webp)
+![image](../images/ltr37.webp){ width="99%" }
 
 1. Review result and **Close** report window.
-[![image](../images/ltr41.webp){ width="99%" }](../images/ltr41.webp)
+![image](../images/ltr41.webp){ width="99%" }
 
 ## Appendix
 

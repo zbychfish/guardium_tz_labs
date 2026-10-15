@@ -11,7 +11,7 @@ su - db2inst1
 ```sql
 db2 list database directory
 ``` 
-[![TZ requests](../images/exit1.webp){ width="69%" }](../images/exit1.webp)
+![TZ requests](../images/exit1.webp){ width="69%" }
 <BR>Notice that database SAMPLE can be referred (connected) using Remote (TCP/IP, mysample) or Indirect (Shared Memory, sample) alias.
 
 1.	Let’s connect to *sample* database as a **db2inst1** user usinng *TCP* connection (*sampledb* alias)
@@ -31,7 +31,7 @@ exit
 ```
 
 1.	Check traffic visibility in *Full SQL (Training)* report on **coll1**. Notice that activity from shared memory connection is not audited.
-[![TZ requests](../images/exit2.webp){ width="99%" }](../images/exit2.webp) 
+![TZ requests](../images/exit2.webp){ width="99%" } 
 
 ## Configure DB2 system with EXIT
 
@@ -71,7 +71,7 @@ db2 update dbm cfg using comm_exit_list libguard_db2_exit_64
 ```bash
 db2 get database manager configuration
 ```
-[![TZ requests](../images/exit3.webp){ width="99%" }](../images/exit3.webp) 
+![TZ requests](../images/exit3.webp){ width="99%" } 
 
 1.	Start *DB2* engine.
 ```bash linenums="1"
@@ -85,7 +85,7 @@ exit
 ```
 Script will require two answers – Y and N respectively.
 
-    [![TZ requests](../images/exit4.webp){ width="99%" }](../images/exit4.webp)  
+    ![TZ requests](../images/exit4.webp){ width="99%" }  
 
 1.	Restart *STAP*.
 ```bash
@@ -107,7 +107,7 @@ exit
 ```
 
 1.	Check *Full SQL (Training)* report and notice **db2inst1** user command has been sniffed.
-[![TZ requests](../images/exit5.webp){ width="99%" }](../images/exit5.webp)
+![TZ requests](../images/exit5.webp){ width="99%" }
 
 ## Informix monitoring with EXIT (optional)
 
@@ -130,10 +130,10 @@ SELECT sid, TRIM(net_client_name) AS client_protocol, net_client_type, net_proto
 SELECT 'INFORMIX session without SSL';
 ```
 Close database session inserting ++ctrl+d++
-[![TZ requests](../images/exit6.webp){ width="99%" }](../images/exit6.webp)
+![TZ requests](../images/exit6.webp){ width="99%" }
 
 1.	Confirm traffic visibility in *Full SQL (Training)* report on **coll1**.
-[![TZ requests](../images/exit7.webp){ width="99%" }](../images/exit7.webp)
+![TZ requests](../images/exit7.webp){ width="99%" }
 
 1.	Connect to *Informix* again but this time using encrypted channel. The first `SELECT` indicates that the connection is using the *socssl* protocol, which means the communication is encrypted using SSL/TLS. As expected, activity from this session will not be reported, because *EXIT* must be enabled to monitor encrypted connections.
 ```bash linenums="1"
@@ -146,7 +146,7 @@ SELECT sid, TRIM(net_client_name) AS client_protocol, net_client_type, net_proto
 SELECT 'INFORMIX session with SSL';
 ```
 Close database session inserting ++ctrl+d++ and `exit` from the **informix** user session.
-[![TZ requests](../images/exit8.webp){ width="99%" }](../images/exit8.webp) 
+![TZ requests](../images/exit8.webp){ width="99%" } 
 
 1.	To configure *EXIT*, first switch to the **root** user and add the **informix** user to the guardium group.
 ```bash
@@ -168,7 +168,7 @@ LIBPATH   /opt/ibm/informix/lib/libguard_informix_exit_64.so
 DEBUG   2
 LOGFILE   /tmp/ifxserver.log
 ```
-[![TZ requests](../images/exit9.webp){ width="82%" }](../images/exit9.webp) 
+![TZ requests](../images/exit9.webp){ width="82%" } 
 
 1.	Next, create a configuration file for encrypted connections - `$INFORMIXDIR/etc/ifxguard.ifxserver_ssl` and populate it with the following contents:
 ```text
@@ -178,7 +178,7 @@ LIBPATH   /opt/ibm/informix/lib/libguard_informix_exit_64.so
 DEBUG   2
 LOGFILE   /tmp/ifxserver_ssl.log
 ```
-[![TZ requests](../images/exit12.webp){ width="82%" }](../images/exit12.webp) 
+![TZ requests](../images/exit12.webp){ width="82%" } 
  
 1.	You can now start the *EXIT* services for each configuration (still in the **informix** user context).
 ```bash linenums="1"
@@ -186,7 +186,7 @@ ifxguard -c $INFORMIXDIR/etc/ifxguard.ifxserver
 
 ifxguard -c $INFORMIXDIR/etc/ifxguard.ifxserver_ssl
 ```
-[![TZ requests](../images/exit10.webp){ width="99%" }](../images/exit10.webp) 
+![TZ requests](../images/exit10.webp){ width="99%" } 
 
 1.	You must remove the *Informix KTAP-based* inspection engine definition from the *STAP* and add the correct configuration required for *EXIT* monitoring. To do this, use the API. From the **cli** session on **coll1**, execute the following command:
 ```bash linenums="1"
@@ -206,7 +206,7 @@ SELECT sid, TRIM(net_client_name) AS client_protocol, net_client_type, net_proto
 SELECT 'Second try of INFORMIX session with SSL';
 ```
 Close database session inserting ++ctrl+d++ and `exit` from **informix** user session.
-[![TZ requests](../images/exit11.webp){ width="99%" }](../images/exit11.webp) 
+![TZ requests](../images/exit11.webp){ width="99%" } 
  
 1.	Stop *Informix* instance at the end of lab to free a **raptor** resources. As a **root** execute:
 ```bash

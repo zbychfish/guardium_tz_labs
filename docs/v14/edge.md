@@ -16,16 +16,16 @@
     ```
     Monitor the progress as the patch downloads to the appliance, noting that the large file size may require a while to complete. Once the download finishes and the patch appears in the available list, do not initiate the installation from the command line. Because this specific update must be managed via the User Interface (*UI*) or the *API*, finish the current cli command by selecting the `q` option.
 
-    [![image](../images/edge1.webp){ width="99%" }](../images/edge1.webp)
+    ![image](../images/edge1.webp){ width="99%" }
  
 1.	Register patch and retrieve information about it (because patch is huge it takes time).
 ```bash
 show system patch available
 ```
-[![image](../images/edge2.webp){ width="99%" }](../images/edge2.webp)
+![image](../images/edge2.webp){ width="99%" }
  
 1.	From **cm** UI open **Patch Management** view. Select the *Central Manager* <span class="mb">1</span> and locate the patch <span class="mb">2</span> that was just uploaded to the system. Trigger the installation process by clicking the **Install** option <span class="mb">3</span>. Choose the immediate installation <span class="mb">4</span> and confirm your selection <span class="mb">5</span> to finalize the task. The system will then schedule the specified patch for deployment
-[![image](../images/edge3.webp){ width="99%" }](../images/edge3.webp)
+![image](../images/edge3.webp){ width="99%" }
  
 1.	While the patch installation runs in the background, shift your focus to the additional laboratory tasks to maintain workflow efficiency.
 
@@ -43,7 +43,7 @@ guardium-notes-dbtraffic --config config/mssql_ceratops.yaml run --speed slow
 ```
 
 1. Confirm on **coll1** the visibility the *MSSQL* events in Full *SQL (Training)* report.
-[![image](../images/edge30.webp){ width="99%" }](../images/edge30.webp)
+![image](../images/edge30.webp){ width="99%" }
 
 ## K3s installation
 
@@ -58,7 +58,7 @@ kubectl get nodes
 
 kubectl get pods -A
 ```
-[![image](../images/edge5.webp){ width="99%" }](../images/edge5.webp)
+![image](../images/edge5.webp){ width="99%" }
 
 1.	Add the name resolving for *cm.gdemo.com* within the cluster configuration. Ensure that the host entry is correctly mapped to allow multiple services to establish a connection with the *Central Manager*.
 ```bash linenums="1"
@@ -75,16 +75,16 @@ kubectl -n kube-system rollout restart deployment coredns
 ```bash
 show system patch installed
 ```
-[![image](../images/edge6.webp){ width="99%" }](../images/edge6.webp)
+![image](../images/edge6.webp){ width="99%" }
 
 1.	Check that feature flag responsible for *Edge Gateway* is enabled.
 ```bash
 grdapi list_feature_flags
 ``` 
-[![image](../images/edge7.webp){ width="99%" }](../images/edge7.webp)
+![image](../images/edge7.webp){ width="99%" }
 
 1.	Access the *Central Manager* view within the **cm** UI and select *Register Edge Gateway* from the Actions dropdown menu.
-[![image](../images/edge8.webp){ width="99%" }](../images/edge8.webp)
+![image](../images/edge8.webp){ width="99%" }
 
 1.  In the registration window, enter the required information and press **Register Edge Gateway** button.
 

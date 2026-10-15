@@ -24,13 +24,13 @@ chmod +x *.sh
         - KTAP_ALLOW_MODULES_COMBO: **Y**
         - STAP_SQLGUARD_IP: **coll1.demo.guardium**
 
-    [![image](../images/oracle1.webp){ width="99%" }](../images/oracle1.webp)
+    ![image](../images/oracle1.webp){ width="99%" }
  
 1.	Confirm that agent has been successfully deployed.
-[![image](../images/oracle2.webp){ width="99%" }](../images/oracle2.webp)
+![image](../images/oracle2.webp){ width="99%" }
  
 1.	Check also in **S-TAP Status** on **coll1** that *KTAP* is deployed.
-[![image](../images/oracle3.webp){ width="99%" }](../images/oracle3.webp)
+![image](../images/oracle3.webp){ width="99%" }
 
 
 ## Oracle traffic visibility
@@ -39,7 +39,7 @@ chmod +x *.sh
 ```bash
 ps -ef | grep pmon
 ```
-[![image](../images/oracle4.webp){ width="99%" }](../images/oracle4.webp)
+![image](../images/oracle4.webp){ width="99%" }
 
 1.	Change on **sauropod** context to **oracle** user.
 ```bash
@@ -49,7 +49,7 @@ su - oracle
 ```bash
 echo $ORACLE_SID
 ```
-[![image](../images/oracle5.webp){ width="49%" }](../images/oracle5.webp)
+![image](../images/oracle5.webp){ width="49%" }
 
 1.	We have *SQLcl* installed on **sauropod**, login to *Oracle* instance as a **system** user with lab default password. The *ORCLCDB* is pluggable.
 ```sql linenums="1"
@@ -57,13 +57,13 @@ sql system
 
 SELECT name, cdb FROM v$database;
 ``` 
-[![image](../images/oracle6.webp){ width="79%" }](../images/oracle6.webp)
+![image](../images/oracle6.webp){ width="79%" }
 
 1.	List of *PDB* instances. There is one with name *ORCLPDB1*.
 ```sql
 SELECT pdb_name, status FROM cdb_pdbs ORDER BY pdb_name;
 ```
-[![image](../images/oracle7.webp){ width="79%" }](../images/oracle7.webp)
+![image](../images/oracle7.webp){ width="79%" }
 
 1.	Let’s change the session context to *ORCLPDB1* instance and check list of schemas and tables in one of it.
 ```sql linenums="1"
@@ -75,13 +75,13 @@ SELECT owner, table_name FROM dba_tables WHERE tablespace_name = 'HR_DATA';
 
 exit;
 ```
-[![image](../images/oracle8.webp){ width="99%" }](../images/oracle8.webp) 
+![image](../images/oracle8.webp){ width="99%" } 
 
 1.	Check in **coll1** UI the *Full SQL (Training)* report and confirm that *Oracle* traffic is visible.
-[![image](../images/oracle9.webp){ width="99%" }](../images/oracle9.webp)
+![image](../images/oracle9.webp){ width="99%" }
  
 1.	On **coll1** clone *Full SQL (Training)* report. Name it *Full SQL (session details)* and proceed to the *Selected Columns* section by clicking **Next**.
-[![image](../images/oracle10.webp){ width="99%" }](../images/oracle10.webp)
+![image](../images/oracle10.webp){ width="99%" }
  
 1.	In this section, we can define what information will be displayed in the report. We can add attributes from the *Entities and Attributes* list to the *Selected Columns* list on the right. Attributes are grouped by *entity*. After selecting an attribute, use the  :material-arrow-right: to add it to the report. Add five attributes:
 
@@ -94,25 +94,25 @@ exit;
 
     and Expand a *Conditions* pane.
 
-    [![image](../images/oracle11.webp){ width="99%" }](../images/oracle11.webp)
+    ![image](../images/oracle11.webp){ width="99%" }
  
 1.	Add condition for the **Server Type** attribute from the *Client/Server* entity using the **DB_Type** parameter with the *LIKE* operator and **Save** report.
-[![image](../images/oracle12.webp){ width="99%" }](../images/oracle12.webp)
+![image](../images/oracle12.webp){ width="99%" }
  
 1.	A confirmation of the operation will appear and then **Close** the report editing window.
-[![image](../images/oracle13.webp){ width="99%" }](../images/oracle13.webp)
+![image](../images/oracle13.webp){ width="99%" }
  
 1.	Create new *dashboard* with name *Oracle* and add into it a just cloned report.
-[![image](../images/oracle14.webp){ width="99%" }](../images/oracle14.webp)
+![image](../images/oracle14.webp){ width="99%" }
  
 1.	Edit report parameters and set for *DB_Type* value **ORACLE**. Now report will show only activity belonging to *Oracle*.
-[![image](../images/oracle15.webp){ width="99%" }](../images/oracle15.webp)
+![image](../images/oracle15.webp){ width="99%" }
  
 1.	Review on **sauropod** the `tnsnames.ora` file and notice that we have setup of four connection/protocol types there.
 ```bash
 cat $ORACLE_HOME/network/admin/tnsnames.ora
 ```
-[![image](../images/oracle16.webp){ width="99%" }](../images/oracle16.webp)
+![image](../images/oracle16.webp){ width="99%" }
 
 1.	Connect as an **oracle** user using *ORCLPDB1_BEQ* connection (*Bequeath* connection), then check traffic visibility in *Full SQL (session details)* report on **coll1**.
 ```sql linenums="1"
@@ -124,7 +124,7 @@ SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
 ```
-[![image](../images/oracle17.webp){ width="99%" }](../images/oracle17.webp)
+![image](../images/oracle17.webp){ width="99%" }
 
 1.	Now connect using *ORCLPDB_IPC* connection (shared memory) and check activity events in the report.
 ```sql linenums="1"
@@ -138,7 +138,7 @@ SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
 ```
-[![image](../images/oracle18.webp){ width="99%" }](../images/oracle18.webp) 
+![image](../images/oracle18.webp){ width="99%" } 
 
 1.	Next type of connection is TCP and use ORCLPDB1 connection string.
 ```sql linenums="1"
@@ -150,7 +150,7 @@ SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
 ```
-[![image](../images/oracle19.webp){ width="99%" }](../images/oracle19.webp)
+![image](../images/oracle19.webp){ width="99%" }
 
 1.	All previous connections used unencrypted communication between the *Oracle* client and server. Now connect using *TCPS*, which technically leverages *SSL/TLS* encryption between both endpoints.
 *Oracle* also provides its own native encryption mechanism (*ASO* – *Advanced Security Option*), which is also supported by **Guardium**.
@@ -193,7 +193,7 @@ exit
 ```bash
 /opt/guardium/modules/ATAP/current/files/bin/guardctl --db-type=oracle --db-instance=ORCLCDB activate
 ```
-[![image](../images/oracle20.webp){ width="99%" }](../images/oracle20.webp)
+![image](../images/oracle20.webp){ width="99%" }
 
 1.	Now we can start *Oracle* instances again.
 ```sql linenums="1"
@@ -220,7 +220,7 @@ SELECT * FROM hr.employees FETCH FIRST 10 ROWS ONLY;
 
 exit
 ```
-[![image](../images/oracle21.webp){ width="99%" }](../images/oracle21.webp) 
+![image](../images/oracle21.webp){ width="99%" } 
 
 ## Check Oracle instance in container
 
@@ -228,13 +228,13 @@ exit
 ```bash
 podman ps
 ```
-[![image](../images/oracle22.webp){ width="99%" }](../images/oracle22.webp) 
+![image](../images/oracle22.webp){ width="99%" } 
 
 1.	Confirm *Oracle DB* readiness. The container logs should indicate that the database is ready for use.
 ```bash
 podman logs oracle_db_21c | grep -C 5 'IS READY TO USE'
 ```
-[![image](../images/oracle23.webp){ width="89%" }](../images/oracle23.webp) 
+![image](../images/oracle23.webp){ width="89%" } 
 
 1.	To check instance connection open **bash** to our container and login to database as **system** (use the standard password for services). Log in using port **1521**, as the connection is established from within the container.
 ```bash linenums="1"
@@ -242,7 +242,7 @@ podman exec -it oracle_db_21c bash
 
 sqlplus system@localhost/ORCLPDB1:1521
 ```
-[![image](../images/oracle24.webp){ width="79%" }](../images/oracle24.webp) 
+![image](../images/oracle24.webp){ width="79%" } 
 
 1.	Execute some simple queries (first one displays *Oracle* release and the second one the information about pluggable database support.
 ```sql linenums="1"
@@ -250,7 +250,7 @@ SELECT BANNER FROM V$VERSION WHERE BANNER LIKE 'Oracle Database%';
 
 SELECT CDB FROM V$DATABASE;
 ```
-[![image](../images/oracle25.webp){ width="89%" }](../images/oracle25.webp)
+![image](../images/oracle25.webp){ width="89%" }
 
 1.	Confirm that *Oracle Unified Audit* *(OUA)* is activated in our instance.
 ```sql linenums="1"
@@ -260,7 +260,7 @@ exit;
 
 exit
 ``` 
-[![image](../images/oracle26.webp){ width="99%" }](../images/oracle26.webp)
+![image](../images/oracle26.webp){ width="99%" }
 
 ## Traffic generator
 
@@ -268,7 +268,7 @@ exit
 ```bash
 cat /opt/guardium_tz_bootcamp_automation/upload/guardium_notes_dbtraffic/config/oracle_container_sauropod.yaml
 ```
-[![image](../images/oracle27.webp){ width="89%" }](../images/oracle27.webp)
+![image](../images/oracle27.webp){ width="89%" }
 
 1.	On **raptor**, start the traffic generator for *Oracle* database running in a container on **sauropod**.
 ```bash linenums="1"
@@ -284,15 +284,15 @@ guardium-notes-dbtraffic --config config/oracle_container_sauropod.yaml run
 ```bash
 deactivate
 ```
-[![image](../images/oracle28.webp){ width="99%" }](../images/oracle28.webp)
+![image](../images/oracle28.webp){ width="99%" }
 You can interrupt script by inserting ++ctrl+c++ keystroke.
 
 1.	Open *Full SQL (session details)* report on **coll1** and notice that we see traffic generated in the container. This is not standard behavior and is only due to the use of virtualization/containerization (*Docker*) running directly on the host *OS* kernel, where the agent is already installed.<BR>
 In most cases, containers are orchestrated by Kubernetes or managed by a cloud/service provider, and the traffic will not be captured by the agent. It is also worth noting that only unencrypted traffic is visible. If the container were configured to use *SSL* or *ASO*, there would be no ability to install *ATAP* inside the container, and the traffic would not be captured.
-[![image](../images/oracle29.webp){ width="99%" }](../images/oracle29.webp) 
+![image](../images/oracle29.webp){ width="99%" } 
 
 1.	Let’s disable *KTAP* on **sauropod** to be able focus on agentless methods of container monitoring. In **cm** UI set *KTAP_ENABLED* to **0** for **sauropod** *STAP*.
-[![image](../images/oracle30.webp){ width="99%" }](../images/oracle30.webp)
+![image](../images/oracle30.webp){ width="99%" }
 
 1.	To unload *KTAP* from kernel restart **sauropod** machine (confirm that previous parameter change finished successfully).
 ```bash
@@ -334,14 +334,14 @@ deactivate
         - insert FQDN of your collector for SAN #1: **coll1.demo.guardium**
         - press ENTER for SAN #2: ++enter++
 
-    [![image](../images/oracle31.webp){ width="99%" }](../images/oracle31.webp)
+    ![image](../images/oracle31.webp){ width="99%" }
 
     Then *CSR* will be generated and write down in notepad the entire *alias* and related to it the *token* (two bottom lines).
     
-    [![image](../images/oracle32.webp){ width="99%" }](../images/oracle32.webp)
+    ![image](../images/oracle32.webp){ width="99%" }
 
 1.	Then copy displayed *Certificate Request* to file on **raptor** machine - `/opt/ETAP/ca/etap2.csr`. 
-[![image](../images/oracle33.webp){ width="79%" }](../images/oracle33.webp)
+![image](../images/oracle33.webp){ width="79%" }
  
 1.	Sign *certificate request* from **coll1** using created in the *ETA*P lab a *CA cert*.
 ```sql linenums="1"
@@ -349,31 +349,31 @@ cd /opt/ETAP/ca
 
 openssl x509 -sha256 -req -days 3650 -CA ca.pem -CAkey ca.key -CAcreateserial -CAserial serial -in etap2.csr -out etap2.pem
 ```
-[![image](../images/oracle34.webp){ width="99%" }](../images/oracle34.webp)
+![image](../images/oracle34.webp){ width="99%" }
 In the current directory certificate based on *CSR* generated on **coll1** will appear in `etap2.pem` file.
 
 1.	Now on **coll1** import *ETAP* certificate – `etap2.pem` stored in `/opt/ETAP/ca`. You must insert an *alias name* generated during the *CSR request* in point 1. Confirm correctness of *CSR* reference **(Y)**.
 ```bash
 store certificate external_stap
 ```
-[![image](../images/oracle35.webp){ width="99%" }](../images/oracle35.webp)
+![image](../images/oracle35.webp){ width="99%" }
 
 1.	Insert the certificate from `etap2.pem` file and press and ++enter++ and ++ctrl+d++.
-[![image](../images/oracle36.webp){ width="99%" }](../images/oracle36.webp)
+![image](../images/oracle36.webp){ width="99%" }
  
 1.	Then certificate should be imported to **coll1** wallet.
-[![image](../images/oracle37.webp){ width="99%" }](../images/oracle37.webp)
+![image](../images/oracle37.webp){ width="99%" }
  
 1.	You can list *ETAP* certificates on **coll1** and notice that a new added appears on the list.
 ```bash
 show certificate external_stap
 ```
-[![image](../images/oracle38.webp){ width="99%" }](../images/oracle38.webp)
+![image](../images/oracle38.webp){ width="99%" }
 1.	Check the *image tag* pulled earlier on **raptor**.
 ```bash
 podman images
 ```
-[![image](../images/oracle39.webp){ width="99%" }](../images/oracle39.webp)
+![image](../images/oracle39.webp){ width="99%" }
  
 1.	Copy *ETAP* *quadlet* file for Oracle to `/etc/container/systemd` on **raptor**.
 ```bash
@@ -388,7 +388,7 @@ cp /opt/guardium_tz_bootcamp_automation/upload/source_files/oracle/oracle_extern
         - STAP_CONFIG_SQLGUARD_0_SQLGUARD_IP – IP address of **coll1**
         - STAP_CONFIG_PROXY_DB_HOST – IP address of proxied database service – it should be **sauropod** IP
 
-    [![image](../images/oracle40.webp){ width="99%" }](../images/oracle40.webp)
+    ![image](../images/oracle40.webp){ width="99%" }
  
 1.	Reinitialize **systemd** deamon.
 ```bash
@@ -404,10 +404,10 @@ systemctl start oracle-etap
 ```bash
 podman ps
 ```
-[![image](../images/oracle41.webp){ width="99%" }](../images/oracle41.webp)
+![image](../images/oracle41.webp){ width="99%" }
  
 1.	Check the **coll1** UI the *External S-TAP instances* view (search *External S-TAP Control*) and confirm that the new one appeared.
-[![image](../images/oracle42.webp){ width="99%" }](../images/oracle42.webp)
+![image](../images/oracle42.webp){ width="99%" }
 
 1.	Because we will get access to *ETAP* service remotely we must open the access point port (lets do it for both *ETAP* instances ran on **raptor**).
 ```sql linenums="1"
@@ -436,7 +436,7 @@ exit
 ```
 
 1.	Check events visibility in *Full SQL (session details)* report on **coll1**.
-[![image](../images/oracle43.webp){ width="99%" }](../images/oracle43.webp)
+![image](../images/oracle43.webp){ width="99%" }
  
 1.	On **raptor** run the traffic generator in the background *without* using the proxy and let it run continuously to support monitoring of the Oracle container database using two additional methods.
 ```sql linenums="1"
@@ -468,7 +468,7 @@ sql secadmin@sauropod.demo.guardium:1522/ORCLPDB1
 
 SELECT POLICY_NAME FROM AUDIT_UNIFIED_ENABLED_POLICIES;
 ```
-[![image](../images/oracle44.webp){ width="99%" }](../images/oracle44.webp)
+![image](../images/oracle44.webp){ width="99%" }
 
 1.	Check what *SQL’s* are audited by enabled policies. You should see *GRANT* and *USER* related *SQL commands* related to dbtraffic tool activity. However, there is no information about normal operations in application schema:
 ```sql
@@ -493,7 +493,7 @@ BEGIN DBMS_SCHEDULER.create_job(job_name=>'ENSURE_GAME_APP_AUDIT', job_type=>'ST
 ```sql
 SELECT POLICY_NAME FROM AUDIT_UNIFIED_ENABLED_POLICIES;
 ```
-[![image](../images/oracle45.webp){ width="99%" }](../images/oracle45.webp) 
+![image](../images/oracle45.webp){ width="99%" } 
 
 1.	Then monitor the number of audited events by just activated policy and notice that its number is growing because we have traffic generator ran.
 ```sql linenums="1"
@@ -529,15 +529,15 @@ exit
 
 exit
 ``` 
-[![image](../images/oracle46.webp){ width="99%" }](../images/oracle46.webp) 
+![image](../images/oracle46.webp){ width="99%" } 
 
 ## OUA with STAP
 
 1.	Open in *coll1* UI the S-TAP Status view and confirm that *STAP* on sauropod has no KTAP enabled.
-[![image](../images/oracle47.webp){ width="99%" }](../images/oracle47.webp) 
+![image](../images/oracle47.webp){ width="99%" } 
  
 1.	Also, the *Full SQL (session details)* report ran on **coll1** does not show the recent activity generated in the Oracle database.
-[![image](../images/oracle48.webp){ width="99%" }](../images/oracle48.webp) 
+![image](../images/oracle48.webp){ width="99%" } 
 
 1.	We will configure the *STAP* on **sauropod** to consume events from *OUA* tables in *Oracle container*. Technically, the *STAP* can be deployed anywhere but must have access to monitored instance over *JDBC*. Let’s download to **sauropod** *Oracle instant client* from **raptor** and install it (run on **sauropod**).
 ```bash linenums="1"
@@ -564,7 +564,7 @@ ORCLPDB1 =
         
         The first refers to the directory where the `tnsnames.ora` file is located, and the second refers to the directory containing the `Oracle Instant Client` libraries.
 
-    [![image](../images/oracle49.webp){ width="99%" }](../images/oracle49.webp) 
+    ![image](../images/oracle49.webp){ width="99%" } 
 
     Then **Save** changes.
  
@@ -578,13 +578,13 @@ grdapi store_sql_credentials stapHost=sauropod username=guardium password=<simpl
 grdapi create_sql_configuration dbType=Oracle instance=ORCLPDB1 stapHost=sauropod username=guardium
 ```
 1.	Check *SQL* activity report and notice that events appeared
-[![image](../images/oracle50.webp){ width="99%" }](../images/oracle50.webp) 
+![image](../images/oracle50.webp){ width="99%" } 
  
 1.	Now disable *STAP OUA* configuration. In the next chapter we will use a different method of *OUA* event consumption without *STAP*. In **cm** UI stop the agent on the **sauropod** machine by setting the *STAP_ENABLED* parameter to **0**.
-[![image](../images/oracle51.webp){ width="99%" }](../images/oracle51.webp) 
+![image](../images/oracle51.webp){ width="99%" } 
 
 1.	Confirm on **coll1** in **S-TAP Control** view that agent on **sauropod** is disabled.
-[![image](../images/oracle52.webp){ width="99%" }](../images/oracle52.webp) 
+![image](../images/oracle52.webp){ width="99%" } 
 
 ## OUA with UC 2.0 (with kafka consumer)
 
@@ -592,13 +592,13 @@ grdapi create_sql_configuration dbType=Oracle instance=ORCLPDB1 stapHost=sauropo
 ```bash
 grdapi get_guard_param paramName=LEGACY_UC_CONFIG_ENABLED
 ``` 
-[![image](../images/oracle53.webp){ width="89%" }](../images/oracle53.webp) 
+![image](../images/oracle53.webp){ width="89%" } 
 
 1.	If value is true disable UC 1.0 support:
 ```bash
 grdapi modify_guard_param paramName=LEGACY_UC_CONFIG_ENABLED paramValue=0
 ``` 
-[![image](../images/oracle54.webp){ width="99%" }](../images/oracle54.webp) 
+![image](../images/oracle54.webp){ width="99%" } 
 
 1.	Run *UC* events consumer framework on **coll1** and confirm it is running.
 ```bash linenums="1"
@@ -606,39 +606,39 @@ grdapi run_universal_connector
 
 grdapi get_universal_connector_status
 ```
-[![image](../images/oracle55.webp){ width="69%" }](../images/oracle55.webp) 
+![image](../images/oracle55.webp){ width="69%" } 
 
 1.	We must convert **kafka1** appliance to be a *Kafka* node. From **raptor** login to **kafka1** appliance and check the *unit type* and notice that it is set to *Managed* collector
 ```bash
 show unit type
 ```
-[![image](../images/oracle56.webp){ width="45%" }](../images/oracle56.webp) 
+![image](../images/oracle56.webp){ width="45%" } 
 
 1.	Set *unit type* to *kafka-node* (it will restart appliance).
 ```bash
 store unit type kafka-node
 ``` 
-[![image](../images/oracle57.webp){ width="99%" }](../images/oracle57.webp) 
+![image](../images/oracle57.webp){ width="99%" } 
 
 1.	Re-login to **kafka1** and confirm the changed *unit type* (the appliance conversion takes time, so wait few minutes).
 ```bash
 show unit type
 ```
-[![image](../images/oracle58.webp){ width="46%" }](../images/oracle58.webp) 
+![image](../images/oracle58.webp){ width="46%" } 
 
 1.	Open *Central Management* view on **cm** and confirm that **kafka1** is displayed on the list with *Kafka-Node* label.
-[![image](../images/oracle59.webp){ width="99%" }](../images/oracle59.webp) 
+![image](../images/oracle59.webp){ width="99%" } 
 
 1. Because of the certificate setup and synchronization. **Wait 90 minutes before contunuation of this lab!**
  
 1.	After minimum 90 minutes. In **cm** UI open **Kafka Cluster Management** view and create a *New Cluster* using plus (![image](../images/oracle60.webp){ width="20" }) icon. Provide cluster name **kafka_cluster_1** and open kafka node list. Select our **kafka1** node and press **OK**. 
-[![image](../images/oracle61.webp){ width="99%" }](../images/oracle61.webp) 
+![image](../images/oracle61.webp){ width="99%" } 
  
 1.	Node should appear in the *Cluster members* list. Press **OK** to finalize cluster creation – ignore warning about minimum size of kafka cluster.
-[![image](../images/oracle62.webp){ width="99%" }](../images/oracle62.webp) 
+![image](../images/oracle62.webp){ width="99%" } 
  
 1.	Refresh cluster list from time to time till the status just created cluster will be notified as a ready (![image](../images/oracle63.webp){ width="20" })
-[![image](../images/oracle64.webp){ width="99%" }](../images/oracle64.webp) 
+![image](../images/oracle64.webp){ width="99%" } 
  
 1.	In **cm** UI open **Credential Manager** view and add new one.
 
@@ -648,7 +648,7 @@ show unit type
         - JDBC Username: **guardium**
         - JDBC Password: &lt;defined in the point 8 of *Configure Oracle in container to store activity in OUA* chapter>
 
-    [![image](../images/oracle65.webp){ width="99%" }](../images/oracle65.webp) 
+    ![image](../images/oracle65.webp){ width="99%" } 
 
     Just created **guardium** user credentials should appear on the list.
 
@@ -664,19 +664,19 @@ show unit type
         - Service name: **ORCLPDB1**
         - JDBC driver library: &lt;upload the JDBC driver (ojdbc8.jar) located in oracle directory in student materials>
 
-    [![image](../images/oracle66.webp){ width="99%" }](../images/oracle66.webp)
+    ![image](../images/oracle66.webp){ width="99%" }
 
 1.	When all required fields are filled up, we can save profile (**OK**) and the pop-up message will inform that configuration is accepted. Then our profile should appear on the list.
-[![image](../images/oracle67.webp){ width="99%" }](../images/oracle67.webp)  
+![image](../images/oracle67.webp){ width="99%" }  
 
 1.	Select profile and press **Test connection**. The configuration should be tested, and *Status* column should display now the green checkmark.
-[![image](../images/oracle68.webp){ width="99%" }](../images/oracle68.webp)  
+![image](../images/oracle68.webp){ width="99%" }  
 
 1.	Now, we can deploy profile on the **coll1**. Select just created profile and then select **Install** option from *Install* list and in the *Install Profile* window select our **coll1** and press **Run Now** button. After a while (refresh a view) the profile should be updated with information that it was deployed.
-[![image](../images/oracle69.webp){ width="99%" }](../images/oracle69.webp)   
+![image](../images/oracle69.webp){ width="99%" }   
 
 1.	Check *Full SQL (session details)* report on **coll1** and confirm that *Oracle* traffic is consumed by *OUA* by *universal connector*.
-[![image](../images/oracle70.webp){ width="99%" }](../images/oracle70.webp) 
+![image](../images/oracle70.webp){ width="99%" } 
 
 ## Appendix
 

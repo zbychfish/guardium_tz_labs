@@ -9,11 +9,6 @@ theme:
     scheme: slate
     primary: deep purple
     accent: amber
-    
-  palette:
-    scheme: slate
-    primary: deep purple
-    accent: amber
   features:
     - navigation.tabs
     - navigation.sections
@@ -22,6 +17,17 @@ theme:
     - toc.follow
     - search.highlight
     - content.code.copy
+
+plugins:
+  - search
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: false
 
 markdown_extensions:
   - admonition
