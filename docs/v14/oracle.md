@@ -691,3 +691,4 @@ show unit type
     - UC 2.0 with OUA - <https://www.ibm.com/docs/en/gdp/12.x?topic=connector-configuring-universal-connectors-by-using-central-manager>
     
 !!! note "Instructor notes:"
+
