@@ -1097,7 +1097,7 @@
 <p>Check the current <strong>raptor</strong> kernel level using command. Your default kernel can differ from presented on screenshot.
 </p><div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-r
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap1.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap1.webp" width="35%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Now we will downgrade kernel to version <strong>5.14.0-570.16.1.el9_6.x86_64</strong>.
@@ -1108,7 +1108,7 @@
 <p>Check the list of available bootable kernels. The newly installed kernel is set as <strong>index 0</strong> in the grubby configuration.
 </p><div class="highlight"><pre><span></span><code>grubby<span class="w"> </span>--info<span class="o">=</span>ALL
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap2.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Let’s also confirm that the installed kernel is now set as the default and reboot system.
@@ -1118,13 +1118,13 @@
 
 shutdown<span class="w"> </span>-r<span class="w"> </span>now
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap3.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap3.webp" width="55%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Sign back in to <strong>raptor</strong> and confirm that the kernel has been downgraded to version <strong>5.14.0-570.16.1</strong>.
 </p><div class="highlight"><pre><span></span><code>uname<span class="w"> </span>-r
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap4.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap4.webp" width="35%"></a><p></p>
+<p></p>
 </li>
 </ol>
 <h2 id="stap-installation">STAP installation</h2>
@@ -1146,19 +1146,19 @@ shutdown<span class="w"> </span>-r<span class="w"> </span>now
 </ul>
 </div>
 <p>then press <strong>Install</strong> button and finally request deployment using <strong>OK</strong> button in <em>Configure clients</em> section and track progress of installation by opening <strong>Show Status</strong> pop-up window</p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap5.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap5.webp" width="99%"></a></p>
+<p></p>
 </li>
 <li>
 <p>Refresh the view till all components installation status will be changed to <em>INSTALLED</em> and then <strong>Close</strong> pop-up’s
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap6.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap6.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
-<p>In the <strong>coll1</strong> UI check the <em>STAP agent</em> status. Open <strong>S-TAP control</strong> view and expand using <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap7.webp" width="20"></a> icon the agent menu and select <strong>Event log</strong>. The pop-up <strong>S-TAP Events</strong> report shows that kernel module for currently installed on <strong>raptor</strong> is available an installed.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap8.webp" width="99%"></a></p>
+<p>In the <strong>coll1</strong> UI check the <em>STAP agent</em> status. Open <strong>S-TAP control</strong> view and expand using  icon the agent menu and select <strong>Event log</strong>. The pop-up <strong>S-TAP Events</strong> report shows that kernel module for currently installed on <strong>raptor</strong> is available an installed.
+</p>
 </li>
 <li>
 <p>To confirm <em>KTAP</em> installation on the <strong>collector</strong> the <strong>S-TAP Status</strong> view and notice that <em>KTAP module</em> is installed.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap9.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Execute on <strong>raptor</strong> the commands to confirm that <em>KTAP module</em> is loaded into kernel.
@@ -1168,13 +1168,13 @@ shutdown<span class="w"> </span>-r<span class="w"> </span>now
 
 modinfo<span class="w"> </span>ktap
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap10.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap10.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Get the details from <code>/var/log/ktap_install.log</code>. Log clearly indicates that the installed agent version includes a module compiled specifically for the current kernel version (<em>Exact match</em>). 
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap11.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap11.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query.
@@ -1197,7 +1197,7 @@ psql
 </li>
 <li>
 <p>In the <strong>coll1</strong> UI, open the <em>Training</em> dashboard and verify whether the recently executed query is visible in the <em>Full SQL (Training)</em> report.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap12.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap12.webp" width="99%"></a></p>
+</p>
 </li>
 </ol>
 <h2 id="kernel-upgrade-stap-revisions">Kernel upgrade, STAP revisions</h2>
@@ -1220,24 +1220,24 @@ shutdown<span class="w"> </span>-r<span class="w"> </span>now
 <p>Verify that <em>KTAP</em> is not loaded.
 </p><div class="highlight"><pre><span></span><code>modinfo<span class="w"> </span>ktap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap13.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap13.webp" width="49%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>A file named <code>ktap_install_fail.txt</code> has appeared in the <code>/tmp</code> directory. Review its contents, as it indicates a kernel support issue with the currently running system version.
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/tmp/ktap_install_fail.txt
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap14.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap14.webp" width="79%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>The logs indicate that <em>STAP</em> failed to compile the module and did not attempt to locate a <em>flex module</em>. Since no prebuilt module was available, the installation failed.
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap15.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap15.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>You can also check <strong>S-TAP Events</strong> and <strong>S-TAP Status</strong> in the <strong>coll1</strong> UI to clearly confirm that the module-related issue is reported there.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap16.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap16.webp" width="99%"></a>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap17.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap17.webp" width="99%"></a></p>
+
+</p>
 </li>
 <li>
 <p>It is also worth checking the modules archive in the <em>KTAP</em> installation directory. A simple search of its contents confirms that no module is available for the current kernel version.
@@ -1250,15 +1250,15 @@ tar<span class="w"> </span>tvf<span class="w"> </span>modules-12.0.6.0_r120251_v
 </li>
 <li>
 <p>To verify whether your kernel is supported, visit <a href="https://ibm.github.io/guardium-ktap/">https://ibm.github.io/guardium-ktap/</a>. It turns out that kernel <strong>5.14.0-570.24.1.el9_6</strong> is supported by <em>EXACT</em> precompiled modules for agent <strong>12.0</strong>. Support became available with later revision. There is no information about <em>FLEX</em> support ☹
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap18.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap18.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Let's install the fresher revision of agent <em>12.0.6</em>. In the <strong>cm</strong> UI, go again to <strong>Setup by Client</strong>. After selecting <strong>raptor</strong>, you will notice that two revisions of the <strong>12.0.6.0_r120251</strong> agent are available in the modules list—revision <strong>1</strong> (currently installed) and revision <strong>35</strong>.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap20.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap20.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Confirm that the task has been successfully completed.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap21.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap21.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>As expected, the agent revision included a precompiled module, which was successfully loaded.
@@ -1268,7 +1268,7 @@ tar<span class="w"> </span>tvf<span class="w"> </span>modules-12.0.6.0_r120251_v
 
 modinfo<span class="w"> </span>ktap
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap22.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap22.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Also confirm that the new modules archive file contains the required module.
@@ -1278,7 +1278,7 @@ modinfo<span class="w"> </span>ktap
 
 tar<span class="w"> </span>tvf<span class="w"> </span>modules-12.0.6.0_r120251_v12_0_35.tgz<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">5</span>.14.0-570.24.1.el9_6.x86_64
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap23.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap23.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query. Check Full SQL (Training) report to confirm that traffic is visible.
@@ -1298,7 +1298,7 @@ psql
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap57.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap57.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 </ol>
 <h2 id="ktap-with-flex-module">KTAP with flex module</h2>
@@ -1306,7 +1306,7 @@ psql
 <li>
 <p>This time, you will switch to kernel <strong>5.14.0-570.62.1.el9_6.x86_64</strong>, but before doing so, verify on <a href="https://ibm.github.io/guardium-ktap/">https://ibm.github.io/guardium-ktap/</a> the support for this version for <strong>12.0</strong> agent.
 It turns out there is no precompiled module available for this kernel version, but you can use the <em>Flex</em> (EXACT-LIKE) mechanism, which allows loading a module built for a kernel version close to the target one.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap24.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap24.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>You can also verify exactly which compiled modules can be used as <em>Flex</em> (EXACT LIKE) for the target kernel. The file <code>ktap-combos.txt</code> contains their list. In this case, the currently installed <em>revision 35</em> includes three modules that can be used with kernel <strong>5.14.0-570.62.1.el9_6</strong>.
@@ -1316,11 +1316,11 @@ It turns out there is no precompiled module available for this kernel version, b
 
 <span class="n">cat</span><span class="w"> </span><span class="n">ktap</span><span class="o">-</span><span class="n">combos</span><span class="p">.</span><span class="n">txt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="mi">14</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">570</span><span class="p">.</span><span class="mi">62</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="n">el9_6</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap25.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap25.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Before upgrading the kernel, enable support for <em>Flex</em> modules. In the <strong>cm</strong> UI, go to <strong>Setup by Client</strong>, and for <em>revision 35</em>, add the additional parameter <strong>KTAP_ALLOW_MODULE_COMBOS</strong> with the value <strong>Y</strong>.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap26.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap26.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>Now upgrade the kernel and reboot the system.
@@ -1339,13 +1339,13 @@ shutdown<span class="w"> </span>-r<span class="w"> </span>now
 
 modinfo<span class="w"> </span>ktap
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap27.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap27.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Additionally check <code>/var/log/ktap_install.log</code> and notice that module compiled for kernel <strong>5.14.0-570.24.1.el9_6</strong> has been selected as flexible to cover currently installed.
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap28.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap28.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query.
@@ -1365,18 +1365,18 @@ psql
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap29.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap29.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 </ol>
 <h2 id="uninstall-stap">Uninstall STAP</h2>
 <ol>
 <li>
 <p>Now simulate a common troubleshooting mistake—attempting to reinstall the agent while the <em>KTAP</em> module is still loaded. First, uninstall the <em>STAP</em> agent. In <strong>Setup by Client</strong>, select the currently installed <em>STAP</em> version (<strong>12.0.6.0_r120251_35</strong>) and click <strong>Uninstall</strong>. Confirm that the agent has been successfully removed.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap30.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap30.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>Refresh <strong>Status</strong> pop-up till message that <em>BUNDLE-STAP is NOT_INSTALLED</em> will appear.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap31.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap31.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>Try again install <strong>BUNDLE-STAP 12.0.6.0_r120251_35</strong> again.</p>
@@ -1388,17 +1388,17 @@ psql
 <li><em>STAP_SQLGUARD_IP</em>: <strong>&lt;coll1.demo.guardium&gt;</strong></li>
 </ul>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap32.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap32.webp" width="99%"></a> </p>
+<p> </p>
 </li>
 <li>
 <p>This time the installation will fail because previously installed kernel module was not unloaded
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap33.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap33.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>Uninstallation process does not include the kernel module unload (what is very dangerous command on heavily used production systems). That is why the module will disappear only after system reboot. Because of that, any try to install <em>STAP</em> again will fail because of old <em>KTAP</em> appearance in kernel space. Check <code>ktap_install.log</code> to on <strong>raptor</strong> to confirm this situation.
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap34.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap34.webp" width="59%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Also <code>lsmod</code> command provides information that <em>KTAP</em> module from previous installation is still loaded and <code>modinfo</code> will point that module file has been removed from filesystem
@@ -1408,7 +1408,7 @@ psql
 
 modinfo<span class="w"> </span>ktap
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap35.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap35.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Restart <strong>raptor</strong> machine to clean up kernel space
@@ -1428,33 +1428,33 @@ modinfo<span class="w"> </span>ktap
 <li><em>STAP_SQLGUARD_IP</em>: <strong>&lt;coll1.demo.guardium&gt;</strong></li>
 </ul>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap32.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap32.webp" width="99%"></a> </p>
+<p> </p>
 </li>
 <li>
 <p>This time, the installation succeeded because the raptor system was rebooted and the previously loaded module was unloaded. 
 </p><div class="highlight"><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ktap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap36.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap36.webp" width="43%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>To upgrade <em>STAP</em> from <strong>12.0.6</strong> to <strong>12.2.2.0</strong> select in <strong>cm</strong> UI in the <strong>Set up by Client</strong> select <em>raptor GIM client</em> and choose <strong>BUNDLE-STAP 12.2.2.0_r123489_3</strong>.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap37.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap37.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>Upgrade <em>STAP</em> by pressing <strong>Install</strong> button and confirm that it was successful.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap38.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap38.webp" width="79%"></a> </p>
+ </p>
 </li>
 <li>
 <p>Check <em>KTAP</em> modules loaded on <strong>raptor</strong> machine and noticed that we have two of them for builds <strong>120251</strong> (<em>12.0.6</em>) and <strong>123489</strong> (<em>12.2.2.0</em>). The older one will be unloaded after next system reboot
 </p><div class="highlight"><pre><span></span><code>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ktap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap39.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap39.webp" width="43%"></a>  <p></p>
+  <p></p>
 </li>
 <li>
 <p>Confirm that <strong>12.2.2</strong> has precompiled module for <strong>5.14.0-570.62.1.el9_6</strong>.
 </p><div class="highlight"><pre><span></span><code>modinfo<span class="w"> </span>ktap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap40.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap40.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query.
@@ -1474,7 +1474,7 @@ psql
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap41.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap41.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Restart <strong>raptor</strong> machine.
@@ -1485,7 +1485,7 @@ psql
 <p>And then check that only the latest module (<em>12.2.2.0</em>) is now loaded only into kernel.
 </p><div class="highlight"><pre><span></span><code>lsmod<span class="p">|</span>grep<span class="w"> </span>ktap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap42.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap42.webp" width="39%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>To disable <em>Flex</em> module support we must uninstall STAP agent because flag <strong>STAP_ALLOW_MODULE_COMBO</strong> cannot be switched off if is set to <strong>Y</strong> before. Reboot <strong>raptor</strong> system again.
@@ -1520,13 +1520,13 @@ shutdown<span class="w"> </span>-r<span class="w"> </span>now
 </ul>
 </div>
 <p>Also note that variable <strong>KTAP_PREVENT_EXACT_MATCH_BUILD</strong> is set to <strong>N</strong> as a default, which means the system will attempt to compile the module if it is not available in the distribution. This variable cannot be changed after the agent is installed. If you want the agent to skip compilation attempts, it must be set to <strong>Y</strong> during the agent installation.</p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap43.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap43.webp" width="99%"></a></p>
+<p></p>
 </li>
 <li>
 <p>Check the version of initially installed kernel on <strong>raptor</strong> machine. Your kernel version may be newer than the one shown in the screenshot, as the cloud environment is automatically updated with important kernel releases. 
 </p><div class="highlight"><pre><span></span><code>grubby<span class="w"> </span>--info<span class="o">=</span>ALL
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap44.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap44.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Regardless of which kernel version is currently the latest, it is not supported by the currently installed agent <strong>12.2.2.0_r123489_3</strong> using precompiled module.</p>
@@ -1543,7 +1543,7 @@ grubby<span class="w"> </span>--default-kernel
 
 shutdown<span class="w"> </span>-r<span class="w"> </span>now
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap45.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap45.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>After the reboot, it is not surprising that <em>KTAP</em> was not installed.
@@ -1553,13 +1553,13 @@ shutdown<span class="w"> </span>-r<span class="w"> </span>now
 
 modinfo<span class="w"> </span>ktap
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap46.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap46.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>The <code>/var/log/ktap_install.log</code> clearly shows that the <em>Flex</em> module was not loaded because the feature was disabled, and no compilation attempt was made since the required kernel development environment is missing.
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap47.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap47.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>To make kernel module compilable install <code>kernel-devel</code> for current kernel version
@@ -1568,19 +1568,19 @@ modinfo<span class="w"> </span>ktap
 </li>
 <li>
 <p>Go back to the agent configuration on <strong>raptor</strong>, set <em>KTAP_ENABLED</em> from <strong>0</strong> to <strong>1</strong>, and confirm the change.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap48.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap48.webp" width="89%"></a></p>
+</p>
 </li>
 <li>
 <p>Check <code>/var/log/ktap_install.log</code> again and notice that kernel module has been compiled this time.
 </p><div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cat<span class="w"> </span>/var/log/ktap_install.log
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap49.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap49.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Check if the module has been loaded
 </p><div class="highlight"><pre><span></span><code>modinfo<span class="w"> </span>ktap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap50.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap50.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Generate some database activity on <strong>raptor</strong> and verify whether it is captured by the agent. Switch the session context to the <strong>postgres</strong> user and use the native <em>PostgreSQL</em> client to execute a dummy query.
@@ -1600,7 +1600,7 @@ psql
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap51.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap51.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 </ol>
 <h2 id="practical-custom-modules-usage">Practical custom modules usage</h2>
@@ -1617,7 +1617,7 @@ psql
 
 ls
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap58.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap58.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>There are two methods to manage this process: manual and using a <em>GIM server</em>. Let’s start by reviewing the manual process. The first method provides the possibility to add just compiled kernel module in <code>/opt/guardium/modules/KTAP/current</code> to modules archive (<code>modules-&lt;agent_build_number&gt;.tgz</code>) and manually copy it on target machine.
@@ -1627,7 +1627,7 @@ ls
 
 tar<span class="w"> </span>tvf<span class="w"> </span>modules-12.2.2.0_r123489_v12_x_3.tgz<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">5</span>.14.0-570.114.1
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap52.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap52.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Now simply copy the modules archive to a machine with the same agent version. After upgrading the kernel and rebooting, the module should be loaded automatically.</p>
@@ -1636,7 +1636,7 @@ tar<span class="w"> </span>tvf<span class="w"> </span>modules-12.2.2.0_r123489_v
 <li>
 <p>The second method involves installing a new agent revision using <em>GIM</em>, which should automatically appear on the <em>GIM server</em> after module compilation. This is the default behavior and can be controlled using the <em>STAP_UPLOAD_FEATURE</em> variable on source module agent.
     In the cm UI, open the <strong>Upload Module</strong> view. At the end of the list, a new entry should appear with revision <em>800</em> for <strong>STAP 12.2.2.0_r123489</strong>. This is the version uploaded by <strong>raptor</strong> after compiling the custom module in the previous section.
-    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap53.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap53.webp" width="99%"></a></p>
+    </p>
 </li>
 <li>
 <p>However, to use this module, the <em>GIM client</em> must be installed with an additional option enabled.
@@ -1677,8 +1677,8 @@ Ensure that you disabled the <em>Flex</em> option. You will also need to confirm
 <li><em>STAP_SQLGUARD_IP</em>: <strong>&lt;coll1.demo.guardium&gt;</strong></li>
 </ul>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap54.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap54.webp" width="99%"></a>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap55.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap55.webp" width="99%"></a></p>
+<p>
+</p>
 </li>
 <li>
 <p>Confirm that custom compiled and distributed by <em>GIM</em> kernel module was used
@@ -1688,7 +1688,7 @@ Ensure that you disabled the <em>Flex</em> option. You will also need to confirm
 
 modinfo<span class="w"> </span>ktap
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ktap56.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/ktap56.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>To prepare the environment for the next lab, uninstall <em>STAP</em> and <em>GIM</em> on the <strong>raptor</strong> machine.

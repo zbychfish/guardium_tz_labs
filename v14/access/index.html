@@ -989,49 +989,49 @@
 <h2 id="get-deployed-environment-details">Get deployed environment details</h2>
 <ol>
 <li>Select <strong>My Requests</strong> in <strong>IBM Technology Zone</strong> to review the environments that are currently available or being deployed. Open the details (<strong>Open This Reservation</strong>) for the environment you want to access.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc1.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc1.webp" width="90%"></a></li>
+</li>
 <li>Confirm that the environment was created from the <strong>bootcamp manifest</strong>. The environment name should follow the format <strong>gdp_bootcamp_v13</strong>. The version number is incremented for newer releases of the training environment. Expand the deployment details by clicking the arrow next to the manifest name.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc2.webp" width="90%"></a></li>
+</li>
 <li>The expanded <strong>Output</strong> list contains key information about machines in the environment. The number of systems may vary depending on the bootcamp version, but the general principle remains the same. <em>Machine names</em> include a random suffix, which can be ignored throughout the lab environment.
 Some machines and services are accessible directly from the Internet. In those cases, use the <strong>public IP addresses</strong> listed in the machine descriptions.
 Record the <em>public IP addresses</em> of the <strong>raptor</strong>, <strong>cm</strong>, <strong>coll1</strong>, and <strong>ceratops</strong> machines, as you will access these systems directly from your workstation throughout the bootcamp.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc3.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc3.webp" width="90%"></a></li>
+</li>
 <li>The <strong>cm</strong>, <strong>coll1</strong>, <strong>appnode1</strong>, <strong>appnode2</strong>, and <strong>kafka1</strong> systems are <strong>Guardium</strong> appliances. Administrative access to these appliances is performed by connecting to them via SSH from the <strong>raptor</strong> machine. The appliances use the standard <em>SSH</em> port <em>22</em>.
 In addition, the <strong>cm</strong> and <strong>coll1</strong> systems provide access to the <em>Guardium UI</em>, which is available over <em>HTTPS</em> on port <em>8443</em>. You will access this interface using your local web browser.
 The <strong>sauropod</strong> machine is accessible from <strong>raptor</strong> through <em>SSH</em> on port <em>2223</em>.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc4.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc4.webp" width="90%"></a></li>
+</li>
 </ol>
 <h2 id="access-to-machines">Access to machines</h2>
 <ol>
 <li>To connect to <strong>raptor</strong>, use an <em>SSH client</em> on your workstation. On <em>Windows</em>, <strong>MobaXterm</strong> or the standard <strong>PuTTY</strong> client are recommended. On <em>macOS</em>, use <strong>iTerm</strong> or connect directly from the <strong>command line</strong> using the built-in <em>SSH client</em>. The <em>default password</em> for the environment services is provided in the <strong>TechZone</strong> environment description. Use this password to sign in to the <strong>root</strong> account. raptor can be accessed using non-standard <em>SSH</em> port number 2223.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc5.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc5.webp" width="90%"></a>
+
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-lroot<span class="w"> </span>-p2223<span class="w"> </span>&lt;raptor_public_ip&gt;
 </code></pre></div></li>
 <li>To sign in to the <strong>cli</strong> account on a <em>Guardium appliance</em>, connect via <em>SSH</em> from your <strong>raptor</strong> session. The password for the <strong>cli</strong> account is different from the password used for the other environment services and can also be found in the <strong>TechZone</strong> environment description.
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-lcli<span class="w"> </span>-p22<span class="w"> </span>cm<span class="p">|</span>coll1<span class="p">|</span>kafka1<span class="p">|</span>appnode1<span class="p">|</span>appnode2
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc6.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc6.webp" width="90%"></a></li>
+</li>
 <li>To log in to the <strong>sauropod</strong> machine, you do not need to provide credentials, as the <strong>root</strong> accounts on <strong>raptor</strong> and <strong>sauropod</strong> are configured to use <em>SSH</em> key-based authentication.
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>sauropod
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc7.webp" width="90%"></a></li>
+</li>
 <li>For security reasons, <em>RDP</em> access to the <em>ceratops</em> (<strong>Windows</strong>) machine is not exposed to the Internet. To temporarily access this machine, enable a tunnel on <strong>raptor</strong> using the following command.
 <div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>start<span class="w"> </span>socat-RDP
 </code></pre></div></li>
 <li>To connect to the <strong>ceratops</strong> Windows machine, use an <em>RDP</em> client on your workstation and specify the <strong>raptor</strong> <em>public IP address</em> on port <em>8443</em>. This will forward the connection to the <strong>ceratops</strong> machine. Sign in using the <strong>demo</strong> user account and the default environment services password.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc8.webp" width="90%"></a></li>
+</li>
 <li>Ensure that you sign in as <strong>.\demo</strong> using the default environment services password.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc9.webp" width="90%"></a></li>
+</li>
 <li>Close <em>RDP</em> session and stop tunnel. You will start it if needed.
 <div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>socat-RDP
 </code></pre></div></li>
 <li>For macOS, the recommended way to connect to the <strong>ceratops</strong> machine is to use the <strong>Windows App</strong> available from the <em>App Store</em>. Add a new machine by creating a new <strong>Configure PC</strong>, then enter the <em>public IP address</em> of the <strong>raptor</strong> machine and port <em>8443</em>. Sign in using the <strong>demo</strong> user account and the default environment services password.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc10.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc10.webp" width="90%"></a>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc11.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc11.webp" width="90%"></a></li>
+
+</li>
 <li>The <strong>Central Manager</strong> and <strong>collector</strong> <em>GUIs</em> are accessible from a web browser on your workstation. Connect using <em>HTTPS</em> to the <em>appliance's public IP address</em> on port <em>8443</em>. Do not log into UI yet, only check connectivity and save access page in the Bookmarks to simplify connection later.
 <div class="highlight"><pre><span></span><code>https://<span class="p">&lt;</span><span class="nt">public_ip_cm</span><span class="err">|</span><span class="na">public_ip_coll1</span><span class="p">&gt;</span>:8443
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/acc12.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/acc12.webp" width="90%"></a></li>
+</li>
 </ol>
 <h2 id="appendix">Appendix</h2>
 <div class="admonition note">
