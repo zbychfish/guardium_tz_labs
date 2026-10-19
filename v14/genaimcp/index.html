@@ -859,6 +859,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configure-the-mcp-server-in-antigravity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the MCP server in Antigravity
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -928,6 +939,17 @@
     <span class="md-ellipsis">
       
         Configure the MCP server in IBM Bob
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-mcp-server-in-antigravity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the MCP server in Antigravity
       
     </span>
   </a>
@@ -1088,6 +1110,44 @@
 
 
 
+</p>
+</li>
+</ol>
+<h2 id="configure-the-mcp-server-in-antigravity">Configure the MCP server in Antigravity</h2>
+<ol>
+<li>
+<p>There is an assumption that you have installed <strong>Antigravity</strong> application on your workstation.</p>
+</li>
+<li>
+<p>Edit <code>.gemini\config\mcp_config.json</code> in your home directory and insert <em>MCP</em> server configuration. If file is empty insert this content (use your <em>API key</em> value):
+</p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"gdp-mcp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"serverUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://appnode2.demo.guardium:8443/mcp"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer &lt;your API key generated at the lab beginning&gt;"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"x-mcp-enable-discovery"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+If you have other <em>MCP</em> servers defined, add our one by inserting addition member of <em>mcpServers</em> object:
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">"gdp-mcp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"serverUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://appnode2.demo.guardium:8443/mcp"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer &lt;your API key generated at the lab beginning&gt;"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"x-mcp-enable-discovery"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div><p></p>
+</li>
+<li>
+<p>Then restart Antigravity application. Select <strong>Customization</strong>, just above <em>conversation</em> list. Switch to Installed list abd notice our <strong>gdp-mcp</strong> server appearance in the <em>MCP Servers</em> section and its green status.
+</p>
+</li>
+<li>
+<p>Open new conversation and start asking about GDP environment (confirm usage of MCP server).
 </p>
 </li>
 </ol>
