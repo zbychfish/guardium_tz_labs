@@ -875,6 +875,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genaimcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GenAI - MCP (lab 13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1006,11 +1034,11 @@
 <li>Execute <em>GIM</em> client installer without parameters to see available installation parameters
 <div class="highlight"><pre><span></span><code>./guard-bundle-GIM-12.2.1.1_r123268_v12_x_1-rhel-9-linux-x86_64.gim.sh<span class="w"> </span>
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim1.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim1.webp" width="99%"></a></li>
+</li>
 <li>Install <em>GIM</em> client in the listener mode
 <div class="highlight"><pre><span></span><code>./guard-bundle-GIM-12.2.1.1_r123268_v12_x_1-rhel-9-linux-x86_64.gim.sh<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>/opt/guardium<span class="w"> </span>--tapip<span class="w"> </span>&lt;raptor_ip&gt;
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim2.webp" width="99%"></a></li>
+</li>
 <li>Open port <strong>8445</strong> on <strong>raptor</strong> and check socket availability of this port.
 <div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1022,30 +1050,30 @@ firewall-cmd<span class="w"> </span>--reload
 
 nc<span class="w"> </span>-zv<span class="w"> </span>&lt;raptor_ip&gt;<span class="w"> </span><span class="m">8445</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim3.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim3.webp" width="59%"></a></li>
+</li>
 <li>
 <p>You can also list <em>GIM</em> client processes on <strong>raptor</strong> machine and notice that it is listening on port <strong>8445</strong>.
 </p><div class="highlight"><pre><span></span><code>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>gim
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim4.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim4.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>On <strong>cm</strong>, using UI check the absence of <em>GIM</em> clients currently registered to (<strong>GIM Process Monitor</strong> form).
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim5.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim5.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Then register installed gim_client using <strong>GIM Remote Activation</strong> form. Put the <strong>raptor</strong> <em>IP address</em> and listener default port (<strong>8445</strong>) and press <strong>Submit</strong> button. The pop-up window should confim that gim client has been successfully registered to <em>GIM</em> server.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim6.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim6.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Check again <strong>GIM Process Monitor</strong> view and notice that <strong>raptor</strong> <em>GIM</em> client is registered.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim7.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>In most cases, <em>GIM client</em> will not be installed in <em>listener mode</em>; instead, the connection to the <em>GIM server</em> will be configured during installation. To proceed, first uninstall the <em>GIM client</em>. Run the uninstallation command on the <strong>raptor</strong> machine. 
 </p><div class="highlight"><pre><span></span><code>/opt/guardium/modules/GIM/current/uninstall.pl
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim8.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Check <strong>GIM Process Monitor</strong> and notice that list of <em>GIM clients</em> is empty.</p>
@@ -1058,38 +1086,38 @@ nc<span class="w"> </span>-zv<span class="w"> </span>&lt;raptor_ip&gt;<span clas
 
 ./guard-bundle-GIM-12.2.1.1_r123268_v12_x_1-rhel-9-linux-x86_64.gim.sh<span class="w"> </span>--<span class="w"> </span>--dir<span class="w"> </span>/opt/guardium<span class="w"> </span>--tapip<span class="w"> </span>&lt;raptor_ip&gt;<span class="w"> </span>--sqlguardip<span class="w"> </span>&lt;cm_ip&gt;
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim9.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Switch to <strong>cm</strong> UI (your <em>GIM server</em>) and check view – <strong>GIM Processes Monitor</strong> to confirm that <em>GIM client</em> has been registered successfully again.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim10.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim10.webp" width="99%"></a></p>
+</p>
 </li>
 </ol>
 <h2 id="gim-modules-upload">GIM modules upload</h2>
 <ol>
 <li>
 <p>Now we need to download <em>GIM modules</em> to <em>GIM server</em>. They are unpacked on <em>ceratops</em>. On <em>ceratops</em> machine (<em>RDP</em> connection) open Edge browser and ignore browser personalization (remember to open <em>RDP tunnel</em>)
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim11.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim11.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Login to <strong>cm</strong> UI from <strong>ceratops</strong> (you should have <strong>cm</strong> bookmark in favourites inside <em>Guardium</em> group) then open <strong>Upload Modules</strong> view
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim12.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim12.webp" width="99%"></a>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim13.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim13.webp" width="99%"></a></p>
+
+</p>
 </li>
 <li>
-<p>Click plus <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim14.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim14.webp" width="2.5%"></a> button to upload the modules <code>c:\bootcamp\gim</code> directory. Select the first file. Once selected, click <strong>Upload</strong>.</p>
+<p>Click plus  button to upload the modules <code>c:\bootcamp\gim</code> directory. Select the first file. Once selected, click <strong>Upload</strong>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
 <p>Do not refresh the window. Wait patiently till the import confirmation will appear. When it does, click <strong>Import Now</strong> and wait until you see a message confirming that the import completed successfully.</p>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim15.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim15.webp" width="99%"></a>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim16.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim16.webp" width="99%"></a>
+<p>
+
 1.  Import module
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim17.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim17.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Confirm that <em>GIM module</em> has been uploaded
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim18.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim18.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Repeat steps 2-4 for all files in <code>c:\bootcamp\gim</code> directory!</p>
@@ -1097,65 +1125,65 @@ nc<span class="w"> </span>-zv<span class="w"> </span>&lt;raptor_ip&gt;<span clas
 <p class="admonition-title">Info</p>
 <p>Your <em>GIM modules</em> list can be different than presented on screenshot.</p>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim19.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim19.webp" width="99%"></a></p>
+<p></p>
 </li>
 </ol>
 <h2 id="gim-upgrade">GIM upgrade</h2>
 <ol>
 <li>
 <p>Go to <strong>Set up by Client</strong> in <strong>cm</strong> UI and select your <strong>raptor</strong> <em>GIM client</em>. Switch to next section by pressing <strong>Next</strong> button
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim20.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim20.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Expand list of modules and select from the list <em>BUNDLE-GIM</em> module. Notice that the installed version of <em>GIM client</em> is for <strong>Guardium</strong> <em>release 12.1</em> and the latest available <em>GIM client module</em> on <em>GIM Server</em> is released for version <em>12.2.2</em> (just uploaded <code>12.2.2.0_r123489_1</code>). That is why the <em>Upgrade</em> action is displayed on view. Press <strong>Next</strong> and then <strong>Install</strong> button because we do not need modify any parameters for GIM client this time and we can start upgrade immediately. 
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim21.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim21.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Press <strong>OK</strong> button to send upgrade request.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim22.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim22.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Select <strong>Show Status</strong> link to monitor upgrade progress. After a while all <em>GIM Bundle modules</em> should be successfully updated.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim23.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim23.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Go to <em>GIM Processes Monitor</em> view again and check that new release of <em>GIM client</em> is running on raptor
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim24.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim24.webp" width="99%"></a></p>
+</p>
 </li>
 </ol>
 <h2 id="module-configuration">Module configuration</h2>
 <ol>
 <li>
 <p>Go to <strong>Set up by Client</strong> in <strong>cm</strong> GUI and select your <strong>raptor</strong> <em>GIM client</em> again and press <strong>Next</strong>.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim20.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim20.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Notice that <em>GIM client</em> is updated to the latest release on <em>GIM server</em> and parameter updates are possible only. Press <strong>Next</strong> button.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim25.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim25.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Select from parameters list <strong>GIM_DEBUG</strong> and change value to <strong>1</strong>. Then push request using <strong>Install</strong> and <strong>OK</strong> buttons.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim26.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim26.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>In Status pop-up window notice that only some modules requires update.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim27.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim27.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Refresh view, to get confirmation that changes have been successfully deployed.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim39.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim39.webp" width="79%"></a></p>
+</p>
 </li>
 <li>
 <p>Login to <strong>raptor</strong> and list installed <em>GIM client modules</em> using <code>configurator.sh</code> tool
 </p><div class="highlight"><pre><span></span><code>/opt/guardium/modules/UTILS/current/files/bin/configurator.sh<span class="w"> </span>--list
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim28.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim28.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Check that <strong>GIM_DEBUG</strong> parameter in <em>GIM module</em> is set to <strong>1</strong>.
 </p><div class="highlight"><pre><span></span><code>/opt/guardium/modules/UTILS/current/files/bin/configurator.sh<span class="w"> </span>--get<span class="w"> </span>GIM
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim29.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim29.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Change <strong>GIM_DEBUG</strong> value to <strong>0</strong> and confirm change (this time from command line instead from <em>GIM server</em>).
@@ -1165,7 +1193,7 @@ nc<span class="w"> </span>-zv<span class="w"> </span>&lt;raptor_ip&gt;<span clas
 
 /opt/guardium/modules/UTILS/current/files/bin/configurator.sh<span class="w"> </span>--get<span class="w"> </span>GIM
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim30.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim30.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Uninstall <em>GIM client</em>.
@@ -1189,13 +1217,13 @@ nc<span class="w"> </span>-zv<span class="w"> </span>&lt;raptor_ip&gt;<span clas
 <p>In <strong>cm</strong> cli session list the installed <em>modules</em> on <strong>raptor</strong> machine. All <code>grdapi</code> commands are run from <em>cm cli session</em>.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><span class="nv">clientIP</span><span class="o">=</span>&lt;raptor_ip&gt;
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim31.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim31.webp" width="75%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Then list of <em>bundles</em> available on <em>GIM server</em> (<em>windows modules</em> are filtered out because client is <em>linux</em> based).
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>gim_list_bundles
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim32.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim32.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Assign to <em>GIM client</em> the update of <em>GIM-BUNDLE</em> to the latest version and check module list.</p>
@@ -1209,7 +1237,7 @@ grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><sp
 <p class="admonition-title">Notice</p>
 <p>Notice that GIM client 12.2 version has been set as scheduled but schedule time is not set yet.</p>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim33.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim33.webp" width="75%"></a></p>
+<p></p>
 </li>
 <li>
 <p>Set update schedule.
@@ -1220,7 +1248,7 @@ grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><sp
 <p>Monitor the upgrade process.
     </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><span class="nv">clientIP</span><span class="o">=</span>&lt;raptor_ip&gt;
 </code></pre></div><p></p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim34.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim34.webp" width="99%"></a></p>
+<p></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>After few minutes the command will provide the output change. It should confirm that <em>GIM client</em> has been updated to the latest version available on <em>GIM server</em>.</p>
@@ -1235,7 +1263,7 @@ grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><sp
 <p>You should notice that change is notified but is not scheduled.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><span class="nv">clientIP</span><span class="o">=</span>&lt;raptor_ip&gt;
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim35.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim35.webp" width="75%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Schedule update.
@@ -1246,7 +1274,7 @@ grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><sp
 <p>Then monitor <em>GIM client</em> state to confirm that schedule is started and finally applied.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><span class="nv">clientIP</span><span class="o">=</span>&lt;raptor_ip&gt;
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim36.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim36.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Finally uninstall <em>GIM client</em> from <strong>raptor</strong>. Monitor list of modules on raptor and confirm uninstallation process.
@@ -1256,13 +1284,13 @@ grdapi<span class="w"> </span>gim_schedule_uninstall<span class="w"> </span><spa
 
 grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><span class="nv">clientIP</span><span class="o">=</span>&lt;raptor_ip&gt;<span class="w"> </span>
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim37.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim37.webp" width="75%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>After a while list of modules assigned to <em>GIM client</em> should be empty.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>gim_list_client_modules<span class="w"> </span><span class="nv">clientIP</span><span class="o">=</span>&lt;raptor_ip&gt;
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/gim38.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/gim38.webp" width="75%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>The list of <em>GIM clients</em> registered to <em>GIM server</em> on <strong>cm</strong> should be empty as well

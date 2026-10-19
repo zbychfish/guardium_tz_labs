@@ -908,6 +908,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genaimcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GenAI - MCP (lab 13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1062,7 +1090,7 @@
 <ol>
 <li>
 <p>Starting with version <strong>12.2</strong>, some <strong>Guardium</strong> features must be enabled through a mechanism called <em>feature flags</em>. Activating a <em>feature flag</em> is a two-step process. First, the appropriate feature options file must be loaded, which has already been completed in our environment.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va1.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va1.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>To activate the <em>feature flag</em>, run the following command from the cm cli. The <em>VULNERABILITY_MANAGEMENT</em> flag enables an additional UI view that will be used in the later sections of this lab.
@@ -1072,37 +1100,37 @@
 <li>And confirm operation
 <div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>list_feature_flags
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va2.webp" width="99%"></a></li>
+</li>
 </ol>
 <h2 id="update-va-tests">Update VA tests</h2>
 <ol>
 <li>
 <p>From browser go to <em>Fix Central</em> (<a href="https://ibm.com/support/fixcentral/">https://ibm.com/support/fixcentral/</a>) and look for <em>DPS</em> updates for <strong>Guardium 12.2</strong>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va3.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va3.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>In <em>DPS</em> section locate the latest quarter update (position 4 in my case, Q4’25 update) and the latest <em>Rapid Response</em> update (if exists) related to quarter one (position 1 my case). Download this/these file/files.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va4.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va4.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Unpack zip file/files. Inside each archive you should have file with <code>enc</code> extension.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va5.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va5.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Open <strong>Customer Uploads</strong> view on <strong>cm</strong> and press <strong>Browse</strong> button. Select quartely <em>DSP</em> update file and then use <strong>Upload</strong> button to load it to the engine.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va6.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va6.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
-<p>Import <em>DPS</em> section will be refreshed and the uploaded file should appear. Press the <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va7.webp" width="20"></a> icon to start <em>DPS</em> import – popup with message “<em>Import DPS is in progress …</em>” should appear (wait a while to get pop-up). Close it and wait for next pop-up. It can takes even few minutes.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va8.webp" width="99%"></a></p>
+<p>Import <em>DPS</em> section will be refreshed and the uploaded file should appear. Press the  icon to start <em>DPS</em> import – popup with message “<em>Import DPS is in progress …</em>” should appear (wait a while to get pop-up). Close it and wait for next pop-up. It can takes even few minutes.
+</p>
 </li>
 <li>
 <p>Accept the second pop-up with information that <em>DPS</em> import started and notice that message below of <em>DPS Upload</em> section is changed and refers to new <em>DPS</em> file and informs that process is running. If message will not appear, refresh browser tab and check it again.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va9.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>You can go back to <strong>Customer Upload</strong> view after few minutes and notice that <em>DPS import</em> process finished successfully. You can continue lab; there is no demand to have the latest updates. Sometimes <em>DPS import</em> takes hours.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va10.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va10.webp" width="69%"></a></p>
+</p>
 </li>
 <li>
 <p>If you have Rapid Response update repeat the upload procedure for it according to steps from <strong>4</strong> to <strong>7</strong>. You process the rapid update when quarter one is correctly imported</p>
@@ -1162,15 +1190,15 @@
 <h2 id="configure-va-for-postgresql">Configure VA for PostgreSQL</h2>
 <ol>
 <li>
-<p>Open <strong>Assessment Builder</strong> view on <strong>cm</strong> and create a new assessment definition (plus icon <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va15.webp" data-desc-position="bottom"><img alt="icon" src="../../images/va15.webp" width="15"></a>)
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va16.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va16.webp" width="99%"></a> </p>
+<p>Open <strong>Assessment Builder</strong> view on <strong>cm</strong> and create a new assessment definition (plus icon )
+ </p>
 </li>
 <li>
 <p>Insert new assessment name <strong>postgres on raptor</strong> and press <strong>Add Datasource</strong> button
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va17.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va17.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
-<p>In Select datasource list use <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va15.webp" data-desc-position="bottom"><img alt="icon" src="../../images/va15.webp" width="15"></a> icon to add new datasource. Insert appropriate valies and <strong>Save</strong>.</p>
+<p>In Select datasource list use  icon to add new datasource. Insert appropriate valies and <strong>Save</strong>.</p>
 <div class="admonition note">
 <p class="admonition-title">Insert values:</p>
 <ul>
@@ -1184,57 +1212,57 @@
 <li>Database: <strong>postgres</strong></li>
 </ul>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va18.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va18.webp" width="99%"></a></p>
+<p></p>
 </li>
 <li>
 <p>Now, <strong>Test connection</strong> button should be active. Press it and confirm that connection to <em>PostgreSQL</em> on <strong>raptor</strong> is correctly configured. Then <strong>Close</strong> a <em>Create datasource</em> window.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va19.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va19.webp" width="79%"></a></p>
+</p>
 </li>
 <li>
 <p>Select just created <em>datasource</em> and <strong>Save</strong> configuration.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va20.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va20.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>You will back to <strong>Security Assessment</strong> builder main view and just created PostgreSQL datasource should be listed in <em>Datasources</em> section. <strong>Apply</strong> changes and then <strong>Configure Tests</strong> button will be activated. Use it.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va21.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va21.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>The <strong>Assessment Test Selections</strong> window will appear. Navigate to the <strong>POSTGRESQL</strong> tab to display all available <em>VA tests</em> for the <em>PostgresSQL</em> database.<br>
 Exclude <em>CAS</em> tests by unchecking the <em>Include CAS</em> option, as we will not configure <em>CAS</em> in this lab.
 Next, select the first test on the list, then scroll down to the last one and select it while holding the <span class="keys"><kbd class="key-shift">Shift</kbd></span> key — this will highlight all tests.<br>
 Finally, click <strong>Add Selections</strong> to add the selected tests to our assessment. Please wait until all tests appear in the selection area.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va22.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va22.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>As a result all marked tests will be moved to selected tests area. Now we can press <strong>Return</strong> button.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va23.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va23.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>To execute just created <em>assessment</em>, select it on a list and press <strong>Run Once Now</strong> button. The pop-up will inform that we just started <em>assessment instance</em> and its execution can be monitored in <em>Guardium Job Queue</em> report.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va24.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va24.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Open <em>Guardium Job Queue</em> report and refresh it till status will be changed to <strong>COMPLETED</strong> (be patient, sometimes the assessment row can disappear for a while).
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va25.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va25.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Back to** Security Assessement** builder view and select our <em>PostgreSQL</em> assessment. This time press <strong>View Result</strong> button to open interactive <em>VA</em> report (you probably need to accept pop-up displayed in the browser).
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va26.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va26.webp" width="74%"></a></p>
+</p>
 </li>
 <li>
 <p>Review <em>VA assessment</em> report and close it.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va27.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va27.webp" width="99%"></a></p>
+</p>
 </li>
 </ol>
 <h2 id="findings-remediation">Findings remediation</h2>
 <ol>
 <li>
 <p>In <strong>cm</strong> UI open again the result set from the last <em>PostgreSQL</em> assessment. Press <strong>View Result</strong> when vulnerability assessment - <strong>postgres on raport</strong> is selected.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va26.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va26.webp" width="74%"></a></p>
+</p>
 </li>
 <li>
 <p>Look for test – <em>Ensure the pgcrypto extension is installed</em>. This extension allows implement column based data encryption. Unfortunately, it is not enabled in our <strong>raptor</strong> <em>PostgreSQL instance</em>.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va28.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va28.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>To enable the functionality mentioned in the test, log in on <strong>raptor</strong> to the database and execute the <strong>CREATE EXTENSION</strong> statement.
@@ -1251,38 +1279,38 @@ Finally, click <strong>Add Selections</strong> to add the selected tests to our 
 </li>
 <li>
 <p>Run again our <strong>postgres on raptor</strong> <em>VA assessment</em> and check execution completeness in <em>Guardium Job Queue</em> report.
- <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va29.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va29.webp" width="79%"></a> 
- <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va30.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va30.webp" width="99%"></a></p>
+  
+ </p>
 </li>
 <li>
 <p>Open assessment results and notice that Test passing result has been changed. To find a difference you can press <strong>Compare with other results</strong> link and select previous execution with lower score. Press <strong>Go</strong> button.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va31.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va31.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Displayed pop-up report identifies that now <em>pgcrypto</em> library test has been passed.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va32.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va32.webp" width="99%"></a></p>
+</p>
 </li>
 </ol>
 <h2 id="setup-remote-va-scanner-optional">Setup remote VA scanner (optional)</h2>
 <ol>
 <li>
 <p>Open again the <strong>VA Assessment</strong> builder and select <strong>postgres on raptor</strong> assessment. Then use the <strong>Run on Scanner</strong> button instead of <strong>Run Once Now</strong>. The pop-up message informs that request is trying to put this task to <em>va scanners</em> queue. If you press <strong>OK</strong> you should also get confirmation that task is now there.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va33.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va33.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Open <strong>VA Scanner Job Queue</strong> view and notice that a new task is scheduled and it is <strong>WAITING</strong> for execution. In this case the task will be served by remote scanner which we must deploy first.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va34.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va34.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>We need two pieces of information. First one is <em>appliance UI certificate</em>. In our case we are using <strong>cm</strong> for <em>VA</em>, so let us get it public certificate. Open <strong>cm</strong> UI in your browser and save the certificate.</p>
 </li>
 <li>
 <p>Here are the steps for <em>Chrome</em>. Select certificate information just at <em>URL</em> and then <strong>Certificate details</strong>. Then switch to <strong>Details</strong> tab and <strong>Export</strong> to file.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va35.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va35.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Here this same in Microsoft Edge.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va36.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va36.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Just a saved file should contain the <strong>cm</strong> UI certificate in a <em>PEM</em> format. Save it on <strong>sauropod</strong> machine in the directory <code>/opt/vascanner/certs</code> as a <code>vascanner.pem</code> file. Use this command to create directory on sauropod
@@ -1293,32 +1321,32 @@ Finally, click <strong>Add Selections</strong> to add the selected tests to our 
 <p>The <code>vascanner.pem</code> file should look like shown below:
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/root/gn-trainings/vascanner/certs/vascanner.pem<span class="w"> </span>
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va37.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va37.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Login to <strong>cm</strong> cli and create a new <em>API key</em> for <em>vascanner</em>.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>create_api_key<span class="w"> </span><span class="nv">name</span><span class="o">=</span>vascanner
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va38.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va38.webp" width="99%"></a>
+
 Write down the encoded API key, we need it soon.<p></p>
 </li>
 <li>
 <p>On <strong>sauropod</strong> login to the <em>IBM container registry</em> and check. The entitlement key is available in the <code>container_registry.txt</code> file in training materials.
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>login<span class="w"> </span>cp.icr.io<span class="w"> </span>-u<span class="w"> </span>cp<span class="w"> </span>-p<span class="w"> </span>&lt;ibm_registry_key&gt;
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va39.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va39.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Pull <em>VA scanner</em> image on <strong>sauropod</strong>.
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>pull<span class="w"> </span>cp.icr.io/cp/ibm-guardium-data-security-center/guardium/vascanner-12.2.0/va-scanner:vascanner-v12.2.0
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va40.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va40.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Check that image is correctly pulled and wrote down information about <em>image id</em>.
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>images
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va41.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va41.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Create config file in the <code>/opt/vascanner/config</code> on <strong>sauropod</strong>.</p>
@@ -1331,7 +1359,7 @@ Write down the encoded API key, we need it soon.<p></p>
 <li>VA_AGENT_NAME=<strong>VA_SCANNER_ON_SAUROPOD</strong></li>
 </ul>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va42.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va42.webp" width="89%"></a></p>
+<p></p>
 </li>
 <li>
 <p>Now we are ready to start a <em>scanner</em> (insert correct <em>image id</em>)
@@ -1342,37 +1370,37 @@ Write down the encoded API key, we need it soon.<p></p>
 <p>You can monitor the container status using:
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps<span class="w"> </span>-a
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va43.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va43.webp" width="99%"></a>
+
 After one minute, even less, the container will stop working (it is expected).<p></p>
 </li>
 <li>
 <p>Check again the <strong>VA Scanner Job Queue</strong> view in <strong>cm</strong> UI and notice that job is completed and result set is consumed by <em>VA engine</em>.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va44.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va44.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>You can also check container logs on sauropod/
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>logs<span class="w"> </span>va-scanner-sauropod
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va45.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va45.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 </ol>
 <h2 id="va-findings-dashboard">VA findings dashboard</h2>
 <ol>
 <li>
 <p>If the <strong>VULNERABILITY_MANAGEMENT</strong> <em>feature flag</em> is enabled on the <strong>cm</strong>, a new <strong>Vulnerability Management</strong> view becomes available. This view provides a quick overview of the security posture of the monitored database engines and centralizes vulnerability assessment findings. The charts provide a visual overview of the identified findings, categorized by critical, high, and other severity levels, as well as grouped by database engine type. Below the charts, you can review the findings in greater detail and examine the specific issues detected by the assessment.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va46.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va46.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Selecting a test from the list opens detailed information about the issue, including remediation guidance, and also allows you to add comments.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va47.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va47.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>The new view can also be used to manage the remediation process by updating the finding status and assigning remediation tasks or other actions to users with Guardium accounts. This lightweight workflow can be a good fit for smaller organizations or serve as a temporary solution before implementing a full-scale remediation process based on exceptions and formal workflow management.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va48.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va48.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>Findings can also be reviewed from the perspective of configured data sources (assets) or by examining the results of individual vulnerability assessment processes that have been configured and executed.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/va49.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/va49.webp" width="99%"></a></p>
+</p>
 </li>
 </ol>
 <h2 id="appendix">Appendix</h2>

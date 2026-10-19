@@ -886,6 +886,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genaimcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GenAI - MCP (lab 13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1031,7 +1059,7 @@
 
 <span class="n">exit</span><span class="p">;</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap2.webp" width="59%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Login again  but this time refer to IP address of <strong>raptor</strong> machine.
@@ -1050,11 +1078,11 @@
 
 <span class="n">exit</span><span class="p">;</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap3.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap3.webp" width="59%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Go to <em>Full SQL (Training)</em> report in <strong>coll1</strong> dashboard and notice that only SQL’s related to plaintext session have been audited.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap4.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap4.webp" width="99%"></a></p>
+</p>
 </li>
 <li>
 <p>There is no <em>ATAP</em> or <em>EXIT</em> for <em>MySQL</em>. In case of encrypted traffic for <em>MySQL</em> we need to use different method of monitoring which is not based on <em>STAP</em>.</p>
@@ -1071,19 +1099,19 @@
 <p>To check the latest available tag of <em>External S-TAP</em> image execute:
 </p><div class="highlight"><pre><span></span><code>skopeo<span class="w"> </span>list-tags<span class="w"> </span>docker://icr.io/guardium/guardium_external_s-tap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap5.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap5.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Pull <em>External S-TAP</em> image with the <strong>latest</strong> tag for Guardium 12.2 (screenshots presents example, use the latest image version).
 </p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>icr.io/guardium/guardium_external_s-tap:v&lt;latest_12.2&gt;
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap6.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap6.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>List local images and write in notebook <strong>container name</strong> and <strong>tag</strong>
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>images
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap7.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 </ol>
 <h2 id="ssl-certificate-setup">SSL certificate setup</h2>
@@ -1115,15 +1143,15 @@
 <li><em>press <span class="keys"><kbd class="key-enter">Enter</kbd></span> for SAN #2</em>: <span class="keys"><kbd class="key-enter">Enter</kbd></span></li>
 </ul>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap8.webp" width="99%"></a></p>
+<p></p>
 <p>Then certificate request will be created and displayed</p>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap9.webp" width="99%"></a></p>
+<p></p>
 </li>
 <li>
 <p>Then copy displayed <em>Certificate Request</em> to file on raptor - <code>/opt/ETAP/ca/etap.csr</code> 
-    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap10.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap10.webp" width="79%"></a>
+    
     <br>and write down in notepad entire alias and related to it token (two bottom lines)
-    <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap11.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap11.webp" width="99%"></a></p>
+    </p>
 </li>
 <li>
 <p>Now we will create new <em>certification authority (CA)</em> on <strong>raptor</strong>. Go to directory <code>/opt/ETAP/ca</code> (where you saved <code>etap.csr</code> file) and create <em>RSA key</em>.
@@ -1133,7 +1161,7 @@
 
 openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>ca.key<span class="w"> </span><span class="m">2048</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap12.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap12.webp" width="79%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Create <em>CA certificate</em>, insert required certificate parameters</p>
@@ -1151,42 +1179,42 @@ openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"
 <li><em>e-mail of CA owner, can be fake one</em>: &lt;email_address&gt;</li>
 </ul>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap13.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap13.webp" width="99%"></a></p>
+<p></p>
 <p>In the current directory <code>ca.pem</code> certificate file will appear.</p>
 </li>
 <li>
 <p>Sign <em>certificate request</em> from <strong>coll1</strong> using just created <em>CA certificate</em>.
 </p><div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-sha256<span class="w"> </span>-req<span class="w"> </span>-days<span class="w"> </span><span class="m">3650</span><span class="w"> </span>-CA<span class="w"> </span>ca.pem<span class="w"> </span>-CAkey<span class="w"> </span>ca.key<span class="w"> </span>-CAcreateserial<span class="w"> </span>-CAserial<span class="w"> </span>serial<span class="w"> </span>-in<span class="w"> </span>etap.csr<span class="w"> </span>-out<span class="w"> </span>etap.pem
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap14.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap14.webp" width="99%"></a>
+
 In the current directory certificate based on <em>CSR</em> generated on <strong>coll1</strong> will appear in <code>etap.pem</code> file.<p></p>
 </li>
 <li>
 <p>Install <em>CA certificate</em> on <strong>coll1</strong>. Provide unique name for <em>CA</em> (for example: <strong>etap_ca</strong>) and then insert content of <code>ca.pem</code> file from <code>/opt/ETAP/ca</code> directory. Open two SSH sessions to <strong>raptor</strong>, one to get access to certificates and second where you are logged to <strong>coll1</strong>, it will simplify certificate injection.
 </p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>certificate<span class="w"> </span>keystore_external_stap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap15.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap15.webp" width="99%"></a> 
+ 
 Then insert <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span> keystroke.<p></p>
 </li>
 <li>
 <p>You should receive confirmation that <em>CA cert</em> has been imported.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap16.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap16.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>Now we will import to the <strong>coll1</strong> the <em>External S-TAP certificate</em> - <code>etap.pem</code> file stored in <code>/opt/ETAP/ca</code>. You must provide as an alias the one generated during CSR request in point <strong>3</strong>.
 </p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>certificate<span class="w"> </span>external_stap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap17.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap17.webp" width="99%"></a>  <p></p>
+  <p></p>
 </li>
 <li>
 <p>Confirm that import finished with success.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap18.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap18.webp" width="99%"></a> </p>
+ </p>
 </li>
 <li>
 <p>Execute command below to list <em>ETAP</em> certs stored on <strong>coll1</strong>. Confirm installation of <em>CA and ETAP cert</em>.
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>certificate<span class="w"> </span>external_stap
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap19.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap19.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 </ol>
 <h2 id="deploy-etap">Deploy ETAP</h2>
@@ -1199,7 +1227,7 @@ Then insert <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span>
 
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/IBM/Guardium_External_S-TAP.git
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap20.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap20.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>The script used to create the container unfortunately does not support usage of SSH on port other than 22, so temporarily add this port to the sshd service on raptor. Edit <code>/etc/ssh/ssh_config.d/99-cluster-hosts.conf</code> and add an additional entry <strong>Port 22</strong> below the existing <strong>Port 2223</strong> for line describing the <em>Host</em> with <strong>raptor</strong> IP address. And below add one more section which will describe the <strong>localhost</strong> as well.<br>
@@ -1217,7 +1245,7 @@ Host localhost
     UserKnownHostsFile /dev/null
     ForwardAgent yes
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap21.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap21.webp" width="39%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Restart <strong>sshd</strong> service.
@@ -1272,7 +1300,7 @@ Host localhost
 
 <span class="nv">LBMODE</span><span class="o">=</span><span class="m">0</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap22.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap22.webp" width="99%"></a><p></p>
+<p></p>
 </li>
 <li>
 <p>Go to <code>Guardium_External_S-TAP</code> directory and start <em>ETAP</em> deployment script. The command will generate a long output, but the key point is to confirm at the end that the new container has started successfully.
@@ -1282,17 +1310,17 @@ Host localhost
 
 ./container_mgmt.sh<span class="w"> </span>--state-file<span class="w"> </span><span class="nv">$STATE_FILE</span><span class="w"> </span>--db-host<span class="w"> </span><span class="nv">$DB_HOST</span><span class="w"> </span>--proxy-num-workers<span class="w"> </span><span class="nv">$PROXY_WORKERS</span><span class="w"> </span>--proxy-protocol<span class="w"> </span><span class="nv">$PROXY_PROTOCOL</span><span class="w"> </span>--db-port<span class="w"> </span><span class="nv">$DB_PORT</span><span class="w"> </span>--proxy-secret<span class="w"> </span><span class="nv">$TOKEN</span><span class="w"> </span>--db-type<span class="w"> </span><span class="nv">$DB_TYPE</span><span class="w"> </span>--sqlguard-ip<span class="w"> </span><span class="nv">$COLLECTOR</span><span class="w"> </span>--participate-in-load-balancing<span class="w"> </span><span class="nv">$LBMODE</span><span class="w"> </span>--tenant-id<span class="w"> </span><span class="nv">$TENANT</span><span class="w"> </span>--svc-image<span class="w"> </span><span class="nv">$IMAGE</span><span class="w"> </span>--svc-port-range<span class="w"> </span><span class="nv">$PORT_RANGE</span><span class="w"> </span>--ni<span class="w"> </span>--c
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap23.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap23.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Check container instance status
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap24.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap24.webp" width="99%"></a>  <p></p>
+  <p></p>
 </li>
 <li>
 <p>Login to <strong>coll1</strong> UI and open <strong>External S-TAP Instances</strong> view and confirm that just deployed instance is correctly registered on <strong>coll1</strong>.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap25.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap25.webp" width="99%"></a>  </p>
+  </p>
 </li>
 </ol>
 <h2 id="check-traffic-visibility">Check traffic visibility</h2>
@@ -1314,11 +1342,11 @@ Host localhost
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap26.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap26.webp" width="69%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Check activity in <em>Full SQL (Training)</em> report on <strong>coll1</strong>. 
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap27.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap27.webp" width="99%"></a> </p>
+ </p>
 </li>
 </ol>
 <h2 id="automatic-start-of-etap-instance-optional">Automatic start of ETAP instance (optional)</h2>
@@ -1328,7 +1356,7 @@ Host localhost
 <br>Before starting <em>ETAP</em> using system services, remove the currently running instance. Display the container details and record its <em>ID</em>.
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap28.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap28.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Stop the container and remove it.
@@ -1353,7 +1381,7 @@ podman<span class="w"> </span>rm<span class="w"> </span>&lt;container_id&gt;
 &lt;coll1_IP_address&gt;: <strong>coll1</strong> IP address<br>
 &lt;raptor_IP_address&gt;: <strong>raptor</strong> IP address</p>
 </div>
-<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap29.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap29.webp" width="89%"></a> </p>
+<p> </p>
 </li>
 <li>
 <p>Reload the network services configuration.
@@ -1369,7 +1397,7 @@ podman<span class="w"> </span>rm<span class="w"> </span>&lt;container_id&gt;
 <p>Check whether the container is running.
 </p><div class="highlight"><pre><span></span><code>podman<span class="w"> </span>ps
 </code></pre></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap30.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap30.webp" width="99%"></a> <p></p>
+ <p></p>
 </li>
 <li>
 <p>Finally, connect to the database through ETAP and verify that the activity is being monitored.
@@ -1388,8 +1416,8 @@ podman<span class="w"> </span>rm<span class="w"> </span>&lt;container_id&gt;
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap31.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap31.webp" width="79%"></a><br>
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/etap32.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/etap32.webp" width="99%"></a>  <p></p>
+<br>
+  <p></p>
 </li>
 </ol>
 <h2 id="appendix">Appendix</h2>
