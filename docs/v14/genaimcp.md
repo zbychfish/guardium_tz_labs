@@ -1,4 +1,4 @@
-# MCP in Guardium (under construction)
+# MCP in Guardium
 
 ## Setup Gen AI node
 
