@@ -124,3 +124,38 @@ ping appnode2.demo.guardium
 ![TZ requests](../images/mcp16.webp){ width="99%" }
 ![TZ requests](../images/mcp17.webp){ width="99%" }
 ![TZ requests](../images/mcp18.webp){ width="99%" }
+
+## Configure the MCP server in Antigravity
+
+1. There is an assumption that you have installed **Antigravity** application on your workstation.
+
+1. Edit `.gemini\config\mcp_config.json` in your home directory and insert *MCP* server configuration. If file is empty insert this content (use your *API key* value):
+```json
+{
+  "mcpServers": {
+    "gdp-mcp": {
+      "serverUrl": "https://appnode2.demo.guardium:8443/mcp",
+      "headers": {
+        "Authorization": "Bearer <your API key generated at the lab beginning>",
+        "x-mcp-enable-discovery": "true"
+      }
+    }
+  }
+}
+```
+If you have other *MCP* servers defined, add our one by inserting addition member of *mcpServers* object:
+```json
+    "gdp-mcp": {
+      "serverUrl": "https://appnode2.demo.guardium:8443/mcp",
+      "headers": {
+        "Authorization": "Bearer <your API key generated at the lab beginning>",
+        "x-mcp-enable-discovery": "true"
+      }
+    }
+```
+
+1. Then restart Antigravity application. Select **Customization**, just above *conversation* list. Switch to Installed list abd notice our **gdp-mcp** server appearance in the *MCP Servers* section and its green status.
+![TZ requests](../images/mcp19.webp){ width="99%" }
+
+1. Open new conversation and start asking about GDP environment (confirm usage of MCP server).
+![TZ requests](../images/mcp20.webp){ width="99%" }
