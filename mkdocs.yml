@@ -1,5 +1,6 @@
 site_name: Guardium Notes Labs
 site_description: Labs for TZ based Guardium Data Protection workshop
+site_url: https://zbychfish.github.io/guardium_tz_labs/
 
 theme:
   name: material
