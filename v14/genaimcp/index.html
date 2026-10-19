@@ -985,13 +985,13 @@
 <p>Login to <strong>appnode2</strong> as a <strong>cli</strong> user and switch appliance type to <code>appnode</code> and confirm (<em>y</em>) its reboot
 </p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span><span class="w"> </span>app-node
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp1.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp1.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>After a short wait, sign in to <strong>appnode2</strong> again and confirm that the appliance is now operating in <em>App-Node</em> mode.
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp2.webp" width="49%"></a><p></p>
 </li>
 <li>
 <p>The next step is to install the <em>GenAI</em> extension on the <strong>appnode2</strong>. The extension is delivered as a special patch located in one of the directories on <strong>raptor</strong>. From the <strong>cli</strong> session on <strong>appnode2</strong>, run the installation command and provide the following parameters:</p>
@@ -1007,19 +1007,19 @@
 <div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install<span class="w"> </span>scp
 </code></pre></div>
 <p>After a short time, the file should be downloaded and appear in the list of available patches. Select it and wait for confirmation that the installation procedure has started.</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp3.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp3.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Monitor the installation status every few minutes until you can confirm that patch <strong>80020</strong> has been successfully applied.
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp4.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp4.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Communication with the <em>MCP</em> server running on your appliance will take place through the <em>REST API</em>. To enable this communication, you must generate a dedicated <em>API</em> key. While still logged in to <strong>appnode2</strong>, run the following command and save the generated key, it will be required in the next steps of the lab.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>create_api_key<span class="w"> </span><span class="nv">name</span><span class="o">=</span>gdp_mcp
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp5.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp5.webp" width="99%"></a><p></p>
 </li>
 </ol>
 <h2 id="prepare-your-windows-workstation-to-use-mcp">Prepare your Windows workstation to use MCP</h2>
@@ -1040,19 +1040,19 @@
 
 <span class="no">[Net.ServicePointManager]</span><span class="p">::</span><span class="n">ServerCertificateValidationCallback</span><span class="p">={</span><span class="nv">$true</span><span class="p">};</span><span class="nv">$r</span><span class="p">=</span><span class="no">[System.Net.WebRequest]</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="s2">"https://$site`:8443/"</span><span class="p">);</span><span class="nv">$r</span><span class="p">.</span><span class="n">GetResponse</span><span class="p">()|</span><span class="nb">Out-Null</span><span class="p">;</span><span class="nv">$c</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">X509Certificates</span><span class="p">.</span><span class="n">X509Certificate2</span><span class="p">(</span><span class="nv">$r</span><span class="p">.</span><span class="n">ServicePoint</span><span class="p">.</span><span class="n">Certificate</span><span class="p">);</span><span class="no">[IO.File]</span><span class="p">::</span><span class="n">WriteAllBytes</span><span class="p">(</span><span class="s2">"$PWD\appnode2.cer"</span><span class="p">,</span><span class="nv">$c</span><span class="p">.</span><span class="n">Export</span><span class="p">(</span><span class="no">[System.Security.Cryptography.X509Certificates.X509ContentType]</span><span class="p">::</span><span class="n">Cert</span><span class="p">))</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp6.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp6.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Add the newly exported <code>appnode2.cert</code> certificate to the list of trusted <em>Certificate Authorities (CAs)</em>. You will need to confirm the operation in the pop-up window that appears.
 </p><div class="highlight"><pre><span></span><code><span class="nb">Import-Certificate</span> <span class="n">-FilePath</span> <span class="s2">".\appnode2.cer"</span> <span class="n">-CertStoreLocation</span> <span class="n">Cert</span><span class="p">:\</span><span class="n">CurrentUser</span><span class="p">\</span><span class="n">Root</span> <span class="n">-Confirm</span><span class="p">:</span><span class="nv">$false</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp7.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Verify that the certificate was imported successfully by opening <em>Certificate Manager</em> and confirming that the <code>appnode2.demo.guardium</code> certificate is present under <em>Trusted Root Certification Authorities → Certificates</em>.
 </p><div class="highlight"><pre><span></span><code>certmgr.msc
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp8.webp" width="79%"></a><p></p>
 </li>
 <li>
 <p>You must also ensure that the <em>appnode2.demo.guardium</em> hostname resolves correctly. Add a host entry using the local hosts file and verify that name resolution is working properly.
@@ -1066,18 +1066,18 @@
 
 <span class="n">ping</span> <span class="n">appnode2</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">guardium</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp9.webp" width="99%"></a><p></p>
 </li>
 </ol>
 <h2 id="configure-the-mcp-server-in-ibm-bob">Configure the MCP server in IBM Bob</h2>
 <ol>
 <li>
 <p>Open <em>IBM Bob</em> and open its settings <span class="mb">1</span>, then select MCP <span class="mb">2</span>. In the top row of MCP server list select <span class="keys"><kbd class="key-plus">+</kbd></span> icon to add new MCP server definition.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp10.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp10.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In the window that appears, select <strong>Global</strong> as the <em>Configure Scope</em>, then click <strong>Open Configuration File</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp11.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp11.webp" width="89%"></a></p>
 </li>
 <li>
 <p>In the editor, enter the following content in <code>mcp.json</code>, replacing the <em>API key</em> with the one generated during the <em>GenAI</em> node initialization.
@@ -1097,22 +1097,22 @@
 <span class="err">&nbsp;</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp12.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp12.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Return to the <em>Bob Settings</em> tab. The <strong>gdp-mcp</strong> definition should now appear with the status <em>Connected</em>. You can use the refresh icon <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 0 0-8 8 8 8 0 0 0 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18a6 6 0 0 1-6-6 6 6 0 0 1 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z"></path></svg></span> to check the connection status again.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp13.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp13.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Select the newly added server to display information about the service and several configuration parameters for the tools provided by the <em>MCP</em> server.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp14.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp14.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Open a new task in <em>IBM Bob</em> and start using the <em>MCP</em> server you just configured. Below are a few example prompts you can try:
-
-
-
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp15.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp15.webp" width="99%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp16.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp16.webp" width="99%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp17.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp17.webp" width="99%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp18.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp18.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="configure-the-mcp-server-in-antigravity">Configure the MCP server in Antigravity</h2>
@@ -1146,11 +1146,11 @@ If you have other <em>MCP</em> servers defined, add our one by inserting additio
 </li>
 <li>
 <p>Then restart Antigravity application. Select <strong>Customization</strong>, just above <em>conversation</em> list. Switch to Installed list abd notice our <strong>gdp-mcp</strong> server appearance in the <em>MCP Servers</em> section and its green status.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp19.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp19.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Open new conversation and start asking about GDP environment (confirm usage of MCP server).
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/mcp20.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/mcp20.webp" width="99%"></a></p>
 </li>
 </ol>
 

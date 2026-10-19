@@ -1059,10 +1059,10 @@
 
 guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>config/pgsql.yaml<span class="w"> </span>run<span class="w"> </span>--duration<span class="w"> </span><span class="m">600</span>
 </code></pre></div></td></tr></tbody></table></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr3.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr3.webp" width="99%"></a> <p></p>
 </li>
 <li>Confirm that traffic is visible in the <em>Full SQL (Training)</em> report on the Training dashboard on the <strong>coll1</strong>. Keep this session opened to generate traffic in the background.
- </li>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr4.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr4.webp" width="99%"></a> </li>
 </ol>
 <h2 id="setup-s3-bucket-for-ltr-seaweedfs">Setup S3 bucket for LTR (seaweedFS)</h2>
 <ol>
@@ -1270,7 +1270,7 @@ systemctl<span class="w"> </span>start<span class="w"> </span>--now<span class="
 <p>Check <em>TLS</em> connection to service.
 </p><div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>raptor.demo.guardium:8333<span class="w"> </span>-servername<span class="w"> </span>raptor.demo.guardium<span class="w"> </span>&lt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-text<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"(Issuer:|Subject:|Not After|DNS:|IP Address:)"</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr1.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr1.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Install the <strong>AWS</strong> client.
@@ -1284,7 +1284,7 @@ unzip<span class="w"> </span>awscliv2.zip
 
 aws<span class="w"> </span>--version
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr2.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr2.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Configure access to <em>seaweedFS</em>.</p>
@@ -1303,7 +1303,7 @@ aws<span class="w"> </span>--version
 
 aws<span class="w"> </span>configure<span class="w"> </span><span class="nb">set</span><span class="w"> </span>profile.seaweed.ca_bundle<span class="w"> </span>/opt/seaweedfs/certs/ca/ca.crt
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr38.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr38.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Create an <em>S3</em> bucket for <em>LTR</em> purposes (name it <strong>guardium-ltr</strong>)
@@ -1311,7 +1311,7 @@ aws<span class="w"> </span>configure<span class="w"> </span><span class="nb">set
 
 aws<span class="w"> </span>--profile<span class="w"> </span>seaweed<span class="w"> </span>--endpoint-url<span class="w"> </span>https://raptor.demo.guardium:8333<span class="w"> </span>s3<span class="w"> </span>ls
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr5.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr5.webp" width="99%"></a><p></p>
 </li>
 </ol>
 <h2 id="setup-ltr-node">Setup LTR node</h2>
@@ -1319,25 +1319,25 @@ aws<span class="w"> </span>--profile<span class="w"> </span>seaweed<span class="
 <li>
 <p>Although the <em>LTR</em> functionality does not require activation via a specific feature flag, the mechanism itself must be enabled.
 In the <strong>cm</strong> UI, navigate to the <strong>License</strong> view and verify that the extensions appropriate for your <strong>Guardium</strong> version are available.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr8.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr8.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Check the unit type on <strong>appnode1</strong>. As a <strong>cli</strong> user execute:
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr9.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr9.webp" width="49%"></a><p></p>
 </li>
 <li>
 <p>If the appliance is still of type <em>Managed Netinsp stap</em>, change it to <strong>app-node</strong> using command below. The command requires a system restart—confirm by entering <code>y</code>.
 </p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span><span class="w"> </span>app-node
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr10.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr10.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Re-login and confirm that the appliance is now set as Managed App-Node.
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>unit<span class="w"> </span><span class="nb">type</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr11.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr11.webp" width="49%"></a><p></p>
 </li>
 <li>
 <p>Now install on <strong>appnode1</strong> as a <strong>cli</strong> user the patch that enables the <em>LTR</em> functionality.</p>
@@ -1354,37 +1354,37 @@ In the <strong>cm</strong> UI, navigate to the <strong>License</strong> view and
 <p>After downloading the patch file, the command will prompt its installation. Enter the patch number – <strong>1</strong> – and confirm with <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
 <p></p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install<span class="w"> </span>scp
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr12.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr12.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Monitor the installation using the command below until the patch installation is confirmed.
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install<span class="w"> </span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr13.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr13.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Install the <em>LTR</em> services on <strong>appnode1</strong> (restart <strong>cli</strong> session).
 </p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>datalake<span class="w"> </span>install
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr14.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr14.webp" width="49%"></a><p></p>
 </li>
 <li>
 <p>Set the size of the <em>LTR</em> services.
 </p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>datalake<span class="w"> </span>all_in_one<span class="w"> </span>xxsmall
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr15.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr15.webp" width="89%"></a><p></p>
 </li>
 <li>
 <p>Start LTR services
 </p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>datalake<span class="w"> </span>service<span class="w"> </span>start
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr16.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr16.webp" width="59%"></a><p></p>
 </li>
 <li>
 <p>Check the status of the services, we expect status 0
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>datalake<span class="w"> </span>status
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr17.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr17.webp" width="99%"></a><p></p>
 </li>
 </ol>
 <h2 id="central-manager-setup">Central Manager setup</h2>
@@ -1393,37 +1393,37 @@ In the <strong>cm</strong> UI, navigate to the <strong>License</strong> view and
 <p>First, we need to import the <em>CA</em> certificate used by <em>seaweedFS</em>. To do this, on the <strong>cm</strong> run the command below and paste the certificate located on the appnode in the file <code>/opt/seaweedfs/certs/ca/ca.crt</code>.
 </p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>certificate<span class="w"> </span>application<span class="w"> </span>datalake<span class="w"> </span>s3<span class="w"> </span>console
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr18.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr18.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Verify that the certificate is visible
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>certificate<span class="w"> </span>application<span class="w"> </span>datalake<span class="w"> </span>s3
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr6.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr6.webp" width="89%"></a><p></p>
 </li>
 <li>
 <p>We now need to distribute the certificate used by the <em>cm</em> and <em>LTR</em> to all appliances in the environment.
 </p><div class="highlight"><pre><span></span><code>distribute<span class="w"> </span>application<span class="w"> </span>certificate<span class="w"> </span>datalake<span class="w"> </span>all_managed<span class="w"> </span>--metastore_unit<span class="o">=</span>appnode1.demo.guardium
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr7.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr7.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>This takes some time, so you need to monitor the synchronization process with the command below (we expect the toolnode to have both certificates downloaded).
 </p><div class="highlight"><pre><span></span><code>distribute<span class="w"> </span>certificate<span class="w"> </span>showlog<span class="w"> </span>all
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr19.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr19.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>It is crucial to restart <strong>appnode1</strong> GUI now (temporary workaround for missing cert reload on LTR node). From <strong>cli</strong> session on <strong>appnode1</strong> execute command below (confirm by inserting <span class="keys"><kbd class="key-y">Y</kbd></span>) and wait for confirmation.
 </p><div class="highlight"><pre><span></span><code>restart<span class="w"> </span>gui
 </code></pre></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr42.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr42.webp" width="59%"></a> <p></p>
 </li>
 <li>
 <p>Configure the connection to the S3 bucket (back to <strong>cm cli</strong> session). You need to enter the seaweeFS keystore password used when configuring the S3 service. The command requires some time to complete.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>configure_complete_cold_storage<span class="w"> </span><span class="nv">protocol</span><span class="o">=</span><span class="s2">"CUSTOM"</span><span class="w"> </span><span class="nv">objectStorageEndpoint</span><span class="o">=</span><span class="s2">"https://raptor.demo.guardium:8333"</span><span class="w"> </span><span class="nv">accessKey</span><span class="o">=</span>s3admin<span class="w"> </span><span class="nv">secretKey</span><span class="o">=</span><span class="s2">"&lt;strong_admin_password&gt;"</span><span class="w"> </span><span class="nv">dataBucket</span><span class="o">=</span>guardium-ltr<span class="w"> </span><span class="nv">resultSchema</span><span class="o">=</span><span class="s2">"datalake_reports"</span><span class="w"> </span><span class="nv">region</span><span class="o">=</span><span class="s2">"US_EAST_1"</span><span class="w"> </span><span class="nv">coldCatalogEndpoint</span><span class="o">=</span><span class="s2">"https://appnode1.demo.guardium:8443"</span><span class="w"> </span><span class="nv">coldCatalogSchema</span><span class="o">=</span><span class="s2">"datalake"</span><span class="w"> </span><span class="nv">coldStorageName</span><span class="o">=</span><span class="s2">"datalake"</span><span class="w"> </span><span class="nv">queryEngineHost</span><span class="o">=</span><span class="s2">"appnode1.demo.guardium"</span><span class="w"> </span><span class="nv">debug</span><span class="o">=</span><span class="m">3</span>
 </code></pre></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr20.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr20.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>Finally, check list of ltr nodes and cold storages.
@@ -1433,40 +1433,40 @@ In the <strong>cm</strong> UI, navigate to the <strong>License</strong> view and
 
 grdapi<span class="w"> </span>list_cold_storages
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr21.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr21.webp" width="79%"></a><p></p>
 </li>
 </ol>
 <h2 id="configuring-system-to-use-ltr-data">Configuring system to use LTR data</h2>
 <ol>
 <li>
 <p>To monitor the process of transferring data from collectors to <em>LTR</em>, create a copy of the default <em>Datamart Extraction Log</em> report. Open on the <strong>cm</strong> UI the standard report and use the edit icon <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg></span>. Choose the option to create a copy of the report.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr22.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr22.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Name the report <em>LTR Datamart Extraction</em>, then add descending sorting by <em>Datamart Run Id</em> and add an additional condition so that only <em>Datamart Name</em> containing the word <em>%Export%</em> in the name are displayed. <strong>Save</strong> the modified report.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr23.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr23.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Next, create a new dashboard named <em>LTR</em> and add to it the report we just created – <em>LTR Datamart Extraction</em>,
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr24.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr24.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Add to <em>LTR</em> dashboard three more reports: <em>Cold Storage Ingestion Logs</em>, <em>Cold Storage Maintenance Logs</em> and <em>Scheduled Jobs</em>
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr25.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr25.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Open the <em>Scheduled Jobs</em> report in the dashboard and edit the <em>Runtime Parameters</em>. Select the <strong>coll1</strong> as the data source.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr26.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr26.webp" width="99%"></a></p>
 </li>
 <li>
 <p>A list of batch jobs running on the <strong>coll1</strong> will be displayed in the report. Among them, there will be activities related to data extraction and transferring the data to the seaweedFS server. The job names will start with <em>Export:Insights:v6</em>. The <em>Next Fire Time</em> column indicates when the data will be prepared and when we should expect the data to appear in LTR.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr27.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr27.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In the <strong>cli</strong> session on the <strong>coll1</strong>, run the command below and review the datamart definitions. It is executed every hour, and the data is sent to the <em>seaweedFS</em> server.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>get_datamart_info<span class="w"> </span><span class="nv">datamart_name</span><span class="o">=</span><span class="s2">"Export:Insights:v6:Session Log"</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr28.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr28.webp" width="99%"></a><p></p>
 </li>
 </ol>
 <h2 id="use-ltr-data">Use LTR data</h2>
@@ -1475,43 +1475,43 @@ grdapi<span class="w"> </span>list_cold_storages
 <p>A few hours after configuring <em>LTR</em>, we should be able to report on the stored data. First, let’s check the datamart status again from the <strong>cli</strong> on the <strong>coll1</strong>. This time, the <em>Extraction Log</em> section should contain information about a file in Parquet format that was sent to the <em>seaweedFS</em> server.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>get_datamart_info<span class="w"> </span><span class="nv">datamart_name</span><span class="o">=</span><span class="s2">"Export:Insights:v6:Session Log"</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr29.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr29.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Open the <em>LTR</em> dashboard on the <strong>cm</strong>, and within it open the <em>Scheduled Jobs</em> report with reference to the <strong>coll1</strong> data. Observe that the jobs related to the datamarts are being executed according to the scheduler.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr30.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr30.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Switch to the <em>LTR Datamart Extraction</em> report in the dashboard and select the <strong>coll1</strong> as the data source. Observe that each job execution is recorded in detail and includes information about how many records were transferred.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr31.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr31.webp" width="99%"></a></p>
 </li>
 <li>
 <p>The <em>Cold Storage Ingestion Logs</em> report indicates whether the datamart transferred from the <strong>coll1</strong> has been processed and whether the data is ready for use.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr32.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr32.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Let’s verify whether the data stored in seaweesFS can be reported from the <strong>cm</strong>. In the <strong>cm</strong> UI, select the new view – <strong>Data Lake Reports</strong>. It contains several predefined reports. Proceed to run the <em>Data Lake Connection profiling list</em> by selecting <strong>Edit</strong> from <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2"></path></svg></span> menu at the end of the row with its name.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr33.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr33.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In the <em>Define Report</em> window, select <em>Custom</em> time frame and use the available controls to define the report timeframe (from today until tomorrow). Then click <strong>Next</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr34.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr34.webp" width="99%"></a></p>
 </li>
 <li>
 <p>On the next page, you can manually modify the query. Since we are running a predefined report, the query body is disabled and cannot be edited. For customized queries, you will be able to adjust the report according to your specific requirements. Press <strong>Next</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr35.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr35.webp" width="99%"></a></p>
 </li>
 <li>
 <p>The next step of the report configuration allows you to schedule report execution. In this lab, we want to run the report ad hoc, so we will skip the scheduling options and use <strong>Save Report</strong> immediately.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr36.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr36.webp" width="99%"></a></p>
 </li>
 <li>
-<p>To generate the report, click the  icon. This starts the process of retrieving data from the files stored in the S3 bucket, extracting the contents, and processing the data according to the query definition. The progress of the operation is indicated by dynamically updated status values such as Running and Complete. Once the report has been successfully generated, click the  icon to view the results.
-</p>
+<p>To generate the report, click the <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr39.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr39.webp" width="18"></a> icon. This starts the process of retrieving data from the files stored in the S3 bucket, extracting the contents, and processing the data according to the query definition. The progress of the operation is indicated by dynamically updated status values such as Running and Complete. Once the report has been successfully generated, click the <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr40.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr40.webp" width="22"></a> icon to view the results.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr37.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr37.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Review result and <strong>Close</strong> report window.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/ltr41.webp" data-desc-position="bottom"><img alt="image" src="../../images/ltr41.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="appendix">Appendix</h2>

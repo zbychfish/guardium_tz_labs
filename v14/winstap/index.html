@@ -1029,101 +1029,101 @@
 </li>
 <li>
 <p>In <em>File Explorer</em> got to <code>c:\bootcamp\zip</code> directory where you <em>GIM</em> installers for <em>Windows</em> are located. Extract archive for build 12.2_r120201205_1.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap1.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap1.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Go to directory with just unpacked files and start <em>GIM client</em> installer – <code>Setup.exe</code>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap2.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap2.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Installation wizard will appear. Accept license agreement and <strong>Next</strong> select <strong>Typical</strong> installation.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap3.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap3.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Install <em>GIM</em> in the <strong>Standard Mode</strong>, insert <strong>cm.demo.guardium</strong> into <em>Appliance Address</em> field and select <em>Auto Assign Local IP</em> option. Confirm installation start – press <strong>Install</strong> button and wait for confirmation that installation is finished.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap4.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap4.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Go to <strong>cm</strong> UI and open <strong>GIM Processes Monitor</strong> view. Notice that new, <em>Windows</em> based <em>GIM client</em> appeared on the list.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap5.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap5.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="stap-installation">STAP installation</h2>
 <ol>
 <li>
 <p>In <strong>Setup by Client</strong> view on <strong>cm</strong> select <strong>ceratops</strong> <em>GIM client</em>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap6.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap6.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Then select <em>WINSTAP 12.2_r120201205_1</em> for installation (uncheck <strong>Show only latest version</strong> option before).
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap7.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap7.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Set the one parameter only – <em>WINSTAP_SQLGUARD_IP</em> with <strong>coll1.demo.guardium</strong> as a value. Finally press <strong>Install</strong> button and start installation.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap8.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap8.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Wait for confirmation that <em>STAP</em> has been installed.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap9.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap9.webp" width="79%"></a></p>
 </li>
 <li>
 <p><strong>S-TAP Control</strong> view on <strong>coll1</strong> should include now new <em>STAP</em> instance with IP address of our Windows machine. You should also see that instance discovery process identified <em>MSSQL</em> instances on this machine.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap10.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap10.webp" width="99%"></a> </p>
 </li>
 </ol>
 <h2 id="traffic-select-visibility">Traffic SELECT visibility</h2>
 <ol>
 <li>
 <p>In <em>RDP</em> session on ceratops open <em>MSSQL management studio</em>. Login to database as <strong>sa</strong> user with default service password (use <strong>SQL Server Authentication</strong>).
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap11.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap11.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Open Query editor and execute simple dummy query. Right click <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 9V1.07A8.007 8.007 0 0 1 19.75 7c.16.64.25 1.31.25 2zm4.66-2c-.48-1.35-1.43-2.5-2.66-3.19V7zM11 9V1.07C7.06 1.56 4 4.92 4 9zM6.34 20.66A8 8 0 0 1 4 15v-4h16v4c0 2.12-.84 4.16-2.34 5.66A8 8 0 0 1 12 23c-2.12 0-4.16-.84-5.66-2.34"></path></svg></span> on the opened instance to display the context menu, then select the <strong>New Query</strong> option. Insert query below to the new area space and use <strong>Execute</strong> button.
 </p><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'QUERY FROM SMSS'</span><span class="p">;</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap12.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap12.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Check <em>Full SQL (Training)</em> report on <strong>coll1</strong> and confirm that our query is correctly sniffed. 
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap13.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap13.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="gim-update">GIM update</h2>
 <ol>
 <li>
 <p>In <strong>cm</strong> UI open <strong>Setup by client</strong> to update <em>GIM client</em> to version <strong>12.2_r120201205_1</strong>. To see <em>Windows GIM client bundles</em> you must uncheck <strong>Show only bundles</strong> option! Then <strong>Install</strong> new version and confirm success.
-
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap14.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap14.webp" width="99%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap15.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap15.webp" width="99%"></a></p>
 </li>
 <li>
 <p>After successful upgrade check <strong>GIM Process Monitor</strong> view on <strong>cm</strong> to confirm that new version of <em>GIM client</em> has been deployed on <strong>ceratops</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap16.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap16.webp" width="99%"></a></p>
 </li>
 <li>
 <p>If the GIM client instance will have red status try to restart service <strong>IBM Guardium Installation Manager</strong> and check <em>GIM Process Monitor</em> again.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap17.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap17.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="stap-update">STAP update</h2>
 <ol>
 <li>
 <p>Now, upgrade <em>STAP</em> to version <strong>12.2_r120202259_1</strong>.
-
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap18.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap18.webp" width="99%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap19.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap19.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Afer successful uprade check version of installed <em>WINSTAP</em> in <strong>S-TAP Status</strong> report on <strong>coll1</strong>.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap20.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap20.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>In <em>MSSQL Management Studio</em> execute new <em>SQL</em>, like:
 </p><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'QUERY FROM SMSS AFTER STAP UPDATE'</span><span class="p">;</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap21.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap21.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>The traffic will appear in the report <em>Full SQL (Training)</em>. However sometimes the WINSTAP update may require <em>MSSQL</em> engine restart.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/winstap22.webp" data-desc-position="bottom"><img alt="image" src="../../images/winstap22.webp" width="99%"></a> </p>
 </li>
 </ol>
 <h2 id="appendix">Appendix</h2>

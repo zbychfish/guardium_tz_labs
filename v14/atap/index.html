@@ -1106,11 +1106,11 @@
 </li>
 <li>
 <p>In <strong>cm</strong> UI deploy <strong>STAP 12.2.1.1_r123268_5</strong>. Rember to ucheck option to see all available releases and confirm successful deployment.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap1.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap1.webp" width="99%"></a> </p>
 </li>
 <li>
-<p>Then check in <strong>S-TAP Control</strong> view in <strong>coll1</strong> UI that <em>Postgres</em> inspection engine (database instance) has been discovered by agent. Use  icon in row where <strong>raptor</strong> <em>STAP</em> appears and select <strong>Edit</strong> option. In the pop-up point <strong>Inspection engines</strong> and locate <em>pgsql</em> instance on the list.
- </p>
+<p>Then check in <strong>S-TAP Control</strong> view in <strong>coll1</strong> UI that <em>Postgres</em> inspection engine (database instance) has been discovered by agent. Use <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap2.webp" width="14"></a> icon in row where <strong>raptor</strong> <em>STAP</em> appears and select <strong>Edit</strong> option. In the pop-up point <strong>Inspection engines</strong> and locate <em>pgsql</em> instance on the list.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap3.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap3.webp" width="99%"></a> </p>
 </li>
 </ol>
 <h2 id="check-encrypted-traffic-visibility">Check encrypted traffic visibility</h2>
@@ -1132,11 +1132,11 @@
 <span class="err">\</span><span class="n">q</span>
 </code></pre></div></td></tr></tbody></table></div>
 Notice that column ssl in output from first query has value f (false) what means that connection is not encrypted
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap4.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap4.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>Open <strong>Full SQL (Training)</strong> report in <em>Training</em> dashboard on <strong>coll1</strong>.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap5.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap5.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Connect to <em>Postgres</em> instance as a <strong>jerry</strong> using encrypted connection.
@@ -1155,7 +1155,7 @@ Notice that column ssl in output from first query has value f (false) what means
 
 <span class="err">\</span><span class="n">q</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap6.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap6.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Check <strong>Full SQL (Training)</strong> report again and notice that traffic related for encrypted session did not appear there. In case of encrypted connections the traffic visibility requires <em>ATAP</em> configuration (if available).</p>
@@ -1181,7 +1181,7 @@ Notice that column ssl in output from first query has value f (false) what means
 <p>Activate <em>ATAP</em>.
 </p><div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>--db-instance<span class="o">=</span>postgres<span class="w"> </span>activate
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap7.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Start <em>Postgres</em>.
@@ -1208,18 +1208,18 @@ Notice that column ssl in output from first query has value f (false) what means
 </li>
 <li>
 <p>Check activity in <strong>Full SQL (Training)</strong> report and confirm that this time jerry’s session is correctly monitored.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap8.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="atap-upgrade">ATAP upgrade</h2>
 <ol>
 <li>
 <p>In <strong>cm</strong> UI open <strong>Setup by Client</strong> view and configure <em>STAP</em> upgrade from <strong>12.2.1.1</strong> to <strong>12.2.2.0</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap9.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Monitor upgrade process and it should finish with success. This behaviour is expected from release <strong>12.2</strong> and up. Before <strong>12.2</strong> the agent upgrade required the <em>ATAP</em> deactivation. Now process of <em>ATAP</em> upgrade works in live.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap10.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap10.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Login to <em>Postgres</em> as a tom using SSL channel on <strong>raptor</strong>.
@@ -1241,7 +1241,7 @@ Notice that column ssl in output from first query has value f (false) what means
 </li>
 <li>
 <p>Check <strong>Full SQL (Training)</strong> report on <strong>coll1</strong> and confirm that just executed activity is correctly audited.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap11.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap11.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="stap-settings">STAP settings</h2>
@@ -1250,14 +1250,14 @@ Notice that column ssl in output from first query has value f (false) what means
 <p>Check on <strong>raptor</strong> connection to <strong>coll1</strong>.
 </p><div class="highlight"><pre><span></span><code>netstat<span class="w"> </span>-an<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;coll1_ip&gt;
 </code></pre></div>
-
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap12.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap12.webp" width="99%"></a>
 Only one connection on port <em>16016</em> is established between <em>STAP</em> and <strong>coll1</strong>. This port is used for clear text comunication (NO TLS communication)<p></p>
 </li>
 <li>
 <p>Check SSL settings on port <em>16016</em> to confirm that there is no SSL handshake possible on this port
 </p><div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>&lt;coll1_ip&gt;:16016
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap13.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap13.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Using <strong>Set up by Client</strong> view on <strong>cm</strong> modify <em>STAP module</em> parameters.</p>
@@ -1270,13 +1270,13 @@ Only one connection on port <em>16016</em> is established between <em>STAP</em> 
 </ul>
 </div>
 <p>Select currently installed version of STAP (12.2.2.0). Confirm that changes are applied.</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap14.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap14.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Then check again connections list to <strong>coll1</strong> from <strong>raptor</strong>.
 </p><div class="highlight"><pre><span></span><code>netstat<span class="w"> </span>-an<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;coll1_ip&gt;
 </code></pre></div>
-
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap15.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap15.webp" width="99%"></a>
 You should now see three connections. Notice that the connection on port <em>16016</em> is no longer available, as communication has switched to the encrypted channel between the agent and the <strong>coll1</strong> (<em>16018</em>). The two additional connections on port <em>16021</em> are also in use, corresponding to the two extra threads we configured.<p></p>
 </li>
 <li>
@@ -1287,16 +1287,16 @@ You should now see three connections. Notice that the connection on port <em>160
 
 openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span class="w"> </span>&lt;collector_ip&gt;:16021<span class="w"> </span>&lt;<span class="w"> </span>/dev/null
 </code></pre></div></td></tr></tbody></table></div>
- 
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap16.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap16.webp" width="99%"></a> 
 <em>STAP_STATISTIC</em> parameter set to value <strong>-3</strong> we will check later on. On heavily loaded systems you can consider use additional port to manage more connection between <em>STAP</em> and <em>collector</em>. In this case you must change value of <em>STAP_CONNECTION_POOL_SIZE</em> parameter from <strong>0</strong> to <em>positive value</em>.<p></p>
 </li>
 <li>
 <p>To stop <em>STAP</em> from <em>GIM server</em> set parameter <em>STAP_ENABLED</em> to <strong>0</strong>. Notice that value <strong>2</strong> will force <em>STAP</em> restart.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap17.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap17.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Then check <em>STAP</em> status in <strong>S-TAP Control</strong> in the <strong>coll1</strong> UI and confirm that <em>STAP</em> is stopped.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap18.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap18.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Start <em>STAP</em> from command line on raptor.
@@ -1304,45 +1304,45 @@ openssl<span class="w"> </span>s_client<span class="w"> </span>-connect<span cla
 </code></pre></div><p></p>
 </li>
 <li>
-<p>Then when <em>STAP</em> will be again operating, edit a <strong>raptor</strong> <em>STAP</em> configuration in <strong>S-TAP Control</strong> view on <strong>coll1</strong> – press  icon to select <strong>Edit</strong> option. It opens <em>STAP</em> configuration pop-up. Select <em>Inspection engines</em> from left menu and select all of them then delete all using <strong>Delete Inspection Engine</strong> in the options bar. It opens a warning window to <strong>Confirm</strong> desired changes.
-</p>
+<p>Then when <em>STAP</em> will be again operating, edit a <strong>raptor</strong> <em>STAP</em> configuration in <strong>S-TAP Control</strong> view on <strong>coll1</strong> – press <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap2.webp" width="14"></a> icon to select <strong>Edit</strong> option. It opens <em>STAP</em> configuration pop-up. Select <em>Inspection engines</em> from left menu and select all of them then delete all using <strong>Delete Inspection Engine</strong> in the options bar. It opens a warning window to <strong>Confirm</strong> desired changes.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap19.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap19.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Now list of the <em>Inspection engines</em> should be empty. <strong>Save</strong> the changes.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap20.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap20.webp" width="99%"></a></p>
 </li>
 <li>
 <p>The <em>STAP</em> will be in <em>Not synchronized</em> state (yellow) because requested change is not yet consumed by STAP.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap52.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap52.webp" width="99%"></a></p>
 </li>
 <li>
-<p>If you refresh the status after a while the status should change to <em>Configuration error</em> state (pink) because lack of inspection engine definitions. To rediscover them open again menu using  icon and select <strong>Send</strong> commands option. It opens pop-up where one of the commands is <strong>Run database instance discovery</strong>. Select it and check the <strong>Replace Inspection Engines</strong> option. Then <strong>Apply</strong> changes.
-</p>
+<p>If you refresh the status after a while the status should change to <em>Configuration error</em> state (pink) because lack of inspection engine definitions. To rediscover them open again menu using <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap2.webp" width="14"></a> icon and select <strong>Send</strong> commands option. It opens pop-up where one of the commands is <strong>Run database instance discovery</strong>. Select it and check the <strong>Replace Inspection Engines</strong> option. Then <strong>Apply</strong> changes.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap21.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap21.webp" width="99%"></a></p>
 </li>
 <li>
 <p>You back to <strong>S-TAP Control</strong> view and after a while (use refresh icon) the <em>STAP status</em> should change to <em>Online</em> because all IE’s has been rediscovered.
-
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap22.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap22.webp" width="99%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap23.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap23.webp" width="99%"></a></p>
 </li>
 <li>
 <p>We can do this same from command line on monitored machine what provides us also better understanding what is or is not discovered correctly. To re-discover inspection instances execute on <strong>raptor</strong> machine.
 </p><div class="highlight"><pre><span></span><code>/opt/guardium/modules/STAP/current/guard_discovery<span class="w"> </span>/opt/guardium/modules/STAP/current/guard_tap.ini<span class="w"> </span>--print_output<span class="w"> </span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap24.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap24.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Previous command produces list of identified <em>DB instances</em> on <strong>raptor</strong> and can modify the <em>STAP</em> configuration stored in <code>guard_tap.ini</code> file. Review the content of this file to identify <em>DB_[X]</em> sections.
 Each of them describes <em>database instance</em> which is monitored by <em>STAP agent</em> on <strong>raptor</strong> machine.
 </p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/opt/guardium/modules/STAP/current/guard_tap.ini
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap25.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap25.webp" width="69%"></a><p></p>
 </li>
 </ol>
 <h2 id="more-stap-features">More STAP features</h2>
 <ol>
 <li>
 <p>Review the content of <em>S-TAP and External S-TAP Statistics</em> report in <em>Dashboard</em> on <strong>coll1</strong>, check columns <em>S-TAP Total Packets Dropped</em>, <em>S-TAP Total Bytes Dropped</em>, <em>Stap CPU percent</em>, <em>Buffer recycled</em> (if for some reasons the report will be empty try again change <em>STAP_STATISTICS</em> flag form <strong>-3</strong> to <strong>-5</strong> for example, continue the lab and check result in the meantime).
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap26.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap26.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Spend a while on statistics documentation to understand what mentioned in report above
@@ -1350,7 +1350,7 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 </li>
 <li>
 <p>From <strong>cm</strong> UI change <strong>raptor</strong> <em>STAP</em> settings and set <em>STAP-UTILS_START_MONITOR</em> value to <strong>Y</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap27.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap27.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Check <code>/var/tmp/monitor</code> directory on raptor and notice that <code>guard_monitor.log</code> has been created there.
@@ -1361,7 +1361,7 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 <p>Check location of <em>STAP</em> logs by searching for <code>tap_log_dir</code> parameter in <code>/opt/guardium/modules/STAP/current/guard_tap.ini</code> file on <strong>raptor</strong>.
 </p><div class="highlight"><pre><span></span><code>grep<span class="w"> </span>tap_log_dir<span class="w"> </span>/opt/guardium/modules/STAP/current/guard_tap.ini
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap28.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap28.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Notice that value is set to <em>NULL</em>, what means that <code>/tmp</code> directory is used to store main log file <code>guard_stap.stderr.txt</code>. Display log content.
@@ -1382,7 +1382,7 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 <li><em>tap_log_dir</em>: <code>**/root/glogs**</code></li>
 </ul>
 </div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap29.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap29.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Restart <em>STAP</em>.
@@ -1393,11 +1393,11 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 <p>Check content of <code>/root/glogs</code> directory and notice that logs are now created there.
 </p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>/root/glogs
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap30.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap30.webp" width="89%"></a><p></p>
 </li>
 <li>
 <p>Check also <em>S-TAP Events</em> report on <strong>coll1</strong> and notice that events are there (sort report using <em>Timestamp</em> column, click column name).
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap31.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap31.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Change debug logging level on <strong>raptor</strong> using <code>guard-config-update</code> back to value <strong>0</strong>.
@@ -1405,18 +1405,18 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 </code></pre></div><p></p>
 </li>
 <li>
-<p>We can create <em>STAP diagnostics</em> from <strong>coll1</strong> UI. In the <strong>S-TAP Control</strong> view press  icon and select <strong>Send</strong> commands option. Then – in the pop-up - select <strong>Run diagnostics</strong> command and set <em>Debugging Level</em> to <strong>4</strong> and <strong>Apply</strong> request.
- </p>
+<p>We can create <em>STAP diagnostics</em> from <strong>coll1</strong> UI. In the <strong>S-TAP Control</strong> view press <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap2.webp" width="14"></a> icon and select <strong>Send</strong> commands option. Then – in the pop-up - select <strong>Run diagnostics</strong> command and set <em>Debugging Level</em> to <strong>4</strong> and <strong>Apply</strong> request.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap32.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap32.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>After 2-3 minutes go to <strong>Support information gathering</strong> view and download requested <em>diag</em> file.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap33.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap33.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Try to uninstall <em>GIM client</em> on <strong>raptor</strong> using <code>uninstall.pl</code> and notice that <em>GIM client</em> is aware that <em>ATAP</em> is actived and will ignore request.
 </p><div class="highlight"><pre><span></span><code>/opt/guardium/modules/GIM/current/uninstall.pl
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap34.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap34.webp" width="99%"></a><p></p>
 </li>
 </ol>
 <h2 id="simple-inspection-engine-verification-optional">Simple Inspection Engine Verification (optional)</h2>
@@ -1428,11 +1428,11 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 </li>
 <li>
 <p>In the <strong>coll1</strong> UI, locate and open the <strong>S-TAP Status Monitor</strong> view. This view displays the list of <em>S-TAP agents</em> connected to the <strong>coll1</strong>. In our case, it shows the agent installed on the <strong>raptor</strong> machine. Click the row containing the agent information.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap35.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap35.webp" width="99%"></a></p>
 </li>
 <li>
 <p>A list of <em>Inspection Engines</em> should appear. Select the one that corresponds to the <em>pgsql</em> on port <strong>5432</strong> (<em>postgres</em>) database. This will activate the list of available actions. Choose <strong>Verify</strong>. After a moment, you should receive a message indicating that the verification completed successfully. If the result is different, try running the verification again. 
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap36.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap36.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Let’s now stop the <em>postgres</em> instance on <strong>raptor</strong>.
@@ -1441,15 +1441,15 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 </li>
 <li>
 <p>Try running the verification again.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap37.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap37.webp" width="99%"></a></p>
 </li>
 <li>
 <p>This time, the verification failed, and you can analyze the cause by using the <strong>Run Diagnostics</strong> option.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap38.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap38.webp" width="99%"></a></p>
 </li>
 <li>
 <p>After a moment, information about the possible causes of the failure will be displayed. As you can see, the <em>STAP</em> agent is running and the <strong>coll1</strong> can communicate with it, but the issue is related to the lack of connection to the database. This is expected, since we previously stopped the database instance.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap39.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap39.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Start <em>postgres</em> again on <strong>raptor</strong>.
@@ -1461,11 +1461,11 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 </li>
 <li>
 <p>Check <strong>Failed Login Attempts</strong> view to realize that simple verification process uses the <strong>RESULTFD</strong> fake account to generate exception error.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap40.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap40.webp" width="99%"></a></p>
 </li>
 <li>
 <p>To configure the advances verification select <em>pgsql</em> instance again in <strong>S-TAP Status Monitor</strong> and press <strong>Advanced Verify</strong>. In pop-up window use plus icon to add data source definition.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap41.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap41.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Configure access to <em>postgres</em> database.</p>
@@ -1482,16 +1482,16 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 <li><em>Database</em>: postgres</li>
 </ul>
 <p>Then use <strong>Save</strong>, <strong>Test connection</strong> and <strong>Close</strong> buttons to store new definition and do the verification.</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap42.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap42.webp" width="79%"></a></p>
 </li>
 <li>
 <p>You should return to the <strong>Advanced Verification</strong> window with the name of the newly created data source already populated. Click <strong>Verify</strong> and wait for confirmation that traffic is visible on the monitored system.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap43.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap43.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Finally, verify that this time the instance validation generated an <em>SQL error</em> by executing a query against a non-existent table. Check the <em>Full SQL (Training)</em> and <em>SQL Errors</em> reports on the dashboard.
-
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap44.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap44.webp" width="99%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap45.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap45.webp" width="99%"></a> </p>
 </li>
 </ol>
 <h2 id="atap-for-mongo-optional">ATAP for Mongo (optional)</h2>
@@ -1505,11 +1505,11 @@ Each of them describes <em>database instance</em> which is monitored by <em>STAP
 <p>Let’s manage some configuration tasks from cli instead of UI. In the <strong>coll1 cli</strong> session list the inspection engines on <strong>raptor</strong>.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>list_inspection_engines<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
 </code></pre></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap46.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap46.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>Notice that the current inpection engine definitions for <em>MySQL</em> uses the port range <strong>3306–33060</strong>, which unintentionally includes the port designated for the mongo instance (<strong>27017</strong>). To avoid this conflict, the <em>MySQL</em> inspection engine definitions should be adjusted to target only the specific ports required, instead of relying on a range. 
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap47.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap47.webp" width="59%"></a></p>
 </li>
 <li>
 <p>So, execute from <strong>coll1 cli</strong>:
@@ -1535,7 +1535,7 @@ grdapi<span class="w"> </span>create_stap_inspection_engine<span class="w"> </sp
 
 grdapi<span class="w"> </span>list_inspection_engines<span class="w"> </span><span class="nv">stapHost</span><span class="o">=</span>raptor.demo.guardium
 </code></pre></div></td></tr></tbody></table></div>
-<br>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap48.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap48.webp" width="59%"></a><br>
 We have recreated the <em>mysql’s</em> inspection engines to point one port per instance.<p></p>
 </li>
 <li>
@@ -1562,7 +1562,7 @@ We have recreated the <em>mysql’s</em> inspection engines to point one port pe
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap49.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap49.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>The <em>MongoDB</em> instance is configured to use encrypted connections. Connect using this method, execute a few queries, and then verify that the activity is not captured for this session.
@@ -1634,7 +1634,7 @@ systemctl<span class="w"> </span>start<span class="w"> </span>mongod
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap50.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap50.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>To avoid the deleted <em>inspection engine</em> recreation by <em>STAP</em> let us disable this functionality on <strong>raptor</strong>. From <strong>cm</strong> UI in <strong>Setup by client</strong> select installed agent (<strong>12.2.2.0_r123489_3</strong>) and set these parameters:</p>
@@ -1645,7 +1645,7 @@ systemctl<span class="w"> </span>start<span class="w"> </span>mongod
 <li><em>STAP_DISCOVERY_DBS</em>: <strong>oracle:db2:informix:postgres:sybase:teradata:netezza:memsql:mariadb:verticadb:mongodb</strong></li>
 </ul>
 </div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/atap51.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/atap51.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="appendix">Appendix</h2>

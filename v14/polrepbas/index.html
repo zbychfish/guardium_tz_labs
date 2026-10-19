@@ -1243,35 +1243,35 @@ systemctl<span class="w"> </span>disable<span class="w"> </span>oracle-etap
 </li>
 <li>
 <p>In this lab do all UI actions on <strong>coll1</strong> unless another access will be requested. Clone <em>Full SQL (Training)</em> report from <strong>Training</strong> dashboard. Name clone one as <em>Full SQL (Policies)</em> and proceed to the <em>Selected Columns</em> section by clicking <strong>Next</strong>.
-  </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas1.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas1.webp" width="99%"></a>  </p>
 </li>
 <li>
 <p>The area is divided into two main parts. The left one (<em>Entities and Attributes</em>) allows you to select an attribute that should appear in the right part (<em>Selected Columns</em>). Then drop-down list <span class="mb">1</span> allows you to narrow down the list of attributes contained in a given <em>Entity</em>. Select <em>Client/Server</em> and then search <span class="mb">2</span> for an attribute with a name containing the string "<em>Type</em>". You should see one attribute named <strong>Server Type</strong>. Select it <span class="mb">3</span> and move it to the list on the right <span class="mb">4</span>, and then proceed to the <em>Conditions</em> section.
-  </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas2.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas2.webp" width="99%"></a>  </p>
 </li>
 <li>
 <p>This section contains filters that are usually parameters. Add new condition <span class="mb">1</span> based on new parameter, use the <em>Search</em> icon <span class="mb">2</span> to select the column we are interested in, by which the results can be filtered. Expand the <strong>Client/Server</strong> Entity <span class="mb">3</span>, then find <span class="mb">4</span> the <strong>Server Type</strong> parameter <span class="mb">5</span> and confirm <span class="mb">6</span>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas3.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas3.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Expand the filtering type list <span class="mb">1</span> and select the <em>LIKE</em> option <span class="mb">2</span>, choose from the list <span class="mb">3</span> the filter type as <em>Parameter</em> <span class="mb">4</span> and enter its name <strong>ServerType</strong> <span class="mb">5</span> (the name can be any unique string of characters for the report and should not contain spaces). Next, save the changes with the Save button <span class="mb">6</span>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas4.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas4.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Wait until the report update confirmation appears and <strong>Close</strong> report edition window.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas5.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas5.webp" width="49%"></a></p>
 </li>
 <li>
 <p>Then <strong>Create New Dashboard</strong> and name it as <em>Policies and Reports</em> (edit random generated name) and <strong>Save</strong>. Use <strong>Add Report</strong> button.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas6.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas6.webp" width="99%"></a></p>
 </li>
 <li>
 <p>And add <em>Full SQL (Policies)</em> report into dashboard.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas7.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas7.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Notice that column <em>Server Type</em> appears at the last in the report. Then use the <strong>Parameters</strong> icon and confirm that the <em>ServerType</em> parameter appears with a default value of <code>%</code> (in Guardium, similar to <em>SQL</em>, <code>%</code> means any string of characters). <strong>Close</strong> pop-up window.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas8.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas8.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="check-report-changes">Check report changes</h2>
@@ -1286,11 +1286,11 @@ systemctl<span class="w"> </span>disable<span class="w"> </span>oracle-etap
 <p>Execute the dummy sql
 </p><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'it is dummy SQL'</span><span class="p">;</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas9.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas9.webp" width="69%"></a><p></p>
 </li>
 <li>
-<p>Return to the browser and refresh the report , then confirm that information about the <em>SQL</em> just executed on the <em>PostgresSQL</em> database has appeared. Since many databases are running on the <strong>raptor</strong> and generating traffic, to make browsing easier, we will filter the report to show only traffic generated on the PostgresSQL database. To do this, use the <strong>Parameters</strong> icon again and change the <strong>ServerType</strong> value from <code>%</code> to <code>POSTGRESQL</code>. Confirm with the <strong>OK</strong> button and refresh the report again . Now only one row, last command should appear in the report.
-</p>
+<p>Return to the browser and refresh the report <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas10.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas10.webp" width="17"></a>, then confirm that information about the <em>SQL</em> just executed on the <em>PostgresSQL</em> database has appeared. Since many databases are running on the <strong>raptor</strong> and generating traffic, to make browsing easier, we will filter the report to show only traffic generated on the PostgresSQL database. To do this, use the <strong>Parameters</strong> icon again and change the <strong>ServerType</strong> value from <code>%</code> to <code>POSTGRESQL</code>. Confirm with the <strong>OK</strong> button and refresh the report again <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas10.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas10.webp" width="17"></a>. Now only one row, last command should appear in the report.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas11.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas11.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="create-table-with-sensitive-data">Create table with sensitive data</h2>
@@ -1299,14 +1299,14 @@ systemctl<span class="w"> </span>disable<span class="w"> </span>oracle-etap
 <p>Return to the session on the <strong>raptor</strong> where you are logged in to the database as the <strong>postgres</strong> user and run the command:
 </p><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_ssl</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pid</span><span class="o">=</span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'SELECT%'</span><span class="p">);</span>
 </code></pre></div>
-
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas12.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas12.webp" width="99%"></a>
 The <em>ssl</em> field indicates that the session is not using an encrypted connection.<p></p>
 </li>
 <li>
 <p>Display the list of accounts in the database and notice that accounts for <strong>jerry</strong> and <strong>tom</strong> exist, which have superuser privileges.
 </p><div class="highlight"><pre><span></span><code><span class="err">\</span><span class="n">du</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas13.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas13.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Open second <em>ssh</em> session to <strong>raptor</strong> and run dbtraffic generator.
@@ -1329,7 +1329,7 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 <p>Back to <em>PostgreSQL</em> session and display list of tables in <em>game</em> schema.
 </p><div class="highlight"><pre><span></span><code><span class="err">\</span><span class="n">dt</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="o">*</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas14.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas14.webp" width="49%"></a><p></p>
 </li>
 <li>
 <p>And then display table content and close database session.
@@ -1343,7 +1343,7 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas15.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas15.webp" width="99%"></a><p></p>
 </li>
 </ol>
 <h2 id="encrypted-traffic-visibility">Encrypted traffic visibility</h2>
@@ -1352,7 +1352,7 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 <p>The <em>PostgreSQL</em> instance has been configured to use encrypted connections between clients and the database. The Guardium agent can monitor encrypted sessions. For this purpose, the ATAP service has been configured on the <strong>raptor</strong>. The following command will confirm that the agent has been configured correctly, and the <em>ATAP</em> instance is active.
 </p><div class="highlight"><pre><span></span><code>/opt/guardium/modules/ATAP/current/files/bin/guardctl<span class="w"> </span>list-active
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas16.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas16.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Let's confirm this by logging into the database as the user <strong>jerry</strong> in <em>SSL</em> mode.
@@ -1363,7 +1363,7 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 <p>Execute <em>SQL</em> below and confirm that session is encrypted.
 </p><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">pid</span><span class="p">,</span><span class="n">a</span><span class="p">.</span><span class="n">usename</span><span class="p">,</span><span class="n">a</span><span class="p">.</span><span class="n">client_addr</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="n">ssl</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="k">version</span><span class="p">,</span><span class="n">s</span><span class="p">.</span><span class="n">cipher</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">pg_stat_ssl</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">USING</span><span class="p">(</span><span class="n">pid</span><span class="p">);</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas17.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas17.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Confirm that users <strong>jerry</strong> and <strong>tom</strong> can get access to <code>game.customers</code> table.
@@ -1388,22 +1388,22 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 </li>
 <li>
 <p>Back to <strong>coll1</strong> UI and refresh <em>Full SQL (Policies)</em> report, you should see activities generated by dbtraffic via encrypted connections
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas18.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas18.webp" width="99%"></a></p>
 </li>
 <li>
 <p>You can filter traffic to check activity executed by <strong>tom</strong> user using report parameter <em>DBUserName</em> ((insert <code>%TOM%</code>)).
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas19.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas19.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="application-traffic-analysis">Application traffic analysis</h2>
 <ol>
 <li>
 <p>Create a new report to analyze <em>PostgreSQL</em> database connections. To do this, open <strong>Query-Report Builder</strong>, select the <em>Access</em> domain, and click the plus <span class="mb">+</span> icon to create a new query.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas20.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas20.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Name it <em>Application access profiles</em> set <strong>Main entitiy</strong> to <em>CLient/Server</em> and proceed to the <strong>Next</strong> step.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas21.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas21.webp" width="89%"></a></p>
 </li>
 <li>
 <p>Select the following four fields and add them to the report.</p>
@@ -1417,19 +1417,19 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 </ul>
 </div>
 <p>Enable the <em>Distinct</em> option and proceed to the next step by clicking <strong>Next</strong>.</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas22.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas22.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Add an <em>ascending</em> sort condition on the <em>DB User Name</em> field and proceed to the <em>Conditions</em> step.</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas23.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas23.webp" width="79%"></a></p>
 </li>
 <li>
 <p>Add a filter parameter for the <em>Server Type</em> field, similar to the one created in the <em>Full SQL (Policies)</em> report, and <strong>Save</strong> the report.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas24.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas24.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Add report to <em>Policies and Reports</em> dashboard.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas25.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas25.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Edit the parameters of the new report and set:</p>
@@ -1440,31 +1440,31 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 </ul>
 </div>
 <p>In the <em>Client/Server</em> domain, which serves as the <em>main entity</em> for this report, the time range is determined by the <strong>Timestamp</strong> field within that entity and corresponds to the first occurrence of the profile on the <strong>coll1</strong>. We could also build this report using the <em>Session</em> domain; however, doing so would significantly increase the query cost, as all sessions within the selected reporting time range would need to be filtered.</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas26.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas26.webp" width="99%"></a></p>
 </li>
 <li>
 <p>A quick analysis of the report identifies two accounts, <strong>APPUSER1</strong> and <strong>APPUSER2</strong>, that are likely associated with application activity. Both accounts connect from the same IP address and identify themselves as <strong>POSTGRESQL CLIENT PROGRAM</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas27.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas27.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Further refinement of application account identification can be achieved by creating a report that shows the distribution of connections across profiles. Create a new report in the <em>Access</em> domain using <strong>Query-Report Builder</strong>. This time, use <em>Session</em> as the <strong>Main Entity</strong>. Name the report <em>Session distribution</em> and add the same four fields used in the previous report. However, instead of selecting <em>Distinct</em>, select <em>Count</em>, which will aggregate the number of recurring rows based on the selected fields. As demonstrated in the previous report, these fields uniquely identify a database connection profile. As before, sort the results in ascending order by <em>DB User Name</em> and add a filter parameter for <em>Server Type</em>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas28.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas28.webp" width="99%"></a></p>
 </li>
 <li>
 <p><strong>Save</strong> the report and add it to the <em>Policies and Reports</em> dashboard. Then configure the filter to display only <em>POSTGRESQL</em> activity.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas29.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas29.webp" width="99%"></a></p>
 </li>
 <li>
 <p>This time, the <strong>APPUSER1</strong> and <strong>APPUSER2</strong> accounts are responsible for the majority of database sessions. In real-world environments, the number of sessions generated by application accounts can be several orders of magnitude higher than those associated with other types of connections.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas30.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas30.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Create one more report named <em>SQL Distribution</em> that, similarly to the previous session report, shows how many SQL statements are executed per connection profile. The report configuration should be identical to the previous one, except that the <strong>Main Entity</strong> should be set to <em>SQL</em>, allowing you to count the total number of executed SQL statements. Of course, <strong>Save</strong> the report, add it to the <em>Policies and Reports</em> dashboard, and configure the filter to display only <em>POSTGRESQL</em> activity.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas31.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas31.webp" width="99%"></a></p>
 </li>
 <li>
 <p>As expected, the vast majority of the activity is associated with two accounts, which can be confidently identified as application accounts.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas32.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas32.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="firewall-mode-on">Firewall mode on</h2>
@@ -1478,11 +1478,11 @@ For <em>STAP</em> on <strong>raptor</strong> select <strong>STAP 12.2.2.0_r12348
 <li>STAP_FIREWALL_DEFAULT_STATE: <strong>1</strong></li>
 </ul>
 </div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas33.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas33.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Refresh the status view periodically until all elements have an <em>INSTALLED</em> status.
-
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas34.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas34.webp" width="99%"></a>
 Close all pop-up’s.</p>
 </li>
 </ol>
@@ -1490,18 +1490,18 @@ Close all pop-up’s.</p>
 <ol>
 <li>
 <p>Let's try to configure the system to protect application data. Open <strong>Policy Builder for Data</strong> and click the plus <span class="mb">+</span> button to create a new policy.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas35.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas35.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In this lab, you will work with <em>standard Data Security Policies</em>. Although <em>Session-Level Policies</em> provide new mechanisms for identifying and handling captured traffic, they are a separate policy type and will be covered in a future lab.</p>
 </li>
 <li>
 <p>Name the policy <em>Application data access control</em> and select the <em>Rules</em> section.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas36.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas36.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In this section, you can manage the rules that are evaluated from bottom to top. To add the first rule, click the plus <span class="mb">+</span> icon.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas37.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas37.webp" width="99%"></a></p>
 </li>
 <li>
 <p><em>Rule</em> creation is divided into three components. In the first section, define the <em>rule type</em>. The default type is <strong>Access</strong>, meaning the rule evaluates the <em>SQL statement</em> submitted for execution. The system can also analyze <em>SQL errors</em> and, to a limited extent, the result set returned by the query.</p>
@@ -1509,20 +1509,20 @@ Close all pop-up’s.</p>
 <li>
 <p>Name the first rule "<em>Log and switch to open mode the application connections</em>" and select <em>Rule criteria</em> bar.
 In the previous step, you enabled the firewall in closed mode (<em>FIREWALL_DEFAULT_STATE=1</em>). This mode introduces additional <em>SQL</em> execution latency because the system must obtain a verdict on whether a given statement should be allowed to execute. In general, <em>DBF</em> is not intended for application traffic. The recommended approach is to move application traffic to open mode as quickly as possible or stop monitoring it.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas38.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas38.webp" width="99%"></a></p>
 </li>
 <li>
 <p>For easier understanding of rule behavior, the criteria for Access rule type are divided into three categories: <em>Session</em>, <em>SQL</em>, and <em>Other</em>. The <em>Session</em> category is used to identify sessions/connections and is evaluated only when a new connection is established. The <em>SQL</em> category applies to executed <em>SQL</em> statements, while <em>Other</em> covers additional conditions that can be monitored by the rule, such as the number of <em>SQL</em> statements executed within a specific time period.
 Add the first condition to limit the analysis to <em>PostgreSQL</em> sessions only by selecting <em>Database Type</em> = <strong>POSTGRESQL</strong>. And press <span class="mb">+</span> to add one more condition for session.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas39.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas39.webp" width="99%"></a></p>
 </li>
 <li>
 <p>A very convenient mechanism for identifying sessions is based on grouping a set of session attributes, known in <strong>Guardium</strong> as <em>tuples</em>. In the newer policy framework (<em>Session-Level Policies</em>), this mechanism is significantly more advanced, allowing custom attribute sets to be defined for purposes beyond session identification. However, in this Standard Policies, you can only use the predefined <em>5-tuple</em> and <em>7-tuple</em> options. Select the <em>5-tuple</em> and leave the reference as a group, which you will create using the plus <span class="mb">+</span> button.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas40.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas40.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Name the group <em>Postgres application profiles</em>, switch to the <em>Members</em> tab, and use the plus <span class="mb">+</span> button to add a value for the <em>5-tuple</em> profile.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas41.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas41.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Enter values and press <strong>OK</strong>.</p>
@@ -1536,75 +1536,75 @@ Add the first condition to limit the analysis to <em>PostgreSQL</em> sessions on
 <li>Svc Name: <strong>%</strong></li>
 </ul>
 </div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas42.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas42.webp" width="99%"></a></p>
 </li>
 <li>
 <p>The saved value will appear on the list. <strong>Save</strong> group definition.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas43.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas43.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>As a result, you will return to the rule creation screen, where the newly created group is referenced by the tuple. Now add the actions for the rule by selecting the <em>Rule Action</em> section.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas44.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas44.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Use the plus <span class="mb">+</span> button to add an <em>action</em>. From the <em>action</em> list, expand the <em>S-GATE</em> action group and select <strong>S-GATE DETACH</strong>, which ensures that all sessions associated with this rule (application traffic) is monitored without latency.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas45.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas45.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Accept the newly defined policy rule by clicking <strong>OK</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas46.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas46.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Save the policy with the newly created rule - press <strong>OK</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas47.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas47.webp" width="99%"></a></p>
 </li>
 <li>
 <p>The policy created so far focuses exclusively on application traffic. Your next objective is to extend it so that no users other than the application accounts can access the tables used by the application. To do this, edit the policy. First enable <em>Continue to next</em> rule switch. It pushes system to evaluate events by other rules even current one is matched. Use plus <span class="mb">+</span> icon to add new rule.
- 
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas48.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas48.webp" width="99%"></a> 
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas49.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas49.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Name the rule <em>Block access for other users</em> and ensure that no users other than the application accounts can access data stored in the application tables.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas50.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas50.webp" width="79%"></a></p>
 </li>
 <li>
 <p>First, add two criteria to ensure that only <em>PostgreSQL</em> traffic is evaluated and that the traffic does not belong to application users. To achieve this, use the <em>Not In Group</em> operator and reference the previously created <em>5-tuple</em> group, which identifies the application accounts.
 To limit the scope of the rule to application tables, select the <strong>Object</strong> parameter in the <em>SQL Criteria</em> section and create a new group that will contain the list of protected tables.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas51.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas51.webp" width="99%"></a></p>
 </li>
 <li>
 <p>The application uses five tables. In the group named <em>Application tables on postgres</em>, switch to the <em>Members</em> tab and add the table names using the <em>schema.table</em> notation. After entering all protected object names, <strong>Save</strong> the group.
-
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas52.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas52.webp" width="59%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas53.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas53.webp" width="99%"></a></p>
 </li>
 <li>
 <p>After returning to the rule definition, the newly created group should be referenced by the <em>Object</em> criterion. <strong>Next</strong>, proceed to defining the rule actions.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas54.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas54.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Add two actions to the rule. From the <em>S-GATE</em> action group, select <strong>S-GATE TERMINATE</strong> to terminate the session, and from the <em>LOG</em> action group, select <strong>LOG FULL DETAILS</strong> to ensure that any unauthorized access attempt is fully audited. Save the rule using <strong>OK</strong> button.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas55.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas55.webp" width="99%"></a></p>
 </li>
 <li>
 <p>The two rules you created focus on very specific traffic patterns. If neither rule is matched, all remaining traffic will not be logged with full details. Therefore, add a final rule stating that all remaining traffic should also be logged.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas56.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas56.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Name the rule <em>Log the remaining traffic</em>. Do not define any criteria, which means the rule will always be matched if traffic reaches it during policy evaluation. In the <em>Actions</em> section, add <strong>LOG FULL DETAILS</strong>.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas57.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas57.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>The policy now contains three rules and is ready for testing. Save it by clicking <strong>OK</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas58.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas58.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In the <strong>Policies</strong> view, select your newly created policy, expand the menu, and choose <strong>Install</strong> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> <strong>Install</strong>. This will open the <strong>Install Policy</strong> window. Select <em>Install and Override</em>, then confirm the action. You should see a confirmation message indicating that the policy was successfully installed. After this operation, the new policy should be marked as installed on the <strong>coll1</strong>.
-
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas59.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas59.webp" width="99%"></a>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas60.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas60.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In the session where dbtraffic is running, verify that traffic is still being generated without interruption.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas61.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas61.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In the <em>SSH</em> session on the <strong>raptor</strong>, re-login to the <strong>postgres</strong> account and notice that you're able to display users, but access to the customers table is now blocked (if for some reasons you will get slow response of <code>psql</code> client and blocking will not work, ask instructor for help).
@@ -1630,7 +1630,7 @@ To limit the scope of the rule to application tables, select the <strong>Object<
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas62.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas62.webp" width="79%"></a><p></p>
 </li>
 <li>
 <p>Do the same for users <strong>tom</strong> and <strong>jerry</strong> and confirm they also cannot get access to application schema.
@@ -1664,15 +1664,15 @@ To limit the scope of the rule to application tables, select the <strong>Object<
 
 <span class="err">\</span><span class="n">q</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas63.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas63.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Find the <strong>Policy Violations Details</strong> view on <strong>coll1</strong> and confirm that the blocked access attempts to the customers table by users postgres, <strong>tom</strong> and <strong>jerry</strong> are listed in the violations list.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas64.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas64.webp" width="99%"></a></p>
 </li>
 <li>
 <p>If you review the <em>Full SQL (Policies)</em> report, you'll notice that the blocked <em>SELECT</em> commands are displayed on the list. Before continuing, set the report filter to display only administrator activity by filtering on user names that contain <em>SUPER USER</em>, which will exclude the application traffic from the results.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas65.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas65.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Notice, that the report does not indicate which queries were successfully executed and which were not. <strong>Guardium</strong> can collect this information, but first modify the report and add three additional fields:</p>
@@ -1683,16 +1683,16 @@ To limit the scope of the rule to application tables, select the <strong>Object<
 <li>Full SQL <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> <strong>Access Rule Description</strong></li>
 </ul>
 </div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas66.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas66.webp" width="99%"></a></p>
 </li>
 <li>
 <p><strong>Save</strong> and <strong>Close</strong> query editor and <strong>Refresh</strong> report. Values of <strong>-1</strong> and <strong>1</strong> in these fields indicate that no records were returned and the queries were successfully executed. Fortunately, we can determine that the event was audited by the blocking rule. Based on this, we can indirectly conclude that the <strong>SQL</strong> statement did not complete successfully. However, an additional mechanism for collecting more detailed information can be enabled. Keep in mind that activating these options increases collector resource consumption. 
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas67.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas67.webp" width="99%"></a></p>
 </li>
 <li>
 <p>To enable these functionalities, you must open the <strong>Inspection Engine Configuration</strong> view <span class="mb">1</span>, <span class="mb">2</span>. Then, check the boxes for <em>Log Records Affected</em>, <em>Inspect Returned Data</em> and <em>Record Empty Sessions</em> (<span class="mb">3</span>, <span class="mb">4</span>, <span class="mb">5</span>) and press the <strong>Apply</strong> <span class="mb">6</span> button, followed by the <strong>Restart Inspection Engines</strong> button <span class="mb">7</span>, confirming this operation when prompted <span class="mb">8</span>.
 The <strong>raptor</strong> machine has limited resource and it is probable that you will notice issue with SQL execution after change. Ask instructor to solve the issue, *STAP * restart is the best approach.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas68.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas68.webp" width="99%"></a></p>
 </li>
 <li>
 <p>The changes above can also affect the agent, and existing sessions may stop working. Therefore, this inspection engine configuration change should be performed during a maintenance window or before the agent is installed. Switch to the session where dbtraffic is running, stop the program (<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>), and then start it again.
@@ -1742,18 +1742,18 @@ The <strong>raptor</strong> machine has limited resource and it is probable that
 </li>
 <li>
 <p>Analyze the returned metadata. For the blocked query against the customers table, you can see that no records were returned and that the blocking rule was triggered. However, the query is still marked as successful. This occurs because the blocking rule terminates the session, and the agent never receives the final execution status of the statement. As a result, it assumes the query completed successfully. This is a known limitation that must be accepted. For the query that returned the list of users, you can see that eight records were returned. When the invalid query against the non-existent customers1 table was executed, the metadata additionally shows that the <em>SQL</em> statement did not execute successfully.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas69.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas69.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="access-control-on-command-level">Access control on command level</h2>
 <ol>
 <li>
 <p>Of course, administrators require access to the application schema. However, due to the sensitivity of the personal data stored there, assume that only the <strong>tom</strong> and <strong>jerry</strong> administrator accounts should have access, and that their access should be limited to read-only operations. To enforce this, create another rule by editing the active policy directly from the <strong>Installed Policies</strong> view.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas70.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas70.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Select a <em>Rules</em> pane and add a new rule.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas71.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas71.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Name the rule <em>Admin access to application data</em>. Add two <em>Session</em> criteria: <em>Database Type</em> and <em>Database User</em>, the second referencing a new group named <strong>Postgres Administrators</strong>, whose members are the <strong>tom</strong> and <strong>jerry</strong> accounts. To restrict access to <em>SELECT</em> statements only, add an <em>SQL</em> criterion based on <strong>Command</strong> and reference the existing <em>Select Command</em> group. Limit also rule to <strong>Objects</strong> from <em>Application tables on postgres</em>. </p>
@@ -1772,17 +1772,17 @@ The <strong>raptor</strong> machine has limited resource and it is probable that
 <li>TOM (SUPER USER)</li>
 </ul>
 </div>
-<p> </p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas72.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas72.webp" width="99%"></a> </p>
 <p>Add only the <strong>LOG FULL DETAILS</strong> action to the rule. This means that any activity matching this rule will be fully logged and allowed to proceed. Press <strong>OK</strong> button to save rule.</p>
 </li>
 <li>
 <p>The newly created rule will appear at the bottom of the list. However, to make the policy logic work as intended, it must be moved to the second position. This ensures that administrators’ access to application data is evaluated before the third rule, which blocks all other operations.
 To reorder the rule, click the two vertical arrows icon in the policy toolbar. This will display the Order column. Then click the up-arrow icon in the row corresponding to the new rule to move it to the desired position. Use <strong>OK</strong> button to save changes.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas73.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas73.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>After saving the policy, you will return to the <strong>Policy Installation</strong> window. To refresh (reinstall) the policy, click <strong>Run Once Now</strong>. You should notice that the number of rules in the installed policy has changed from 3 to 4, and the policy installation timestamp has been updated to the current time.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas74.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas74.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Verify the rule behavior by logging in as one of the administrators and attempting to retrieve data from the game.customers table. Then try to delete several records and observe the outcome.
@@ -1796,7 +1796,7 @@ To reorder the rule, click the two vertical arrows icon in the policy toolbar. T
 
 <span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">street</span><span class="o">=</span><span class="s1">'Gliwice'</span><span class="p">;</span>
 </code></pre></div></td></tr></tbody></table></div>
- 
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas75.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas75.webp" width="99%"></a> 
 As expected, the administrator was able to view customer data, but the attempt to delete records was blocked.<p></p>
 </li>
 </ol>
@@ -1824,7 +1824,7 @@ As expected, the administrator was able to view customer data, but the attempt t
 <p>Let's now try to retrieve data from the <strong>game.customer</strong> table in the <strong>postgres</strong> database.
 </p><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w">  </span><span class="n">postgres</span><span class="p">.</span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 </code></pre></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas76.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas76.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>As it turns out, this time the agent did not block the query. Within a database session, there's a concept of the current session context, which can be defined to a default value after a user logs in. We can display this context using the command:
@@ -1843,14 +1843,14 @@ As expected, the administrator was able to view customer data, but the attempt t
 
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">credit_cards</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 </code></pre></div></td></tr></tbody></table></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas77.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas77.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>And once again, data from the customers table was retrieved. The reason for this is that our rule indicates only references to the <strong>game.customers</strong> object should be blocked, but in a real environment, our table can also be referenced as <strong>postgres.game.customer</strong> and <strong>customers</strong>. These three forms can be replaced with two references to the objects: <strong>customers</strong> and <strong>%.customers</strong>, where the second element uses a wildcard pattern preceding the table name. Let's try to modify our policy.</p>
 </li>
 <li>
 <p>Information about the application tables is stored in the <em>Application tables on postgres</em> group. You can edit it through the rule definition, but you can also modify it directly from <strong>Group Builder</strong>. Open the <strong>Group Builder</strong> view, select the desired group, and click the pencil icon to edit it.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas78.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas78.webp" width="99%"></a></p>
 </li>
 <li>
 <p>To cover all possible object reference formats, enter each of the five tables using both <strong>&lt;table&gt;</strong> and <strong>&lt;%.table&gt;</strong> notation. The second format acts as a pattern that matches references made either through the schema name or though the database and schema name.</p>
@@ -1869,11 +1869,11 @@ As expected, the administrator was able to view customer data, but the attempt t
 <li>%.transaction</li>
 </ul>
 </div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas79.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas79.webp" width="99%"></a></p>
 </li>
 <li>
 <p>After saving the changes to the group, reopen the <strong>Policy Installation</strong> view and click <strong>Run Once Now</strong> to refresh the policy on the collector.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas80.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas80.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Try again access to object using three different object references as a <strong>postgres</strong> user. Confirm that all table references are correctly blocked.
@@ -1907,7 +1907,7 @@ As expected, the administrator was able to view customer data, but the attempt t
 
 <span class="n">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas81.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas81.webp" width="79%"></a><p></p>
 </li>
 </ol>
 <h2 id="blocking-on-column-level">Blocking on column level</h2>
@@ -1924,7 +1924,7 @@ As expected, the administrator was able to view customer data, but the attempt t
 
 <span class="err">\</span><span class="n">q</span>
 </code></pre></div></td></tr></tbody></table></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas82.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas82.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>Edit the policy and add a new rule named <em>Access to PCI data on postgres</em>. Add two <em>Session</em> criteria. The first should limit the rule to POSTGRESQL traffic. The second should restrict access to database users not defined in a new group named <em>Administrators with access to PCI data</em>, which initially contains a single member: <strong>jerry</strong>. Next, add two SQL criteria to limit the activity to <em>SELECT</em> statements and to specific table columns. Use <em>Object / Field</em> Group and create a new group named <em>Postgres PCI fields</em>. This group should contain two-part values consisting of the table name and column name. Add references to the card_number column using all supported table notations (&lt;table&gt; and &lt;%.table&gt;) to ensure that every possible reference format to the protected column is covered.</p>
@@ -1949,12 +1949,12 @@ As expected, the administrator was able to view customer data, but the attempt t
 <li>%.credit_cards+card_number</li>
 </ul>
 </div>
-<p> </p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas83.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas83.webp" width="99%"></a> </p>
 <p>The conditions in this rule identify an unauthorized attempt to access PCI data, so add the following two actions: <strong>S-GATE TERMINATE</strong> and <strong>LOG FULL DETAILS</strong>.</p>
 </li>
 <li>
 <p>After saving the rule, move it to position 2 and <strong>Save</strong> the policy.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas84.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas84.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Reinstall policy and let’s test it as <strong>tom</strong> user.  Access to the <strong>credit_cards</strong> table is terminated whenever a <em>SELECT</em> statement directly or indirectly references the <strong>card_number</strong> column. If a query does not reference this data, it is allowed to be executed successfully (if action is <em>SELECT</em>).
@@ -1976,7 +1976,7 @@ As expected, the administrator was able to view customer data, but the attempt t
 
 <span class="err">\</span><span class="n">q</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas85.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas85.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>And now, do the same thing as <strong>jerry</strong> and confirm his access to <em>PCI</em> data.
@@ -1998,7 +1998,7 @@ As expected, the administrator was able to view customer data, but the attempt t
 
 <span class="err">\</span><span class="n">q</span>
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas101.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas101.webp" width="99%"></a><p></p>
 </li>
 </ol>
 <h2 id="hacker-is-smarter">Hacker is smarter</h2>
@@ -2026,7 +2026,7 @@ As expected, the administrator was able to view customer data, but the attempt t
 </li>
 <li>
 <p>The first command is a simple reconnaissance aimed at finding interesting tables. The name <strong>credit_cards</strong> should be interesting to the intruder, and he tries to retrieve one row from this table. He specifically limits the data scope so as not to trigger policies controlling massive data extraction. He realizes that some mechanism controls access to this table and decide to check table structure.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas86.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas86.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Knowledge of the table structure opens the possibility for us to reference data indirectly through the mechanism of parameterized functions. A hypothetical bad guy can create a procedure like this one:
@@ -2040,13 +2040,13 @@ and
 <span class="k">END</span><span class="p">;</span>
 <span class="err">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas87.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas87.webp" width="89%"></a><p></p>
 </li>
 <li>
 <p>Because the account used for the attack has high privileges, the function was created and can now be easily invoked. Thanks to the knowledge of the data stream returned from the table, the data can be retrieved.
 </p><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">get_table</span><span class="p">(</span><span class="s1">'credit_cards'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">cid</span><span class="w"> </span><span class="n">uuid</span><span class="p">,</span><span class="w"> </span><span class="n">userid</span><span class="w"> </span><span class="n">uuid</span><span class="p">,</span><span class="w"> </span><span class="n">cc</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="n">cv</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas88.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas88.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>After data extraction, an experienced hacker will try to cover their tracks by deleting the function.
@@ -2078,15 +2078,15 @@ and
 <li>DROP FUNCTION</li>
 </ul>
 </div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas89.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas89.webp" width="99%"></a></p>
 </li>
 <li>
 <p>After saving the rule, move it above the <em>Block access for other users</em> rule and <strong>Save</strong> the policy.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas90.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas90.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Don't forget to reinstall the policy.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas91.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas91.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Let's test the new policy rule functionality.
@@ -2122,11 +2122,11 @@ and
 </li>
 <li>
 <p>Let's check the <em>Policy Violations Details</em> report. We should be surprised that two records appeared in the report instead of the one we expected, which was related to the <strong>ALERT ONCE PER SESSION</strong> action. In <strong>Guardium</strong>, the violations presented in this report are internal events and are always stored unless we explicitly discard them using <strong>ALERT ONLY</strong> action.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas92.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas92.webp" width="99%"></a></p>
 </li>
 <li>
 <p>To see what events were sent via syslog, we will build a new report. Open <strong>Query-Report Builder</strong>, select the <strong>Alert</strong> report domain, and use the plus icon <span class="mb">+</span>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas93.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas93.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Enter the report name <em>Sent alerts (Training)</em>, and set the <strong>main entity</strong> to the value <em>Message Sent</em>, and then proceed to the <em>Selected Columns</em> section. Add the <em>Message Date</em>, <em>Message Type</em>, and <em>Message STATUS</em> fields from the <em>Message Sent</em> entity, and the <em>Message Text</em> field from the entity with the same name to the report. Switch to <em>Sort Order</em> section. Set the sorting in descending order for the <em>Message Date</em> column and Save the report definition.</p>
@@ -2139,11 +2139,11 @@ and
 <li>Messages Text <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg></span> Message Text</li>
 </ul>
 </div>
-<p> </p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas94.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas94.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Add the just created report to our <em>Policies and Reports</em> dashboard. Review our new report, and you should see only one sent event related to our previous session, which contains a reference to the first monitored command: <strong>CREATE FUNCTION</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas95.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas95.webp" width="99%"></a></p>
 </li>
 <li>
 <p>We will now feed the SIEM system with information about suspicious commands executed by privileged users.</p>
@@ -2163,22 +2163,22 @@ and
 
 <span class="err">\</span><span class="n">d</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">credit_cards</span>
 </code></pre></div></td></tr></tbody></table></div>
-  <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas96.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas96.webp" width="99%"></a>  <p></p>
 </li>
 <li>
 <p>It should make us wonder why the command <code>\d game.credit_cards</code> was not blocked, since it refers to a table we are protecting. The answer is simple - \d is not a command, but only a postgres client alias which translates it into a proper <em>SQL</em> command and presents the desired result, which is the table structure.
 So what is being executed, and why didn't the system block this activity?</p>
 <p>Analyze the list of <em>SQL</em> in the current session of the user postgres in the <em>Full SQL (Policies)</em> report. You will notice many complex queries, and one of them will look as follows:</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas97.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas97.webp" width="99%"></a></p>
 <p>Execute it yourself.</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">oid</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="n">pg_class</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="n">pg_namespace</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">oid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relnamespace</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="w"> </span><span class="k">OPERATOR</span><span class="p">(</span><span class="n">pg_catalog</span><span class="p">.</span><span class="o">~</span><span class="p">)</span><span class="w"> </span><span class="s1">'^(credit_cards)$'</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="k">default</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="w"> </span><span class="k">OPERATOR</span><span class="p">(</span><span class="n">pg_catalog</span><span class="p">.</span><span class="o">~</span><span class="p">)</span><span class="w"> </span><span class="s1">'^(game)$'</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">pg_catalog</span><span class="p">.</span><span class="k">default</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
 </code></pre></div>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas98.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas98.webp" width="99%"></a></p>
 </li>
 <li>
 <p>It turns out that this <em>SQL</em> translates the table name into its <em>unique ID</em> and does not reference the table directly, but only the information catalog about tables (the <strong>OID</strong> number is specific to the environment and yours may differ from the one presented in the lab).</p>
 <p>Look closely at the <em>SQLs</em> in the report and you will notice that instead of the table name, the <em>Postgres</em> client uses <strong>OID</strong> references.</p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas99.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas99.webp" width="99%"></a></p>
 </li>
 <li>
 <p>An experienced <em>Postgres</em> database administrator knows very well that they can reference a table via <strong>OID</strong> instead of its name and retrieve data from it, as long as they know the column names (replace &lt;your_customers_OID&gt; by appropriate value retrieved in your lab instance).
@@ -2206,7 +2206,7 @@ and
 
 <span class="nb">exit</span>
 </code></pre></div></td></tr></tbody></table></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/polrepbas100.webp" data-desc-position="bottom"><img alt="image" src="../../images/polrepbas100.webp" width="99%"></a> <p></p>
 </li>
 </ol>
 <h2 id="appendix">Appendix</h2>

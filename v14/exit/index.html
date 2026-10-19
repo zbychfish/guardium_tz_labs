@@ -1011,7 +1011,7 @@
 <p>List configured connections types can be displayed using command
 </p><div class="highlight"><pre><span></span><code><span class="n">db2</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">directory</span>
 </code></pre></div>
-
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit1.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit1.webp" width="69%"></a>
 <br>Notice that database SAMPLE can be referred (connected) using Remote (TCP/IP, mysample) or Indirect (Shared Memory, sample) alias.<p></p>
 </li>
 <li>
@@ -1038,7 +1038,7 @@
 </li>
 <li>
 <p>Check traffic visibility in <em>Full SQL (Training)</em> report on <strong>coll1</strong>. Notice that activity from shared memory connection is not audited.
- </p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit2.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit2.webp" width="99%"></a> </p>
 </li>
 </ol>
 <h2 id="configure-db2-system-with-exit">Configure DB2 system with EXIT</h2>
@@ -1081,7 +1081,7 @@ db2stop
 <p>Check that plugin has been correctly registered using command below. The interesting us line should be at the end of command output.
 </p><div class="highlight"><pre><span></span><code>db2<span class="w"> </span>get<span class="w"> </span>database<span class="w"> </span>manager<span class="w"> </span>configuration
 </code></pre></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit3.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit3.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>Start <em>DB2</em> engine.
@@ -1097,7 +1097,7 @@ db2stop
 </p><div class="highlight"><pre><span></span><code>/opt/guardium/modules/STAP/current/setup_exit.sh<span class="w"> </span>db2
 </code></pre></div>
 Script will require two answers – Y and N respectively.<p></p>
-<p>  </p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit4.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit4.webp" width="99%"></a>  </p>
 </li>
 <li>
 <p>Restart <em>STAP</em>.
@@ -1127,7 +1127,7 @@ db2<span class="w"> </span><span class="s2">"SELECT 'Shared Memory SECOND connec
 </li>
 <li>
 <p>Check <em>Full SQL (Training)</em> report and notice <strong>db2inst1</strong> user command has been sniffed.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit5.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit5.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="informix-monitoring-with-exit-optional">Informix monitoring with EXIT (optional)</h2>
@@ -1155,11 +1155,11 @@ db2<span class="w"> </span><span class="s2">"SELECT 'Shared Memory SECOND connec
 <span class="k">SELECT</span><span class="w"> </span><span class="s1">'INFORMIX session without SSL'</span><span class="p">;</span>
 </code></pre></div></td></tr></tbody></table></div>
 Close database session inserting <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit6.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit6.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Confirm traffic visibility in <em>Full SQL (Training)</em> report on <strong>coll1</strong>.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit7.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Connect to <em>Informix</em> again but this time using encrypted channel. The first <code>SELECT</code> indicates that the connection is using the <em>socssl</em> protocol, which means the communication is encrypted using SSL/TLS. As expected, activity from this session will not be reported, because <em>EXIT</em> must be enabled to monitor encrypted connections.
@@ -1178,7 +1178,7 @@ SELECT<span class="w"> </span>sid,<span class="w"> </span>TRIM<span class="o">(<
 SELECT<span class="w"> </span><span class="s1">'INFORMIX session with SSL'</span><span class="p">;</span>
 </code></pre></div></td></tr></tbody></table></div>
 Close database session inserting <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span> and <code>exit</code> from the <strong>informix</strong> user session.
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit8.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>To configure <em>EXIT</em>, first switch to the <strong>root</strong> user and add the <strong>informix</strong> user to the guardium group.
@@ -1202,7 +1202,7 @@ LIBPATH   /opt/ibm/informix/lib/libguard_informix_exit_64.so
 DEBUG   2
 LOGFILE   /tmp/ifxserver.log
 </code></pre></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit9.webp" width="82%"></a> <p></p>
 </li>
 <li>
 <p>Next, create a configuration file for encrypted connections - <code>$INFORMIXDIR/etc/ifxguard.ifxserver_ssl</code> and populate it with the following contents:
@@ -1212,7 +1212,7 @@ LIBPATH   /opt/ibm/informix/lib/libguard_informix_exit_64.so
 DEBUG   2
 LOGFILE   /tmp/ifxserver_ssl.log
 </code></pre></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit12.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit12.webp" width="82%"></a> <p></p>
 </li>
 <li>
 <p>You can now start the <em>EXIT</em> services for each configuration (still in the <strong>informix</strong> user context).
@@ -1222,7 +1222,7 @@ LOGFILE   /tmp/ifxserver_ssl.log
 
 ifxguard<span class="w"> </span>-c<span class="w"> </span><span class="nv">$INFORMIXDIR</span>/etc/ifxguard.ifxserver_ssl
 </code></pre></div></td></tr></tbody></table></div>
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit10.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit10.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>You must remove the <em>Informix KTAP-based</em> inspection engine definition from the <em>STAP</em> and add the correct configuration required for <em>EXIT</em> monitoring. To do this, use the API. From the <strong>cli</strong> session on <strong>coll1</strong>, execute the following command:
@@ -1250,7 +1250,7 @@ SELECT<span class="w"> </span>sid,<span class="w"> </span>TRIM<span class="o">(<
 SELECT<span class="w"> </span><span class="s1">'Second try of INFORMIX session with SSL'</span><span class="p">;</span>
 </code></pre></div></td></tr></tbody></table></div>
 Close database session inserting <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span> and <code>exit</code> from <strong>informix</strong> user session.
- <p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/exit11.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/exit11.webp" width="99%"></a> <p></p>
 </li>
 <li>
 <p>Stop <em>Informix</em> instance at the end of lab to free a <strong>raptor</strong> resources. As a <strong>root</strong> execute:

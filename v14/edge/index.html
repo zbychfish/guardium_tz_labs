@@ -917,17 +917,17 @@
 <p></p><div class="highlight"><pre><span></span><code>store<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>install<span class="w"> </span>scp
 </code></pre></div>
 Monitor the progress as the patch downloads to the appliance, noting that the large file size may require a while to complete. Once the download finishes and the patch appears in the available list, do not initiate the installation from the command line. Because this specific update must be managed via the User Interface (<em>UI</em>) or the <em>API</em>, finish the current cli command by selecting the <code>q</code> option.<p></p>
-<p></p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge1.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge1.webp" width="99%"></a></p>
 </li>
 <li>
 <p>Register patch and retrieve information about it (because patch is huge it takes time).
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>available
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge2.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge2.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>From <strong>cm</strong> UI open <strong>Patch Management</strong> view. Select the <em>Central Manager</em> <span class="mb">1</span> and locate the patch <span class="mb">2</span> that was just uploaded to the system. Trigger the installation process by clicking the <strong>Install</strong> option <span class="mb">3</span>. Choose the immediate installation <span class="mb">4</span> and confirm your selection <span class="mb">5</span> to finalize the task. The system will then schedule the specified patch for deployment
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge3.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge3.webp" width="99%"></a></p>
 </li>
 <li>
 <p>While the patch installation runs in the background, shift your focus to the additional laboratory tasks to maintain workflow efficiency.</p>
@@ -954,7 +954,7 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 </li>
 <li>
 <p>Confirm on <strong>coll1</strong> the visibility the <em>MSSQL</em> events in Full <em>SQL (Training)</em> report.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge30.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge30.webp" width="99%"></a></p>
 </li>
 </ol>
 <h2 id="k3s-installation">K3s installation</h2>
@@ -972,7 +972,7 @@ guardium-notes-dbtraffic<span class="w"> </span>--config<span class="w"> </span>
 
 kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
 </code></pre></div></td></tr></tbody></table></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge5.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge5.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Add the name resolving for <em>cm.gdemo.com</em> within the cluster configuration. Ensure that the host entry is correctly mapped to allow multiple services to establish a connection with the <em>Central Manager</em>.
@@ -994,17 +994,17 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 <p>Confirm the installation of patch 15004 from the cm command line. If the installation is still in progress, wait for the process to be completed before proceeding.
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>installed
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge6.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge6.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Check that feature flag responsible for <em>Edge Gateway</em> is enabled.
 </p><div class="highlight"><pre><span></span><code>grdapi<span class="w"> </span>list_feature_flags
 </code></pre></div>
-<p></p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge7.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge7.webp" width="99%"></a><p></p>
 </li>
 <li>
 <p>Access the <em>Central Manager</em> view within the <strong>cm</strong> UI and select <em>Register Edge Gateway</em> from the Actions dropdown menu.
-</p>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge8.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge8.webp" width="99%"></a></p>
 </li>
 <li>
 <p>In the registration window, enter the required information and press <strong>Register Edge Gateway</strong> button.</p>
