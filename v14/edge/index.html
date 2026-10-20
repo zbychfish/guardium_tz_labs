@@ -10,6 +10,10 @@
         <link rel="canonical" href="https://zbychfish.github.io/guardium_tz_labs/v14/edge/">
       
       
+        <link rel="prev" href="../ltr/">
+      
+      
+        <link rel="next" href="../genaimcp/">
       
       
         
@@ -20,7 +24,7 @@
     
     
       
-        <title>Edge Gateway - Guardium Notes Labs</title>
+        <title>Edge Gateway (lab 13) - Guardium Notes Labs</title>
       
     
     
@@ -117,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Edge Gateway
+              Edge Gateway (lab 13)
             
           </span>
         </div>
@@ -233,10 +237,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../access/" class="md-tabs__link">
           
   
@@ -313,28 +319,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -352,7 +361,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -759,6 +768,158 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Edge Gateway (lab 13)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Edge Gateway (lab 13)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#cm-upgrade-to-manage-edge-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CM upgrade to manage Edge Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-traffic-generator-mssql-on-ceratops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start traffic generator - MSSQL on ceratops
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3s-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K3s installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-edge-gateway-config-on-cm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Edge Gateway config on CM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edge-gateway-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge Gateway deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#send-traffic-from-stap-to-edge-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Send traffic from STAP to Edge Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -769,7 +930,7 @@
   <span class="md-ellipsis">
     
   
-    GenAI - MCP (lab 13)
+    GenAI - MCP (lab 14)
   
 
     
@@ -876,6 +1037,17 @@
     <span class="md-ellipsis">
       
         Send traffic from STAP to Edge Gateway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix
       
     </span>
   </a>
@@ -991,7 +1163,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 <h2 id="setup-edge-gateway-config-on-cm">Setup Edge Gateway config on CM</h2>
 <ol>
 <li>
-<p>Confirm the installation of patch 15004 from the cm command line. If the installation is still in progress, wait for the process to be completed before proceeding.
+<p>Confirm the installation of patch <strong>15004</strong> from the cm command line. If the installation is still in progress, wait for the process to be completed before proceeding.
 </p><div class="highlight"><pre><span></span><code>show<span class="w"> </span>system<span class="w"> </span>patch<span class="w"> </span>installed
 </code></pre></div>
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge6.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge6.webp" width="99%"></a><p></p>
@@ -1003,108 +1175,185 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>kube-system<span class=
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge7.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge7.webp" width="99%"></a><p></p>
 </li>
 <li>
-<p>Access the <em>Central Manager</em> view within the <strong>cm</strong> UI and select <em>Register Edge Gateway</em> from the Actions dropdown menu.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge8.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge8.webp" width="99%"></a></p>
-</li>
-<li>
-<p>In the registration window, enter the required information and press <strong>Register Edge Gateway</strong> button.</p>
+<p>Access the <em>Central Manager</em> view within the <strong>cm</strong> UI and select <em>Register Edge Gateway</em> from the <strong>Actions</strong> dropdown menu. In the registration window, enter the required information and press <strong>Register Edge Gateway</strong> button.</p>
 <div class="admonition note">
 <p class="admonition-title">Edge parameters:</p>
 <ul>
-<li>Edge name: <strong>sauropod.demo.guardium</strong> (hostname of the machine where the Edge Gateway and Kubernetes cluster are running)</li>
+<li>Edge name: <strong>sauropod</strong> (name cannot include dots and special characters)</li>
 <li>Namespace: <strong>edge</strong> (namespace where Edge Gateway will be deployed)</li>
 <li>Storage class: <strong>local-path</strong> (storage class used by the Edge Gateway; it must support RWO mode)</li>
-<li>Export to: <strong>cm.demo.guardium</strong> (aggregator for audited events; for this lab, we are using the Central Manager)</li>
-<li>Version: <strong>2.0.1</strong> (Edge Gateway version to be installed)</li>
-<li>Use HAProxy for ingress: (Routing between services and the aggregator will be configured via HAProxy; otherwise, manual NodePort configuration may be required)</li>
+<li>Export to: <strong>cm.demo.guardium</strong> (aggregator for audited events; for this lab, we are using the <em>Central Manager</em>; you can also have <em>LTR</em> datalake option if you finished <em>LTR</em> lab before)</li>
+<li>Version: <strong>v2.2.1</strong> (Edge Gateway version to be installed)</li>
+<li>Use HAProxy for ingress: <strong><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"></path></svg></span></strong> (routing between services and the aggregator will be configured via <em>HAProxy</em>)</li>
 </ul>
 </div>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge8.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge8.webp" width="99%"></a></p>
 </li>
 <li>
-<p>The Install edge bundle window will appear along with a prompt to save the generated deployment archive. Save the file and confirm that the new appliance now appears in the Central Manager view.</p>
+<p>The <strong>Install edge bundle</strong> window will appear along with a prompt to save the generated deployment archive. Skip the file saving, we will donwload it through the <code>curl</code> command displayed in the window. Copy command using <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2m-3-4H4a2 2 0 0 0-2 2v14h2V3h12z"></path></svg></span> icon.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge9.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge9.webp" width="99%"></a></p>
 </li>
 <li>
-<p>Execute this command to download deployment scripts on sauropod</p>
+<p>On sauropod jump to <code>/opt/lab_files/</code> directory and execute a copied command to download deployment bundle script.
+</p><div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/lab_files/
+
+curl<span class="w"> </span>-k<span class="w"> </span>-H<span class="w"> </span><span class="s2">"Authorization:Bearer &lt;token displayed in UI&gt;"</span><span class="w"> </span>-O<span class="w"> </span>-J<span class="w"> </span><span class="s2">"https://cm.demo.guardium:8443/restAPI/get_bundle?name=sauropod"</span>
+
+ls
+</code></pre></div></td></tr></tbody></table></div>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge10.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge10.webp" width="99%"></a><p></p>
 </li>
 <li>
-<p>Unpack downloaded archive
-tar xvf <bundle_archive></bundle_archive></p>
+<p>Unpack downloaded archive. Exracted files will be located in <code>/opt/lab-files/sauropod</code> directory.
+</p><div class="highlight"><pre><span></span><code>tar<span class="w"> </span>xvf<span class="w"> </span>&lt;bundle_archive&gt;
+</code></pre></div>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge11.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge11.webp" width="89%"></a><p></p>
 </li>
 </ol>
 <h2 id="edge-gateway-deployment">Edge Gateway deployment</h2>
 <ol>
-<li>The deployment initialization script requires the expect tool on sauropod.
-dnf -y install expect</li>
-<li>Navigate to the directory with the extracted archive and run the edge-install.sh script to initialize the Edge Gateway installation.
+<li>
+<p>The deployment initialization script requires the <code>expect</code> tool on <strong>sauropod</strong>.
+</p><div class="highlight"><pre><span></span><code>dnf<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>expect
+</code></pre></div><p></p>
+</li>
+<li>
+<p>Open the required kubernetes ports.
+</p><div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">6443</span>/tcp
+firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">8472</span>/udp
+firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-port<span class="o">=</span><span class="m">10250</span>/tcp
+firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-masquerade
+firewall-cmd<span class="w"> </span>--reload
+</code></pre></div></td></tr></tbody></table></div><p></p>
+</li>
+<li>
+<p>Navigate to the directory with the extracted archive and run the <code>edge-install.sh</code> script to initialize the <em>Edge Gateway</em> installation.
 The script will prompt for the Kubernetes cluster type to be used for the deployment, whether to add the image repository certificates located on the Central Manager, and whether to create the namespace specified earlier during the service definition (select Yes for each of the following prompts).
-cd /root/sauropod.demo.guardium/</li>
-</ol>
-<p>./edge-install.sh</p>
-<ol>
-<li>After a short while, you should observe a deployment started.
-kubectl get pods -A</li>
-<li>
-<p>After a while the strimzi operator will be restarted and deployment will be continued. You should soon see on the list the edge_manager pod
-kubectl get pods -A</p>
+</p><div class="highlight"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/lab_files/sauropod
+
+./edge-install.sh
+</code></pre></div></td></tr></tbody></table></div><p></p>
+<div class="admonition note">
+<p class="admonition-title">scripts answers:</p>
+<ul>
+<li>Is the edge cluster using k3s?: <code>y</code></li>
+<li>Proceed to install image registry certificates to /var/lib/rancher/k3s/agent/etc/containerd [y/N]?: <code>y</code></li>
+<li>Proceed to create new namespace and deploy Edge components? [y/N]?: <code>y</code></li>
+</ul>
+</div>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge12.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge12.webp" width="99%"></a></p>
 </li>
 <li>
-<p>After few minutes the Edge Gateway deployment should finish with success. Execute this loop to confirm it (provide you edge-manager pod name). 
-while true; do LINE=$(kubectl logs <edge_manager_pod_name> -n edge | grep "EDGE_SERVICES_INSTALLATION_STATUS is Completed" | tail -n 1); [ -n "$LINE" ] &amp;&amp; echo "$LINE" &amp;&amp; break; sleep 5; done</edge_manager_pod_name></p>
+<p>After a short while, you should observe a deployment started and <strong>edge-manager</strong> pod will appear on the pod list (copy <em>pod name</em> for next command).
+</p><div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+</code></pre></div>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge13.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge13.webp" width="99%"></a><p></p>
 </li>
 <li>
-<p>Open the Central Manager view in the CM UI and confirm the status change for the Edge Gateway. A green checkmark should now appear, confirming that communication is working correctly.</p>
+<p>After few minutes the <em>Edge Gateway</em> deployment should finish with success. Execute this loop to confirm it (provide your <strong>edge-manager</strong> pod name). 
+</p><div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">LINE</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>logs<span class="w"> </span>&lt;edge_manager_pod_name&gt;<span class="w"> </span>-n<span class="w"> </span>edge<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"EDGE_SERVICES_INSTALLATION_STATUS is Completed"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"</span><span class="nv">$LINE</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$LINE</span><span class="s2">"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">5</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</code></pre></div>
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge14.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge14.webp" width="99%"></a><p></p>
 </li>
 <li>
-<p>In the cm UI, create a new dashboard and name it - Edge Gateway. Then, add the following four reports: Edge Buff Usage Monitor, Edge Extraction Log, Edge Live Full SQL, Edge Live Session List. Even though you are not sending any events to the Edge Gateway yet, the Edge Buff Usage Monitor report should show sniffer statistics generated every minute.</p>
+<p>Open the <strong>Central Manager</strong> view in the <strong>cm</strong> UI and confirm the status change for <strong>sauropod</strong> <em>Edge Gateway</em>. A green checkmark should now appear, confirming that communication is working correctly.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge15.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge15.webp" width="99%"></a></p>
 </li>
 <li>
-<p>The next step is to set the policy. In the cm UI, open the Security Policies view. Select the Log Everything policy, and then select the Install option from the dropdown list. In the window that appears, select just deployed Edge Gateway and the Install and Override option. The execution of the change will be confirmed by an additional message.</p>
+<p>In the <strong>cm</strong> UI, create a new dashboard and name it - <em>Edge Gateway</em>. Then, add the following four reports:</p>
+<div class="admonition note">
+<ul>
+<li>Edge Buff Usage Monitor</li>
+<li>Edge Extraction Log</li>
+<li>Edge Live Full SQL</li>
+<li>Edge Live Session List</li>
+</ul>
+</div>
+<p>Even though you are not sending any events to the <em>Edge Gateway</em> yet, the <em>Edge Buff Usage Monitor</em> report should show sniffer statistics generated every minute.</p>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge17.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge17.webp" width="99%"></a></p>
 </li>
 <li>
-<p>In the refreshed view, information about the installation of the new policy should appear. </p>
+<p>The next step is to set the policy. In the <strong>cm</strong> UI, open the <em>Security Policies</em> view. Select the <em>Log Everything</em> policy, and then select the <strong>Install</strong> option from the dropdown list. In the window that appears, select just deployed <em>Edge Gateway</em> and the <strong>Install and Override</strong> option. The execution of the change will be confirmed by an additional message.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge18.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge18.webp" width="99%"></a></p>
+</li>
+<li>
+<p>In the <strong>Central Management</strong> view, information about the installation of the new policy should appear.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge19.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge19.webp" width="99%"></a> </p>
 </li>
 </ol>
 <h2 id="send-traffic-from-stap-to-edge-gateway">Send traffic from STAP to Edge Gateway</h2>
 <ol>
 <li>
-<p>In the Central Management view, select the Edge Gateway. This will display a list of ports where the service is listening for specific traffic types. These ports are randomly assigned from the NodePorts pool for each Edge Gateway instance. Make a note of both ports assigned to Unix-TAP, as you will need them for the next configuration step</p>
+<p>In the <strong>Central Management</strong> view, select the <em>Edge Gateway</em>. This will display a list of ports where the service is listening for specific traffic types. These ports are randomly assigned from the <em>NodePorts</em> pool for each <em>Edge Gateway</em> instance. Make a note of both ports assigned to <em>Windows S-TAP</em>, as you will need them for the next configuration step.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge20.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge20.webp" width="99%"></a></p>
 </li>
 <li>
-<p>Open the Setup by Client view and select the ceratops.demo.guardium client. Then, choose the currently installed S-TAP version - 12.2_r120202259_1 - and change the values:
-WINSTAP_USING_EDGE from 0 to 1
-WINSTAP_SQLGUARD_IP to sauropod.demo.guardium
-WINSTAP_SQLGUARD_PORT to node port identified in point 1 as a Windows S-TAP
-WINSTAP_SQLGUARD_TLS_PORT to node port identified in point 1 as a Windows S-TAP (TLS)</p>
+<p>On <strong>cm</strong> open the <strong>Setup by Client</strong> view and select the <strong>ceratops.demo.guardium</strong> client. Then, choose the currently installed <strong>S-TAP</strong> version - <strong>12.2_r120202259_1</strong> - and change the values:</p>
+<div class="admonition note">
+<ul>
+<li>WINSTAP_USING_EDGE: 1</li>
+<li>WINSTAP_SQLGUARD_IP: sauropod.demo.guardium</li>
+<li>WINSTAP_SQLGUARD_PORT: &lt;node port identified in point 1 as a <em>Windows S-TAP</em>&gt;</li>
+<li>WINSTAP_SQLGUARD_TLS_PORT &lt;node port identified in point 1 as a <em>Windows S-TAP (TLS)</em>&gt;</li>
+</ul>
+</div>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge21.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge21.webp" width="99%"></a></p>
 </li>
 <li>
-<p>Confirm the change by monitoring the status of the task.</p>
+<p>Confirm the change by monitoring the status of the task.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge22.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge22.webp" width="99%"></a></p>
 </li>
 <li>
-<p>In the Edge Buff Usage Monitor report (in the Edge Gateway dashboard), the Analyzer Total value should begin to change, indicating the number of events analyzed by the sniffer. </p>
+<p>In the <em>Edge Buff Usage Monitor</em> report (in the <em>Edge Gateway</em> dashboard), the <strong>Analyzer Total</strong> value should begin to change, indicating the number of events analyzed by the sniffer.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge23.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge23.webp" width="99%"></a> </p>
 </li>
 <li>
-<p>Reports with Edge Live in their name provide a new functionality that allows you to download a fragment of the data currently being processed on the Edge Gateway. This confirms the correct operation of policies without having to wait for the full cycle on the aggregator side. The report is equipped with an additional Edge Gateway Data Refresh option, which enables sending a request to the sniffer. Use this option in the Edge Live Session List report.</p>
+<p>Reports with <em>Edge Live</em> in their name provide a new functionality that allows you to download a fragment of the data currently being processed on the <em>Edge Gateway</em>. This confirms the correct operation of policies without having to wait for the full cycle on the aggregator side. The report is equipped with an additional <em>Edge Gateway Data Refresh</em> option, which enables sending a request to the sniffer. Use this option in the <em>Edge Live Session List</em> report.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge24.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge24.webp" width="99%"></a> </p>
 </li>
 <li>
-<p>After a moment, use the new option again to confirm that the data has been transmitted. </p>
+<p>After a moment, use the new option again to confirm that the data has been transmitted. 
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge25.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge25.webp" width="69%"></a> </p>
 </li>
 <li>
-<p>Refresh the report and ensure that the data is flowing to the Edge Gateway and is being properly audited according to the installed policy.</p>
+<p>Refresh the report and ensure that the data is flowing to the <em>Edge Gateway</em> and is being properly audited according to the installed policy.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge26.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge26.webp" width="99%"></a> </p>
 </li>
 <li>
-<p>You can also check the Edge Live Full SQL report and notice that SQL’s are logged correctly.</p>
+<p>You can also check the <em>Edge Live Full SQL</em> report and notice that SQL’s are logged correctly.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge16.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge16.webp" width="99%"></a> </p>
 </li>
-<li>
-<p>By default, data is synchronized with the aggregator every hour. Depending on the volume of events, this process can be delayed or accelerated. In our laboratory environment, we can change this value to 10 minutes. To do this, select the Edge Gateway in the Central management view and select the Edit edge parameters option from the context menu.</p>
-</li>
-<li>
-<p>In the Configure edge gateway parameters window, expand the Environments list, which allows for editing individual service parameters. Select data-manager and change the value of the DB_ROTATE_INTERVAL parameter from 3600 to 600, then confirm the change – Update parameters.  </p>
-</li>
-<li>From now on, events processed by the Edge Gateway will appear in reports every 10 minutes. Open the standard Full SQL (Training) report in the Training dashboard and confirm that the data is indeed updating according to this schedule.</li>
 </ol>
-<p>Appendix    Dependencies:
-This lab requires that Oracle lab is fully covered before</p>
-<p>Resources:</p>
+<!-- 1. By default, data is synchronized with the aggregator every hour. Depending on the volume of events, this process can be delayed or accelerated. In our laboratory environment, we can change this value to 10 minutes. To do this, select the *Edge Gateway* in the **Central management** view and select the **Edit edge parameters** option from the context menu.
+![image](../images/edge27.webp){ width="99%" } 
+
+1.  In the *Configure edge gateway parameters* window, expand the Environments list, which allows for editing individual service parameters. Select data-manager and change the value of the DB_ROTATE_INTERVAL parameter from 3600 to 600, then confirm the change – Update parameters.  
+![image](../images/edge28.webp){ width="99%" }  -->
+
+<ol>
+<li>Data from <em>Edge Gateway</em> are offloaded to aggregator (our <strong>cm</strong> in this case) on an hour basis. Open the standard <em>Full SQL (Training)</em> report in the <strong>Training</strong> dashboard and confirm that the data is indeed refreshed according to this schedule (you must have <em>Edge Gateway</em> running minimum 2 hours to observe offload period).
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/edge30.webp" data-desc-position="bottom"><img alt="image" src="../../images/edge30.webp" width="99%"></a> </li>
+</ol>
+<h2 id="appendix">Appendix</h2>
+<div class="admonition note">
+<p class="admonition-title">Dependencies:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Resources:</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Instructor notes:</p>
+</div>
 
 
 
