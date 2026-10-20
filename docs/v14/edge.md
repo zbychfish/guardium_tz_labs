@@ -71,7 +71,7 @@ kubectl -n kube-system rollout restart deployment coredns
 
 ## Setup Edge Gateway config on CM
 
-1.	Confirm the installation of patch 15004 from the cm command line. If the installation is still in progress, wait for the process to be completed before proceeding.
+1.	Confirm the installation of patch **15004** from the cm command line. If the installation is still in progress, wait for the process to be completed before proceeding.
 ```bash
 show system patch installed
 ```
@@ -83,80 +83,150 @@ grdapi list_feature_flags
 ``` 
 ![image](../images/edge7.webp){ width="99%" }
 
-1.	Access the *Central Manager* view within the **cm** UI and select *Register Edge Gateway* from the Actions dropdown menu.
-![image](../images/edge8.webp){ width="99%" }
-
-1.  In the registration window, enter the required information and press **Register Edge Gateway** button.
+1.	Access the *Central Manager* view within the **cm** UI and select *Register Edge Gateway* from the **Actions** dropdown menu. In the registration window, enter the required information and press **Register Edge Gateway** button.
 
     !!! note "Edge parameters:"
-        - Edge name: **sauropod.demo.guardium** (hostname of the machine where the Edge Gateway and Kubernetes cluster are running)
+        - Edge name: **sauropod** (name cannot include dots and special characters)
         - Namespace: **edge** (namespace where Edge Gateway will be deployed)
         - Storage class: **local-path** (storage class used by the Edge Gateway; it must support RWO mode)
-        - Export to: **cm.demo.guardium** (aggregator for audited events; for this lab, we are using the Central Manager)
-        - Version: **2.0.1** (Edge Gateway version to be installed)
-        - Use HAProxy for ingress: (Routing between services and the aggregator will be configured via HAProxy; otherwise, manual NodePort configuration may be required)
+        - Export to: **cm.demo.guardium** (aggregator for audited events; for this lab, we are using the *Central Manager*; you can also have *LTR* datalake option if you finished *LTR* lab before)
+        - Version: **v2.2.1** (Edge Gateway version to be installed)
+        - Use HAProxy for ingress: **:material-check:** (routing between services and the aggregator will be configured via *HAProxy*)
+
+    ![image](../images/edge8.webp){ width="99%" }
  
-1.	The Install edge bundle window will appear along with a prompt to save the generated deployment archive. Save the file and confirm that the new appliance now appears in the Central Manager view.
+1.	The **Install edge bundle** window will appear along with a prompt to save the generated deployment archive. Skip the file saving, we will donwload it through the `curl` command displayed in the window. Copy command using :material-content-copy: icon.
+![image](../images/edge9.webp){ width="99%" }
  
-1.	Execute this command to download deployment scripts on sauropod
- 
-1.	Unpack downloaded archive
+1.	On sauropod jump to `/opt/lab_files/` directory and execute a copied command to download deployment bundle script.
+```bash linenums="1"
+cd cd /opt/lab_files/
+
+curl -k -H "Authorization:Bearer <token displayed in UI>" -O -J "https://cm.demo.guardium:8443/restAPI/get_bundle?name=sauropod"
+
+ls
+```
+![image](../images/edge10.webp){ width="99%" }
+
+1.	Unpack downloaded archive. Exracted files will be located in `/opt/lab-files/sauropod` directory.
+```bash
 tar xvf <bundle_archive>
- 
+```
+![image](../images/edge11.webp){ width="89%" }
+
 ## Edge Gateway deployment
 
-1.	The deployment initialization script requires the expect tool on sauropod.
+1.	The deployment initialization script requires the `expect` tool on **sauropod**.
+```bash
 dnf -y install expect
-1.	Navigate to the directory with the extracted archive and run the edge-install.sh script to initialize the Edge Gateway installation.
+```
+
+1. Open the required kubernetes ports.
+```bash linenums="1"
+firewall-cmd --permanent --add-port=6443/tcp
+firewall-cmd --permanent --add-port=8472/udp
+firewall-cmd --permanent --add-port=10250/tcp
+firewall-cmd --permanent --add-masquerade
+firewall-cmd --reload
+```
+
+1.	Navigate to the directory with the extracted archive and run the `edge-install.sh` script to initialize the *Edge Gateway* installation.
 The script will prompt for the Kubernetes cluster type to be used for the deployment, whether to add the image repository certificates located on the Central Manager, and whether to create the namespace specified earlier during the service definition (select Yes for each of the following prompts).
-cd /root/sauropod.demo.guardium/
+```bash linenums="1"
+cd /opt/lab_files/sauropod
 
 ./edge-install.sh
- 
-1.	After a short while, you should observe a deployment started.
+```
+
+    !!! note "scripts answers:"
+        - Is the edge cluster using k3s?: `y`
+        - Proceed to install image registry certificates to /var/lib/rancher/k3s/agent/etc/containerd [y/N]?: `y`
+        - Proceed to create new namespace and deploy Edge components? [y/N]?: `y`
+        
+    ![image](../images/edge12.webp){ width="99%" }
+
+1.	After a short while, you should observe a deployment started and **edge-manager** pod will appear on the pod list (copy *pod name* for next command).
+```bash
 kubectl get pods -A
-1.	After a while the strimzi operator will be restarted and deployment will be continued. You should soon see on the list the edge_manager pod
-kubectl get pods -A
+```
+![image](../images/edge13.webp){ width="99%" }
+
  
-1.	After few minutes the Edge Gateway deployment should finish with success. Execute this loop to confirm it (provide you edge-manager pod name). 
+1.	After few minutes the *Edge Gateway* deployment should finish with success. Execute this loop to confirm it (provide your **edge-manager** pod name). 
+```bash
 while true; do LINE=$(kubectl logs <edge_manager_pod_name> -n edge | grep "EDGE_SERVICES_INSTALLATION_STATUS is Completed" | tail -n 1); [ -n "$LINE" ] && echo "$LINE" && break; sleep 5; done
+```
+![image](../images/edge14.webp){ width="99%" }
  
-1.	Open the Central Manager view in the CM UI and confirm the status change for the Edge Gateway. A green checkmark should now appear, confirming that communication is working correctly.
+1.	Open the **Central Manager** view in the **cm** UI and confirm the status change for **sauropod** *Edge Gateway*. A green checkmark should now appear, confirming that communication is working correctly.
+![image](../images/edge15.webp){ width="99%" }
  
-1.	In the cm UI, create a new dashboard and name it - Edge Gateway. Then, add the following four reports: Edge Buff Usage Monitor, Edge Extraction Log, Edge Live Full SQL, Edge Live Session List. Even though you are not sending any events to the Edge Gateway yet, the Edge Buff Usage Monitor report should show sniffer statistics generated every minute.
+1.	In the **cm** UI, create a new dashboard and name it - *Edge Gateway*. Then, add the following four reports:
+
+    !!! note ""
+        - Edge Buff Usage Monitor
+        - Edge Extraction Log
+        - Edge Live Full SQL
+        - Edge Live Session List
+
+    Even though you are not sending any events to the *Edge Gateway* yet, the *Edge Buff Usage Monitor* report should show sniffer statistics generated every minute.
+
+    ![image](../images/edge17.webp){ width="99%" }
  
-1.	The next step is to set the policy. In the cm UI, open the Security Policies view. Select the Log Everything policy, and then select the Install option from the dropdown list. In the window that appears, select just deployed Edge Gateway and the Install and Override option. The execution of the change will be confirmed by an additional message.
+1.	The next step is to set the policy. In the **cm** UI, open the *Security Policies* view. Select the *Log Everything* policy, and then select the **Install** option from the dropdown list. In the window that appears, select just deployed *Edge Gateway* and the **Install and Override** option. The execution of the change will be confirmed by an additional message.
+![image](../images/edge18.webp){ width="99%" }
  
-1.	In the refreshed view, information about the installation of the new policy should appear. 
+1.	In the **Central Management** view, information about the installation of the new policy should appear.
+![image](../images/edge19.webp){ width="99%" } 
+
+
 
 ## Send traffic from STAP to Edge Gateway
 
-1.	In the Central Management view, select the Edge Gateway. This will display a list of ports where the service is listening for specific traffic types. These ports are randomly assigned from the NodePorts pool for each Edge Gateway instance. Make a note of both ports assigned to Unix-TAP, as you will need them for the next configuration step
+1.	In the **Central Management** view, select the *Edge Gateway*. This will display a list of ports where the service is listening for specific traffic types. These ports are randomly assigned from the *NodePorts* pool for each *Edge Gateway* instance. Make a note of both ports assigned to *Windows S-TAP*, as you will need them for the next configuration step.
+![image](../images/edge20.webp){ width="99%" }
  
-1.	Open the Setup by Client view and select the ceratops.demo.guardium client. Then, choose the currently installed S-TAP version - 12.2_r120202259_1 - and change the values:
-WINSTAP_USING_EDGE from 0 to 1
-WINSTAP_SQLGUARD_IP to sauropod.demo.guardium
-WINSTAP_SQLGUARD_PORT to node port identified in point 1 as a Windows S-TAP
-WINSTAP_SQLGUARD_TLS_PORT to node port identified in point 1 as a Windows S-TAP (TLS)
- 
+1.	On **cm** open the **Setup by Client** view and select the **ceratops.demo.guardium** client. Then, choose the currently installed **S-TAP** version - **12.2_r120202259_1** - and change the values:
+
+    !!! note ""
+        - WINSTAP_USING_EDGE: 1
+        - WINSTAP_SQLGUARD_IP: sauropod.demo.guardium
+        - WINSTAP_SQLGUARD_PORT: &lt;node port identified in point 1 as a *Windows S-TAP*>
+        - WINSTAP_SQLGUARD_TLS_PORT &lt;node port identified in point 1 as a *Windows S-TAP (TLS)*>
+
+    ![image](../images/edge21.webp){ width="99%" }
+
 1.	Confirm the change by monitoring the status of the task.
+![image](../images/edge22.webp){ width="99%" }
  
-1.	In the Edge Buff Usage Monitor report (in the Edge Gateway dashboard), the Analyzer Total value should begin to change, indicating the number of events analyzed by the sniffer. 
+1.	In the *Edge Buff Usage Monitor* report (in the *Edge Gateway* dashboard), the **Analyzer Total** value should begin to change, indicating the number of events analyzed by the sniffer.
+![image](../images/edge23.webp){ width="99%" } 
  
-1.	Reports with Edge Live in their name provide a new functionality that allows you to download a fragment of the data currently being processed on the Edge Gateway. This confirms the correct operation of policies without having to wait for the full cycle on the aggregator side. The report is equipped with an additional Edge Gateway Data Refresh option, which enables sending a request to the sniffer. Use this option in the Edge Live Session List report.
+1.	Reports with *Edge Live* in their name provide a new functionality that allows you to download a fragment of the data currently being processed on the *Edge Gateway*. This confirms the correct operation of policies without having to wait for the full cycle on the aggregator side. The report is equipped with an additional *Edge Gateway Data Refresh* option, which enables sending a request to the sniffer. Use this option in the *Edge Live Session List* report.
+![image](../images/edge24.webp){ width="99%" } 
  
 1.	After a moment, use the new option again to confirm that the data has been transmitted. 
+![image](../images/edge25.webp){ width="69%" } 
  
-1.	Refresh the report and ensure that the data is flowing to the Edge Gateway and is being properly audited according to the installed policy.
+1.	Refresh the report and ensure that the data is flowing to the *Edge Gateway* and is being properly audited according to the installed policy.
+![image](../images/edge26.webp){ width="99%" } 
  
-1.	You can also check the Edge Live Full SQL report and notice that SQL’s are logged correctly.
-1.	By default, data is synchronized with the aggregator every hour. Depending on the volume of events, this process can be delayed or accelerated. In our laboratory environment, we can change this value to 10 minutes. To do this, select the Edge Gateway in the Central management view and select the Edit edge parameters option from the context menu.
- 
-1.	In the Configure edge gateway parameters window, expand the Environments list, which allows for editing individual service parameters. Select data-manager and change the value of the DB_ROTATE_INTERVAL parameter from 3600 to 600, then confirm the change – Update parameters.  
-1.	From now on, events processed by the Edge Gateway will appear in reports every 10 minutes. Open the standard Full SQL (Training) report in the Training dashboard and confirm that the data is indeed updating according to this schedule.
- 
-Appendix	Dependencies:
-This lab requires that Oracle lab is fully covered before
+1.	You can also check the *Edge Live Full SQL* report and notice that SQL’s are logged correctly.
+![image](../images/edge16.webp){ width="99%" } 
 
-Resources:
+<!-- 1.	By default, data is synchronized with the aggregator every hour. Depending on the volume of events, this process can be delayed or accelerated. In our laboratory environment, we can change this value to 10 minutes. To do this, select the *Edge Gateway* in the **Central management** view and select the **Edit edge parameters** option from the context menu.
+![image](../images/edge27.webp){ width="99%" } 
+ 
+1.	In the *Configure edge gateway parameters* window, expand the Environments list, which allows for editing individual service parameters. Select data-manager and change the value of the DB_ROTATE_INTERVAL parameter from 3600 to 600, then confirm the change – Update parameters.  
+![image](../images/edge28.webp){ width="99%" }  -->
 
+1.	Data from *Edge Gateway* are offloaded to aggregator (our **cm** in this case) on an hour basis. Open the standard *Full SQL (Training)* report in the **Training** dashboard and confirm that the data is indeed refreshed according to this schedule (you must have *Edge Gateway* running minimum 2 hours to observe offload period).
+![image](../images/edge30.webp){ width="99%" } 
+
+## Appendix
+
+!!! note "Dependencies:"
+
+!!! note "Resources:"
+    
+!!! note "Instructor notes:"

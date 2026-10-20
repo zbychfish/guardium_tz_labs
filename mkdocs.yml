@@ -76,6 +76,7 @@ nav:
       - Policies and Reports basics (lab 11): v14/polrepbas.md
       - VA result sets processing (lab 12): v14/varesultset.md
       - LTR (lab 12): v14/ltr.md
-      - GenAI - MCP (lab 13): v14/genaimcp.md
-      # - Edge Gateway (lab 12): v14/edge.md
+      - Edge Gateway (lab 13): v14/edge.md
+      - GenAI - MCP (lab 14): v14/genaimcp.md
+      
   

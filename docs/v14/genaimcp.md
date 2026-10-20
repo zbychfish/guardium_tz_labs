@@ -157,5 +157,13 @@ If you have other *MCP* servers defined, add our one by inserting addition membe
 1. Then restart Antigravity application. Select **Customization**, just above *conversation* list. Switch to Installed list abd notice our **gdp-mcp** server appearance in the *MCP Servers* section and its green status.
 ![TZ requests](../images/mcp19.webp){ width="99%" }
 
-1. Open new conversation and start asking about GDP environment (confirm usage of MCP server).
+1. Open new conversation and start asking about **GDP** environment (confirm usage of *MCP* server).
 ![TZ requests](../images/mcp20.webp){ width="99%" }
+
+## Appendix
+
+!!! note "Dependencies:"
+
+!!! note "Resources:"
+    
+!!! note "Instructor notes:"
