@@ -2,4 +2,4 @@ mkdocs==1.6.1
 mkdocs-material==9.7.7
 mkdocs-glightbox==0.5.2
 pymdown-extensions
-selectolax
+selectolax==1.0.0
