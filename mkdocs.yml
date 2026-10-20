@@ -33,14 +33,14 @@ theme:
 
 plugins:
   - search
-  - glightbox:
-      touchNavigation: true
-      loop: false
-      effect: zoom
-      width: 100%
-      height: auto
-      zoomable: true
-      draggable: false
+  # - glightbox:
+  #     touchNavigation: true
+  #     loop: false
+  #     effect: zoom
+  #     width: 100%
+  #     height: auto
+  #     zoomable: true
+  #     draggable: false
 
 markdown_extensions:
   - admonition
