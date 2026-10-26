@@ -79,7 +79,7 @@ dnf -y install /root/lab_files/filebeat-<filebeat_version>-x86_64.rpm
 # ------------------------------ Logstash Output ---------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["coll1.gdemo.com:5047"]
+  hosts: ["coll1.demo.guardium:5047"]
 ```
 ![TZ requests](../images/logstash7.webp){ width="69%" }
 

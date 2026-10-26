@@ -79,7 +79,7 @@ dnf -y install /root/lab_files/filebeat-<filebeat_version>-x86_64.rpm
 # ------------------------------ Logstash Output ---------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["coll1.gdemo.com:5047"]
+  hosts: ["coll1.demo.guardium:5047"]
 ```
 ![TZ requests](../images/logstash7.webp){ width="69%" }
 
@@ -94,7 +94,13 @@ systemctl enable filebeat
 
 ## Configure UC plugin
 
-1. Login to **cm** UI nad open the **Datasource Profile Management** view and click the :material-plus: icon to create a new *Universal Connector* profile. Select the *Cassandra* plug-in from the list. This will display additional configuration options.
+1. Login to **cm** UI nad open the **Datasource Profile Management** view. From *Actions* menu select **Enable UC**. Then select **coll1.demo.guardium** and press **OK**. It should start UC 1.0 services on **coll1**.
+![TZ requests](../images/logstash27.webp){ width="99%" }
+
+1. Now from time to time refresh :material-refresh-circle: window and check in *Actions*->**Disable UC** that **coll1.demo.guardium** has *UC* enabled.
+![TZ requests](../images/logstash28.webp){ width="99%" }
+
+1. Then click the :material-plus: icon to create a new *Universal Connector* profile. Select the *Cassandra* plug-in from the list. This will display additional configuration options.
 
     !!! node "parameters:"
         - Name: **cassandra on sauropod**
@@ -108,8 +114,8 @@ systemctl enable filebeat
     
     ![TZ requests](../images/logstash8.webp){ width="99%" }
 
-1. The newly created *Universal Connector* profile should now appear in the list. To deploy it to a collector, select the profile and choose **Install** from the **Install** menu. In the *Install Profile* window, select **coll1.demo.guardium** as the target collector and click **Run Now** to start the deployment.
-![TZ requests](../images/logstash9.webp){ width="99%" }
+1. The newly created *Universal Connector* profile should now appear in the list. To deploy it to a collector, select the profile and choose **Install** from the **Manage** menu. In the *Install Profile* window, select **coll1.demo.guardium** as the target collector and click **Run Now** to start the deployment.
+![TZ requests](../images/logstash9_v15.webp){ width="99%" }
 
 1. After returning to the main **Datasource Profile Management** view, a progress indicator :material-sync: should appear in the **Deployed** column. Refresh the view periodically :material-reload: until the deployment completes and a confirmation is displayed indicating that the *Universal Connector* has been successfully configured on the collector.
 ![TZ requests](../images/logstash10.webp){ width="99%" }
@@ -170,9 +176,9 @@ openssl s_client -connect coll1.demo.guardium:5047
 1. Po chwili zmiany zostaną zapisane ale nie zdeployowane, co widoczne będzie ikoną :material-alert-outline: przy nazwie UC.
 ![TZ requests](../images/logstash12.webp){ width="99%" } 
 
-1. To reinstall the *Universal Connector* on the **coll1**, select the profile and choose **Reinstall** from the **Install** menu. You will be prompted to confirm the operation and then specify when the reinstall should be performed. Select **Run Now**.
+1. To reinstall the *Universal Connector* on the **coll1**, select the profile and choose **Reinstall** from the **Manage** menu. You will be prompted to confirm the operation and then specify when the reinstall should be performed. Select **Run Now**.
   After a short time, you will be returned to the main **Datasource Profile Management** view. As with the initial deployment, wait for the operation to complete and refresh the view periodically until the status confirms that the reinstall has been successfully applied.
-  ![TZ requests](../images/logstash13.webp){ width="99%" } 
+  ![TZ requests](../images/logstash13_v15.webp){ width="99%" } 
 
 1.	Check TLS *logstash* readiness on **coll1** from **sauropod** machine
 ```bash
