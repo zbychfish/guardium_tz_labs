@@ -80,5 +80,8 @@ nav:
       - GenAI - MCP (lab 14): v14/genaimcp.md
   - V15 (under construction, use only with V15 release):
       - KTAP (lab 1): v15/ktap.md
+      - ATAP (lab 2): v15/atap.md
+      - EXIT (lab 3): v15/exit.md
+      - UC 1.0 - logstash based (lab 4): v15/logstash.md
       
   
