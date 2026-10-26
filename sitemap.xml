@@ -69,7 +69,19 @@
          <lastmod>2026-10-26</lastmod>
     </url>
     <url>
+         <loc>https://zbychfish.github.io/guardium_tz_labs/v15/atap/</loc>
+         <lastmod>2026-10-26</lastmod>
+    </url>
+    <url>
+         <loc>https://zbychfish.github.io/guardium_tz_labs/v15/exit/</loc>
+         <lastmod>2026-10-26</lastmod>
+    </url>
+    <url>
          <loc>https://zbychfish.github.io/guardium_tz_labs/v15/ktap/</loc>
+         <lastmod>2026-10-26</lastmod>
+    </url>
+    <url>
+         <loc>https://zbychfish.github.io/guardium_tz_labs/v15/logstash/</loc>
          <lastmod>2026-10-26</lastmod>
     </url>
 </urlset>
