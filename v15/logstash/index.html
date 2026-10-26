@@ -13,6 +13,8 @@
         <link rel="prev" href="../exit/">
       
       
+        <link rel="next" href="../etap/">
+      
       
         
       
@@ -1124,6 +1126,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../etap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ETAP (lab 5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1336,7 +1366,7 @@ curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span>
 <div class="highlight"><pre><span></span><code><span class="c1"># ------------------------------ Logstash Output ---------------------------</span>
 <span class="nt">output.logstash</span><span class="p">:</span>
 <span class="w">  </span><span class="c1"># The Logstash hosts</span>
-<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"coll1.gdemo.com:5047"</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"coll1.demo.guardium:5047"</span><span class="p p-Indicator">]</span>
 </code></pre></div>
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash7.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash7.webp" width="69%"></a><p></p>
 </li>
@@ -1357,7 +1387,15 @@ systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> 
 <h2 id="configure-uc-plugin">Configure UC plugin</h2>
 <ol>
 <li>
-<p>Login to <strong>cm</strong> UI nad open the <strong>Datasource Profile Management</strong> view and click the <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"></path></svg></span> icon to create a new <em>Universal Connector</em> profile. Select the <em>Cassandra</em> plug-in from the list. This will display additional configuration options.</p>
+<p>Login to <strong>cm</strong> UI nad open the <strong>Datasource Profile Management</strong> view. From <em>Actions</em> menu select <strong>Enable UC</strong>. Then select <strong>coll1.demo.guardium</strong> and press <strong>OK</strong>. It should start UC 1.0 services on <strong>coll1</strong>.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash27.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash27.webp" width="99%"></a></p>
+</li>
+<li>
+<p>Now from time to time refresh <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2m6 9h-5l1.81-1.81A3.94 3.94 0 0 0 12 8a4 4 0 1 0 3.86 5h2.05A6 6 0 1 1 12 6a5.9 5.9 0 0 1 4.22 1.78L18 6Z"></path></svg></span> window and check in <em>Actions</em>-&gt;<strong>Disable UC</strong> that <strong>coll1.demo.guardium</strong> has <em>UC</em> enabled.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash28.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash28.webp" width="99%"></a></p>
+</li>
+<li>
+<p>Then click the <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"></path></svg></span> icon to create a new <em>Universal Connector</em> profile. Select the <em>Cassandra</em> plug-in from the list. This will display additional configuration options.</p>
 <div class="admonition node">
 <p class="admonition-title">parameters:</p>
 <ul>
@@ -1373,8 +1411,8 @@ systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> 
 <p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash8.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash8.webp" width="99%"></a></p>
 </li>
 <li>
-<p>The newly created <em>Universal Connector</em> profile should now appear in the list. To deploy it to a collector, select the profile and choose <strong>Install</strong> from the <strong>Install</strong> menu. In the <em>Install Profile</em> window, select <strong>coll1.demo.guardium</strong> as the target collector and click <strong>Run Now</strong> to start the deployment.
-<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash9.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash9.webp" width="99%"></a></p>
+<p>The newly created <em>Universal Connector</em> profile should now appear in the list. To deploy it to a collector, select the profile and choose <strong>Install</strong> from the <strong>Manage</strong> menu. In the <em>Install Profile</em> window, select <strong>coll1.demo.guardium</strong> as the target collector and click <strong>Run Now</strong> to start the deployment.
+<a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash9_v15.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash9_v15.webp" width="99%"></a></p>
 </li>
 <li>
 <p>After returning to the main <strong>Datasource Profile Management</strong> view, a progress indicator <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18a6 6 0 0 1-6-6c0-1 .25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12a8 8 0 0 0 8 8v3l4-4-4-4m0-11V1L8 5l4 4V6a6 6 0 0 1 6 6c0 1-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12a8 8 0 0 0-8-8"></path></svg></span> should appear in the <strong>Deployed</strong> column. Refresh the view periodically <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12a9 9 0 0 0 9 9c2.39 0 4.68-.94 6.4-2.6l-1.5-1.5A6.7 6.7 0 0 1 11 19c-6.24 0-9.36-7.54-4.95-11.95S18 5.77 18 12h-3l4 4h.1l3.9-4h-3a9 9 0 0 0-18 0"></path></svg></span> until the deployment completes and a confirmation is displayed indicating that the <em>Universal Connector</em> has been successfully configured on the collector.
@@ -1461,9 +1499,9 @@ systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> 
 <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash12.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash12.webp" width="99%"></a> </p>
 </li>
 <li>
-<p>To reinstall the <em>Universal Connector</em> on the <strong>coll1</strong>, select the profile and choose <strong>Reinstall</strong> from the <strong>Install</strong> menu. You will be prompted to confirm the operation and then specify when the reinstall should be performed. Select <strong>Run Now</strong>.
+<p>To reinstall the <em>Universal Connector</em> on the <strong>coll1</strong>, select the profile and choose <strong>Reinstall</strong> from the <strong>Manage</strong> menu. You will be prompted to confirm the operation and then specify when the reinstall should be performed. Select <strong>Run Now</strong>.
   After a short time, you will be returned to the main <strong>Datasource Profile Management</strong> view. As with the initial deployment, wait for the operation to complete and refresh the view periodically until the status confirms that the reinstall has been successfully applied.
-  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash13.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash13.webp" width="99%"></a> </p>
+  <a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../../images/logstash13_v15.webp" data-desc-position="bottom"><img alt="TZ requests" src="../../images/logstash13_v15.webp" width="99%"></a> </p>
 </li>
 <li>
 <p>Check TLS <em>logstash</em> readiness on <strong>coll1</strong> from <strong>sauropod</strong> machine
