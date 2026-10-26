@@ -78,5 +78,7 @@ nav:
       - LTR (lab 12): v14/ltr.md
       - Edge Gateway (lab 13): v14/edge.md
       - GenAI - MCP (lab 14): v14/genaimcp.md
+  - V15 (under construction, use only with V15 release):
+      - KTAP (lab 1): v15/ktap.md
       
   
