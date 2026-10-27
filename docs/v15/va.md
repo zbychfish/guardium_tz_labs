@@ -277,7 +277,7 @@ podman logs va-scanner-sauropod
 1.  You can now see all available tests and apply a filter using the :material-filter: icon. Under *Status*, select **Fixed** and **Apply**.
 ![TZ requests](../images/va72.webp){ width="99%" }
 
-1.  To see remediated issue with missing encryption plugin **Clear filters** applied in the view.
+1.  Only one test should appear in the list, corresponding to the plugin issue resolved earlier. Select the test to view its details, then open the History tab to see when the status changed.
 ![TZ requests](../images/va73.webp){ width="99%" }
 
 <!-- 
