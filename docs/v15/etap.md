@@ -39,7 +39,7 @@ exit;
 
 ## Docker preparation
 
-1.	Install `podman-docker` and `skopeo` packages.
+1.	Install `podman-docker` and `skopeo` packages on raptor.
 ```bash
 dnf -y install podman-docker skopeo
 ```
